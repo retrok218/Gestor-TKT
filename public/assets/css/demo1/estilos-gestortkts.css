@@ -1,0 +1,25 @@
+
+  
+    .nav2 {
+      background-color: rgb(255, 255, 255);
+      color: #595d6e;
+      padding: 0;
+      font-family: 'Poppins';
+    }
+    .new2 {
+      background-color: #ffffff;
+      padding: 10px;
+      float: left;
+      color: #fa0000;
+      font-size: .99rem;
+      font-weight: 600;
+      display: block;
+    }
+    #news2 {
+      padding: 10px;
+      float: left;
+      font-weight: bold;
+    }
+    .clear2 {
+      clear: both;
+    }

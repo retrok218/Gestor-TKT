@@ -27,3 +27,5 @@
 <link href="{{ asset('assets/css/demo1/skins/aside/light.css')}}" rel="stylesheet" type="text/css" />
 
 <link href="{{ asset('css/app_styles.css')}}" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="{{asset('assets/css/demo1/estilos-gestortkts.css')}}" type="text/css" >
