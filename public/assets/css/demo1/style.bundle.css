@@ -1283,6 +1283,7 @@ pre code {
     .col-lg-4 {
         flex: 0 0 33.33333%;
         max-width: 33.33333%
+        
     }
 
     .col-lg-5 {
@@ -45827,7 +45828,7 @@ body {
     }
 
     .kt-container {
-        padding: 0 25px
+        padding: 0 15px
     }
 
     .kt-subheader--enabled:not(.kt-subheader--fixed) .kt-content {

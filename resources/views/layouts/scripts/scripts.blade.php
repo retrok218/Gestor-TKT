@@ -26,3 +26,8 @@
 <script src="{{ URL::asset('assets/vendors/general/sweetalert2/dist/sweetalert2.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/js/demo1/bootstrap-session-timeout.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+
+
+<script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.min.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.react.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/vendors/general/canvas/jquery.canvasjs.min.js')}}" type="text/javascript"></script>
