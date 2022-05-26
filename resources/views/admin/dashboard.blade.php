@@ -23,16 +23,8 @@
                             </div>
                         </div>
 
-                        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-
-
-
-                            
-                            
-                            
-                                <div class="row">
-                                    
-                            
+                      <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+                        <div class="row">                      
                                     <div class="col-lg-4">
                                         <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
                                             <div class="kt-portlet__body">
@@ -82,283 +74,162 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    @if($_GET)
-                                    @php          
-                                          $tktbuscado = $_GET['tktaconsultar'];
-                                          $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
-                                            ->join("queue","queue.id","=","ticket.queue_id")
-                                            ->join("ticket_state","ticket_state.id","=","ticket.ticket_state_id")
-                                            ->join("customer_user","customer_user.customer_id","=","ticket.customer_id")
-                                            ->select(
-                                            'ticket.id',
-                                            'ticket.tn',
-                                            'ticket.create_time',
-                                            'ticket.title',
-                                            'ticket.user_id',
-                                            'queue.name as qname',
-                                            'ticket_state.name',
-                                            'customer_user.first_name as nombre',
-                                            'customer_user.last_name as apellido')                        
-                                          ->get();             
+                                    </div>             
+                  </div>
+                </div> 
+                <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="container-busqueda">
+
+                        <div class="card-header-gestkt text-center"><h5> Buscar Ticke </h5></div>
+                        
+                         <div class="formulario-tkt">
+                         <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
+                                <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
+                              <button type="submit" class="btn btn-success text-cemter" >Consultar</button>       
+                          </form>
+                          </div>
+                          
+                        
+                        
+                          @if($_GET)
+                            @php          
+                                  $tktbuscado = $_GET['tktaconsultar'];
+                                  $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
+                                    ->join("queue","queue.id","=","ticket.queue_id")
+                                    ->join("ticket_state","ticket_state.id","=","ticket.ticket_state_id")
+                                    ->join("customer_user","customer_user.customer_id","=","ticket.customer_id")
+                                    ->select(
+                                    'ticket.id',
+                                    'ticket.tn',
+                                    'ticket.create_time',
+                                    'ticket.title',
+                                    'ticket.user_id',
+                                    'queue.name as qname',
+                                    'ticket_state.name',
+                                    'customer_user.first_name as nombre',
+                                    'customer_user.last_name as apellido')                        
+                                  ->get();             
+                            @endphp
+                                  @if(count($consulta))
+                                   @php             
+                                    foreach($consulta as $tktconsultado)
+                                      $idtkt = $tktconsultado->id;
+                                      $numerotiket= $tktconsultado ->tn;
+                                      $fechadeltiket=$tktconsultado->create_time;
+                                      $asuntodeltiket=$tktconsultado->title;
+                                      $nusuario=$tktconsultado->nombre;
+                                      $apusuario=$tktconsultado->apellido;
+                                      $areadeltiket=$tktconsultado->qname;
+                                      if($tktconsultado->name == "closed successful"){
+                                        $estado= "Cerrado Exitosamente";
+                                      }else if($tktconsultado->name == "open"){
+                                        $estado= "Abierto";
+                                      }else{
+                                        $estado=$tktconsultado->name;
+                                      }              
                                     @endphp
-                                          @if(count($consulta))
-                                           @php             
-                                            foreach($consulta as $tktconsultado)
-                                              $idtkt = $tktconsultado->id;
-                                              $numerotiket= $tktconsultado ->tn;
-                                              $fechadeltiket=$tktconsultado->create_time;
-                                              $asuntodeltiket=$tktconsultado->title;
-                                              $nusuario=$tktconsultado->nombre;
-                                              $apusuario=$tktconsultado->apellido;
-                                              $areadeltiket=$tktconsultado->qname;
-                                              if($tktconsultado->name == "closed successful"){
-                                                $estado= "Cerrado Exitosamente";
-                                              }else if($tktconsultado->name == "open"){
-                                                $estado= "Abierto";
-                                              }else{
-                                                $estado=$tktconsultado->name;
-                                              }              
-                                            @endphp
-                                            <div class="card-tktbuscado">
-                                        <div  >
-                                          <h4>Ticket encontrado
-                                            <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
-                                              <div class="cardhvr">
-                                                {{$numerotiket}}
-                                              </div>
-                                            </a>
-                                          </h4>
-                                        </div>        
-                                        <table>
-                                          <thead class="table table table-striped table-bordered">
-                                            <tr class ="card-header">
-                                              <th>Fecha creacion del TKT</th>
-                                              <th>Asunto del TKT</th>
-                                              <th>Usuario</th> 
-                                              <th>Area</th>
-                                              <th>Estado</th>
-                                            </tr>
-                                          </thead>
-                                          <td>{{$fechadeltiket}}</td>
-                                          <td>{{$asuntodeltiket}}</td>
-                                          <td>{{$nusuario}}.{{$apusuario}}</td>
-                                          <td>{{$areadeltiket}}</td>
-                                          <td>{{$estado}}</td>
-                                        </table>
-                                        </div>
-                                          @else
-                                          <div class="card-noencontrado text-center">
-                                          <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
-                                          </div>
-                                          @endif
-                                          
-                                          
-                                  @endif
-                                 
-                                                  
-                                              </div>
-                                            </div>
-                                
-                                            
-                                  </form>
-                                
-                                  </div>
-                                            
-                                
-                                  <!-- intento fallido de creacion de formulario con modal  fin -->
-                                    
-                                    
-                                            
-                                 <div class="container-busqueda">
-                                
-                                <div class="card-header text-center"><h5> Buscar Ticke </h5></div>
-                                
-                                 <div class="formulario-tkt">
-                                 <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
-                                        <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
-                                      <button type="submit" class="btn btn-success text-cemter" >Consultar</button>       
-                                  </form>
-                                  </div>
-                                  
-                                
-                                
-                                  @if($_GET)
-                                    @php          
-                                          $tktbuscado = $_GET['tktaconsultar'];
-                                          $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
-                                            ->join("queue","queue.id","=","ticket.queue_id")
-                                            ->join("ticket_state","ticket_state.id","=","ticket.ticket_state_id")
-                                            ->join("customer_user","customer_user.customer_id","=","ticket.customer_id")
-                                            ->select(
-                                            'ticket.id',
-                                            'ticket.tn',
-                                            'ticket.create_time',
-                                            'ticket.title',
-                                            'ticket.user_id',
-                                            'queue.name as qname',
-                                            'ticket_state.name',
-                                            'customer_user.first_name as nombre',
-                                            'customer_user.last_name as apellido')                        
-                                          ->get();             
-                                    @endphp
-                                          @if(count($consulta))
-                                           @php             
-                                            foreach($consulta as $tktconsultado)
-                                              $idtkt = $tktconsultado->id;
-                                              $numerotiket= $tktconsultado ->tn;
-                                              $fechadeltiket=$tktconsultado->create_time;
-                                              $asuntodeltiket=$tktconsultado->title;
-                                              $nusuario=$tktconsultado->nombre;
-                                              $apusuario=$tktconsultado->apellido;
-                                              $areadeltiket=$tktconsultado->qname;
-                                              if($tktconsultado->name == "closed successful"){
-                                                $estado= "Cerrado Exitosamente";
-                                              }else if($tktconsultado->name == "open"){
-                                                $estado= "Abierto";
-                                              }else{
-                                                $estado=$tktconsultado->name;
-                                              }              
-                                            @endphp
-                                            <div class="card-tktbuscado">
-                                        <div  >
-                                          <h4>Ticket encontrado
-                                            <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
-                                              <div class="cardhvr">
-                                                {{$numerotiket}}
-                                              </div>
-                                            </a>
-                                          </h4>
-                                        </div>        
-                                        <table>
-                                          <thead class="table table table-striped table-bordered">
-                                            <tr class ="card-header">
-                                              <th>Fecha creacion del TKT</th>
-                                              <th>Asunto del TKT</th>
-                                              <th>Usuario</th> 
-                                              <th>Area</th>
-                                              <th>Estado</th>
-                                            </tr>
-                                          </thead>
-                                          <td>{{$fechadeltiket}}</td>
-                                          <td>{{$asuntodeltiket}}</td>
-                                          <td>{{$nusuario}}.{{$apusuario}}</td>
-                                          <td>{{$areadeltiket}}</td>
-                                          <td>{{$estado}}</td>
-                                        </table>
-                                        </div>
-                                          @else
-                                          <div class="card-noencontrado text-center">
-                                          <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
-                                          </div>
-                                          @endif
-                                          
-                                  
-                                  @endif
-                                    
-                                 </div>    
+                              <div class="card-tktbuscado">
+                                <div>
+                                  <h4>Ticket encontrado
+                                    <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
+                                      <div class="cardhvr">
+                                        {{$numerotiket}}
+                                      </div>
+                                    </a>
+                                  </h4>
+                                </div>        
+                                <table style="border: solid 1px">
+                                  <thead class="table table table-striped table-bordered">
+                                    <tr class ="card-header-gestkt">
+                                      <th>Fecha creacion del TKT</th>
+                                      <th>Asunto del TKT</th>
+                                      <th>Usuario</th> 
+                                      <th>Area</th>
+                                      <th>Estado</th>
+                                    </tr>
+                                  </thead>
+                                  <td>{{$fechadeltiket}}</td>
+                                  <td>{{$asuntodeltiket}}</td>
+                                  <td>{{$nusuario}}.{{$apusuario}}</td>
+                                  <td>{{$areadeltiket}}</td>
+                                  <td>{{$estado}}</td>
+                                </table>
                                 </div>
-                                    <div  class="row shadow-lg p-3   rounded fondo  fondo1" >
-                                      
-                                          <div class="col-md-12">
-                                            <div  class="card-header  text-center border-dark  mb-3  "><h3>Tickets Totales</h3> 
-                                            </div>
-                                            <div  class="inview" id="sales-doughnut-chart-us"></div>		  
-                                          </div>
-                                          
-                                
-                                          
-                                <!--
-                                                  <div class="col-md-4">
-                                            <div class="container">
-                                              <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Cerrados Exitosamente </h3> </div>
-                                              <div class="inview" id="sales-doughnut-chart-nl"></div>
-                                            </div>
-                                                  </div>
-                                
-                                                  <div class="col-md-4">
-                                            <div class="container">
-                                              <div class="card-header text-center border-dark  mb-3 h1t "> <h3>Tickets Asignados</h3> </div>             
-                                              <div class="inview" id="sales-doughnut-chart-de"></div>          
-                                            </div>
-                                                  </div> --> 
-                                             
-                                       
-                                      
-                                    </div>
-                                
-                                    
-                                
-                                
-                                  <div class="row shadow-lg p-3 mb-5 bg-white rounded">
-                                    <div class="col-xl-6">
-                                      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-                                          <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                                              style="min-height: 400px; ">
-                                                <div id="chartContainer"  > </div>
-                                          </div>
-                                        </div>
-                                      </div> 
-                                     
-                                      <!--  <div class="col-xl-6">
-                                          <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-                                              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                                                  style="min-height: 400px; ">
-                                                    <div id="graflineal"  > </div>
-                                              </div>
-                                            </div>
-                                          </div> -->
-                                        
-                                      
-                                    </div>
-                                
-                                <!--Grafica por Area-->
-                                
-                                    <div class="row shadow-lg p-3 mb-5 bg-white rounded">
-                                    <div class="col-lg-12">
-                                      
-                                        <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                                        style="min-height: 500px; ">
-                                                  <div id="gporarea"> </div>
-                                            </div>
-                                      
-                                    </div>    
+                                  @else
+                                  <div class="card-noencontrado text-center">
+                                  <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
                                   </div>
-                                 
-                                        
-                                    <!--Fin Grafica por Area-->
-                                
-                                    <div class="row shadow-lg p-3 mb-5 bg-white rounded">
-                                      <div class="col-lg-12">
-                                        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-                                          <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
-                                              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                                                  style="min-height: 400px; ">
-                                                    <div id="chartContainer4"  > </div>
-                                              </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                
-                                    <div class="row shadow-lg p-3 mb-5 bg-white rounded">
-                                      <div class="col-lg-12">
-                                        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-                                          <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
-                                              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                                                  style="min-height: 400px; ">
-                                                    <div id="chartContainer1"  > </div>
-                                              </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>                        
+                                  @endif
+                                  
+                          
+                          @endif
+                            
+                        </div>
+                    </div>
+                  </div> 
+                </div>
+
+                    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+                      <div class="row">
+                        <div id="gporarea" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div>
+              <div id="chartContainer4" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block;"></div>
+              <div id="chartContainer1" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block; "></div>
+                       
+                      </div>
+                    </div>   
+                
+             
+            
+               
+             
+                </div>
 
 
-            </div>           
+                
+                
+
+
+
+
+
+              </div>                        
+            </div>  
+            <ul class="kt-sticky-toolbar" style="margin-top: 30px;">
+              <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
+                <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
+              </li>
+              <!-- <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--danger" id="kt_sticky_toolbar_chat_toggler" data-toggle="kt-tooltip" title="Chat Example" data-placement="left">
+                <a href="#" data-toggle="modal" data-target="#kt_chat_modal"><i class="flaticon2-chat-1"></i></a>
+              </li> -->
+            </ul>   
+
+            <div id="kt_demo_panel" class="kt-demo-panel" style="opacity: 0;">
+              <div class="kt-demo-panel__head" style="" kt-hidden-height="50">
+                <h3 class="kt-demo-panel__title">
+                  Graficas Todos los Tickets
+                  <!--<small>5</small>-->
+                </h3>
+                <a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
+              </div>
+              <div  class="card-header  text-center border-dark"><h3>Tickets Totales</h3> 
+                <div id="sales-doughnut-chart-us" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div> 
+              </div>              
+              <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div><br/>
+              
+              
+
+
+            </div>
+            
+            
+            
+            
+            
         </div>
     </div>
+  
 
 
 
@@ -366,8 +237,6 @@
     
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-
-
 
  <!-- scrip grafica -->
 <script type="text/javascript">
@@ -377,20 +246,16 @@
                                           var año_x =2019;
                                 //variables para la creacion de la grafica lineal 
                                 
-                                window.onload = function (){
-                                
-                                
-                                              var dataLength = 0;             
-                                              CanvasJS.addCultureInfo("es",
-                                                {
+ window.onload = function (){var dataLength = 0;             
+  CanvasJS.addCultureInfo("es",{
                                                     decimalSeparator: ".",
                                                     digitGroupSeparator: ",",
                                                     days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
-                                                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
+                                                    months:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nob","Dic",]
                                                });
                                   
                                  //grafica Tickets 	
-                                           var chart = new CanvasJS.Chart("chartContainer",{
+                        var chart0 = new CanvasJS.Chart("chartContainer",{
                                                                           animationEnabled: true,
                                                                           animationDuration: 1000,
                                                                           interactivityEnabled: true,
@@ -438,7 +303,7 @@
                                                                            }
                                                                            ]
                                                                        });
-                                                       chart.render();
+                                                       chart0.render();
                                   //Fin grafica Tickets                                      
                                   // Grafica año/mes/dia
                                   
@@ -450,12 +315,12 @@
                                 
                                 //Grafica por Area 
                                 
-                                  var chart = new CanvasJS.Chart("gporarea",{
+                                  var chart1 = new CanvasJS.Chart("gporarea",{
                                                                               animationEnabled: true,
                                                                               animationDuration: 1000,
                                                                               interactivityEnabled: true,
                                                                               exportEnabled: true,
-                                                                              height:500,
+                                                                              
                                                                               
                                                                               horizontalAlign:"center",
                                                                               
@@ -550,7 +415,7 @@
                                                             ]
                                                          }]
                                   });
-                                      chart.render();
+                                      chart1.render();
                                 
                                 
                                 
@@ -564,14 +429,14 @@
                                   for(var i = 0; i < e.dataSeries.dataPoints.length; i++) {
                                         e.dataSeries.dataPoints[i].color = (e.dataSeries.dataPoints[i].exploded) ? "#242424" : null;
                                     }
-                                    e.chart.render();
+                                    e.chart1.render();
                                 }
                                     
                                 
                                   // Fin Grafica por mes
                                 
                                 
-                                var chart = new CanvasJS.Chart("chartContainer4",{
+                                var chart2 = new CanvasJS.Chart("chartContainer4",{
                                                 animationEnabled: true,
                                                 animationDuration: 1000,
                                                 interactivityEnabled: true,
@@ -646,7 +511,7 @@
                                   ]
                                 
                                 });
-                                chart.render();
+                                chart2.render();
                                 
                                 
                                 function toggleDataSeries(e) {
@@ -655,12 +520,12 @@
                                 } else {
                                   e.dataSeries.visible = true;
                                 }
-                                e.chart.render();
+                                e.chart2.render();
                                 
                                 }
                                 
                                   // conteo de tickets por año me y dia fecha actual 
-                                    var chart = new CanvasJS.Chart("chartContainer1",
+                                    var chart3 = new CanvasJS.Chart("chartContainer1",
                                          {
                                            animationEnabled: true,
                                            animationDuration: 1000,
@@ -683,12 +548,12 @@
                                              }
                                              ]
                                          });
-                                     chart.render();
+                                     chart3.render();
                                      
                                 
                                      // Separador 3 construccion
                                 
-                                  var chart = new CanvasJS.Chart("sales-doughnut-chart-us",
+                                  var chart4 = new CanvasJS.Chart("sales-doughnut-chart-us",
                                        {
                                         
                                          animationEnabled: true,
@@ -723,93 +588,15 @@
                                            }
                                            ]
                                        });
-                                   chart.render();
-                                  
+                                   chart4.render();
+                                };
+
+
+
+
+
+
                                 
-                                   //grafica de dona tickets cerrados
-                                /*
-                                   var chart = new CanvasJS.Chart("sales-doughnut-chart-nl",
-                                        {
-                                          animationEnabled: true,
-                                          
-                                
-                                           title: {
-                                             fontColor: "#848484",
-                                             fontSize: 70,
-                                             horizontalAlign: "center",
-                                             text: "{{$rticket}}",
-                                             verticalAlign: "center"
-                                           },
-                                           toolTip: {
-                                             backgroundColor: "#ffffff",
-                                             borderThickness: 0,
-                                             cornerRadius: 0,
-                                             fontColor: "#424242"
-                                            },
-                                            data: [
-                                            {
-                                              explodeOnClick: false,
-                                               innerRadius: "90%",
-                                               radius: "90%",
-                                               startAngle: 270,
-                                               type: "doughnut",
-                                
-                                
-                                              dataPoints: [
-                                
-                                                { y: {{$ticket-$rticket}}, name: "Diferente Estatus", color:  "#F11B1B", exploded: true  },
-                                                { y:  {{$rticket}} , name: "Tickets Cerrados Exitosamente", color: "#1F842F" ,toolTipContent:null}
-                                                ]
-                                            }
-                                            ]
-                                        });
-                                    chart.render();
-                                   
-                                
-                                
-                                
-                                
-                                
-                                    var chart = new CanvasJS.Chart("sales-doughnut-chart-de",
-                                         {
-                                           animationEnabled: true,
-                                            
-                                
-                                            title: {
-                                              fontColor: "#848484",
-                                              fontSize: 70,
-                                              horizontalAlign: "center",
-                                              text: "{{$asignado}}",
-                                              verticalAlign: "center"
-                                            },
-                                            toolTip: {
-                                              backgroundColor: "#ffffff",
-                                              borderThickness: 0,
-                                              cornerRadius: 0,
-                                              fontColor: "#424242"
-                                             },
-                                             data: [
-                                             {
-                                               explodeOnClick: false,
-                                                innerRadius: "90%",
-                                                radius: "90%",
-                                                startAngle: 270,
-                                                type: "doughnut",
-                                                dataPoints: [
-                                                  { y: {{$ticket-$asignado}}, name: "Tks Diferente Estatus", color:  "#F11B1B" , exploded: true  },
-                                                  { y:  {{$asignado}} , name: "Ticket Asignados", color: "#1F842F" ,toolTipContent:null}
-                                                 ]
-                                             }
-                                             ]
-                                         });
-                                         
-                                     chart.render();
-                                */
-                                // fin grafica de dona tickets cerrados
-                                //Grafica Lineal AÑo - Mes cada segundo  
-                                // se carga la grafica cada segundo
-                                // Fin se carga la grafica cada segundo  
-                                //Fin Grafica Lineal AÑo - Mes cada segundo 
                                 
                                 var nuevotk = [
                                   "Ultimo Ticket ingresado {{$ultimoTK->tn}}  /  {{$ultimoTK->create_time}}  .  .  ." 
@@ -835,40 +622,7 @@
                                   }
                                   
                                 
-                                var tkt_buscado = document.getElementById('tkt_buscado');
-                                var modal = document.getElementById('modal_simple');
-                                var modalBtn = document.getElementById('modalBtn');
-                                var closeBtn = document.getElementsByClassName('closeBtn')[0];
                                 
-                                modalBtn.addEventListener('click', openModal);
-                                closeBtn.addEventListener('click', closeModal);
-                                
-                                // clikeo fuera de la pagina 
-                                window.addEventListener('click',clickfuerade);
-                                
-                                
-                                function openModal(){
-                                    modal.style.display = 'block';
-                                }
-                                function closeModal(){
-                                    modal.style.display = 'none';
-                                }
-                                // funcion para cerra el modal por fuera 
-                                function clickfuerade(e){
-                                if (e.target == modal) {
-                                    modal.style.display = 'none';
-                                }
-                                    
-                                }
-                                
-                                
-                                };
-                                
-                                
-                                
-                                
-                                
-                                
-                                </script>
+</script>
 @endsection
 @endsection

@@ -4798,7 +4798,7 @@ input[type=submit].btn-block {
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: #f7f8fa;
+    background-color: #ffffff;
     border-bottom: 1px solid #ebedf2
 }
 
@@ -16115,7 +16115,7 @@ code {
 }
 
 .kt-page--loading * {
-    transition: none !important
+    /*transition: none !important*/
 }
 
 .kt-page-loader {
@@ -39574,14 +39574,14 @@ body.swal2-height-auto {
 .kt-demo-panel {
     background-color: #fff;
     box-shadow: 0 0 28px 0 rgba(82, 63, 105, .13);
-    padding: 2.5rem
+    padding: 0rem
 }
 
 .kt-demo-panel .kt-demo-panel__head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem
+    margin-bottom: 1rem
 }
 
 .kt-demo-panel .kt-demo-panel__head .kt-demo-panel__title {
@@ -39733,19 +39733,20 @@ body.swal2-height-auto {
     position: fixed;
     -webkit-overflow-scrolling: touch;
     top: 0;
-    bottom: 0;
+    bottom: auto;
     overflow-y: auto;
     -webkit-transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     width: 350px !important;
     transition: left .3s ease, right .3s ease;
-    left: -370px
+    left: -370px;
 }
 
 .kt-demo-panel.kt-demo-panel--on {
-    transition: left .3s ease, right .3s ease;
-    left: 0
+    -webkit-transition: left .3s ease,right .3s ease;
+    transition: left .3s ease,right .3s ease;
+    left: 0;
 }
 
 @media screen\0 {
@@ -39760,9 +39761,10 @@ body.swal2-height-auto {
 }
 
 .kt-demo-panel--right .kt-demo-panel.kt-demo-panel--on {
-    transition: left .3s ease, right .3s ease;
+    -webkit-transition: left .3s ease,right .3s ease;
+    transition: left .3s ease,right .3s ease;
     right: 0;
-    left: auto
+    left: auto;
 }
 
 .kt-demo-panel-close {

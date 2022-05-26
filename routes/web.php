@@ -105,3 +105,5 @@ Route::post('/block_screen', function () {
     ->json(['status' => 'true']);
 });
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get ('/tickets_abiertos','Estado_tickets@tickets_abiertos' );
