@@ -77,20 +77,7 @@
                       </tfoot>
                   </table>
                 <!--end: Datatable -->
-               
-            
-                
-  
-            
-        
         </div>
-
-
-
-
-
-
-
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 @endsection
