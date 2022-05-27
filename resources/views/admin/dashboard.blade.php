@@ -1,4 +1,5 @@
 @extends('home')
+<!-- <meta http-equiv="refresh" content="60">-->
 @section('content')
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
@@ -15,7 +16,7 @@
                                     <a href="#" class="kt-widget__title">Gestor De Tickets</a>
                                 </div>
                                 <hr>
-                                <div class="nav2">
+                                <div class="">
                                     <div class="new2" > New </div>
                                     <div id="news2"></div>
                                     <div class="clear2"></div>
@@ -121,7 +122,7 @@
                                       $asuntodeltiket=$tktconsultado->title;
                                       $nusuario=$tktconsultado->nombre;
                                       $apusuario=$tktconsultado->apellido;
-                                      $areadeltiket=$tktconsultado->qname;
+                                      $areadeltiket=$tktconsultado->qname;  
                                       if($tktconsultado->name == "closed successful"){
                                         $estado= "Cerrado Exitosamente";
                                       }else if($tktconsultado->name == "open"){
@@ -131,18 +132,19 @@
                                       }              
                                     @endphp
                               <div class="card-tktbuscado">
-                                <div>
-                                  <h4>Ticket encontrado
+                                <div>                                  
+                                    <h4>Ticket encontrado</h4>                                    
                                     <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
                                       <div class="cardhvr">
-                                        {{$numerotiket}}
+                                        <h5 style="text-align: center">{{$numerotiket}}</h5>
                                       </div>
                                     </a>
-                                  </h4>
+                                  
+                                  
                                 </div>        
                                 <table style="border: solid 1px">
                                   <thead class="table table table-striped table-bordered">
-                                    <tr class ="card-header-gestkt">
+                                    <tr class ="card-header">
                                       <th>Fecha creacion del TKT</th>
                                       <th>Asunto del TKT</th>
                                       <th>Usuario</th> 

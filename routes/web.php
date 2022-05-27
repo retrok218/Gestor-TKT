@@ -106,4 +106,13 @@ Route::post('/block_screen', function () {
 });
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get ('/tickets_abiertos','Estado_tickets@tickets_abiertos' );
+Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
+Route::get ('/tickets_atendidos','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_cerrados_exitosamente','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_cerradospt','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_espera_informacion','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_falta_acta_resp','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_notificado_al_usuario','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_pendientes','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/todos_los_tickets','Estado_ticketsController@tickets_abiertos' );

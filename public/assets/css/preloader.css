@@ -1,0 +1,193 @@
+.glass{
+    width: 30rem;
+    height: 20rem;
+    box-shadow: 0 0 1rem 0 rgb(195, 204, 10);
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+  
+  
+  }
+  
+  
+  .glass:before{
+      content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgb(2, 52, 255);
+    filter: blur(10px);
+    margin: -20px;
+  
+  }
+  
+  
+  #loader-wrapper {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+  
+  
+  }
+  #loader {
+    background-image: url(../assets/media/logos/logo-cdmx-carmesin.png)  ;
+    display:block;
+    position: relative;
+    top:50%;
+    left:50%;
+    width:150px;
+    height:150px;
+    margin:-75px 0 0 -75px;
+    border:14px solid #75293d;
+    border-right-color:transparent ;
+    border-left-color: transparent;
+    /*Bolitas del spiner*/
+    box-shadow:
+    -75px -125px 0 -50px #75293d,
+     
+    150px    0px 0 -50px #75293d,
+     
+    -80px  125px 0 -50px #75293d,
+  
+    
+    -1px -1px 20px 1px #cbb190;
+  
+   /*Bolitas del spiner*/
+  
+  
+  
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    
+    background-size: 75px;
+    
+    border-radius:100%;
+    -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+    z-index:1001;
+  }
+  #loader:before {
+    content:"";
+    position: absolute;
+    top:1px;
+    left:1px;
+    right:1px;
+    bottom:1px;
+    border:10px solid transparent;
+    border-top-color: #75293d;
+    border-radius:50%;
+    -webkit-animation: spin 3s linear infinite;
+            animation: spin 4s linear infinite;
+  }
+  #loader:after {
+    content:"";
+    position: absolute;
+    top:10px;
+    left:10px;
+    right:10px;
+    bottom:10px;
+    border:10px solid transparent;
+    border-top-color:#75293d;
+    border-radius:100%;
+    
+    -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+  
+  }
+  
+  @-webkit-keyframes spin {
+    0%   {
+      -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+  
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    0%   {
+      -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+    }
+  }
+  
+  #loader-wrapper .loader-section {
+    position:fixed;
+    top:0;
+    box-shadow: inset 100px 1000px 2000px rgba(218, 221, 218, 0.803);
+    filter: blur(3px);
+    margin: -11px;
+    width:51%;
+    height:100%;
+    z-index:1000;
+  }
+  
+  #loader-wrapper .loader-section.section-left {
+    left:0
+  }
+  #loader-wrapper .loader-section.section-right {
+    right:0;
+  }
+  
+  /* Loaded Styles */
+  .loaded #loader-wrapper .loader-section.section-left {
+    transform: translateX(-100%);
+    transition: all 0.7s 0.3s cubic-bezier(0.645,0.045,0.355,1.000);
+  }
+  .loaded #loader-wrapper .loader-section.section-right {
+    transform: translateX(100%);
+    transition: all 0.7s 0.3s cubic-bezier(0.645,0.045,0.355,1.000);
+  }
+  .loaded #loader {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+  .loaded #loader-wrapper {
+    visibility: hidden;
+    transform:translateY(-100%);
+    transition: all 0.3s 1s ease-out;
+  }
+  
+  .logocard{
+    font-size:35px;
+    color: #069d44;
+  }
+  .tkts_del_ano{
+    font-size: 35px;
+    color: rgba(4, 109, 4, 0.507);
+  }
+  .tkts_del_mes{
+    font-size:35px;
+    color: #090c5894;
+  }
+  .tkts_del_dia{
+    font-size: 35px;
+    color: rgba(247, 152, 10, 0.548);
+  }
+  
+  .fondo{
+    border:8px solid transparent;
+  /*  border-top-color:#dce4df;*/
+  }
+  

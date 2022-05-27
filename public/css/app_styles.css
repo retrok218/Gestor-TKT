@@ -40,8 +40,10 @@
     background-image: url(../assets/media/bg/bg-cdmx_op.png) !important ;
     background-repeat: no-repeat;
     /* border: 2px dashed #333; */
-    background-position: center bottom; /*Positioning*/
     background-size: 60% 30%;
+    background-position: center bottom;
+    background-size: contain;
+    background-attachment: fixed;
 }
 
 @media (max-width: 667px) and (min-width: 375px){

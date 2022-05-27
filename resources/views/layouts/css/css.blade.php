@@ -29,3 +29,8 @@
 <link href="{{ asset('css/app_styles.css')}}" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" href="{{asset('assets/css/demo1/estilos-gestortkts.css')}}" type="text/css" >
+
+
+<!--CSS para datatables Gestor de tikets  --> 
+<link rel="stylesheet" href="{{ asset('assets/css/card.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}" />
