@@ -69,6 +69,7 @@ $(document).ready(function(){
      });
    
      var table = $('#tablatk').DataTable({
+         
          "pageLength": 5,
          "lengthChange": true,
          "searching": true,

@@ -32,7 +32,7 @@
               
                     
     <!--begin: Datatable -->
-                  <table id="tablatk"  class="table table-striped table-bordered "  >
+                  <table id="#example"  class="table table-striped table-bordered "  >
                       <thead >
                         <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> 
                         </h5> 
@@ -46,25 +46,7 @@
   
                         </tr>
                       </thead>
-                      <tbody>
-                        @foreach($tickets_abiertos as $tickets_abiertos)
-                        <tr>
-                          <td><a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tickets_abiertos->id}}" target="_blank" title="Ir en busca del TKT en OTRS">{{$tickets_abiertos->tn}}</a></td>
-                          <td>{{$tickets_abiertos->create_time}}</td>
-                          <td>{{$tickets_abiertos->title}}</td>
-                          <td>{{$tickets_abiertos->nombre .' '. $tickets_abiertos->apellido}}</td>
-                          <td>{{$tickets_abiertos->qname}}</td>
-                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
-                          @if($tickets_abiertos->name == 'open' )
-                          <td>abierto</td> 
-                        @else
-                        <td>{{$tickets_abiertos->name}}</td>
-                        @endif
-                        <!-- Fin del cambio de texto-->
-  
-                        </tr>
-                        @endforeach
-                      </tbody>
+                     
                       <tfoot>
                         <tr>
                           <th></th>
@@ -78,7 +60,36 @@
                   </table>
                 <!--end: Datatable -->
         </div>
+
+        
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript">
+
+$(document).ready(function () {
+    $('#example').DataTable({
+        ajax:{
+           url"{{route(datatable.abiertos)}}",
+        },
+        columns:[
+          {
+            { data: 'ticket.id', name: 'ticket.id' },
+            { data: 'ticket.tn', name: 'ticket.tn' },
+            { data: 'ticket.create_time', name: 'ticket.create_time' },
+            { data: 'ticket.title', name: 'ticket.title' },
+            { data: 'ticket.user_id', name: 'ticket.user_id' },
+            { data: 'queue.name as qname', name: 'queue.name as qname' },
+          }
+        ]
+
+
+        
+    });
+});
+
+
+
+
+</script>
+
 @endsection
 @endsection
