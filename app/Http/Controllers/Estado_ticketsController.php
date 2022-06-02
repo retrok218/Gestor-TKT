@@ -50,7 +50,7 @@ class Estado_ticketsController extends Controller
             ->join('queue','queue.id','queue_id')
             ->join('ticket_state','ticket_state.id','ticket_state_id')
             ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-            ->where('ticket_state_id','=', 12)
+            ->where('ticket_state_id','=', 12)  
             //->where('queue.id', '=' ,[$areas])
             //->whereIn('queue.name',[$areas])  
             //->where('queue.name','=' ,$areas)
@@ -146,39 +146,51 @@ class Estado_ticketsController extends Controller
 
 
         public function tickets_cerrados_exitosamente(){
-          $tickets_cerrados_exitosamente =ticket::where('ticket_state_id','=',2)
-          ->join('ticket_state','ticket_state.id','ticket_state_id')
-          ->join('queue','queue.id','queue_id')
-          ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-          ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
-          ->get();
-          
           $ticket = DB::connection('pgsql2')->table('ticket')->count();
           $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
           return view('Tickets/tickets_cerrados_exitosamente')
           ->with('ticket' , $ticket)
           ->with('rticket',$rticket)
-          ->with('tickets_cerrados_exitosamente',$tickets_cerrados_exitosamente)
-                    
-   
           ;}
 
         public function datatickets_cerrados_exitosamente()
-    {
+    {    
+          $tickets_cerrados_exitosamente =ticket::where('ticket_state_id','=',2)
+                    ->join('ticket_state','ticket_state.id','ticket_state_id')
+                    ->join('queue','queue.id','queue_id')
+                    ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+                    ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+                    ->get();
+        return Datatables::of($tickets_cerrados_exitosamente)->toJson()
+        ;}
 
-      $tickets_cerrados_exitosamente =ticket::where('ticket_state_id','=',2)
-          ->join('ticket_state','ticket_state.id','ticket_state_id')
+        public function todos_los_tkts()
+        {
+          $tickets_totales = DB::connection('pgsql2')->table('ticket')
           ->join('queue','queue.id','queue_id')
+          ->join('ticket_state','ticket_state.id','ticket_state_id')
+          ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+          ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+          ->get();      
+          return view('Tickets/todos_los_tickets')
+          ->with('tickets_totales',$tickets_totales)         
+        ;}
+
+        public function datatotodlosticket(){
+          $tickets_totales = ticket::
+          join('queue','queue.id','queue_id')
+          ->join('ticket_state','ticket_state.id','ticket_state_id')
           ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
           ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
           ->get();
+          return Datatables::of($tickets_totales)->toJson()
+        ;}
+
+    
+ 
+    
 
 
-        
-        return Datatables::of($tickets_cerrados_exitosamente)->toJson();
-    }
-
-       
 }
 
 

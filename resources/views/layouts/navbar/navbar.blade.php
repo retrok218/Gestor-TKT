@@ -120,7 +120,7 @@
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('#') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Falta Acta Responsiva</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('#') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Notificado Al Usuario</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('#') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Nuevo</span></a></li>
-                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('#') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Todos Los Tickets</span></a></li>
+                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/todos_los_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Todos Los Tickets</span></a></li>
                      
 
 

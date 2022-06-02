@@ -68,7 +68,7 @@ $(document).ready(function(){
          $("#Date_search").val("");
      });
    
-     var table = $('#tablatk').DataTable({
+var table = $('#tablatk').DataTable({
          
          "pageLength": 5,
          "lengthChange": true,
@@ -85,10 +85,7 @@ $(document).ready(function(){
          dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
          dom: 'Bfrtip',
          deferRender: true,
-         "search": {
-             "regex": true,
-             "caseInsensitive": false,
-         },
+        
    
    
    
@@ -171,7 +168,7 @@ $(document).ready(function(){
                      titleAttr: 'Registros a mostrar',
                      className: 'selectTable'
                  },
-                 'colvis'
+                 
              ]
          },
          // Filtro por seleccion multiple
@@ -197,12 +194,24 @@ $(document).ready(function(){
              });
              //select2 init for .mymsel class
              $(".mymsel").select2();
-         }
+         },
          //fin de la seleccion multiple 
-   
-   
-   
-     });
+         
+        language: {
+            "url": url + "assets/vendors/general/datatables/Spanish.json",  
+        },
+        ajax: {
+            "url": url + "/datatodos_los_tickets",
+        },
+        columns: [
+            { data: 'tn', name: 'tn' },
+            { data: 'create_time', name: 'create_time' },
+            { data: 'title', name: 'title' },
+            { data: 'qname', name: 'qname' },
+            { data: 'name'},
+            { data: 'nombre', name: 'nombre' },
+        ]
+});
      $("#Date_search").daterangepicker({
          "locale": {
              "format": "YYYY-MM-DD",
