@@ -118,8 +118,8 @@ Route::group(['prefix' => 'area'], function() {
 
 
 
-Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos')->name('datatable.abiertos');
-
+Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos');
+Route::get('/data_tickets_abiertos','Estado_ticketsController@data_tickets_abiertos');
 
 
 

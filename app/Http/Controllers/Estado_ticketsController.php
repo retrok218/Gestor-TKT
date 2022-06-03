@@ -21,29 +21,25 @@ use App\ticket;
 class Estado_ticketsController extends Controller
 {
 
-    public function tickets_abiertos(){
-   
-        $tickets_abiertos =ticket::where('ticket_state_id','=',4)
-        ->join('ticket_state','ticket_state.id','ticket_state_id')
-        ->join('queue','queue.id','queue_id')
-        ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-        ->select('ticket.id','ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
-        ->get();
-          $tickte = DB::connection('pgsql2')->table('ticket')->count();
-          $abierto = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
-         
-         return datatables()->collection($tickets_abiertos)->toJson();
+  public function tickets_abiertos(){
+    $tickte = ticket::count();
+    $abierto = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
+    return view('Tickets/tickets_abiertos')
+    ->with('tickte',$tickte)
+    ->with('abierto',$abierto)
+    ;}
 
-    }
+  public function data_tickets_abiertos (){
+    $tickets_abiertos =ticket::where('ticket_state_id','=',4)
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->join('queue','queue.id','queue_id')
+      ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+      ->select('ticket.id','ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+      ->get();
+      return Datatables::of($tickets_abiertos)->toJson();
+  }
 
-
-
-
-
-
-    
         public function tickets_asignados(){
-
           $areasddb = DB :: connection('pgsql2')->table('queue')->select('id','name')->orderBy('id')->get();
           $areas =array(auth()->user()->area);
           $tkasignado =DB::connection('pgsql2')->table('ticket')
@@ -73,13 +69,7 @@ class Estado_ticketsController extends Controller
             $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();     
             $titulotks =DB::connection('pgsql2')->table('ticket')->select('title')->distinct('title')->get();
             $titulotksJson = json_encode($titulotks);
-            
-           //dd($areas);
-            //dd(auth()->user()->area);
-               
-      
             return view('Tickets/tickets_asignados')
-      
             ->with('tkasignado',$tkasignado)
             ->with('tickets_registro',$tickets_registro)
               ->with('ticket', $tickte)
