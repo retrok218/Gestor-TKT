@@ -1,7 +1,5 @@
 $(document).ready(function(){
-
- 
-    minDateFilter = "";
+  minDateFilter = "";
      maxDateFilter = "";
      $.fn.dataTableExt.afnFiltering.push(
          function (oSettings, aData, iDataIndex) {
@@ -60,7 +58,8 @@ $(document).ready(function(){
                      "_": "Mostrar %d filas",
                      "-1": "Mostrar Todo"
                  }
-             }
+             },
+            
          };
    
    
@@ -70,16 +69,16 @@ $(document).ready(function(){
    
 var table = $('#tablatk').DataTable({
          
-         "pageLength": 5,
+         "pageLength": 10,
          "lengthChange": true,
          "searching": true,
          "ordering": true,
          "info": true,
          "autoWidth": true,
-         "language": idioma,
+         /*"language": idioma,*/
          "lengthMenu": [
-             [5, 10, -1],
-             [5,10,"Mostrar Todo"]
+             [10, 20, -1],
+             [10,20,"Mostrar Todo"]
          ],
          "order": [1, 'desc'],
          dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
@@ -201,7 +200,7 @@ var table = $('#tablatk').DataTable({
             "url": url + "assets/vendors/general/datatables/Spanish.json",  
         },
         ajax: {
-            "url": url + "/datatodos_los_tickets",
+            "url": url + name_tabla,
         },
         columns: [
             { data: 'tn', name: 'tn' },

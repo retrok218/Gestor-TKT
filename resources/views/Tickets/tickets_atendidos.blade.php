@@ -3,6 +3,7 @@
 @section('content')
 <script>
   var titulo_tab = 'Tickets Atendidos';
+  var name_tabla = "/data_tickets_atendidos";
 </script>
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
@@ -23,55 +24,30 @@
           <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
         </div>
       </div>
-
-     
-
       <div class="row">
         <div class="col-xl-12">
           
             <div class="card text-center"  >
-            <div class="card-header titulo_card"><h2> Tickets Atendido </h2> </div>
+            <div class="card-header titulo_card"><h2> Tickets Atendidos </h2> </div>
             </div>
   <!--begin: Datatable -->
   <br>
             <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5> 
             <div class="card-body" > 
               
-            
-
-                <table id="tablatk"  class="table table-striped table-bordered " >
+               <table id="tablatk"  class="table table-striped table-bordered " >
                     <thead >
                       <tr>
-                        <th>N Ticket</th>
-                        <th> Creado </th>
-                        <th> Asunto </th>
-                        <th> Usuario </th>
-                        <th> Area </th>
-                        <th> Status TK</th>
+                        <th>Numero de Tiket</th>
+                        <th>Creado</th>
+                        <th>Asunto</th>
+                        <th>Area</th>
+                        <th>Estado del Tiket</th>
+                        <th>Nombre Usuario</th>
                         
 
                       </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($tkatendidos as $tkatendidos)
-                      <tr>
-                        <td>{{$tkatendidos->tn}}</td>
-                        <td>{{$tkatendidos->create_time}}</td>
-                        <td>{{$tkatendidos->title}}</td>
-                        <td>{{$tkatendidos->nombre .' '. $tkatendidos->apellido}}</td>
-                        <td>{{$tkatendidos->qname}}</td>
-                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
-                        @if($tkatendidos->name == 'closed successful' )
-                        <td>Cerrado Exitosamente</td> 
-                      @else
-                      <td>{{$tkatendidos->name}}</td>
-                      @endif
-                  <!-- Fin del cambio de texto-->
-                        
-
-                      </tr>
-                      @endforeach
-                    </tbody>
+                    </thead>                    
                     <tfoot>
                         <th></th>
                         <th></th>

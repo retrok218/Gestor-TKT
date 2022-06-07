@@ -1,18 +1,14 @@
 @extends('home')
-@section('content')
-
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-
-        <meta http-equiv="refresh" content="180"> <!--se refresca la pagina cada x-s -->
+<meta http-equiv="refresh" content="180"> <!--se refresca la pagina cada x-s -->
   @section('content')
   <script>
   var titulo_tab = 'Tickets Totales';
+  var name_tabla = '/datatodos_los_tickets';
 </script>
   
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-    
+   
   <!-- Tabla principal Tickets totales -->
 
 
@@ -27,18 +23,19 @@
           <div class="card-body">
            
 
-                <table id="tablatk"  class="table table-striped table-bordered" >
+                <table id="tablatk"  class="table table-striped- table-bordered table-hover table-checkable" >
                     <thead>
                       <tr>
-                        <th>N Ticket</th>
-                        <th> Creado </th>
-                        <th> Asunto </th>
-                        <th> Usuario </th>
-                        <th> Area </th>
-                        <th> Status TK</th>
+                        <th>Numero de Tiket</th>
+                            <th>Creado</th>
+                            <th>Asunto</th>
+                            <th>Area</th>
+                            <th>Estado del Tiket</th>
+                            <th>Nombre Usuario</th>
 
                       </tr>
-                    </thead> 
+                    </thead>
+                    
                     <tfoot>
                       <tr>
                         <th></th>
@@ -59,17 +56,11 @@
   </div>
 
 
-
-
-
-
-    </div>
-</div>
-@section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-
-
-
-
+@section('scripts')   
 @endsection
 @endsection
+
+
+
+
+

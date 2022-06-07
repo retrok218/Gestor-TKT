@@ -11,10 +11,10 @@
 <script src="{{ URL::asset('assets/vendors/general/popper.js/dist/umd/popper.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/jquery-validation/dist/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>   
+<script src="{{ URL::asset('assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/custom/datatables/datatables.bundle.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/vendors/general/dropzone/dist/dropzone.js')}}" type="text/javascript"></script> 
-<script src="{{ URL::asset('assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>   
+<script src="{{ URL::asset('assets/vendors/general/dropzone/dist/dropzone.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/js-cookie/src/js.cookie.js')}}" type="text/javascript"></script>
 
 <script src="{{ URL::asset('assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js')}}" type="text/javascript"></script>
@@ -27,14 +27,17 @@
 <script src="{{ URL::asset('assets/js/demo1/bootstrap-session-timeout.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
 
-<!--Renderisado de graficas  --> 
+
+<!-- Scrips para generar graficas   -->
 <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.react.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/canvas/jquery.canvasjs.min.js')}}" type="text/javascript"></script>
-
-<!--Data Table de Gestor de  Tickets  -->
-
+<!-- FIN Scrips para generar graficas  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
  <script src="{{URL::asset('js/datatable.js')}}"></script>  
-<script src="{{URL::asset('js/dateTime.min.js')}}"></script>
+<script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
+
+
+
+<!-- scripts para datatable -->

@@ -75,7 +75,7 @@ Route::get('/', function () {
  //Administrador
  Route::group(['middleware' => ['role:SuperAdmin']], function() {
   //editar usuarios
-     Route::group(['prefix' => 'admin'], function() {
+  Route::group(['prefix' => 'admin'], function() {
         Route::get('/', 'AdminController@dashboard');
       Route::get('/index', 'AdminController@index');
       Route::get('/listar_usuarios', 'AdminController@listar_usuarios');
@@ -86,10 +86,7 @@ Route::get('/', function () {
       Route::get('/edit', 'AdminController@edit');
       Route::post('/store', 'AdminController@store');
       Route::post('/update', 'AdminController@update');
-     
-
-
-     });
+   });
      Route::group(['prefix' => 'rol'], function() {
     });
 
@@ -111,7 +108,7 @@ Route::post('/block_screen', function () {
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'area'], function() {
-  Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos' );
  
 
 });
@@ -121,20 +118,36 @@ Route::group(['prefix' => 'area'], function() {
 Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos');
 Route::get('/data_tickets_abiertos','Estado_ticketsController@data_tickets_abiertos');
 
-
-
 Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
-Route::get ('/tickets_atendidos','Estado_ticketsController@tickets_atendidos' );
+Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
+
+Route::get ('/tickets_atendidos','Estado_ticketsController@tickets_atendidos');
+Route::get('/data_tickets_atendidos','Estado_ticketsController@data_tickets_atendidos');
+
 Route::get ('/tickets_cerrados_exitosamente','Estado_ticketsController@tickets_cerrados_exitosamente' );
-Route::get ('/datatickets_cerrados_exitosamente','Estado_ticketsController@datatickets_cerrados_exitosamente' )->name('Cerradosdatos');
+Route::get ('/datatickets_cerrados_exitosamente','Estado_ticketsController@datatickets_cerrados_exitosamente' );
 
 
-Route::get ('/tickets_cerradospt','Estado_ticketsController@tickets_abiertos' );
-Route::get ('/tickets_espera_informacion','Estado_ticketsController@tickets_abiertos' );
-Route::get ('/tickets_falta_acta_resp','Estado_ticketsController@tickets_abiertos' );
-Route::get ('/tickets_notificado_al_usuario','Estado_ticketsController@tickets_abiertos' );
-Route::get ('/tickets_pendientes','Estado_ticketsController@tickets_abiertos' );
+Route::get ('/tickets_cerradospt','Estado_ticketsController@tickets_cerradosPT' );
+Route::get('/data_tickets_cerradospt','Estado_ticketsController@data_tickets_cerradosPT');
+
+
+Route::get ('/tickets_espera_informacion','Estado_ticketsController@tickets_espera_informacion' );
+Route::get('/data_tickets_espera_informacion','Estado_ticketsController@data_tickets_espera_informacion');
+
+Route::get ('/data_tickets_espera_informacion', 'Estado_ticketsController@data_tickets_espera_informacion');
+
+Route::get ('/falta_acta_responsiva','Estado_ticketsController@falta_acta_responsiva' );
+Route::get ('/data_falta_acta_resp','Estado_ticketsController@data_falta_acta_responsiva' );
+
+Route::get ('/tickets_notificado_al_usuario','Estado_ticketsController@notificado_al_usuario' );
+Route::get ('/data_tickets_notificado_al_usuario','Estado_ticketsController@data_notificado_al_usuario');
+
+
+Route::get ('/tickets_nuevos','Estado_ticketsController@nuevoticket' );
+Route::get ('/data_tickets_nuevos','Estado_ticketsController@data_nuevoticket');
 
 Route::get ('/todos_los_tickets','Estado_ticketsController@todos_los_tkts' );
-Route::get ('/datatodos_los_tickets','Estado_ticketsController@datatotodlosticket' );
+Route::get ('/datatodos_los_tickets','Estado_ticketsController@data_todos_losticket' );
 
+Route::get ('/monitoreo_tickets','Estado_ticketsController@monitoreo_tickets');

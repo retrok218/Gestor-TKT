@@ -8,8 +8,7 @@
 
             <div class="kt-aside__brand-logo">
                 <a href="{{ url('/home') }}">
-                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SAF_logo_header.svg')}}" width="350"
-                        style="padding-top: 8px">
+                    <img alt="Logo"  class="img_header" src="{{ URL::asset('assets/media/company-logos/logotipo SAF-01.jpg')}}" >
                 </a>
             </div>
             <!--
