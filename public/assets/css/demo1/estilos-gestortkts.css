@@ -1065,3 +1065,116 @@ ul.list-check{
 
 }
 
+
+/*barra de progreso*/
+
+.barra_progreso{
+  width: 100%;
+  height: 30px;
+  background-color: #000;
+  background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 50%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  animation: progress-bar-stripes 2s linear infinite;
+  background-size: 30px 30px;
+}
+@keyframes progress-bar-stripes {
+  from {
+    background-position: -30px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+
+
+
+
+
+
+
+/*marco rotante */
+
+
+@keyframes borderAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes neonAnimation {
+  from {
+    text-shadow: 0 0 5px var(--line-color);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--line-color);
+  }
+  
+  to {
+    text-shadow: 0 0 5px var(--line-color);
+  }
+}
+
+
+
+.border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  display: inline-block;
+  overflow: hidden;
+  background: var(--border-color);
+  padding: var(--border-width);
+  box-shadow: 0 0 20px var(--border-color);
+
+  font-size: 0;
+}
+
+.gradient {
+  position: absolute;
+  width: calc(var(--content-size) * 2);
+  height: calc(var(--content-size) * 2);
+  
+  top: calc(50% - var(--content-size));
+  left: calc(50% - var(--content-size));
+  
+  background: rgba(0, 0, 0, 0);
+  background: linear-gradient(
+    to right, 
+    rgba(0, 0, 0, 0) calc(50% - var(--line-width) / 2),
+    var(--line-color) 50%,
+    rgba(0, 0, 0, 0) calc(50% + var(--line-width) / 2));
+  
+  animation:
+    borderAnimation
+    var(--animation-speed)
+    infinite
+    linear;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+  width: var(--content-size);
+  height: var(--content-size);
+  
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 40px;
+  
+  color: var(--line-color);
+  text-shadow: 0 0 0.5em var(--line-color);
+  text-align: center;
+  line-height: var(--content-size);
+  
+  background: var(--content-background);
+  
+  animation:
+    neonAnimation
+    var(--animation-speed)
+    infinite
+    linear;
+}

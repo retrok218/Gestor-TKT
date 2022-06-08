@@ -203,21 +203,29 @@ class Estado_ticketsController extends Controller
                 return Datatables::of($ticket_nuevo)->toJson()
             ;}
 
-            public function monitoreo_tickets(){
-              
-              $tickte =ticket::count();
-              $asignado =ticket::where('ticket_state_id','=', 12)->count();
-              $atendido =ticket::where('ticket_state_id','=', 13)->count();
-              $pendienteatc =ticket::where('ticket_state_id','=',7)->count();
-              $solicitudToner =ticket::where('service_id','=',79)->count();
-              $espinformacion =ticket::where('ticket_state_id','=', 15)->count(); 
-              $abierto =ticket::where('ticket_state_id','=',4)->count();
-              $cerradosinEX =ticket::where('ticket_state_id','=',3)->count();
-              $FaltaActaRES =ticket::where('ticket_state_id','=',21)->count();
-              $NotificadoAlUsuario =ticket::where('ticket_state_id','=',11)->count();
-              $Entramite =ticket::where('ticket_state_id','=',18)->count();
-              $cerradoPT =ticket::where('ticket_state_id','=',10)->count(); 
-              $rticket =ticket::where('ticket_state_id','=', 2)->count();
+            public function monitoreo_tickets(){             
+            $tickte =ticket::count();//0
+              $asignado =ticket::where('ticket_state_id','=', 12)->count();//1
+              $atendido =ticket::where('ticket_state_id','=', 13)->count();//2
+              $pendienteatc =ticket::where('ticket_state_id','=',7)->count();//3
+              $solicitudToner =ticket::where('service_id','=',79)->count();//4
+              $espinformacion =ticket::where('ticket_state_id','=', 15)->count();//5 
+              $abierto =ticket::where('ticket_state_id','=',4)->count();//6
+              $cerradosinEX =ticket::where('ticket_state_id','=',3)->count();//7
+              $FaltaActaRES =ticket::where('ticket_state_id','=',21)->count();//8
+              $NotificadoAlUsuario =ticket::where('ticket_state_id','=',11)->count();//9
+              $Entramite =ticket::where('ticket_state_id','=',18)->count();//10
+              $cerradoPT =ticket::where('ticket_state_id','=',10)->count(); //11
+              $rticket =ticket::where('ticket_state_id','=', 2)->count();//12
+              $porcentajes = array($asignado,$atendido,$pendienteatc,$solicitudToner,$espinformacion,
+              $abierto,$cerradosinEX,$FaltaActaRES,$NotificadoAlUsuario, $Entramite,$cerradoPT,$rticket
+              );
+              $tktsporciento = array();
+              foreach ($porcentajes as $porcentaje) {                
+               $tktsporciento[] = (int)$porcentaje*100/$tickte;
+              };            
+           
+     
               return view('Tickets/Monitoreo_Tickets/Monitoreo_de_Tickets')
                 ->with('ticket', $tickte)
                 ->with('asignado',$asignado)
@@ -231,7 +239,9 @@ class Estado_ticketsController extends Controller
                 ->with('NotificadoAlUsuario',$NotificadoAlUsuario)
                 ->with('Entramite',$Entramite)
                 ->with('cerradoPT',$cerradoPT)
-                ->with('cerradoexitosamente',$rticket) 
+                ->with('cerradoexitosamente',$rticket)
+                ->with('porcentajes',$porcentajes) 
+                ->with('tktsporciento',$tktsporciento)
             ;}
 
 }
