@@ -772,7 +772,7 @@ margin:0 !important;
 .words i{
   display: block;
   font-style: normal;
-  color: #ffffff;
+  color: #6F7271;
   font-weight: 600;
   
 
@@ -1060,7 +1060,7 @@ ul.list-check{
 .header_titulo_monitoreo_tkts{
   padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgb(16 49 43);
+    background-color: transparent;
     border-bottom: 1px solid #ebedf2;
 
 }
@@ -1177,4 +1177,12 @@ ul.list-check{
     var(--animation-speed)
     infinite
     linear;
+}
+
+.monitoreo_title_carts{
+    display: flex;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #595d6e;
+    transition: color .3s ease;
 }

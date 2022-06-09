@@ -216,9 +216,9 @@ class Estado_ticketsController extends Controller
               $NotificadoAlUsuario =ticket::where('ticket_state_id','=',11)->count();//9
               $Entramite =ticket::where('ticket_state_id','=',18)->count();//10
               $cerradoPT =ticket::where('ticket_state_id','=',10)->count(); //11
-              $rticket =ticket::where('ticket_state_id','=', 2)->count();//12
+              $cerradoexitosamente =ticket::where('ticket_state_id','=', 2)->count();//12
               $porcentajes = array($asignado,$atendido,$pendienteatc,$solicitudToner,$espinformacion,
-              $abierto,$cerradosinEX,$FaltaActaRES,$NotificadoAlUsuario, $Entramite,$cerradoPT,$rticket
+              $abierto,$cerradosinEX,$FaltaActaRES,$NotificadoAlUsuario, $Entramite,$cerradoPT,$cerradoexitosamente
               );
               $tktsporciento = array();
               foreach ($porcentajes as $porcentaje) {                
@@ -239,7 +239,7 @@ class Estado_ticketsController extends Controller
                 ->with('NotificadoAlUsuario',$NotificadoAlUsuario)
                 ->with('Entramite',$Entramite)
                 ->with('cerradoPT',$cerradoPT)
-                ->with('cerradoexitosamente',$rticket)
+                ->with('cerradoexitosamente',$cerradoexitosamente)
                 ->with('porcentajes',$porcentajes) 
                 ->with('tktsporciento',$tktsporciento)
             ;}
