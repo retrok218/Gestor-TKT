@@ -136,7 +136,7 @@
                                     <h4>Ticket encontrado</h4>                                    
                                     <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
                                       <div class="cardhvr">
-                                        <h5 style="text-align: center">{{$numerotiket}}</h5>
+                                        <h5 style="text-align:center; margin-top:5px;">{{$numerotiket}}</h5>
                                       </div>
                                     </a>
                                   
@@ -152,11 +152,13 @@
                                       <th>Estado</th>
                                     </tr>
                                   </thead>
+                                  <tbody style="font-size: medium">
                                   <td>{{$fechadeltiket}}</td>
                                   <td>{{$asuntodeltiket}}</td>
                                   <td>{{$nusuario}}.{{$apusuario}}</td>
                                   <td>{{$areadeltiket}}</td>
                                   <td>{{$estado}}</td>
+                                </tbody>
                                 </table>
                                 </div>
                                   @else
@@ -175,10 +177,9 @@
 
                     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                       <div class="row">
-                        <div id="gporarea" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div>
-              <div id="chartContainer4" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block;"></div>
-              <div id="chartContainer1" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block; "></div>
-                       
+                          <div id="gporarea" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div>
+                          <div id="chartContainer4" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block;"></div>
+                          <div id="chartContainer1" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block; "></div>                       
                       </div>
                     </div>   
                 
@@ -218,17 +219,8 @@
               <div  class="card-header  text-center border-dark"><h3>Tickets Totales</h3> 
                 <div id="sales-doughnut-chart-us" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div> 
               </div>              
-              <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div><br/>
-              
-              
-
-
-            </div>
-            
-            
-            
-            
-            
+              <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
+            </div>     
         </div>
     </div>
   

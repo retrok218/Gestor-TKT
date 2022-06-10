@@ -151,7 +151,7 @@
          <ul class="kt-menu__subnav">
          <ul class="kt-menu__subnav">
             <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Utils</span></span></li>
-            <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Solicitud de Toner</span> </a></li>      
+            <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/solicitud_toner') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Solicitud de Toner</span> </a></li>      
               
          @foreach ($menus as $key => $item)
          @if ($item['padre'] != 0)
