@@ -49667,13 +49667,5 @@ body {
     }
   }
 
-  .dataTables_wrapper .dataTable {
-    width: 100% !important;
-    border-collapse: initial !important;
-    border-spacing: 0 !important;
-    margin: 0.5rem 0 !important;
-    box-sizing: border-box;
-    
-    
-}
+ 
 

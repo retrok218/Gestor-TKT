@@ -18,14 +18,19 @@ use App\ConexionBD2;
 use App\ticket;
 
 
+
 class Estado_ticketsController extends Controller
 {
-  public function tickets_abiertos(){
+  public function tickets_abiertos(Request $req){
+    $roles = DB::table('roles')->get();
     $tickte = ticket::count();
     $abierto = ticket::where('ticket_state_id','=',4)->count();
+    dd($roles);
     return view('Tickets/tickets_abiertos')
     ->with('tickte',$tickte)
     ->with('abierto',$abierto)
+
+
     ;}
   public function data_tickets_abiertos (){
     $tickets_abiertos =ticket::where('ticket_state_id','=',4)

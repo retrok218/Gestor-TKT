@@ -176,17 +176,23 @@
                 </div>
 
                     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-                      <div class="row">
-                          <div id="gporarea" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div>
-                          <div id="chartContainer4" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block;"></div>
-                          <div id="chartContainer1" style="border: 2px solid #ffffff;width: 50%; height: 300px;display: inline-block; "></div>                       
-                      </div>
-                    </div>   
-                
-             
-            
-               
-             
+                  <div class="row">
+                        <div class="col-lg-12">
+                          <div class="kt-portlet"><div id="gporarea" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div>
+                        </div>                        
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="kt-portlet">
+                            <div id="chartContainer4" style=" solid #ffffff;width: auto; height: 300px;display: inline-block;"></div>
+                          </div>                        
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="kt-portlet">
+                            <div id="chartContainer1" style=" solid #ffffff;width: ; height: 300px;display: inline-block; "></div> 
+                          </div>                                                 
+                        </div>
+                    </div>
                 </div>
 
 
@@ -216,8 +222,8 @@
                 </h3>
                 <a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
               </div>
-              <div  class="card-header  text-center border-dark"><h3>Tickets Totales</h3> 
-                <div id="sales-doughnut-chart-us" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div> 
+              <div  class="  text-center border-dark"><h3>Tickets Totales</h3> 
+                <div id="sales-doughnut-chart-us"></div> 
               </div>              
               <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
             </div>     

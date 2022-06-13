@@ -75,6 +75,7 @@
                     <th>Nombre</th>
                     <th>Permisos</th>
                     <th>Acciones</th>
+                    
                 </tr>
             </thead>                             
         </table>       
