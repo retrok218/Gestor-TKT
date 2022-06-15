@@ -21,73 +21,62 @@ use App\ticket;
 
 class Estado_ticketsController extends Controller
 {
-  public function tickets_abiertos(){
-    
+  public function tickets_abiertos(){    
     $tickte = ticket::count();
-    $abierto = ticket:: where('ticket_state_id','=',4)->count(); /* le primer where se refiere al estado del ticket */
-    
+    $abierto = ticket:: where('ticket_state_id','=',4)->count(); /* le primer where se refiere al estado del ticket */    
     return view('Tickets/tickets_abiertos')
     ->with('tickte',$tickte)
     ->with('abierto',$abierto)
-    
-
-
     ;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  public function data_tickets_abiertos (Request $request){    
-    $usuario=auth()->user();   //tipo de dato string acer la consulta de forma rigida por medio de postgres
-   var_dump($usuario);
-   exit();
-   
   
-     
- 
-    $tickets_abiertos =ticket::where('ticket_state_id','=',4)
+  public function data_tickets_abiertos (){    
+    $usuario=auth()->user()->area;   //tipo de dato string   
+    $areaus = explode(",",$usuario);  
+
+    $tickets_abiertos =ticket::
+    where('ticket_state_id','=',4)
+    //->where('queue_id','=', $usuario)
     ->join('ticket_state','ticket_state.id','ticket_state_id')
     ->join('queue','queue.id','queue_id')
     ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-    ->select('ticket.id','ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido');
-     
- foreach ($usuario as $usuarea) {
-  $tickets_abiertos->where('queue.name','=',$usuario);
-  }
-    $result= $tickets_abiertos->get();
+    ->select('ticket.id','ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')->get();  
     
-    return Datatables::of($tickets_abiertos)->toJson();
+
+
+
+
+
+    //construllendo la consulta con query builder 
+    $tickets_abiertos_area = DB::connection('pgsql2')
+    ->select("SELECT *
+    FROM ticket 
+    WHERE (ticket_state_id = 4)
+    ORDER BY ticket.tn DESC");
+
+    dd($tickets_abiertos_area );
+
+
+    return Datatables::of($result)->toJson();
+
+    
+
+
+
+
+
+
   }
-        public function tickets_asignados(){                       
+
+
+
+
+    public function tickets_asignados(){                       
             $tickte = DB::connection('pgsql2')->table('ticket')->count();
             $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();          
             return view('Tickets/tickets_asignados')            
             ->with('ticket', $tickte)
             ->with('asignado',$asignado)
-        ;}
+     ;}
 
         public function data_ticket_asignado(){
           $tkasignado =DB::connection('pgsql2')->table('ticket')
