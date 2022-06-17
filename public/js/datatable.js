@@ -172,10 +172,10 @@ var table = $('#tablatk').DataTable({
          },
          // Filtro por seleccion multiple
          initComplete: function () {
-             this.api().columns([4]).every(function () {
+             this.api().columns([3,4]).every(function () {
                  var column = this;
                  //added class "mymsel"
-                 var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
+                 var select = $('<select class="mymsel" multiple="multiple" ><option value="" ></option></select>')
                      .appendTo($(column.footer()))
                      .on('change', function () {
                          var vals = $('option:selected', this).map(function (index, element) {

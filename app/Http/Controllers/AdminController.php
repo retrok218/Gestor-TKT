@@ -392,8 +392,10 @@ class AdminController extends Controller
 
 
     public function create() {
-                $roles = DB::table('roles')->get();
-                return view('modals/users/add_user')->with('roles', $roles);
+        $roles = DB::table('roles')->get();
+        $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
+        return view('modals/users/add_user')->with('roles', $roles)
+        ->with(compact('areas'));
         }
     /**
      * Show the form for editing the specified resource.

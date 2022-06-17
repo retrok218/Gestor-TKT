@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="mod_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -17,12 +18,12 @@
                                   
                                     <div class="form-group">
                                             {{ Form::label('usuario', 'Usuario', array('class' => 'col-xl-3 col-lg-3 col-form-label')) }}
-                                            {{ Form::text('usuario', '', array('class' => 'form-control','required'=>true)) }}
+                                            {{ Form::text('usuario', '', array('class' => 'form-control','required'=>true ,'placeholder'=> 'Usuario')) }}
                                     </div>
 
                                     
                                     <div class="form-group">
-                                        <label class="control-label">Nombre</label>
+                                        <label class="control-label">Nombre </label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
                                         <span id="nombre-error" class="help-block"></span>
                                     </div>
@@ -37,6 +38,14 @@
                                         <span id="apellido_materno-error" class="help-block"></span>
                                     </div><br>                                   
                                 </div>
+
+                                
+
+
+
+
+
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Correo electrónico</label>
@@ -64,7 +73,7 @@
                                     </div>      
                                     <div class="form-group row">
 						
-                                        <label class="col-4 col-form-label">Habilitado</label>
+                                        <label class="col-4 col-form-label">Habilitado </label>
                                         <div class="col-4">
                                             <span class="kt-switch kt-switch--icon">
                                                 <label>
@@ -73,13 +82,42 @@
                                                 </label>
                                             </span>
                                         </div>
-                                    </div>
-                                    
-                                </div>
+                                    </div>                                   
+                                    </div> 
 
-                                
+                                    <div class="col-md-6">                                                                                                    
+                                            <h5>Area/s Asignada  </h5>
+                                            <hr>
+                                            <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar Todas las Areas 
+                                            
+                                            
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        @foreach($areas as $area )
+                                                    
+                                                       
+                                                        <li class="list__item-check">
+                                                            <label class="label--checkbox">
+                                                                <div>
+                                                                <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}} <br>                                                                                                       
+                                                            </div>
+                                                            </label>                                                             
+                                                        </li>                                                        
+                                                        
+                                                        {{$area->name}}                                                 
+                                                    @endforeach 
+                                                    </div>
 
 
+                                                   
+                                                </div>
+                                                 
+                                            
+                                               
+
+                                                                                                                                                           
+                                    </div>  
+                                                                                                   
                             </div>
                         </div>
                     </div>
@@ -104,3 +142,5 @@
         </div>
     </div>
 </div>
+
+

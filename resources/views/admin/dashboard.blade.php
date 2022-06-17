@@ -2,12 +2,12 @@
 <!-- <meta http-equiv="refresh" content="60">-->
 @section('content')
 
-    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid"> <!--inicio de graficas y pag principal -->
         <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
             <div class="kt-portlet kt-iconbox ">
                 <div class="kt-portlet__body">
                     <div class="kt-widget kt-widget--user-profile-3">
-                        <div class="kt-widget__top">
+                      <div class="kt-widget__top">
                             <div class="kt-widget__media kt-hidden-">
                                 <!-- <img src="./assets/media/project-logos/3.png" alt="image"> -->
                             </div>
@@ -23,7 +23,6 @@
                                 </div>                                                                                          
                             </div>
                         </div>
-
                       <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                         <div class="row">                      
                                     <div class="col-lg-4">
@@ -76,24 +75,19 @@
                                             </div>
                                         </div>
                                     </div>             
-                  </div>
-                </div> 
+                          </div>
+                      </div> 
                 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="container-busqueda">
-
-                        <div class="card-header-gestkt text-center"><h5> Buscar Ticke </h5></div>
-                        
+                        <div class="card-header-gestkt text-center"><h5> Buscar Ticke </h5></div>                        
                          <div class="formulario-tkt">
-                         <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
-                                <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
-                              <button type="submit" class="btn btn-success text-cemter" >Consultar</button>       
-                          </form>
-                          </div>
-                          
-                        
-                        
+                          <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
+                                  <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
+                                <button type="submit" class="btn btn-success text-cemter" >Consultar</button>       
+                            </form>
+                          </div>                                                                          
                           @if($_GET)
                             @php          
                                   $tktbuscado = $_GET['tktaconsultar'];
@@ -166,70 +160,65 @@
                                   <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
                                   </div>
                                   @endif
-                                  
-                          
-                          @endif
-                            
+                          @endif                            
                         </div>
-                    </div>
-                  </div> 
-                </div>
+                    </div>                   
+                </div>                
+              </div>                 
 
-                    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-                  <div class="row">
-                        <div class="col-lg-12">
-                          <div class="kt-portlet"><div id="gporarea" style="border: 2px solid #ffffff;width: 100%; height: 300px;display: inline-block;"></div>
-                        </div>                        
-                        </div>
-
-                        <div class="col-lg-6">
-                          <div class="kt-portlet">
-                            <div id="chartContainer4" style=" solid #ffffff;width: auto; height: 300px;display: inline-block;"></div>
-                          </div>                        
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="kt-portlet">
-                            <div id="chartContainer1" style=" solid #ffffff;width: ; height: 300px;display: inline-block; "></div> 
-                          </div>                                                 
-                        </div>
-                    </div>
-                </div>
-
-
-                
-                
-
-
-
-
-
-              </div>                        
             </div>  
-            <ul class="kt-sticky-toolbar" style="margin-top: 30px;">
-              <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
-                <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
-              </li>
-              <!-- <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--danger" id="kt_sticky_toolbar_chat_toggler" data-toggle="kt-tooltip" title="Chat Example" data-placement="left">
-                <a href="#" data-toggle="modal" data-target="#kt_chat_modal"><i class="flaticon2-chat-1"></i></a>
-              </li> -->
-            </ul>   
-
-            <div id="kt_demo_panel" class="kt-demo-panel" style="opacity: 0;">
-              <div class="kt-demo-panel__head" style="" kt-hidden-height="50">
-                <h3 class="kt-demo-panel__title">
-                  Graficas Todos los Tickets
-                  <!--<small>5</small>-->
-                </h3>
-                <a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
-              </div>
-              <div  class="  text-center border-dark"><h3>Tickets Totales</h3> 
-                <div id="sales-doughnut-chart-us"></div> 
-              </div>              
-              <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
-            </div>     
         </div>
-    </div>
-  
+        <br>
+
+        <div class="portlet_body">          
+            <div class="row justify-content-center">
+              <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid center">
+                <div class="col-lg-12 ">
+                  <div id="gporarea" style="height: 300px; width: 500 ;"></div>
+                  <br>
+                </div>                
+              </div>                             
+            </div>          
+        </div>
+       
+        <div class="portlet_body">          
+          <div class="row ">
+            
+              <div id="chartContainer1" style="width: 50%; height: 300px;display: inline-block;"></div> 
+              <div id="chartContainer4" style="width: 50%; height: 300px;display: inline-block;"></div>              
+                                        
+          </div>          
+      </div>
+    </div><!-- fin para la plantilla de titulo-->
+
+  </div>
+</div>
+
+
+    
+<!-- modal Flotante -->
+
+<ul class="kt-sticky-toolbar" style="margin-top: 30px;">
+  <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
+    <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
+  </li>
+  <!-- <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--danger" id="kt_sticky_toolbar_chat_toggler" data-toggle="kt-tooltip" title="Chat Example" data-placement="left">
+    <a href="#" data-toggle="modal" data-target="#kt_chat_modal"><i class="flaticon2-chat-1"></i></a>
+  </li> -->
+</ul>   
+<div id="kt_demo_panel" class="kt-demo-panel" style="opacity: 0;">
+  <div class="kt-demo-panel__head" style="" kt-hidden-height="50">
+    <h3 class="kt-demo-panel__title">
+      Graficas Todos los Tickets
+      <!--<small>5</small>-->
+    </h3>
+    <a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
+  </div>
+  <div  class="  text-center border-dark"><h3>Tickets Totales</h3> 
+    <div id="sales-doughnut-chart-us"></div> 
+  </div>              
+  <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
+</div>     
 
 
 

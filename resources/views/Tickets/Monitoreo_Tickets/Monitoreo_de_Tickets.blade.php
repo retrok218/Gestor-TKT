@@ -296,7 +296,6 @@
 <a href="javascript:window.print()" >Imprimir</a> </button>
 </div>
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-
 @section('scripts') 
 @endsection
 @endsection
