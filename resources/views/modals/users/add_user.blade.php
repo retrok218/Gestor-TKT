@@ -14,14 +14,11 @@
                     <div class="panel panel-primary">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-6">                                
-                                  
+                                <div class="col-md-6">                                                                  
                                     <div class="form-group">
                                             {{ Form::label('usuario', 'Usuario', array('class' => 'col-xl-3 col-lg-3 col-form-label')) }}
                                             {{ Form::text('usuario', '', array('class' => 'form-control','required'=>true ,'placeholder'=> 'Usuario')) }}
-                                    </div>
-
-                                    
+                                    </div>                                    
                                     <div class="form-group">
                                         <label class="control-label">Nombre </label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
@@ -71,8 +68,7 @@
                                         @endforeach
                                         </select>
                                     </div>      
-                                    <div class="form-group row">
-						
+                                    <div class="form-group ">						
                                         <label class="col-4 col-form-label">Habilitado </label>
                                         <div class="col-4">
                                             <span class="kt-switch kt-switch--icon">
@@ -85,39 +81,21 @@
                                     </div>                                   
                                     </div> 
 
-                                    <div class="col-md-6">                                                                                                    
-                                            <h5>Area/s Asignada  </h5>
-                                            <hr>
-                                            <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar Todas las Areas 
-                                            
-                                            
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        @foreach($areas as $area )
-                                                    
-                                                       
-                                                        <li class="list__item-check">
-                                                            <label class="label--checkbox">
-                                                                <div>
-                                                                <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}} <br>                                                                                                       
-                                                            </div>
-                                                            </label>                                                             
-                                                        </li>                                                        
-                                                        
-                                                        {{$area->name}}                                                 
-                                                    @endforeach 
-                                                    </div>
+                            
+                                <div class="form-group">
+                                                                                                                                      
+                                         <h5>Area/s Asignada  </h5>
+                                        <section>
 
-
-                                                   
-                                                </div>
-                                                 
-                                            
-                                               
-
-                                                                                                                                                           
-                                    </div>  
-                                                                                                   
+                                            <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar Todas las Areas  
+                                            <br>                                           
+                                                @foreach($areas as $area )                                                                                                                                                                                                                                   
+                                                <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}}  {{$area->name}} <br>                                              
+                                                @endforeach 
+                                            </section>
+                                   
+                                </div>
+        
                             </div>
                         </div>
                     </div>
@@ -134,7 +112,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Cancelar
                 </button>
-                <button type="button" class="btn btn-primary" id="usr_js_fn_04" onclick="save_user_create();">
+                <button type="button" class="btn btn-primary" id="usr_js_fn_04" onclick="save_user_create();" >
                     Agregar
                 </button>
 
@@ -142,5 +120,6 @@
         </div>
     </div>
 </div>
+
 
 
