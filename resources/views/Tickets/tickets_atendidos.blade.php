@@ -24,17 +24,35 @@
           <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
         </div>
       </div>
-      <div class="row">
-        <div class="col-xl-12">
+      <div class="card text-center"  >
+        <div class="card-header titulo_card"><h2> Tickets Atendidos </h2> </div>
+        </div>
+        <div class="total-filter">
+          <div class="search-heading">Selecciona el Rango de Busqueda</div>  
+        <div class="input-group date">          
+                 
+               
+          <span id="date-label-from" class="date-label">De:</span>
+          <input class="date_range_filter date " type="text" id="datepicker_from" />
+          <span id="date-label-to" class="date-label">a:</span>
           
-            <div class="card text-center"  >
-            <div class="card-header titulo_card"><h2> Tickets Atendidos </h2> </div>
+            <input class="date_range_filter date" type="text" id="datepicker_to" />
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="flaticon-calendar"></i></span>
             </div>
+        </div>
+
+          <button class="btn btn-default calculate-date-filter">Aplicar Rango </button>        
+          <button class="btn btn-default clear-date-filter">Limpiar Rango</button>            
+        </div>
+      <div class="row">
+
+        <div class="col-xl-12">          
+            
+            
   <!--begin: Datatable -->
-  <br>
-            <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5> 
-            <div class="card-body" > 
-              
+            
+            <div class="card-body" >               
                <table id="tablatk"  class="table table-striped table-bordered " >
                     <thead >
                       <tr>
@@ -43,9 +61,7 @@
                         <th>Asunto</th>
                         <th>Area</th>
                         <th>Estado del Tiket</th>
-                        <th>Nombre Usuario</th>
-                        
-
+                        <th>Nombre Usuario</th>                        
                       </tr>
                     </thead>                    
                     <tfoot>

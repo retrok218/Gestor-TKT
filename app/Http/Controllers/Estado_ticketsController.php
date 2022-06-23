@@ -20,7 +20,13 @@ use App\ticket;
 
 
 class Estado_ticketsController extends Controller
+
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
 
   // Tickets Abiertos 
   public function tickets_abiertos()
@@ -29,13 +35,15 @@ class Estado_ticketsController extends Controller
     $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */
     return view('Tickets/tickets_abiertos')
       ->with('tickte', $tickte)
-      ->with('abierto', $abierto);
+      ->with('abierto', $abierto)
+      
+      ;
   }
   public function data_tickets_abiertos()
   {
     $usuario = auth()->user()->area;
     $tickets_abiertos_area = DB::connection('pgsql2')
-      ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+      ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
           FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
           INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
           INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id

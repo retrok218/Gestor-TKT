@@ -151,7 +151,6 @@ Route::get ('/todos_los_tickets','Estado_ticketsController@todos_los_tkts' );
 Route::get ('/datatodos_los_tickets','Estado_ticketsController@data_todos_losticket' );
 
 Route::get ('/monitoreo_tickets','Estado_ticketsController@monitoreo_tickets');
-
 Route::get('/solicitud_toner','Estado_ticketsController@solicitud_toner');
 
 

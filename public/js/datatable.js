@@ -1,73 +1,31 @@
 $(document).ready(function(){
-  minDateFilter = "";
-     maxDateFilter = "";
-     $.fn.dataTableExt.afnFiltering.push(
-         function (oSettings, aData, iDataIndex) {
-             if (typeof aData._date == 'undefined') {
-                 aData._date = new Date(aData[1]).getTime();
-             }
-   
-             if (minDateFilter && !isNaN(minDateFilter)) {
-                 if (aData._date < minDateFilter) {
-                     return false;
-                 }
-             }
-   
-             if (maxDateFilter && !isNaN(maxDateFilter)) {
-                 if (aData._date > maxDateFilter) {
-                     return false;
-                 }
-             }
-   
-             return true;
-         }
-     );
-     var idioma =
-   
-         {
-             "sProcessing": "Procesando...",
-             "sLengthMenu": "Mostrar _MENU_ registros",
-             "sZeroRecords": "No se encontraron resultados",
-             "sEmptyTable": "Ningun dato disponible en esta tabla",
-             "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-             "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-             "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-             "sInfoPostFix": "",
-             "sSearch": "Buscar Ticket:",
-             "sUrl": "",
-             "sInfoThousands": ",",
-             "sLoadingRecords": "Cargando...",
-             "oPaginate": {
-                 "sFirst": "Primero",
-                 "sLast": "Ultimo",
-                 "sNext": "Siguiente",
-                 "sPrevious": "Anterior"
-             },
-             "oAria": {
-                 "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-             },
-             "buttons": {
-                 "copyTitle": 'Informacion copiada',
-   
-                 "copySuccess": {
-                     "_": '%d filas copiadas al portapapeles',
-                     "1": '1 fila copiada al portapapeles'
-                 },
-                 "pageLength": {
-                     "_": "Mostrar %d filas",
-                     "-1": "Mostrar Todo"
-                 }
-             },
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = $('#datepicker_from').datepicker('getDate');
+            var max = $('#datepicker_to').datepicker('getDate');
             
-         };
+            var startDate = new Date($.trim(data[1])); //here change column value if you have different table structure
+            console.log(startDate);
+            if (min == null && max == null) return true;
+            if (min == null && startDate <= max_formattedDate) return true;
+            if (max == null && startDate >= min_formattedDate) return true; 
+            if (startDate <= max && startDate >= min) return true;
+            return false;
+        }
+    );
+
+    $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+    $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+
+// para filtro por seleccion de fecha   
+  
+// para filtro por seleccion de fecha   
+
    
-   
-     $(document).ready(function () {
-         $("#Date_search").val("");
-     });
-   
+ 
+// inicio de datatable    
 var table = $('#tablatk').DataTable({
+    
          
          "pageLength": 10,
          "lengthChange": true,
@@ -203,53 +161,53 @@ var table = $('#tablatk').DataTable({
             "url": url + name_tabla,
         },
         columns: [
-            { data: 'tn', name: 'tn' },
+            
+            {"mRender": function(data, type, row){
+                var ligaotrs=row.id;
+                
+                return'<a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+ligaotrs+'" target="_blank" title="Ir en busca del TKT en OTRS">'+row.tn+'</a>';
+
+               
+            }
+        },
+
+
+
+
+
+
+
+
             { data: 'create_time', name: 'create_time' },
             { data: 'title', name: 'title' },
             { data: 'qname', name: 'qname' },
             { data: 'name'},
             { data: 'nombre', name: 'nombre' },
         ]
+
+
 });
-     $("#Date_search").daterangepicker({
-         "locale": {
-             "format": "YYYY-MM-DD",
-             "separator": " a ",
-             "applyLabel": "Filtrar",
-             "cancelLabel": "Cancelar",
-             "fromLabel": "De",
-             "toLabel": "To",
-             "customRangeLabel": "Custom",
-             "weekLabel": "W",
-             "daysOfWeek": [
-                 "Su",
-                 "Mo",
-                 "Tu",
-                 "We",
-                 "Th",
-                 "Fr",
-                 "Sa"
-             ],
-             "monthNames": [
-                 "January",
-                 "February",
-                 "March",
-                 "April",
-                 "May",
-                 "June",
-                 "July",
-                 "August",
-                 "September",
-                 "October",
-                 "November",
-                 "December"
-             ],
-             "firstDay": 1
-         },
-         "opens": "center",
-     }, function (start, end, label) {
-         maxDateFilter = end;
-         minDateFilter = start;
-         table.draw();
-     });
+
+$('#datepicker_from,#datepicker_to').change(function () {
+    table.draw();
+
+});
+
+$(".clear-date-filter").on("click", function() {
+        $('#datepicker_from').val("").datepicker("update");
+        $('#datepicker_to').val("").datepicker("update");
+    }); 
+     
+
     });
+
+
+
+
+
+
+
+
+
+
+
