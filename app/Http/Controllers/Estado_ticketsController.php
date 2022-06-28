@@ -35,9 +35,7 @@ class Estado_ticketsController extends Controller
     $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */
     return view('Tickets/tickets_abiertos')
       ->with('tickte', $tickte)
-      ->with('abierto', $abierto)
-      
-      ;
+      ->with('abierto', $abierto);
   }
   public function data_tickets_abiertos()
   {
@@ -51,8 +49,9 @@ class Estado_ticketsController extends Controller
           ORDER BY ticket.tn DESC");
     return Datatables::of($tickets_abiertos_area)->toJson();
   }
+
   
-  //Tickets Asignados 
+
   public function tickets_asignados()
   {
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
@@ -66,7 +65,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tkasignado =  DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -89,7 +88,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tkatendidos = DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre ,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -98,6 +97,7 @@ class Estado_ticketsController extends Controller
     return Datatables::of($tkatendidos)->toJson();;
   }
   // Tickets Cerrados Exitosamente 
+
   public function tickets_cerrados_exitosamente()
   {
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
@@ -110,7 +110,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tickets_cerrados_exitosamente = DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -118,6 +118,35 @@ class Estado_ticketsController extends Controller
         ORDER BY ticket.tn DESC");
     return Datatables::of($tickets_cerrados_exitosamente)->toJson();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Todos los Tickets
   public function todos_los_tkts()
@@ -130,7 +159,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tickets_totales = DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -154,7 +183,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tickets_cerradosPT =DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -177,7 +206,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tkts_espera_info = DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -198,7 +227,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tickets_falta_acta_responsiva = DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -220,7 +249,7 @@ class Estado_ticketsController extends Controller
   {
     $usuario = auth()->user()->area;
     $tickets_notificadosalusuario =  DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
@@ -242,7 +271,7 @@ class Estado_ticketsController extends Controller
   {
      $usuario = auth()->user()->area;
     $ticket_nuevo =  DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id

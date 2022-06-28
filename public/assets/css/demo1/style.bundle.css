@@ -49801,10 +49801,30 @@ body {
       -webkit-transform: translateY(0);
       transform: translateY(0);
     }
+  }
 
-
-
+  .Filtro-rango{
+    width: 100%;
+    height: 100%;
+    border: 3px solid red;
+    margin: 0;
   }
 
 
+  #demoObject {
+    
+    
+    background: transparent;
+    }
+    body#tinymce {
+    
+    }
+
+
+.Cerrados_exitosamente {
+    background-color: #07d10d;
+}
+.tktstotales {
+    background-color: #9e1e49;
+}
 

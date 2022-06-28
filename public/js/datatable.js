@@ -130,7 +130,7 @@ var table = $('#tablatk').DataTable({
          },
          // Filtro por seleccion multiple
          initComplete: function () {
-             this.api().columns([3,4]).every(function () {
+             this.api().columns([3]).every(function () {
                  var column = this;
                  //added class "mymsel"
                  var select = $('<select class="mymsel" multiple="multiple" ><option value="" ></option></select>')
@@ -166,18 +166,8 @@ var table = $('#tablatk').DataTable({
                 var ligaotrs=row.id;
                 
                 return'<a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+ligaotrs+'" target="_blank" title="Ir en busca del TKT en OTRS">'+row.tn+'</a>';
-
-               
             }
         },
-
-
-
-
-
-
-
-
             { data: 'create_time', name: 'create_time' },
             { data: 'title', name: 'title' },
             { data: 'qname', name: 'qname' },

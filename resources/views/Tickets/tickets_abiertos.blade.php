@@ -29,24 +29,21 @@
         </div> 
 
       
-        <div class="total-filter">
-            <div class="search-heading">Selecciona el Rango de Busqueda</div>  
-          <div class="input-group date">          
-                   
-                 
-            <span id="date-label-from" class="date-label">De:</span>
-            <input class="date_range_filter date " type="text" id="datepicker_from" />
-            <span id="date-label-to" class="date-label">a:</span>
-            
-              <input class="date_range_filter date" type="text" id="datepicker_to" />
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="flaticon-calendar"></i></span>
-              </div>
-          </div>
 
-            <button class="btn btn-default calculate-date-filter">Aplicar Rango </button>        
-            <button class="btn btn-default clear-date-filter">Limpiar Rango</button>            
-          </div>
+<div class="total-filter">
+    <div class="search-heading">Show Results (Filter by Date in mm/dd/yyyy format) </div>
+  <p id="date_filter">
+     
+<span id="date-label-from" class="date-label">From: 
+</span><input class="date_range_filter date" type="text" 
+id="datepicker_from" />
+      <span id="date-label-to" 
+class="date-label">To:</span><input class="date_range_filter
+date" type="text" id="datepicker_to" />
+<button class="btn btn-default calculate-date-filter">Show Results </button>        
+    <button class="btn btn-default clear-date-filter">Clear Filter</button>
+  </p>
+</div>
        
           
 

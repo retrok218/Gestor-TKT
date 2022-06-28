@@ -53,7 +53,7 @@ Route::get('/', function () {
             return redirect('/admin');
             }
             else{
-                return redirect('/home');
+                return redirect('/monitoreo_tickets');
                 }
 
         }else{
@@ -135,7 +135,7 @@ Route::get('/data_tickets_cerradospt','Estado_ticketsController@data_tickets_cer
 Route::get ('/tickets_espera_informacion','Estado_ticketsController@tickets_espera_informacion' );
 Route::get('/data_tickets_espera_informacion','Estado_ticketsController@data_tickets_espera_informacion');
 
-Route::get ('/data_tickets_espera_informacion', 'Estado_ticketsController@data_tickets_espera_informacion');
+
 
 Route::get ('/falta_acta_responsiva','Estado_ticketsController@falta_acta_responsiva' );
 Route::get ('/data_falta_acta_resp','Estado_ticketsController@data_falta_acta_responsiva' );
