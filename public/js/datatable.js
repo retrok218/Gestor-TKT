@@ -161,13 +161,25 @@ var table = $('#tablatk').DataTable({
             "url": url + name_tabla,
         },
         columns: [
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //
             {"mRender": function(data, type, row){
-                var ligaotrs=row.id;
-                
+                var ligaotrs=row.id;                
                 return'<a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+ligaotrs+'" target="_blank" title="Ir en busca del TKT en OTRS">'+row.tn+'</a>';
-            }
-        },
+                                                    }
+            },
             { data: 'create_time', name: 'create_time' },
             { data: 'title', name: 'title' },
             { data: 'qname', name: 'qname' },

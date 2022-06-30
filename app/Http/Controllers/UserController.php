@@ -42,10 +42,15 @@ class UserController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function create() {
-    //Get all roles and pass it to the view  
-            $roles = DB::table('roles')->get();            
-            return view('modals/users/add_user')->with('roles', $roles); 
-    }
+        //Get all roles and pass it to the view  
+                $roles = DB::table('roles')->get();  
+                $area = DB::connection('pgsql2')->table('queue')->select('name')->get();
+             
+                return view('modals/users/add_user')
+                ->with('roles', $roles)
+                ->with('area',$area);
+    
+        }
 
     /**
     * Store a newly created resource in storage.

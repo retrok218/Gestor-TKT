@@ -47,6 +47,13 @@ class Estado_ticketsController extends Controller
           INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
           WHERE ticket_state_id = 4 AND queue_id IN ($usuario)                           
           ORDER BY ticket.tn DESC");
+
+
+
+
+
+
+
     return Datatables::of($tickets_abiertos_area)->toJson();
   }
 
@@ -301,8 +308,20 @@ class Estado_ticketsController extends Controller
     );
     $tktsporciento = array();
     foreach ($porcentajes as $porcentaje) {
-      $tktsporciento[] = (int)$porcentaje * 100 / $tickte;
+      $tktsporciento[] = round($porcentaje * 100 / $tickte,2);
     };
+  
+
+    
+
+$suma = 0;
+foreach ($tktsporciento as $tktporciento){
+  $suma = $tktporciento+$tktporciento;
+ 
+}
+
+
+
 
 
     return view('Tickets/Monitoreo_Tickets/Monitoreo_de_Tickets')
@@ -311,7 +330,7 @@ class Estado_ticketsController extends Controller
       ->with('atendido', $atendido)
       ->with('espinformacion', $espinformacion)
       ->with('pendienteatc', $pendienteatc)
-      ->with('solicitudroner', $solicitudToner)
+      ->with('solicitudToner', $solicitudToner)
       ->with('abierto', $abierto)
       ->with('FaltaActaRES', $FaltaActaRES)
       ->with('cerradosinEX', $cerradosinEX)
