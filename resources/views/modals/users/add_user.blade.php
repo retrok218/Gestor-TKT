@@ -35,14 +35,6 @@
                                         <span id="apellido_materno-error" class="help-block"></span>
                                     </div><br>                                   
                                 </div>
-
-                                
-
-
-
-
-
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Correo electrónico</label>

@@ -107,12 +107,6 @@ Route::post('/block_screen', function () {
 });
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['prefix' => 'area'], function() {
-Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos' );
- 
-
-});
-
 
 
 Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos');

@@ -44,7 +44,7 @@
                     </div>
 
                   <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{$ticket}}" aria-valuenow={{$ticket}} aria-valuemin={{$ticket}} aria-valuemax={{$ticket}}></div>
+                    <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$ticket}}" aria-valuenow={{$ticket}} aria-valuemin={{$ticket}} aria-valuemax={{$ticket}}></div>
                     <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style={{$ticket_espera_info}} aria-valuenow={{$ticket_espera_info}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>
                 </div>
 

@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\ConexionBD2;
 class AdminController extends Controller
 {
 
@@ -37,7 +38,7 @@ class AdminController extends Controller
     // Se encarga de redireccionar el ingreso si es admin o user 
     public function dashboard()
     {
-       $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
+       
        $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
        $fecha_mes = Carbon::now()->format('m');
        $fecha_dia = Carbon::now()->format('d');
@@ -142,29 +143,7 @@ class AdminController extends Controller
        $mes_noviembre2=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 11)->whereYear('create_time','=', $fecha_añop)->count();
  
        $mes_diciembre2=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 12)->whereYear('create_time','=', $fecha_añop)->count();
- //fin datos segun el mes 
- 
- /*Para automatizar la grafica mes año  falta agregar con with
- 
-       $tksañop = array();
-       $mes_comienza=0;
-         for($mes_comienza; $mes_comienza<=12; $mes_comienza++){
-           $tksañop[]=DB::connection('pgsql2')->table('ticket')
-           ->whereMonth('create_time','=',$mes_comienza)
-           ->whereYear('create_time','=',$fecha_añop)
-           ->count();
-         };
-         $tksañoactual = array();
-         $mes_comienza=0;
-         for($mes_comienza; $mes_comienza<=12; $mes_comienza++){
-           $tksañoactual[]=DB::connection('pgsql2')->table('ticket')
-           ->whereMonth('create_time','=',$mes_comienza)
-           ->whereYear('create_time','=',$fecha_año)
-           ->count();
-         };
-         $tksañopJosn= json_encode($tksañop);
-         $tksañoactualJson= json_encode($tksañoactual);
- */
+
                                                                  
        // ticket por Area
        $tk_por_area_1=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',1)->count();
@@ -242,10 +221,14 @@ class AdminController extends Controller
         }                          
       };      
   };
- 
+ $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
  $totalMesJson = json_encode($totalmes); 
  //$ticket_allJson = json_encode($ticket_all);
- // Fin consulta por mes      
+ // Fin consulta por mes 
+ if ($perfil == true) {
+    # code...
+
+ 
 
 
        return view('admin.dashboard')
@@ -380,7 +363,10 @@ class AdminController extends Controller
       ->with('tk_por_area_52',$tk_por_area_52)
       ->with('tk_por_area_53',$tk_por_area_53)
       ->with('tk_por_area_54',$tk_por_area_54) 
-       ;
+       ;}
+       else {
+        return view('Tickets/Monitoreo_tickets/Monitoreo_de_Tickets');
+       }
        
  }
 
@@ -463,33 +449,56 @@ class AdminController extends Controller
         return $response;
     }
     public function store(Request $request) {
-           \Log::info(__METHOD__.' Crear nuevo Usuario');
-           try {
-               $id_rol = $request->id_rol;
-               DB::beginTransaction();
-               $user = User::create([
-                       'name' => $request->nombre,
-                       'apellido_paterno' => $request->apellido_paterno,
-                       'apellido_materno' => $request->apellido_materno,
-                       'usuario' => $request->usuario,
-                       'id_rol' => $id_rol,
-                       'password' => bcrypt($request->password),
-                       'email' => $request->email,
-                       'estatus' => (!$request->cat_status) ? '0' : '1',
-                       'id_ubicacion' => '1'
-                   ]);
-               $grol = DB::table('roles')->where('id', '=', $id_rol)->first();
-               // Le asignamos el rol
-               $user->assignRole($grol->name);
-               $response = array('success' => true, 'message' => 'Usuario creado correctamente.');
-               DB::commit();
-           } catch (\Exception $th) {
+        $emails_endb=array(DB::table('users')->select('email')->get());
+           if (in_array($request->email, $emails_endb) == false) {
+               $error= 'Error en Correo favor de validarlo';
+               }else{
+                   $error ='Error al guardar el usuario.';
+               }
+              \Log::info(__METHOD__.' Crear nuevo Usuario');
+       try {
+                  $id_rol = $request->id_rol;
+                  DB::beginTransaction();
+                  $user = User::create([
+                          'name' => $request->nombre,
+                          'apellido_paterno' => $request->apellido_paterno,
+                          'apellido_materno' => $request->apellido_materno,
+                          'usuario' => $request->usuario,
+                          'id_rol' => $id_rol,
+                          'password' => bcrypt($request->password),
+                          'email' => $request->email,
+                          'estatus' => (!$request->cat_status) ? '0' : '1',
+                          'id_ubicacion' => '1',
+                          'area' =>implode(' , ',$request->input('checkbox')) //agregado para agregar area
+                      ]);
+                      
+                      
+                  $grol = DB::table('roles')->where('id', '=', $id_rol)->first();
+                  // Le asignamos el rol
+                  $user->assignRole($grol->name);
+                  
+                  $response = array('success' => true, 'message' => 'Usuario creado correctamente.');
+                  DB::commit();
+                 
+              } catch (\Exception $th) {
+               \Log::info(__METHOD__.$th->getMessage());
+                  DB::rollback();
+                  $response = ['success' => false, 'message' => $error];
+              }
+              
+              return $response;
+          }
 
-               DB::rollback();
-               $response = ['success' => false, 'message' => 'Error al guardar el usuario.'];
+          public function validacion_correo(){
+        
+            //comprobacion datos duplicados
+                $consulta_db_duo = $conect_my_db -> prepare("SELECT * FROM usuarios WHERE EMAIL=:email_d;");
+                $consulta_db_duo -> bindParam(":email_d", $email);
+                $consulta_db_duo -> execute();
+    
+            
            }
-           return $response;
-       }
+
 
     public function listar_usuarios()
     {
