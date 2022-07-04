@@ -53,7 +53,7 @@ Route::get('/', function () {
             return redirect('/admin');
             }
             else{
-                return redirect('/monitoreo_tickets');
+                return redirect('/home');
                 }
 
         }else{

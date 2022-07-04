@@ -71,6 +71,7 @@
         <table class="table table-striped- table-bordered table-hover table-checkable" id="users-table">
             <thead>
             <tr>
+                <th></th>
                 <th> ID </th>
                 <th> Nombre </th>
                 <th> Apellido Paterno </th>

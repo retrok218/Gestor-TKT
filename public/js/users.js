@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline( this, {
+            buttons: { label: '&gt;', fn: function () { this.submit(); } }
+        } );
+    } );
     $('.users-table').each(function () {
         $(this).dataTable(window.dtDefaultOptions);
     });
@@ -7,10 +12,14 @@ $(document).ready(function() {
         serverSide: true,
         dom: 'Bfrtip',
         buttons: [
+            { extend: "create", editor: editor },
+            { extend: "edit",   editor: editor },
+            { extend: "remove", editor: editor },
             { extend: 'copyHtml5', className: 'kt-hidden', name: '' },
             { extend: 'excelHtml5', className: 'kt-hidden' },
             { extend: 'csvHtml5', className: 'kt-hidden' },
             { extend: 'pdfHtml5', className: 'kt-hidden', text: 'PDF',
+            
             //orientation: 'landscape'
             },
             { extend: 'print', className: 'kt-hidden', text: 'Imprimir', name: 'print' },
@@ -23,6 +32,13 @@ $(document).ready(function() {
             "type": "GET"
         },
         columns: [
+
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'apellido_paterno', name: 'apellido_paterno' },
@@ -40,7 +56,11 @@ $(document).ready(function() {
                 }
             }
 
-        ]
+        ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
         });
 });
 

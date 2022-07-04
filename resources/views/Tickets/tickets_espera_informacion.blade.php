@@ -106,12 +106,14 @@
             <table class="table table-striped- table-bordered table-hover table-checkable" id="tablatk">
                 <thead>
                     <tr>
+                       
                         <th>Numero de Tiket</th>
                         <th>Creado</th>
                         <th>Asunto</th>
                         <th>Area</th>
                         <th>Estado del Tiket</th>
                         <th>Nombre Usuario</th>
+                        
                     </tr>
                 </thead>
                 <tfoot>
