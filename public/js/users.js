@@ -1,9 +1,4 @@
 $(document).ready(function() {
-    $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit(); } }
-        } );
-    } );
     $('.users-table').each(function () {
         $(this).dataTable(window.dtDefaultOptions);
     });
@@ -12,14 +7,10 @@ $(document).ready(function() {
         serverSide: true,
         dom: 'Bfrtip',
         buttons: [
-            { extend: "create", editor: editor },
-            { extend: "edit",   editor: editor },
-            { extend: "remove", editor: editor },
             { extend: 'copyHtml5', className: 'kt-hidden', name: '' },
             { extend: 'excelHtml5', className: 'kt-hidden' },
             { extend: 'csvHtml5', className: 'kt-hidden' },
             { extend: 'pdfHtml5', className: 'kt-hidden', text: 'PDF',
-            
             //orientation: 'landscape'
             },
             { extend: 'print', className: 'kt-hidden', text: 'Imprimir', name: 'print' },
@@ -32,13 +23,6 @@ $(document).ready(function() {
             "type": "GET"
         },
         columns: [
-
-            {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
-            },
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'apellido_paterno', name: 'apellido_paterno' },
@@ -52,15 +36,16 @@ $(document).ready(function() {
                 "mRender": function (data, type, row) {
                     var id_user = row.id;
                     console.log(row);
-                    return '<a class="btn btn-cdmx" onClick="edit_user_modal('+id_user+');" href="javascript:void(0)">Editar</a>';
+                    return '<a class=" fas fa-pencil-alt " onClick="edit_user_modal('+id_user+');" href="javascript:void(0)"></a>'+ '<br>' +'<a href="#"> <i class="fas fa-trash-alt"></i> </a> ';
                 }
-            }
+               
+                
+            },
+            
 
-        ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
+            
+
+        ]
         });
 });
 

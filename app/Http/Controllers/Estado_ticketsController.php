@@ -22,7 +22,6 @@ use App\ticket;
 class Estado_ticketsController extends Controller
 
 {
-
   public function __construct()
   {
       $this->middleware('auth');
@@ -31,12 +30,17 @@ class Estado_ticketsController extends Controller
   // Tickets Abiertos 
   public function tickets_abiertos()
   {
-    $tickte = ticket::count();
-    $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */
+    $ticket = ticket::count();
+    $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */    
+    $tktporcento = round(($abierto*100)/$ticket,2);
+    $nom_tkt_estatus = "Tickets Abiertos ";  
     return view('Tickets/tickets_abiertos')
-      ->with('tickte', $tickte)
-      ->with('abierto', $abierto);
-  }
+      ->with('ticket', $ticket)
+      ->with('abierto', $abierto)
+      ->with('tktporcento',$tktporcento)
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)    
+      ;}
+
   public function data_tickets_abiertos()
   {
     $usuario = auth()->user()->area;
@@ -47,13 +51,6 @@ class Estado_ticketsController extends Controller
           INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
           WHERE ticket_state_id = 4 AND queue_id IN ($usuario)                           
           ORDER BY ticket.tn DESC");
-
-
-
-
-
-
-
     return Datatables::of($tickets_abiertos_area)->toJson();
   }
 
@@ -61,11 +58,15 @@ class Estado_ticketsController extends Controller
 
   public function tickets_asignados()
   {
-    $tickte = DB::connection('pgsql2')->table('ticket')->count();
+    $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $asignado = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 12)->count();
+    $tktporcento = round(($asignado*100)/$ticket,2);
+    $nom_tkt_estatus = "Tickets Asignados";
     return view('Tickets/tickets_asignados')
-      ->with('ticket', $tickte)
-      ->with('asignado', $asignado);
+      ->with('ticket', $ticket)
+      ->with('asignado', $asignado)
+      ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
 
   public function data_ticket_asignado()
@@ -86,9 +87,13 @@ class Estado_ticketsController extends Controller
   {
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 13)->count();
+    $tktporcento = round(($atendido*100)/$tickte,2);
+    $nom_tkt_estatus = "Tickets Atendidos ";
     return view('Tickets/tickets_atendidos')
       ->with('ticket', $tickte)
-      ->with('atendido', $atendido);
+      ->with('atendido', $atendido)
+      ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
 
   public function data_tickets_atendidos()
@@ -109,9 +114,14 @@ class Estado_ticketsController extends Controller
   {
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 2)->count();
+    $tktporcento = round(($rticket*100)/$ticket,2);
+    $nom_tkt_estatus = "Tickets Cerrados Exitosamente";
     return view('Tickets/tickets_cerrados_exitosamente')
       ->with('ticket', $ticket)
-      ->with('rticket', $rticket);
+      ->with('rticket', $rticket)
+      ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
+      
   }
   public function datatickets_cerrados_exitosamente()
   {
@@ -135,31 +145,16 @@ class Estado_ticketsController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Todos los Tickets
   public function todos_los_tkts()
   {
     // ingresar la tabla de todos los tkts
-    return view('Tickets/todos_los_tickets');
+    $ticket = DB::connection('pgsql2')->table('ticket')->count();
+    $nom_tkt_estatus = "Todos Los Tickets ";
+    return view('Tickets/todos_los_tickets')
+    ->with('ticket', $ticket)
+    ->with('nom_tkt_estatus',$nom_tkt_estatus);
+
   }
 
   public function data_todos_losticket()
@@ -180,10 +175,13 @@ class Estado_ticketsController extends Controller
   {
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $cerradoPT = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 10)->count();
-
+    $nom_tkt_estatus = "Tickets Cerrados Por Tiempo";
+    $tktporcento = round(($cerradoPT*100)/$tickte,2);
     return view('Tickets/tickets_cerradosPT')
       ->with('ticket', $tickte)
-      ->with('cerradoPT', $cerradoPT);
+      ->with('cerradoPT', $cerradoPT)
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
 
   public function data_tickets_cerradosPT()
@@ -204,9 +202,13 @@ class Estado_ticketsController extends Controller
   {
     $ticket = ticket::count();
     $ticket_espera_info = ticket::where('ticket_state_id', '=', 15)->count();
+    $nom_tkt_estatus = "Tickets Espera de Informacion";
+    $tktporcento = round(($ticket_espera_info*100)/$ticket,2);
     return view('Tickets/tickets_espera_informacion')
       ->with('ticket', $ticket)
-      ->with('ticket_espera_info', $ticket_espera_info);
+      ->with('ticket_espera_info', $ticket_espera_info)
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
 
   public function data_tickets_espera_informacion()
@@ -226,9 +228,13 @@ class Estado_ticketsController extends Controller
   {
     $ticket = ticket::count();
     $FaltaActaRES = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 21)->count();
+    $nom_tkt_estatus = "Tickets Falta Acta Responsiva";
+    $tktporcento = round(($FaltaActaRES*100)/$ticket,2);
     return view('Tickets/tickets_falta_acta_resp')
       ->with('ticket', $ticket)
-      ->with('FaltaActaRES', $FaltaActaRES);
+      ->with('FaltaActaRES', $FaltaActaRES)
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
   public function data_falta_acta_responsiva()
   {
@@ -246,10 +252,14 @@ class Estado_ticketsController extends Controller
   public function notificado_al_usuario()
   {
     $ticket = ticket::count();
-    $NotificadoAlUsuario = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 11)->count();
+    $NotificadoAlUsuario = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 11)->count();
+    $nom_tkt_estatus = "Tickets Notificado al Usuario";
+    $tktporcento = round(($NotificadoAlUsuario*100)/$ticket,2);
     return view('Tickets/tickets_notificado_al_usuario')
       ->with('ticket', $ticket)
-      ->with('NotificadoAlUsuario', $NotificadoAlUsuario);
+      ->with('NotificadoAlUsuario', $NotificadoAlUsuario)
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
 
   public function data_notificado_al_usuario()
@@ -269,9 +279,13 @@ class Estado_ticketsController extends Controller
   {
     $nticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 7)->count();
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
+    $nom_tkt_estatus = "Tickets Recien creados   ";
+    $tktporcento = round(($nticket*100)/$ticket,2);
     return view('Tickets/tickets_nuevos')
       ->with('nticket', $nticket)
-      ->with('ticket', $ticket);
+      ->with('ticket', $ticket)
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)
+      ->with('tktporcento',$tktporcento);
   }
 
   public function data_nuevoticket()
@@ -310,17 +324,6 @@ class Estado_ticketsController extends Controller
     foreach ($porcentajes as $porcentaje) {
       $tktsporciento[] = round($porcentaje * 100 / $tickte,2);
     };
-  
-
-    
-
-$suma = 0;
-foreach ($tktsporciento as $tktporciento){
-  $suma = $tktporciento+$tktporciento;
- 
-}
-
-
 
 
 
