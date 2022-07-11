@@ -17,16 +17,13 @@ $(document).ready(function(){
     $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
     $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
 
-// para filtro por seleccion de fecha   
-  
+// para filtro por seleccion de fecha  
 // para filtro por seleccion de fecha   
 
    
  
 // inicio de datatable    
-var table = $('#tablatk').DataTable({
-    
-         
+var table = $('#tablatk').DataTable({         
          "pageLength": 10,
          "lengthChange": true,
          "searching": true,
@@ -69,7 +66,7 @@ var table = $('#tablatk').DataTable({
                      titleAttr: 'PDF',
                      className: 'btn btn-app export pdf',
                      orientation: 'landscape',
-                     pageSize: 'TABLOID',
+                     //pageSize: 'TABLOID',
                      exportOptions: {
                          columns: ':visible'
                      },
@@ -171,8 +168,19 @@ var table = $('#tablatk').DataTable({
             },
             { data: 'create_time', name: 'create_time' },
             { data: 'title', name: 'title' },
+
             { data: 'qname', name: 'qname' },
+
+            // se genera if para cambiar el nombre del estado de tkt si es open
             { data: 'name'},
+
+
+
+
+
+
+
+
             { data: 'nombre', name: 'nombre' },                         
         ],
         

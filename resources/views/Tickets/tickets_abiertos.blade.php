@@ -53,6 +53,9 @@
                     </div>
          </div>       
     </div>   
+
+
+    
     <!-- Creacion de tabla tickets asignados -->
     <div class="kt-portlet kt-portlet--mobile">
         <div class="kt-portlet__head kt-portlet__head--lg">
@@ -112,8 +115,8 @@
         </div>
     </div>
 </div>
+
+@include('layouts/scripts/scripts_dttb')
 <!--se agrega el includ para creacion de datatable -->
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-@section('scripts') 
 @endsection
-@endsection
+

@@ -95,9 +95,7 @@
     </div>
 </div>
 <!--se agrega el includ para creacion de datatable -->
-<!-- <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script> -->
-@section('scripts') 
-@endsection
+@include('layouts/scripts/scripts_dttb')
 @endsection
 
 
