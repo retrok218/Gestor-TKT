@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $.fn.dataTable.ext.search.push(
         function (settings, data, dataIndex) {
             var min = $('#datepicker_from').datepicker('getDate');
@@ -168,25 +169,10 @@ var table = $('#tablatk').DataTable({
             },
             { data: 'create_time', name: 'create_time' },
             { data: 'title', name: 'title' },
-
-            { data: 'qname', name: 'qname' },
-
-            // se genera if para cambiar el nombre del estado de tkt si es open
+            { data: 'qname', name: 'qname' },            
             { data: 'name'},
-
-
-
-
-
-
-
-
             { data: 'nombre', name: 'nombre' },                         
         ],
-        
-
-
-
 });
 
 $('#datepicker_from,#datepicker_to').change(function () {
@@ -197,10 +183,11 @@ $('#datepicker_from,#datepicker_to').change(function () {
 $(".clear-date-filter").on("click", function() {
         $('#datepicker_from').val("").datepicker("update");
         $('#datepicker_to').val("").datepicker("update");
-    }); 
-     
+    });    
+    
+    
 
-    });
+});
 
 
 

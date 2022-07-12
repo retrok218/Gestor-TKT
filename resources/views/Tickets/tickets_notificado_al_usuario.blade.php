@@ -40,7 +40,7 @@
                                 </div>  
                                 <div class="progress progress--sm" style="height: 1rem">                                                                                            
                                         <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$ticket}}" aria-valuenow={{$ticket}} aria-valuemin={{$ticket}} aria-valuemax={{$ticket}}></div>                                               
-                                        <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{$NotificadoAlUsuario}}" aria-valuenow={{$NotificadoAlUsuario}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>                                                                                           
+                                        <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{$tktporcento}}%" aria-valuenow={{$NotificadoAlUsuario}} aria-valuemin={{$ticket}} aria-valuemax={{$NotificadoAlUsuario}}></div>                                                                                           
                                 </div>              
                                 <div class="kt-widget24__action">  
                                         <span class="kt-widget24__number"></span>
