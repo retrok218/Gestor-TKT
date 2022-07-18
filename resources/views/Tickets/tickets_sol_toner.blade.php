@@ -481,11 +481,26 @@
     </div>
 
 
-
-
-
-
-
+    
+<ul class="kt-sticky-toolbar" style="margin-top: 30px;">
+  <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
+    <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
+  </li>
+  <!-- <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--danger" id="kt_sticky_toolbar_chat_toggler" data-toggle="kt-tooltip" title="Chat Example" data-placement="left">
+    <a href="#" data-toggle="modal" data-target="#kt_chat_modal"><i class="flaticon2-chat-1"></i></a>
+  </li> -->
+</ul>   
+<div id="kt_demo_panel" class="kt-demo-panel" style="opacity: 0;">
+  <div class="kt-demo-panel__head" style="" kt-hidden-height="50">
+    
+    <canvas id="myChart" width="400" height="400"></canvas>
+    
+  </div>
+  <div  class="  text-center border-dark"><h3>Solicitud de Toner-Area </h3> 
+    <div id="sales-doughnut-chart-us"></div> 
+  </div>              
+  <div id="" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
+</div> 
 </div>
 
 
@@ -815,8 +830,62 @@ $(".clear-date-filter").on("click", function() {
     });  
 
 
+
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+<script>
+const ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [ {{$areas_count[1]}} , 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
 });
 </script>
+ 
+
+
+
+
+
 <!-- fin de la datatable-->
 @endsection
 @endsection

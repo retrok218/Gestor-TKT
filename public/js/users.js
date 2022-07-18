@@ -36,7 +36,7 @@ $(document).ready(function() {
                 "mRender": function (data, type, row) {
                     var id_user = row.id;
                     console.log(row);
-                    return '<a class=" fas fa-pencil-alt " onClick="edit_user_modal('+id_user+');" href="javascript:void(0)"></a>'+ '<br>' +'<a href="#"> <i class="fas fa-trash-alt"></i> </a> ';
+                    return '<a class=" fas fa-pencil-alt " onClick="edit_user_modal('+id_user+');" href="javascript:void(0)"> Editar</a>';
                 }
                
                 
@@ -128,6 +128,19 @@ function edit_user_modal(data) {
     });
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 function edit_user() {
     if(!formValidate('#editar_usuario')){ return false; }
     var password = $('#password').removeClass('has-error').val();
@@ -159,6 +172,14 @@ function edit_user() {
             Swal.fire('¡Alerta!','Error de conectividad de red USR-04','warning');
         }
      });
+}
+
+
+
+function Eliminar_usuario(){   
+        var agree=confirm("¿Realmente desea eliminarlo? ");
+        if (agree) return true ;
+        return false;
 }
 
 

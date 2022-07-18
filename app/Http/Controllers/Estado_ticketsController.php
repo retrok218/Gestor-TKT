@@ -361,6 +361,23 @@ class Estado_ticketsController extends Controller
       ->join('ticket', 'ticket_history.ticket_id', 'ticket.id')
       ->get();
 
+      // Se obtienen las areas con las que se cuenta en la tabla queue solo el ID 
+    $areas_filastkts=DB::connection('pgsql2')->table('queue')->select('id')->orderBy('id','ASC')->get();
+     // Se transforma de un arreglo de objetos a un arreglo de con solo el id de las areas 
+     $area_f=[];    
+      foreach($areas_filastkts as $fila){
+         $area_f[]=$fila->id;
+       }; 
+       $areas_count=[];
+       foreach( $area_f as $areas_ids){
+        $areas_count[]=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',$areas_ids)->count();
+       }
+
+      
+      //  var_dump($areas_count[1]); 
+      //  exit;
+    
+
     //select ingresa codigo sql puro 
     $ticketfusion = DB::connection('pgsql2')
       //->select("SELECT * FROM ticket");
@@ -407,6 +424,7 @@ class Estado_ticketsController extends Controller
     return view('Tickets/tickets_sol_toner')
       ->with('tk_id', $ticketfusion)
       ->with('solicitudToner', $solicitudToner)
-      ->with('ticket', $tickte);
+      ->with('ticket', $tickte)
+      ->with('areas_count',$areas_count);
   }
 }

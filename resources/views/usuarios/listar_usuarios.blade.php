@@ -80,7 +80,7 @@
                 <th> Correo </th>
                 <th> Area </th>
                 <th> Acciones</th>
-                <th></th>
+               
             </tr>
             </thead>
         </table>
