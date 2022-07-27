@@ -1,5 +1,4 @@
 @extends('home')
-<meta http-equiv="refresh" content="1220" />
 @section('content')
 <script>
     var titulo_tab = "Tickets En Espera de Informacion";

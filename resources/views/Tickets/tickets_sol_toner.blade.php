@@ -101,39 +101,6 @@
 
 
 
-
-
-
-
-                
-  
-    {{-- <form class="kt-form kt-form--fit kt-margin-b-20">                
-      <div class="row kt-margin-b-4">
-          <div class="col-lg-8 kt-margin-b-10-tablet-and-mobile">
-              <label>Rango de Busqueda :</label>                       
-              <div class="input-group date">               
-                  <div class="input-daterange input-group" id="kt_datepicker">
-                      <input class="date_range_filter date " type="text" id="datepicker_from" placeholder="De la Fecha " autocomplete="off" />
-                      <div class="input-group-append">
-                          <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
-                      </div>                            
-                      <input class="date_range_filter date" type="text" id="datepicker_to" placeholder="A La Fecha"  autocomplete="off"/>
-                    <div class="input-group-append">
-                      <span class="input-group-text"><i class="flaticon-calendar"></i></span>
-                    </div>
-                  </div>
-              </div>        
-                  <button class="btn btn-default clear-date-filter">Limpiar Filtross</button>
-          </div>                    
-      </div> 
-  </form>
-     --}}
-
-
-
-
-
-
      <div class="kt-portlet kt-portlet--height-fluid">
       <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
@@ -179,7 +146,7 @@
             
             
             
-                <table id="Solicitudesdetoner" style="width:100%"   >
+                <table id="Solicitudesdetoner" class="display" style="width:100%">
                     <thead >     
                     <tr>
                             <th colspan="5" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Tickets</th>
@@ -478,30 +445,55 @@
           </div>
         </div>
       </div>
+
+         
     </div>
 
 
     
+
+
+
+
+
+
+
 <ul class="kt-sticky-toolbar" style="margin-top: 30px;">
-  <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
-    <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
-  </li>
-  <!-- <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--danger" id="kt_sticky_toolbar_chat_toggler" data-toggle="kt-tooltip" title="Chat Example" data-placement="left">
-    <a href="#" data-toggle="modal" data-target="#kt_chat_modal"><i class="flaticon2-chat-1"></i></a>
-  </li> -->
-</ul>   
-<div id="kt_demo_panel" class="kt-demo-panel" style="opacity: 0;">
-  <div class="kt-demo-panel__head" style="" kt-hidden-height="50">
-    
-    <canvas id="myChart" width="400" height="400"></canvas>
-    
-  </div>
-  <div  class="  text-center border-dark"><h3>Solicitud de Toner-Area </h3> 
-    <div id="sales-doughnut-chart-us"></div> 
-  </div>              
-  <div id="" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
-</div> 
+      <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
+        <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
+      </li>
+	
+</ul>
+<!-- end::Sticky Toolbar -->
+	<!-- begin::Demo Panel -->
+
+<div id="kt_demo_panel" class="kt-demo-panel">
+	<div class="kt-demo-panel__head">
+		<h3 class="kt-demo-panel__title">
+			Select A Demo
+			<!--<small>5</small>-->
+		</h3>
+		<a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
+	</div>
+	<div class="kt-demo-panel__body">
+        <div class="kt-demo-panel__item ">
+                    <div class="kt-demo-panel__item-title">
+                        Demo 1
+                    </div>
+                    <div class="kt-demo-panel__item-preview">
+                        <!-- <img src="./assets/media/demos/preview/demo1.jpg" alt=""/>
+                        <div class="kt-demo-panel__item-preview-overlay">
+                            <a href="demo1/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a> -->
+                            <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
+                        </div>
+                    </div>                    
+                </div>              
+		
+	</div>
 </div>
+
+
+
 
 
 
@@ -509,10 +501,7 @@
 
 @include('layouts/scripts/scripts')
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<!-- <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> --> 
- <script src="{{URL::asset('js/dateTime.min.js')}}" ></script> 
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 
 
 
@@ -828,30 +817,79 @@ $(".clear-date-filter").on("click", function() {
         $('#datepicker_from').val("").datepicker("update");
         $('#datepicker_to').val("").datepicker("update");
     });  
-
-
-
 });
+</script>
+
+
+<script type="text/javascript">
 
 
 
 
 
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "Tickets Solicitud Toner Por Area "
+		},
+		legend: {
+			maxWidth: 350,
+			itemWidth: 120
+		},
+		data: [
+		{
+			type: "doughnut",
+			showInLegend: true,
+			legendText: "{indexLabel}",
+			dataPoints: [
+        @foreach ($areas_count as $areacount)         
+        { label: "PostMaster", y:{{$areacount}}},           
+         @endforeach   
+			]
+		}
+		]
+	});
+	chart.render();
+}
 
 
 </script>
 
 
 
+
+<!-- fin de la datatable-->
+@endsection
+@endsection
+
+
+
+<!-- 
+
 <script>
 const ctx = document.getElementById('myChart');
 const myChart = new Chart(ctx, {
     type: 'pie',
+    
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: [
+
+          @foreach ($area_n as $areanombre)
+            '{{$areanombre}}',
+          @endforeach
+          
+        
+        ],
+
         datasets: [{
             label: '# of Votes',
-            data: [ {{$areas_count[1]}} , 19, 3, 5, 2, 3],
+            data: [ 
+                      
+                  @foreach ($areas_count as $areacount)
+                      {{$areacount}},
+                  @endforeach                    
+          ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -871,21 +909,21 @@ const myChart = new Chart(ctx, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
- 
+    
+   
+}); -->
 
 
 
 
 
-<!-- fin de la datatable-->
-@endsection
-@endsection
+
+
+
+
+
+
+
+
+
+

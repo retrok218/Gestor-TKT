@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="" />
+<!-- <meta http-equiv="refresh" content="" /> -->
 @section('content')
 <script>
     var titulo_tab = "Tickets Asignados";

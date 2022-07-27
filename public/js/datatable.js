@@ -183,7 +183,12 @@ $('#datepicker_from,#datepicker_to').change(function () {
 $(".clear-date-filter").on("click", function() {
         $('#datepicker_from').val("").datepicker("update");
         $('#datepicker_to').val("").datepicker("update");
-    });    
+    }); 
+    
+    
+setInterval( function () {
+    table.ajax.reload( null, false ); // funicon para recargar los datos de la datatable cada sierto tiempo 
+}, 600000 ); //segundos 10000 = 10s 
     
     
 
