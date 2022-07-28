@@ -4,17 +4,11 @@
 <script>
   var titulo_tab = 'Control Toners ';
 </script>
-
-
-
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">  
-
-  
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">    
     <div class="kt-portlet">    
         <div class="kt-portlet__body">                    
                   <div class="row row-no-padding row-col-separator-xl">			
-                        <div class="col-md-12 col-lg-12 col-xl-3">
-                          
+                        <div class="col-md-12 col-lg-12 col-xl-3">                          
                             <div class="kt-widget24" style="text-align: center;">
                               <div class="row" style="color: #595d6e;">
                                   <div class="col-sm-6" >  
@@ -40,10 +34,8 @@
                                           <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
                                               <span class="kt-widget25__stats m-font-brand" style="font-size:36px">- {{$solicitudToner}}</span>                                                  
                                       </div>            
-                                  </div> 
-                                                        
-                              </div>  
-                              
+                                  </div>                                                         
+                              </div>                                
                               <div class="progress progress--sm" style="height: 1rem">                                                                                            
                                 <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$ticket-$solicitudToner}}" aria-valuenow={{$ticket-$solicitudToner}} aria-valuemin={{$ticket-$solicitudToner}} aria-valuemax={{$ticket}}></div>                                               
                                 <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{round(($solicitudToner*100)/$ticket."2")}}%" aria-valuenow={{$solicitudToner}} aria-valuemin={{$ticket}} aria-valuemax={{$solicitudToner}}></div>                                                                                           
@@ -81,7 +73,6 @@
                                                 Toners Entregados
                                             </h4>					       
                                         </div>
-
                                         <div style="font-size:36px">
                                           <div class="fas fa-ticket-alt fa-spin fa-3x" style="
                                           font-size: 3rem !important;"></div> 
@@ -89,14 +80,13 @@
                                        </div>
 
                                     </div>            
-                                </div> 
-                                                      
+                                </div>                                                       
                             </div>
                     </div>                    
                   </div>  
                 </div>  
-          </div>  
-      </div>  
+         </div>  
+     </div>  
 
 
 
@@ -446,7 +436,7 @@
         </div>
       </div>
 
-         
+      
     </div>
 
 
@@ -480,11 +470,14 @@
                     <div class="kt-demo-panel__item-title">
                         Demo 1
                     </div>
+                    <div id="chartContainer" ></div>
+
+                    
                     <div class="kt-demo-panel__item-preview">
                         <!-- <img src="./assets/media/demos/preview/demo1.jpg" alt=""/>
                         <div class="kt-demo-panel__item-preview-overlay">
                             <a href="demo1/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a> -->
-                            <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
+                            
                         </div>
                     </div>                    
                 </div>              
@@ -492,21 +485,14 @@
 	</div>
 </div>
 
-
-
-
-
-
-
-
 @include('layouts/scripts/scripts')
 @section('scripts')
 
 
 
 
-<script>
 
+<script>
 
 $(document).ready(function(){
   $.fn.dataTable.ext.search.push(
@@ -818,33 +804,36 @@ $(".clear-date-filter").on("click", function() {
         $('#datepicker_to').val("").datepicker("update");
     });  
 });
-</script>
-
-
-<script type="text/javascript">
 
 
 
-
+ // Grafica de Tikect solicitud de Toner 
 
 window.onload = function () {
 	var chart = new CanvasJS.Chart("chartContainer",
 	{
-		title:{
-			text: "Tickets Solicitud Toner Por Area "
-		},
+		
 		legend: {
-			maxWidth: 350,
-			itemWidth: 120
+      fontSize: 10,
+                              horizontalAlign: "left", // left, center ,right 
+                              verticalAlign: "center",  // top, center, botto
+                              itemWrap: false,
+                              itemWidth: 50,
+                              cursor: "pointer",
+                             
 		},
 		data: [
 		{
-			type: "doughnut",
-			showInLegend: true,
-			legendText: "{indexLabel}",
+			type: "doughnut",      
+      indexLabelPlacement: "outside",
+      showInLegend: true,     
+      legendText: "{label}",
+      indexLabel: "{label} - #percent%",	
+      
+      
 			dataPoints: [
-        @foreach ($areas_count as $areacount)         
-        { label: "PostMaster", y:{{$areacount}}},           
+        @foreach ($areas_filastkts as $areacount)         
+        {  y:{{$areacount->id}},label: "{{$areacount->name}}" },           
          @endforeach   
 			]
 		}
@@ -852,7 +841,6 @@ window.onload = function () {
 	});
 	chart.render();
 }
-
 
 </script>
 
@@ -865,53 +853,6 @@ window.onload = function () {
 
 
 
-<!-- 
-
-<script>
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'pie',
-    
-    data: {
-        labels: [
-
-          @foreach ($area_n as $areanombre)
-            '{{$areanombre}}',
-          @endforeach
-          
-        
-        ],
-
-        datasets: [{
-            label: '# of Votes',
-            data: [ 
-                      
-                  @foreach ($areas_count as $areacount)
-                      {{$areacount}},
-                  @endforeach                    
-          ],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    
-   
-}); -->
 
 
 

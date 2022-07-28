@@ -17,8 +17,7 @@ use Carbon\Carbon;
 use App\ConexionBD2;
 use App\ticket;
 use Illuminate\Support\Collection;
-
-
+use stdClass;
 
 class Estado_ticketsController extends Controller
 
@@ -350,69 +349,30 @@ class Estado_ticketsController extends Controller
   // Ticket Solicitu de Toner             
   public function solicitud_toner()
   {
-    $tk_id = DB::connection('pgsql2')
-      ->table('ticket_history')
-      ->where('history_type_id', '=', 28)
-      ->where('state_id', '=', 13)
-      ->where('name', 'LIKE', '%Value%%Toner%')
-      ->orwhere('name', 'LIKE', '%ITSMReviewRequired64%')
-      ->orwhere('name', 'LIKE', '%ITSMReviewRequired65%')
-      ->orwhere('name', 'LIKE', '%ITSMReviewRequired7%')
-      ->orderBy('ticket_id', 'DESC')
-      ->join('ticket', 'ticket_history.ticket_id', 'ticket.id')
-      ->get();
+    
 
       // Se obtienen las areas con las que se cuenta en la tabla queue solo el ID 
     $areas_filastkts=DB::connection('pgsql2')->table('queue')->select('id','name')->orderBy('id','ASC')->get();
      // Se transforma de un arreglo de objetos a un arreglo de con solo el id de las areas 
      $area_f=[]; 
-     $area_n=[];
-
-    //  class area_n_c
-    //  {
-    //   public $nom_area;
-    //   public $tot_area;
-    //   function set_narea($nom_area){     
-    //     $this->name = $nom_area;
-    //   }
-    //   function set_tarea($tot_area){
-    //     $this->name =$tot_area;
-    //   }
-    //   function get_narea(){
-    //     return $this->name; 
-    //   }
-    //   function get_tarea(){
-    //     return $this->tarea;
-    //   }
-
-    //  }
-     
-
-      foreach($areas_filastkts as $fila){
-         $area_f[]=$fila->id;
-         $area_n[]=$fila->name;
-       }; 
-       $areas_count=[];
+       foreach($areas_filastkts as $fila){
+          $area_f[]=$fila->id;        
+       };       
+       $n=0;
        foreach( $area_f as $areas_ids){
-        $areas_count[]=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',$areas_ids)->count();
-       }     
-       
-       
-       
+       // $areas_count[]=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',$areas_ids)->count();
+       $areas_filastkts[$n]->id=DB::connection('pgsql2')->table('ticket')
+       ->where('queue_id','=',$areas_ids)
+       ->where('service_id','=',79)
+       ->count();
+        $n++;
+       }    
 
-
-
-
-      //  var_dump($areas_count[1]); 
-      //  exit;
     
-
-    //select ingresa codigo sql puro 
     $ticketfusion = DB::connection('pgsql2')
       //->select("SELECT * FROM ticket");
       ->select("SELECT
-    ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,
-    
+    ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,    
     ARRAY_AGG (
       ticket_history.name
     )ticket_compuesto,
@@ -454,84 +414,14 @@ class Estado_ticketsController extends Controller
       ->with('tk_id', $ticketfusion)
       ->with('solicitudToner', $solicitudToner)
       ->with('ticket', $tickte)
-      ->with('areas_count',$areas_count)
-      ->with('area_n',$area_n);
-  }
-
-
-
+      ->with('areas_filastkts',$areas_filastkts)
+ 
+   ;}
 
   // public function tkt_completo(){
-
   //   $tkt_com=DB::connection('pgsql2')->select()
-
-
-
-
   // }
-
-
-
-
-
-
-
-
-
 
 }
 
 
-
-
-
-
-
-//constructor con datos de los usuarios de los tickets 
-// SELECT
-//     ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,users.first_name as atendio ,users.last_name as nombre_atendido, customer_user.first_name as Creado_n,customer_user.last_name as Creado_AP,customer_user.street as ubicacion,
-    
-//     ARRAY_AGG (
-//       ticket_history.name
-//     )ticket_compuesto,
-//     ticket_state.name,
-//     ticket.create_time
-//   FROM 
-//     (ticket_history 
-// 	INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
-//     INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-// 	INNER JOIN queue ON ticket.queue_id = queue.id
-// 	INNER JOIN users ON ticket.user_id = users.id
-// 	INNER JOIN customer_user ON ticket.customer_id=customer_user.customer_id
-
-//     WHERE 
-	 
-//      (ticket.service_id = 79 or ticket.service_id = 78)
-	 
-//   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
-// 	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
-// 		or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
-//     or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%'
-//     or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%'
-//     )
-    
-// 	   and (ticket_history.name NOT LIKE '%ITSMReviewRequired71%'and ticket_history.name NOT LIKE '%ITSMReviewRequired70%'and ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
-// 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
-// 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
-// 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%' )
-  
-//   GROUP BY 
-//     ticket_id,
-//     ticket.create_time,
-//     ticket.title,
-//     ticket.tn,
-//     ticket_history.ticket_id,
-//     ticket_state.name,
-// 	users.first_name,
-// 	users.last_name,
-// 	 customer_user.first_name,
-// 	 customer_user.last_name,
-// 	 customer_user.street,
-//     queue.name
-    
-//   ORDER BY ticket.tn DESC

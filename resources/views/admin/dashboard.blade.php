@@ -347,7 +347,7 @@ window.onload = function (){
                                               },
     
                              legend:{
-                              fontSize: 10,
+                              fontSize: 12,
                               horizontalAlign: "left", // left, center ,right 
                               verticalAlign: "center",  // top, center, botto
                               itemWrap: false,
