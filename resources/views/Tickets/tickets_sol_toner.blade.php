@@ -148,8 +148,8 @@
                             <th>Numero del TKT</th>
                             <th>Fecha </th>
                             <th>Descripcion de TKT</th>
-                            <th>Fila</th>
-                            <th >Dependencia</th>
+                            <th>Dependencia</th>
+                            <th >Fila</th>
                             
                             <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Solicitado Tipo de Toner </th>
                             <th>1.-Solicitado Cantidad</th>
@@ -411,8 +411,8 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Dependencia</th>
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Fila</th>
-                        <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por dependecia</th>
                         <th ></th>
                         <th></th>
                         <th></th>
@@ -457,30 +457,36 @@
 <!-- end::Sticky Toolbar -->
 	<!-- begin::Demo Panel -->
 
-<div id="kt_demo_panel" class="kt-demo-panel">
+<div id="kt_demo_panel" class="kt-demo-panel" style="width: 442px">
 	<div class="kt-demo-panel__head">
 		<h3 class="kt-demo-panel__title">
-			Select A Demo
+			Ticket Solicitud de Toner
 			<!--<small>5</small>-->
 		</h3>
 		<a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
 	</div>
-	<div class="kt-demo-panel__body">
+	<div class="kt-demo-panel__body" >
         <div class="kt-demo-panel__item ">
                     <div class="kt-demo-panel__item-title">
-                        Demo 1
-                    </div>
-                    <div id="chartContainer" ></div>
-
-                    
-                    <div class="kt-demo-panel__item-preview">
-                        <!-- <img src="./assets/media/demos/preview/demo1.jpg" alt=""/>
-                        <div class="kt-demo-panel__item-preview-overlay">
-                            <a href="demo1/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a> -->
-                            
-                        </div>
+                        Toner Por Fila
                     </div>                    
-                </div>              
+                    <div class="kt-demo-panel__item-preview">
+                    <div id="graficaTonerArea" style="height: 500px; width: 100%;"></div>
+                    </div>
+        </div>  
+
+
+
+
+        <div class="kt-demo-panel__item ">
+                    <div class="kt-demo-panel__item-title">
+                        Toner Por Estado de ticket
+                    </div>                    
+                    <div class="kt-demo-panel__item-preview">
+                      <div id="graficatonerporestado" style="height: 250px; width: 80%;"> </div>
+                    </div>
+        </div>                   
+  </div>              
 		
 	</div>
 </div>
@@ -810,37 +816,82 @@ $(".clear-date-filter").on("click", function() {
  // Grafica de Tikect solicitud de Toner 
 
 window.onload = function () {
-	var chart = new CanvasJS.Chart("chartContainer",
+	var chart = new CanvasJS.Chart("graficaTonerArea",
+  
 	{
-		
+    width:298,
 		legend: {
-      fontSize: 10,
+      fontSize: 9,
                               horizontalAlign: "left", // left, center ,right 
-                              verticalAlign: "center",  // top, center, botto
+                              verticalAlign: "top",  // top, center, botto
                               itemWrap: false,
-                              itemWidth: 50,
-                              cursor: "pointer",
+                              itemWidth: 100,
+                              cursor: "default",
+                              markerMargin:8,
+                              itemMaxWidth: 700,
+                              
                              
 		},
 		data: [
 		{
-			type: "doughnut",      
+			type: "pie",      
       indexLabelPlacement: "outside",
       showInLegend: true,     
-      legendText: "{label}",
-      indexLabel: "{label} - #percent%",	
-      
-      
+      legendText: "{label}",      	            
 			dataPoints: [
         @foreach ($areas_filastkts as $areacount)         
-        {  y:{{$areacount->id}},label: "{{$areacount->name}}" },           
+        {  y:{{$areacount->coun}},label: "{{$areacount->name}} - {{$areacount->coun}}" },           
          @endforeach   
 			]
-		}
-		]
+		}]
+
+	});
+	chart.render();
+
+
+
+
+
+
+
+
+  var chart = new CanvasJS.Chart("graficatonerporestado",
+  
+	{
+    width:298,
+		legend: {
+      fontSize: 9,
+                              horizontalAlign: "left", // left, center ,right 
+                              verticalAlign: "top",  // top, center, botto
+                              itemWrap: false,
+                              itemWidth: 100,
+                              cursor: "default",
+                              markerMargin:8,
+                              itemMaxWidth: 700,
+                              
+                             
+		},
+		data: [
+		{
+			type: "pie",      
+      indexLabelPlacement: "outside",
+      showInLegend: true,     
+      legendText: "{label}",      	            
+			dataPoints: [
+        @foreach ($estado_graf as $estadotkt)         
+        {  y:{{$estadotkt->conteo}},label: "{{$estadotkt->name}}" },           
+         @endforeach   
+			]
+		}]
+
 	});
 	chart.render();
 }
+
+
+	
+
+
 
 </script>
 

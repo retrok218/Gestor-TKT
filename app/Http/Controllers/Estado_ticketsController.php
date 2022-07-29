@@ -350,25 +350,64 @@ class Estado_ticketsController extends Controller
   public function solicitud_toner()
   {
     
-
+      // Para La Grafica de Area 
       // Se obtienen las areas con las que se cuenta en la tabla queue solo el ID 
     $areas_filastkts=DB::connection('pgsql2')->table('queue')->select('id','name')->orderBy('id','ASC')->get();
-     // Se transforma de un arreglo de objetos a un arreglo de con solo el id de las areas 
+     // Se transforma de un arreglo de objetos a un arreglo de con solo para obtener el id de las areas 
      $area_f=[]; 
        foreach($areas_filastkts as $fila){
           $area_f[]=$fila->id;        
        };       
        $n=0;
-       foreach( $area_f as $areas_ids){
-       // $areas_count[]=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',$areas_ids)->count();
-       $areas_filastkts[$n]->id=DB::connection('pgsql2')->table('ticket')
+       foreach( $area_f as $areas_ids){       
+       $areas_filastkts[$n]->coun=DB::connection('pgsql2')->table('ticket')
        ->where('queue_id','=',$areas_ids)
        ->where('service_id','=',79)
+      //  ->orwhere('service_id','=',78)
        ->count();
         $n++;
-       }    
+       }
+     
+
+       
+
+       
+       
+
+       // Fin Para La Grafica de Area 
+
+       // Grafica por estado 
+        $estado_graf=DB::connection('pgsql2')->table('ticket_state')->select('id','name')->orderBy('id','ASC')->get();
+        $estado_id=[];
+       
+        foreach($estado_graf as $estado){
+          $estado_id[]=$estado->id;
+        };
+        $num=0;
+        foreach ($estado_id as $estadoid) {
+          $estado_graf[$num]->conteo=DB::connection('pgsql2')->table('ticket')
+          ->where('ticket_state_id','=',$estadoid)
+          ->where('service_id','=',79)
+          ->orwhere('service_id','=',78)
+          ->count();
+          $num++;
+        }
+
+      
+
+
+
+
+       // Grafica por estado FIn 
+
+
+
+
 
     
+
+
+
     $ticketfusion = DB::connection('pgsql2')
       //->select("SELECT * FROM ticket");
       ->select("SELECT
@@ -384,7 +423,7 @@ class Estado_ticketsController extends Controller
 	  INNER JOIN queue ON ticket.queue_id = queue.id
 
     WHERE 
-     (ticket.service_id = 79 or ticket.service_id = 78)
+     (ticket.service_id = 79 OR ticket.service_id = 78)
   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
 	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
 		or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
@@ -407,6 +446,16 @@ class Estado_ticketsController extends Controller
     queue.name
     
   ORDER BY ticket.tn DESC");
+
+
+
+
+
+
+
+
+
+
     $solicitudToner = DB::connection('pgsql2')->table('ticket')->where('service_id', '=', 79)->count();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
@@ -415,6 +464,7 @@ class Estado_ticketsController extends Controller
       ->with('solicitudToner', $solicitudToner)
       ->with('ticket', $tickte)
       ->with('areas_filastkts',$areas_filastkts)
+      ->with('estado_graf',$estado_graf)
  
    ;}
 
