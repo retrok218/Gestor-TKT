@@ -1,4 +1,6 @@
 
+
+
 <div class="modal fade" id="mod_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -74,20 +76,24 @@
                                     </div> 
 
                             
-                                <div class="form-group">
-                                                                                                                                      
+                                    <div class="col-md-12">                                                                                                                           
                                          <h5>Area/s Asignada  </h5>
-                                        <section>
+                                         <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar Todas las Areas 
+                                        <table class="table table-hover" >
+                                            <tr>
+                                                <th>Numero del Area</th> 
+                                                <th>Nombre del Area </th> 
+                                            </tr>  
 
-                                            <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar Todas las Areas  
-                                            <br>                                           
                                                 @foreach($areas as $area )                                                                                                                                                                                                                                   
-                                                <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}}  {{$area->name}} <br>                                              
-                                                @endforeach 
-                                            </section>
-                                   
-                                </div>
-        
+                                                <tr> 
+                                                    <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}}</td>
+                                                    <td>{{$area->name}}</td>
+                                                </tr>   
+                                                @endforeach                                                                                                                                 
+                                        </table>
+                                    </div>
+
                             </div>
                         </div>
                     </div>
@@ -112,6 +118,5 @@
         </div>
     </div>
 </div>
-
 
 

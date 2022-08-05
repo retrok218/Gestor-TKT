@@ -5,17 +5,23 @@
     var titulo_tab = "Tickets Nuevos";
     var name_tabla = "/data_tickets_nuevos";    
 </script>
+
+
+
+
+
+
  
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
-  <div class="card" style="border: 1px; background: white;">   
-    <img  class="header_titulo_monitoreo_tkts"  src="{{ URL::asset('assets/media/company-logos/logotipo SAF-01.jpg'.env('APP_LOGO_ASIDE') ) }}" >                
-  </div>
+  <!-- <div class="card" style="border: 1px; background: white;">   
+    <img  class="header_titulo_monitoreo_tkts"  src="{{ URL::asset('assets/media/company-logos/SAF_AdminitraciónFinanciera_saf_2_reducido_gris copia.png'.env('APP_LOGO_ASIDE') ) }}" >                
+  </div> -->
   <div class="kt-portlet__head">
-    <div class="header_titulo_monitoreo_tkts text-center" style="margin-bottom: 15px;">
-      <div class="phrase">
-        <span class="words">
-          <i>Mesa de Servicio</i>
-          <i> Monitoreo de Tickets</i>
+    <div class="header_titulo_monitoreo_tkts text-center" >
+      <div class="card-header" >
+        <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: 40px;">
+          Tablero Mesa de Servicio   
+          
         </span>
       </div>          
     </div>
@@ -70,15 +76,14 @@
             </div>   -->
 
           
-        <div class="kt-widget25__item">
-          <a id="link"  href="/tickets_asignados">
-
+        <div class="kt-widget25__item">         
             <div class="item-wrapper">
               <div class="line line-top"><span></span></div>
               <div class="line line-right"><span></span> </div>
               <div class="line line-bottom"><span></span> </div>
               <div class="line line-left"><span></span>  </div>        
               <div class="item">
+              <a id="link"  href="{{ url('/tickets_asignados/') }}" target="_blank">
                 <span class="kt-widget25__number">
                   {{$asignado}}
                 </span>					 				
@@ -102,7 +107,8 @@
               <div class="line line-bottom"><span></span> </div>
               <div class="line line-left"><span></span>  </div>        
               <div class="item">
-                <a id="link"  href="/tickets_atendidos">
+                
+                <a id="link"  href="{{ url('/tickets_atendidos/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$atendido}}
                     </span>					 				
@@ -126,7 +132,8 @@
               <div class="line line-bottom"><span></span> </div>
               <div class="line line-left"><span></span>  </div>        
               <div class="item">
-                <a id="link"  href="/falta_acta_responsiva">
+                
+                <a id="link"  href="{{ url('/falta_acta_responsiva/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$FaltaActaRES}}
                     </span>					 				
@@ -150,14 +157,14 @@
 
         </div>	
       <div class="kt-widget25__items"> 
-        <div class="kt-widget25__item">
-            <a id="link"  href="/tickets_nuevos">  
+        <div class="kt-widget25__item">            
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{ url('/tickets_nuevos/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$pendienteatc}}
                       </span>					 
@@ -174,14 +181,14 @@
               </div>
             </a>
           </div>
-          <div class="kt-widget25__item">
-            <a id="link"  href="/tickets_espera_informacion">  
+          <div class="kt-widget25__item">            
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{ url('/tickets_espera_informacion/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$espinformacion}}
                       </span>					 
@@ -198,14 +205,14 @@
               </div>
             </a>
           </div>
-          <div class="kt-widget25__item">
-            <a id="link"  href="/tickets_abiertos">  
+          <div class="kt-widget25__item">             
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{ url('/tickets_abiertos/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$abierto}}
                       </span>					 
@@ -236,13 +243,14 @@
 
 
           <div class="kt-widget25__item">
-            <a id="link"  href="/tickets_notificado_al_usuario">  
+             
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{ url('/tickets_notificado_al_usuario/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$NotificadoAlUsuario}}
                       </span>					 
@@ -265,14 +273,14 @@
 
 
 
-          <div class="kt-widget25__item">
-            <a id="link"  href="/tickets_cerradospt">  
+          <div class="kt-widget25__item">            
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{ url('/tickets_cerradospt/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$cerradoPT}}
                       </span>					 
@@ -324,13 +332,14 @@
 
 
           <div class="kt-widget25__item">
-            <a id="link"  href="/tickets_cerrados_exitosamente">  
+            
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{ url('/tickets_cerrados_exitosamente/') }}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$cerradoexitosamente}}
                       </span>					 
@@ -354,13 +363,14 @@
 
 
           <div class="kt-widget25__item">
-            <a id="link"  href="/solicitud_toner">  
+            
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>
                 <div class="line line-bottom"><span></span> </div>
                 <div class="line line-left"><span></span>  </div>        
                 <div class="item">
+                <a id="link"  href="{{url('/solicitud_toner/')}}" target="_blank">
                   <span class="kt-widget25__number">
                     {{$solicitudToner}}
                       </span>					 
@@ -375,131 +385,14 @@
                 </div>
               </div>
             </a>
-          </div>  
-          
-
-
-
-
-
-
-
-
-
-
-
-
-          
-<!--
-      <div class="row">
-                <div class="col-lg-4">
-                    
-                    <div class="card card-custom card-stretch">
-                        <div class="card-header">
-                            <div class="card-title">
-                              <h4 class="kt-widget25__item  "> Tickets Asignados </h4>  
-                            </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="kt-widget24">
-                            <div class="kt-widget24__details">
-                              <span class="kt-widget24__stats kt-font-brand ">
-                                <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                                {{$asignado}}
-                              </span>                      
-                              <span class="kt-widget24__stats">
-                                {{round($tktsporciento[0],2)}}%
-                              </span>                                     	 
-                            </div>     
-                              <div class="progress progress--sm" style="height: 1.5rem">
-                              <div class="progress-bar kt-bg-brand barra_progreso" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>                      				   			      
-                          </div>  
-                        </div>
-                    </div>
-                  
-                </div>
-                <div class="col-lg-4">
-                
-                  <div class="card card-custom card-stretch">
-                      <div class="card-header">
-                          <div class="card-title">
-                            <h4 class="kt-widget25__item  "> Tickets Asignados </h4>  
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="kt-widget24">
-                          <div class="kt-widget24__details">
-                            <span class="kt-widget24__stats kt-font-brand ">
-                              <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                              {{$asignado}}
-                            </span>                      
-                            <span class="kt-widget24__stats">
-                              {{round($tktsporciento[0],2)}}%
-                            </span>                                     	 
-                          </div>     
-                            <div class="progress progress--sm" style="height: 1.5rem">
-                            <div class="progress-bar kt-bg-brand barra_progreso" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>                      				   			      
-                        </div>  
-                      </div>
-                  </div>
-                 
-              </div>
-              <div class="col-lg-4">
-           
-                <div class="card card-custom card-stretch">
-                    <div class="card-header">
-                        <div class="card-title">
-                          <h4 class="kt-widget25__item  "> Tickets Asignados </h4>  
-                        </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="kt-widget24">
-                        <div class="kt-widget24__details">
-                          <span class="kt-widget24__stats kt-font-brand ">
-                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                            {{$asignado}}
-                          </span>                      
-                          <span class="kt-widget24__stats">
-                            {{round($tktsporciento[0],2)}}%
-                          </span>                                     	 
-                        </div>     
-                          <div class="progress progress--sm" style="height: 1.5rem">
-                          <div class="progress-bar kt-bg-brand barra_progreso" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>                      				   			      
-                      </div>  
-                    </div>
-                </div>
-             
-            </div>    
-      </div>
-    -->
-
-
-
-
-
-
-
-
-
-
-
+          </div>            
       </div>			 
-    </div>
-    
+    </div>        
   </div>
-
   
-   
-    
-
-
-
-<a href="javascript:window.print()" >Imprimir</a> </button>
+<a href="javascript:window.print()" >Imprimir</a> 
 </div>
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+</div>
 @section('scripts') 
 @endsection
 @endsection

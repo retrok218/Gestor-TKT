@@ -125,6 +125,8 @@
                                 </div>
                               </div>
                           </div>        
+
+
                               <button class="btn btn-default clear-date-filter">Limpiar Filtross</button>
                       </div>                    
                   </div> 
@@ -428,7 +430,10 @@
                         <th></th>
                         <th>Filtro por estado de ticket</th> <!--11-->
                     </tfoot>                              
-                </table> 						
+                </table> 					
+                
+                
+
               </div>
             </div>
             <!--end::Widget 11--> 						             
@@ -468,10 +473,10 @@
 	<div class="kt-demo-panel__body" >
         <div class="kt-demo-panel__item ">
                     <div class="kt-demo-panel__item-title">
-                        Toner Por Fila
+                       Tickets Toner Por Fila
                     </div>                    
                     <div class="kt-demo-panel__item-preview">
-                    <div id="graficaTonerArea" style="height: 500px; width: 100%;"></div>
+                    <div id="graficaTonerArea" style="height: 400px; width: 100%;"></div>
                     </div>
         </div>  
 
@@ -480,10 +485,10 @@
 
         <div class="kt-demo-panel__item ">
                     <div class="kt-demo-panel__item-title">
-                        Toner Por Estado de ticket
+                        Tickets por Estado del Ticket
                     </div>                    
                     <div class="kt-demo-panel__item-preview">
-                      <div id="graficatonerporestado" style="height: 250px; width: 80%;"> </div>
+                    <div id="graficatonerporestado" style="height: 500px; width:295px;"> </div>
                     </div>
         </div>                   
   </div>              
@@ -566,14 +571,24 @@ $(document).ready(function(){
 
 
 var table = $('#Solicitudesdetoner').DataTable({ 
-      select:true,  
-      "pageLength": 5,   
+  responsive: {
+        details: {
+            display: $.fn.dataTable.Responsive.display.modal( {
+                header: function ( row ) {
+                    var data = row.data();
+                    return 'Details for '+data.clientName;
+                }
+            } )
+        }
+    },
+        
+      "pageLength": 10,   
       "lengthChange": true,
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": true,
-      "scrollX": true,
+     // responsive: true, Boton de + informacion de bajo del dato en la datatable 
+      
       "language": idioma,
       "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
       "order":[1 ,'desc'],
@@ -620,47 +635,48 @@ var table = $('#Solicitudesdetoner').DataTable({
                             },                            
                        },
 
-{ extend:    'pdfHtml5',
-text:      '<i class="fas fa-file-pdf"></i>PDF',                           
-title:'Tickets Toners Solicitud Toner' ,
-messageTop: function (){
-          return  'Toners Solicitado :'+' '+ sumcol(pageTotal,sumsol2,sumsol3) +' ' +'Toners Entregado'+ sumcol(tonerentregado1,tonerentregado2,tonerentregado3);        
-        },
-titleAttr: 'PDF',
-className: 'btn btn-app export pdf',
-orientation: 'landscape',
-pageSize: 'TABLOID',
-exportOptions: {
-columns: ':visible'
-},
- customize:function(doc) {
+                        {
+                          extend:    'pdfHtml5',
+                        text:'<i class="fas fa-file-pdf"></i>PDF',                           
+                        title:'Tickets Toners Solicitud Toner' ,
+                        messageTop: function (){
+                                  return  'Toners Solicitado :'+' '+ sumcol(pageTotal,sumsol2,sumsol3) +' ' +'Toners Entregado'+ sumcol(tonerentregado1,tonerentregado2,tonerentregado3);        
+                                },
+                        titleAttr: 'PDF',
+                        className: 'btn btn-app export pdf',
+                        orientation: 'landscape',
+                        pageSize: 'TABLOID',
+                        exportOptions: {
+                        columns: ':visible'
+                        },
+                        customize:function(doc) {
 
-  
+                          
 
-    doc.styles.title = {
-        color: 'peru',
-        fontSize: '30',
-        alignment: 'center'
-    },
-    doc.styles.messageTop = {
-        color: 'peru',
-        fontSize: '20',
-        alignment: 'center'
-    },
-    doc.styles['td:nth-child(2)'] = {
-        width: '100px',
-        'max-width': '100px',
-         margin: [ 0, 0, 0, 12 ],
-    },
-    doc.styles.tableHeader = {
-        fillColor:'maroon',
-        color:'antiquewhite',
-        alignment:'center',                
-    }
-    doc.content[0].margin = [ 0, 0, 0, 12 ]
-  },
+                            doc.styles.title = {
+                                color: 'peru',
+                                fontSize: '30',
+                                alignment: 'center'
+                            },
+                            doc.styles.messageTop = {
+                                color: 'peru',
+                                fontSize: '20',
+                                alignment: 'center'
+                            },
+                            doc.styles['td:nth-child(2)'] = {
+                                width: '100px',
+                                'max-width': '100px',
+                                margin: [ 0, 0, 0, 12 ],
+                            },
+                            doc.styles.tableHeader = {
+                                fillColor:'maroon',
+                                color:'antiquewhite',
+                                alignment:'center',                
+                            }
+                            doc.content[0].margin = [ 0, 0, 0, 12 ]
+                          },
 
-},
+                        },
 
                        {
                            extend:    'print',
@@ -789,6 +805,14 @@ columns: ':visible'
         }            
           
 });
+//  Boton de +       table.on( 'responsive-display', function ( e, datatable, row, showHide, update ) {
+//     console.log( 'Details for row '+row.index()+' '+(showHide ? 'shown' : 'hidden') );
+// } );
+
+
+
+
+
 var tonersol = pageTotal+sumsol2+sumsol3;
 var tonerentregado=tonerentregado1+tonerentregado3+tonerentregado2;
 
@@ -819,29 +843,30 @@ window.onload = function () {
 	var chart = new CanvasJS.Chart("graficaTonerArea",
   
 	{
-    width:298,
+    
 		legend: {
       fontSize: 9,
-                              horizontalAlign: "left", // left, center ,right 
+                              horizontalAlign: "center", // left, center ,right 
                               verticalAlign: "top",  // top, center, botto
                               itemWrap: false,
                               itemWidth: 100,
                               cursor: "default",
-                              markerMargin:8,
-                              itemMaxWidth: 700,
+                              markerMargin:5,
+                              itemMaxWidth: 100, // ancho maximo del elemento 
                               
                              
 		},
 		data: [
 		{
-			type: "pie",      
+			type: "pie",   
+      indexLabelMaxWidth: 80,   
       indexLabelPlacement: "outside",
       showInLegend: true,     
       legendText: "{label}",      	            
 			dataPoints: [
         @foreach ($areas_filastkts as $areacount)         
-        {  y:{{$areacount->coun}},label: "{{$areacount->name}} - {{$areacount->coun}}" },           
-         @endforeach   
+              {y:{{$areacount->coun}},label: "{{$areacount->name}} - {{$areacount->coun}}" },           
+         @endforeach    
 			]
 		}]
 
@@ -858,15 +883,15 @@ window.onload = function () {
   var chart = new CanvasJS.Chart("graficatonerporestado",
   
 	{
-    width:298,
+    
 		legend: {
       fontSize: 9,
                               horizontalAlign: "left", // left, center ,right 
                               verticalAlign: "top",  // top, center, botto
                               itemWrap: false,
-                              itemWidth: 100,
+                              itemWidth: 250,
                               cursor: "default",
-                              markerMargin:8,
+                              markerMargin:10,
                               itemMaxWidth: 700,
                               
                              
@@ -879,7 +904,7 @@ window.onload = function () {
       legendText: "{label}",      	            
 			dataPoints: [
         @foreach ($estado_graf as $estadotkt)         
-        {  y:{{$estadotkt->conteo}},label: "{{$estadotkt->name}}" },           
+        {  y:{{$estadotkt->conteo}},label: "{{$estadotkt->name}} - {{$estadotkt->conteo}}" },           
          @endforeach   
 			]
 		}]
@@ -887,10 +912,6 @@ window.onload = function () {
 	});
 	chart.render();
 }
-
-
-	
-
 
 
 </script>

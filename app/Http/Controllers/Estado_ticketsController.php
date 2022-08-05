@@ -303,6 +303,7 @@ class Estado_ticketsController extends Controller
   // Ticket Monitoreo de Tickte 
   public function monitoreo_tickets()
   {
+    
     $tickte = ticket::count(); //0
     $asignado = ticket::where('ticket_state_id', '=', 12)->count(); //1
     $atendido = ticket::where('ticket_state_id', '=', 13)->count(); //2
@@ -392,11 +393,6 @@ class Estado_ticketsController extends Controller
           ->count();
           $num++;
         }
-
-      
-
-
-
 
        // Grafica por estado FIn 
 

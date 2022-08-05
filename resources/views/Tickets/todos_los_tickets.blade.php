@@ -72,7 +72,8 @@
             <!--begin: Datatable -->
             <table class="table table-striped- table-bordered table-hover table-checkable" id="tablatk">
                 <thead>
-                    <tr>                       
+                    <tr>
+                        <th></th>                       
                         <th>Numero de Tiket</th>
                         <th>Creado</th>
                         <th>Asunto</th>
@@ -82,6 +83,7 @@
                     </tr>
                 </thead>
                 <tfoot>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>

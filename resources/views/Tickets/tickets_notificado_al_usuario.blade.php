@@ -6,7 +6,8 @@
     var name_tabla = "/data_tickets_notificado_al_usuario";
 </script>
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
-    <div class="kt-portlet">    
+<div class="kt-portlet kt-portlet--mobile">
+       
         <div class="kt-portlet__body">                    
                     <div class="row row-no-padding row-col-separator-xl">			
                         <div class="col-md-12 col-lg-12 col-xl-3">
@@ -54,7 +55,7 @@
          </div>       
     </div>   
     <!-- Creacion de tabla tickets asignados -->
-    <div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet ">
         <div class="kt-portlet__head kt-portlet__head--lg">
             <div class="kt-portlet__head-label">
                 <span class="kt-portlet__head-icon">
@@ -65,7 +66,7 @@
                 </h3>
             </div>            
         </div>    
-        <div class="kt-portlet__body">
+        
             <!--begin: Search Form -->
             <form class="kt-form kt-form--fit kt-margin-b-20">                
                 <div class="row kt-margin-b-4">
@@ -88,9 +89,12 @@
                 </div> 
             </form>
             <!--begin: Datatable -->
-            <table class="table table-striped- table-bordered table-hover table-checkable" id="tablatk">
+
+        <div class="kt-portlet__body">
+            <table class="table table-striped- table-bordered table-hover table-checkable  table-layout: fixed" id="tablatk" width="100%" >
                 <thead>
-                    <tr>                       
+                    <tr>     
+                        <th></th>                  
                         <th>Numero de Tiket</th>
                         <th>Creado</th>
                         <th>Asunto</th>
@@ -103,13 +107,15 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                     <th>Seleccione El Area</th>
                     <th></th>
                     <th></th>
                 </tfoot>
-            </table>
+            </table>             
+            </div>
             <!--end: Datatable -->
-        </div>
+        
     </div>
 </div>
 <!--se agrega el includ para creacion de datatable -->

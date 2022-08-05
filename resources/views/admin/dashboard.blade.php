@@ -16,7 +16,7 @@
                             </div>
                             <div class="kt-widget__content">
                                 <div class="kt-widget__head">
-                                    <a href="#" class="kt-widget__title">Gestor De Tickets</a>
+                                    <p class="kt-widget__title">Gestor De Tickets</p>
                                 </div>
                                 <hr>
                                 <div class="">
@@ -35,7 +35,7 @@
                                                     
                                                     <div class="kt-iconbox__desc">
                                                         <h3 class="kt-iconbox__title">
-                                                                <a class="kt-link" href="#">Tickets del Año - {{$año}}</a>
+                                                                <p class="kt-link" >Tickets del Año - {{$año}}</p>
                                                             </h3>
                                                         <div class="kt-iconbox__content">
                                                             {{ $ticket_por_año }}
@@ -51,7 +51,7 @@
                                                 <div class="kt-iconbox__body">                                                    
                                                     <div class="kt-iconbox__desc">
                                                         <h3 class="kt-iconbox__title">
-                                                                <a class="kt-link" href="#">Tickets del Mes - {{$mes}}</a>
+                                                                <p class="kt-link" >Tickets del Mes - {{$mes}}</p>
                                                             </h3>
                                                         <div class="kt-iconbox__content">
                                                             {{ $tickets_por_mes }}
@@ -68,7 +68,7 @@
                                                     
                                                     <div class="kt-iconbox__desc">
                                                         <h3 class="kt-iconbox__title">
-                                                                <a class="kt-link" href="#">Tickets del Dia - {{$dia}}</a>
+                                                                <p class="kt-link">Tickets del Dia - {{$dia}}</p>
                                                             </h3>
                                                         <div class="kt-iconbox__content">
                                                             {{ $tickets_por_dia }}
@@ -89,8 +89,8 @@
                           <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
                                   <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
                                 <button type="submit" class="btn btn-success text-cemter" >Consultar</button>       
-                            </form>
-                          </div>                                                                          
+                          </form>
+                         </div>                                                                          
                           @if($_GET)
                             @php          
                                   $tktbuscado = $_GET['tktaconsultar'];
@@ -130,16 +130,14 @@
                                     @endphp
                               <div class="card-tktbuscado">
                                 <div>                                  
-                                    <h4>Ticket encontrado</h4>                                    
-                                    <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
+                                  <h4>Ticket encontrado</h4>                                    
+                                  <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
                                       <div class="cardhvr">
                                         <h5 style="text-align:center; margin-top:5px;">{{$numerotiket}}</h5>
                                       </div>
-                                    </a>
-                                  
-                                  
+                                  </a>                                                                    
                                 </div>        
-                                <table style="border: solid 1px">
+                                <table class="display" style="width:100%">
                                   <thead class="table table table-striped table-bordered">
                                     <tr class ="card-header">
                                       <th>Fecha creacion del TKT</th>
@@ -150,17 +148,22 @@
                                     </tr>
                                   </thead>
                                   <tbody style="font-size: medium">
-                                  <td>{{$fechadeltiket}}</td>
-                                  <td>{{$asuntodeltiket}}</td>
-                                  <td>{{$nusuario}}.{{$apusuario}}</td>
-                                  <td>{{$areadeltiket}}</td>
-                                  <td>{{$estado}}</td>
-                                </tbody>
+                                    <td>{{$fechadeltiket}}</td>
+                                    <td>{{$asuntodeltiket}}</td>
+                                    <td>{{$nusuario}}.{{$apusuario}}</td>
+                                    <td>{{$areadeltiket}}</td>
+                                    <td>{{$estado}}</td>
+                                  </tbody>
                                 </table>
-                                </div>
+                              </div>
                                   @else
                                   <div class="card-noencontrado text-center">
-                                  <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
+                                  <h3>  {{$tktbuscado}} </h3>
+                                  <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-x" viewBox="0 0 16 16">
+  <path d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708z"/>
+  <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+</svg></p>
+                                  <p> "No se encontro el TKT"  </p>                                  
                                   </div>
                                   @endif
                           @endif                            
@@ -174,7 +177,7 @@
         
 
         
-         
+  
         
           <div class="row">                      
             <div class="col-xl-12">
@@ -201,42 +204,61 @@
                         </div>
         </div>
       </div>
-     
-
-
-         
-   
-  
 
 
 
-    
-<!-- modal Flotante -->
-
-<ul class="kt-sticky-toolbar" style="margin-top: 30px;">
-  <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
-    <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
-  </li>
-  <!-- <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--danger" id="kt_sticky_toolbar_chat_toggler" data-toggle="kt-tooltip" title="Chat Example" data-placement="left">
-    <a href="#" data-toggle="modal" data-target="#kt_chat_modal"><i class="flaticon2-chat-1"></i></a>
-  </li> -->
-</ul>   
-<div id="kt_demo_panel" class="kt-demo-panel" style="opacity: 0;">
-  <div class="kt-demo-panel__head" style="" kt-hidden-height="50">
-    <h3 class="kt-demo-panel__title">
-      Graficas Todos los Tickets
-      <!--<small>5</small>-->
-    </h3>
-    <a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
-  </div>
-  <div  class="  text-center border-dark"><h3>Tickets Totales</h3> 
-    <div id="sales-doughnut-chart-us"></div> 
-  </div>              
-  <div id="chartContainer" style="border: 2px solid transparent ;width: 100%; height: 300px;display: inline-block;"></div>
-</div> 
 
 </div><!-- fin para la plantilla de titulo-->
 </div>
+
+
+
+<ul class="kt-sticky-toolbar" style="margin-top: 30px;">
+      <li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Graficas">
+        <a href="javascript:void(0);" id="lnk_search" class=""><i class="flaticon2-chart2"></i></a>
+      </li>
+	
+</ul>
+<!-- end::Sticky Toolbar -->
+	<!-- begin::Demo Panel -->
+
+<div id="kt_demo_panel" class="kt-demo-panel" style="width: 442px">
+	<div class="kt-demo-panel__head">
+		<h3 class="kt-demo-panel__title">
+			Ticket Solicitud de Toner
+			<!--<small>5</small>-->
+		</h3>
+		<a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
+	</div>
+	<div class="kt-demo-panel__body" >
+        <div class="kt-demo-panel__item ">
+                    <div class="kt-demo-panel__item-title">
+                       Tickets Toner Por Fila
+                    </div>                    
+                    <div class="kt-demo-panel__item-preview">
+                    <div id="sales-doughnut-chart-us" style="height: 400px; width: 100%;"></div>
+                    </div>
+        </div>  
+
+        <div class="kt-demo-panel__item ">
+                    <div class="kt-demo-panel__item-title">
+                        Tickets por Estado del Ticket
+                    </div>                    
+                    <div class="kt-demo-panel__item-preview">
+                    <div id="chartContainer" style="height: 300px; width:100%;"> </div>
+                    </div>
+        </div>                   
+  </div>              	
+</div>
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -275,22 +297,22 @@ window.onload = function (){
                         exportEnabled: true,
                         
 
-      									title:{
-      										text: "  Tickets Totales {{$ticket}}  ",
-                          
-      									},
 
       									legend:{
-                      		horizontalAlign: "right",
-                      		verticalAlign: "center",
-                          cursor: "pointer",
-                          itemclick: explodePie,
+                          fontSize: 9,
+                          horizontalAlign: "center", // left, center ,right 
+                          verticalAlign: "top",  // top, center, botto
+                          itemWrap: false,
+                          itemWidth: 100,
+                          cursor: "default",
+                          markerMargin:8,
+                          itemMaxWidth: 100,
                           
                           
       	                 },
       									data: [//array of dataSeries
       										{ //dataSeries object
-      										 /*** Change type "column" to "bar", "area", "line" or "pie"***/
+      										 /*** Change type "column" to "bar", "area", "line" or "pie"***/                           
       										 type: "pie",
       										 showInLegend: true,
       										 legendText: "{label}",
@@ -333,27 +355,21 @@ window.onload = function (){
         animationDuration: 1000,
         interactivityEnabled: true,
         exportEnabled: true,
-        backgroundColor: "#ffffff00",
-       
-                                              
-                                              
-                                              
-                                              
-    
-                                              title:{
-                                                 
+        backgroundColor: "#ffffff00",       
+                 title:{                                                 
                                                   text: "Tickets Por Area ",
                                                   fontSize: 20,                                                
                                               },
     
                              legend:{
-                              fontSize: 12,
-                              horizontalAlign: "left", // left, center ,right 
-                              verticalAlign: "center",  // top, center, botto
+                              fontSize: 9,
+                              horizontalAlign: "center", // left, center ,right 
+                              verticalAlign: "top",  // top, center, botto
                               itemWrap: false,
-                              itemWidth: 50,
-                              cursor: "pointer",
-                              itemclick: explodePie,
+                              itemWidth: 100,
+                              cursor: "default",
+                              markerMargin:5,
+                              itemMaxWidth: 100,
                                   
                                },
 
@@ -364,66 +380,12 @@ window.onload = function (){
                                      type: "pie",
                                      showInLegend: true,
                                      legendText: "{label}",
-                                     indexLabel: "{label} - #percent%",
-                                     
-                                     
-                                     
-    
+                                     indexLabel: "{label} - #percent%",                                                                                                                  
                             dataPoints: [
-                               
-                               { label: "PostMaster", y: {{$tk_por_area_1}}  },
-                               { label: "Mesa de Servicio Raw", y: {{$tk_por_area_2}}  },
-                               { label: "Junk", y: {{$tk_por_area_3}}  },
-                               { label: "Misc", y: {{$tk_por_area_4}}  },  
-                               //junk sistemas 32 no se agrego en espera
-                               { label: "Cuentas de Email", y: {{$tk_por_area_6}}  },
-                               { label: "Mesa de Servicio CDA", y: {{$tk_por_area_7}}  },
-                               { label: "ST", y: {{$tk_por_area_8}}  },
-                               { label: "ST::ST-Zocalo", y: {{$tk_por_area_9}}  },
-                               { label: "Junk::Sistemas6", y: {{$tk_por_area_10}}  },
-                               { label: "ST::ST-Lavista", y: {{$tk_por_area_11}}  },
-                               { label: "ST::CS-Tlatelolco", y: {{$tk_por_area_12}}  },
-                               { label: "ST::ST-Viaducto", y: {{$tk_por_area_13}}  },
-                               { label: "ST::ST-Tlaxcoaque", y: {{$tk_por_area_14}}  },
-                               { label: "Normatividad", y: {{$tk_por_area_15}}  },
-                               { label: "ST::TE-Express Pemex", y: {{$tk_por_area_16}}  },
-                               { label: "DASI", y: {{$tk_por_area_17}}  },
-                               { label: "ST::TE-Express Norte", y: {{$tk_por_area_18}}  },
-                               { label: "Cancelaciones", y: {{$tk_por_area_19}}  },
-                               { label: "DECSI", y: {{$tk_por_area_20}}  },
-                               { label: "ST::ST-DGPI", y: {{$tk_por_area_21}}  },
-                               { label: "DECSI::Infraestructura", y: {{$tk_por_area_22}}  },
-                               { label: "Seguridad Informática", y: {{$tk_por_area_23}}  },
-                               { label: "DASI::Impresión", y: {{$tk_por_area_24}}  },
-                               { label: "ST::ST-Procuraduría Fiscal", y: {{$tk_por_area_25}}  },
-                               { label: "DECSI::Servidores", y: {{$tk_por_area_26}}  },
-                               { label: "ST::ST-Fiscalización", y: {{$tk_por_area_27}}  },
-                               { label: "DECSI::Redes", y: {{$tk_por_area_28}}  },
-                               { label: "ST::ST-SAT", y: {{$tk_por_area_29}}  },
-                               { label: "DASI::Incidentes Informáticos", y: {{$tk_por_area_30}}  },
-                               { label: "Mesa de Servicio", y: {{$tk_por_area_31}}  },
-                               { label: "Sistemas::SSP", y: {{$tk_por_area_32}}  },
-                               { label: "ST::ST-Egresos", y: {{$tk_por_area_33}}  },
-                               { label: "Junk::Sistemas7", y: {{$tk_por_area_34}}  },
-                               { label: "Sistemas", y: {{$tk_por_area_35}}  },
-                               { label: "Capital-Humano", y: {{$tk_por_area_36}}  },
-                               { label: "Sistemas::CDA", y: {{$tk_por_area_37}}  },
-                               { label: "ST::ST-KATS", y: {{$tk_por_area_38}}  },
-                               { label: "ST::ST-Fray Servando", y: {{$tk_por_area_40}}  },
-                               { label: "Junk::Sistemas9", y: {{$tk_por_area_41}}  },
-                               { label: "Junk::Sistemas13", y: {{$tk_por_area_42}}  },
-                               { label: "Sistemas::CDSI", y: {{$tk_por_area_43}}  },
-                               { label: "Junk::Sistemas3", y: {{$tk_por_area_44}}  },
-                               { label: "Junk::Sistemas5", y: {{$tk_por_area_45}}  },
-                               { label: "Mesa de Servicio CDSI", y: {{$tk_por_area_46}}  },
-                               { label: "Junk::Sistemas4", y: {{$tk_por_area_47}}  },
-                               { label: "Junk::Sistemas8", y: {{$tk_por_area_48}}  },
-                               { label: "Sistemas::Rcubica IT", y: {{$tk_por_area_49}}  },
-                               { label: "Sistemas::Consultoría SAP-GRP", y: {{$tk_por_area_50}}  },
-                               { label: "Sistemas::SPAS", y: {{$tk_por_area_51}}  },
-                               { label: "Sistemas::DECSI", y: {{$tk_por_area_52}}  },
-                               { label: "Sistemas::DGTIC", y: {{$tk_por_area_53}}  },
-                               { label: "DASI::Email", y: {{$tk_por_area_54}}  }, 
+                                      @foreach ($tktporarea as $areacount)         
+                                    {  y:{{$areacount->tparea}},label: "{{$areacount->name}} - {{$areacount->tparea}}" },           
+                                      @endforeach  
+
                             ]
                          }]
   });
@@ -607,90 +569,7 @@ e.chart.render();
    chart.render();
   
 
-   //grafica de dona tickets cerrados
-/*
-   var chart = new CanvasJS.Chart("sales-doughnut-chart-nl",
-        {
-          animationEnabled: true,
-          
 
-           title: {
-             fontColor: "#848484",
-             fontSize: 70,
-             horizontalAlign: "center",
-             text: "{{$rticket}}",
-             verticalAlign: "center"
-           },
-           toolTip: {
-             backgroundColor: "#ffffff",
-             borderThickness: 0,
-             cornerRadius: 0,
-             fontColor: "#424242"
-            },
-            data: [
-            {
-              explodeOnClick: false,
-               innerRadius: "90%",
-               radius: "90%",
-               startAngle: 270,
-               type: "doughnut",
-
-
-              dataPoints: [
-
-                { y: {{$ticket-$rticket}}, name: "Diferente Estatus", color:  "#F11B1B", exploded: true  },
-                { y:  {{$rticket}} , name: "Tickets Cerrados Exitosamente", color: "#1F842F" ,toolTipContent:null}
-                ]
-            }
-            ]
-        });
-    chart.render();
-   
-
-
-
-
-
-    var chart = new CanvasJS.Chart("sales-doughnut-chart-de",
-         {
-           animationEnabled: true,
-            
-
-            title: {
-              fontColor: "#848484",
-              fontSize: 70,
-              horizontalAlign: "center",
-              text: "{{$asignado}}",
-              verticalAlign: "center"
-            },
-            toolTip: {
-              backgroundColor: "#ffffff",
-              borderThickness: 0,
-              cornerRadius: 0,
-              fontColor: "#424242"
-             },
-             data: [
-             {
-               explodeOnClick: false,
-                innerRadius: "90%",
-                radius: "90%",
-                startAngle: 270,
-                type: "doughnut",
-                dataPoints: [
-                  { y: {{$ticket-$asignado}}, name: "Tks Diferente Estatus", color:  "#F11B1B" , exploded: true  },
-                  { y:  {{$asignado}} , name: "Ticket Asignados", color: "#1F842F" ,toolTipContent:null}
-                 ]
-             }
-             ]
-         });
-         
-     chart.render();
-*/
-// fin grafica de dona tickets cerrados
-//Grafica Lineal AÑo - Mes cada segundo  
-// se carga la grafica cada segundo
-// Fin se carga la grafica cada segundo  
-//Fin Grafica Lineal AÑo - Mes cada segundo 
 
 var nuevotk = [
   "Ultimo Ticket ingresado {{$ultimoTK->tn}}  /  {{$ultimoTK->create_time}}  .  .  ." 

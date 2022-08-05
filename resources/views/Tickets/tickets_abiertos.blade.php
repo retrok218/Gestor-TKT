@@ -40,7 +40,7 @@
                                 </div>  
                                 <div class="progress progress--sm" style="height: 1rem">                                                                                            
                                         <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$ticket}}" aria-valuenow={{$ticket}} aria-valuemin={{$ticket}} aria-valuemax={{$ticket}}></div>                                               
-                                        <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{$abierto}}" aria-valuenow={{$abierto}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>                                                                                           
+                                        <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{$tktporcento}}+%" aria-valuenow={{$abierto}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>                                                                                           
                                 </div>              
                                 <div class="kt-widget24__action">  
                                         <span class="kt-widget24__number"></span>
@@ -93,7 +93,8 @@
             <!--begin: Datatable -->
             <table class="table table-striped- table-bordered table-hover table-checkable" id="tablatk">
                 <thead>
-                    <tr>                       
+                    <tr>  
+                        <th></th>                     
                         <th>Numero de Tiket</th>
                         <th>Creado</th>
                         <th>Asunto</th>
@@ -103,6 +104,7 @@
                     </tr>
                 </thead>
                 <tfoot>
+                    <th></th>   
                     <th></th>
                     <th></th>
                     <th></th>
