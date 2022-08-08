@@ -29,16 +29,7 @@ $(document).ready(function(){
 // inicio de datatable    
 var table = $('#tablatk').DataTable({ 
     
-    // responsive: {
-    //     details: {
-    //         display: $.fn.dataTable.Responsive.display.modal( {
-    //             header: function ( row ) {
-    //                 var data = row.data();
-    //                 return 'Details for '+data.clientName;
-    //             }
-    //         } )
-    //     }
-    // },
+   
           
          "pageLength": 10,
          "lengthChange": true,
@@ -184,41 +175,13 @@ var table = $('#tablatk').DataTable({
                 return '<button class="button2"> <span> <a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+ligaotrs+'" target="_blank" title="Ir en busca del TKT en OTRS" ;>'+row.tn+'</a> <span> </button>';
                                                     }
             },
-
             { data: 'create_time', name: 'create_time' },
-
             {"mRender":function(data, type , row){  //regresa el dato de la columna title con caracteres reducidos por 30 px 
                   return row.title.substring(0,30 );
                 }
             },
-
-            { data: 'qname', name: 'qname' },    
-            
-            
-
-            // {"mRender": function(data,type,row){
-            //     let estatus="";
-            //     if (row.name == 'open') {
-            //         estatus= 'Abierto';
-            //     }    
-                      
-               
-            //     else if(row.name == 'closed successful'){
-            //         estatus='Cerrado Exitosamente';
-            //     }
-
-            //     else {
-            //         estatus= row.name;
-            //     }
-            //     return estatus;
-
-            // }},
-             { data: 'name'},
-
-
-
-
-
+            { data: 'qname', name: 'qname' },                
+            { data: 'name'},
             { data: 'nombre', name: 'nombre' },                         
         ],
 });
@@ -265,9 +228,9 @@ setInterval( function () {
 function format ( d ) {
     // `d` is the original data object for the row
     console.log(d)
-    let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+    let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" >'+
         '<tr>'+
-            '<td>Descripcion Completa:</td>'+
+            '<td>Asunto Completa:</td>'+
             '<td>'+d.title+'</td>'+             
         '</tr>'+        
     '</table>';
