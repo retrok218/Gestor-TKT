@@ -7,8 +7,9 @@
         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
 
             <div class="kt-aside__brand-logo">
-                <a href="{{ url('/home') }}">
-                    <img alt="Logo"  class="img_header" src="{{ URL::asset('assets/media/company-logos/logotipo SAF-01.jpg')}}" >
+                <a href="{{ url('/') }}">
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SAF_logo_header.svg')}}" width="350"
+                        style="padding-top: 8px">
                 </a>
             </div>
             <!--
@@ -44,8 +45,7 @@
     <!-- begin:: Header Topbar -->
     <div class="kt-header__topbar">
         <!--begin: Search -->
-        <!--begin: Search -->
-        <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
+        {{-- <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
                 <span class="kt-header__topbar-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -84,10 +84,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--end: Search -->
         <!--begin: Notifications -->
-        <div class="kt-header__topbar-item dropdown">
+        {{-- <div class="kt-header__topbar-item dropdown">
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="30px,0px" aria-expanded="true">
                 <span class="kt-header__topbar-icon kt-pulse kt-pulse--brand">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -109,17 +109,37 @@
                            <span class="kt-badge kt-badge--dot kt-badge--notify kt-badge--sm kt-badge--brand"></span>
                            -->
             </div>
-        </div>
+        </div> --}}
         <!--end: Notifications -->
+       
 
 
         <!--begin: User Bar -->
-        <div class="kt-header__topbar-item kt-header__topbar-item--user">
+       
+
+        <div class="kt-header__topbar-item kt-header__topbar-item--user" >
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
-                <div class="kt-header__topbar-user">
-                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Bienvenido,</span>
+                <div class="kt-header__topbar-user" id="btnClick">
+                        @php    
+                        $mens_bi =array(
+                             1=>"Hola" ,
+                             2=>"Buen dia" ,
+                             3=>"Bienbenido " ,
+                             4=>"Comencemos" ,
+
+                        );
+
+                            $numr = rand(1,4);
+
+                        @endphp
+
+                    <span class="kt-header__topbar-welcome kt-hidden-mobile">{{$mens_bi[$numr]}},</span>
                     <span class="kt-header__topbar-username kt-hidden-mobile">{{ Auth::user()->usuario }} </span>
-                    <img class="" alt="Pic" id="img_avatar_header" src="{{env('APP_URL').'storage/app/'.Auth::user()->avatar}}">
+                    @if (Auth::user()->avatar)
+                        <img class="" alt="Pic" id="img_avatar_header" src="{{ asset('/'.Auth::user()->avatar) }}">
+                    @else
+                        <img class="" alt="Pic" id="img_avatar_header" src="{{ asset('assets/media/users/avatar_neutro.jpg') }}">
+                    @endif
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                     <span
                         class="kt-hidden kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
@@ -131,16 +151,17 @@
                 <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x"
                     style="background-image: url({{ URL::asset('assets/media/misc/bg-1.jpg')}})">
                     <div class="kt-user-card__avatar">
-                        <img class="" id="img_avatar_header_menu" alt="Pic" src="{{env('APP_URL').'storage/app/'.Auth::user()->avatar}}">
+                        @if (Auth::user()->avatar)
+                            <img class="" id="img_avatar_header_menu" alt="Pic" src="{{asset('/'.Auth::user()->avatar)}}">
+                        @else
+                            <img id="img_avatar_header_menu" src="{{ asset('assets/media/users/avatar_neutro.jpg') }}">
+                        @endif
                         <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                         <span
                             class="kt-hidden kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
                     </div>
                     <div class="kt-user-card__name">
                         {{ Auth::user()->name.' '.Auth::user()->apellido_paterno  }}
-                    </div>
-                    <div class="kt-hidden kt-user-card__badge">
-                        <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
                     </div>
                 </div>
                 <!--end: Head -->
@@ -179,24 +200,38 @@
 
              
                     <!-- Para continuar con el listado del Perfil -->
-                    <div class="kt-notification__custom kt-space-between">
-                        <!--<a href="custom/user/login-v2.html" target="_blank" class="btn btn-clean btn-sm btn-bold">Upgrade Plan</a>-->
-                        <a class="btn btn-label btn-label-brand btn-sm btn-bold" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Salir') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+                    <a href="{{ route('logout') }}" class="kt-notification__item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <div class="kt-notification__item-icon">
+                            <i class="flaticon2-right-arrow kt-font-brand"></i>
+                        </div>
+                        <div class="kt-notification__item-details">
+                            <div class="kt-notification__item-title kt-font-bold">
+                                {{ __('Salir') }}
+                            </div>
+                            <div class="kt-notification__item-time">
+                                
+                            </div>
+                        </div>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
                 <!--end: Navigation -->
             </div>
         </div>
         <!--end: User Bar -->
-
-
+</div>
     </div>
     <!-- end:: Header Topbar -->
-</div>
+   
 <!-- end:: Header -->
+
+
+
+
+
+
+
+
+

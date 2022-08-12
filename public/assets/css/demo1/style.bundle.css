@@ -49943,10 +49943,10 @@ td {
     overflow-x: auto;
     border-spacing: 0;
 }
-
-tbody {
+/* este solo sera para solicitudes de toner*/
+/* tbody {
     white-space: nowrap;
-}
+} */
 
 th,
 td {
@@ -49979,3 +49979,4 @@ td.details-control {
 tr.shown td.details-control {
     background: url('../../media/misc/details_close.png') no-repeat center center;
 }
+

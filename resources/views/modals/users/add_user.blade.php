@@ -1,6 +1,3 @@
-
-
-
 <div class="modal fade" id="mod_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -78,7 +75,7 @@
                             
                                     <div class="col-md-12">                                                                                                                           
                                          <h5>Area/s Asignada  </h5>
-                                         <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar Todas las Areas 
+                                         <input type="checkbox" onClick="toggle(this)" /> Seleccionar Todas/Eliminar Seleccion 
                                         <table class="table table-hover" >
                                             <tr>
                                                 <th>Numero del Area</th> 

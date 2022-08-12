@@ -68,7 +68,7 @@
 
     <div class="kt-portlet__body">
         <!--begin: Datatable -->
-        <table class="table table-striped- table-bordered table-hover table-checkable" id="users-table">
+        <table class="table table-striped- table-bordered table-hover table-checkable "  id="users-table" width="100%">
             <thead>
             <tr>
                 
@@ -78,7 +78,7 @@
                 <th> Apellido Materno </th>
                 <th> Usuario </th>
                 <th> Correo </th>
-                <th> Area </th>
+                <th > Areas </th>
                 <th> Acciones</th>
                
             </tr>

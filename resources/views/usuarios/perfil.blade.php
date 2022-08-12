@@ -488,12 +488,12 @@ var KTUserEdit = function () {
         },
         success: function(data){
             swal.fire(swal_title(data.status), data.message, data.status);
-            if(data.status=='success'){
-                $("#img_avatar_header").attr("src",'{{env('APP_URL')}}storage/app/'+data.avatar);
+             if(data.status=='success'){
+                 $("#img_avatar_header").attr("src",'{{env('APP_URL')}}/app/'+data.avatar);
                 $("#img_avatar_header_menu").attr("src",'{{env('APP_URL')}}storage/app/'+data.avatar);
-            }
+             }
             KTApp.unblock(portlet);
-           //location.reload();
+           location.reload();
         },
         error: function(data)
         {

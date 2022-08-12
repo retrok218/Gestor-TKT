@@ -27,6 +27,7 @@ class Estado_ticketsController extends Controller
       $this->middleware('auth');
   }
 
+  
   // Tickets Abiertos 
   public function tickets_abiertos()
   {
@@ -61,11 +62,14 @@ class Estado_ticketsController extends Controller
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $asignado = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 12)->count();
     $tktporcento = round(($asignado*100)/$ticket,2);
+    $navbarporcent = 100-$tktporcento;  // porcentaje que se usa la barra de estatus
     $nom_tkt_estatus = "Tickets Asignados";
+   
     return view('Tickets/tickets_asignados')
       ->with('ticket', $ticket)
       ->with('asignado', $asignado)
       ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
+      ->with('navbarporcent',$navbarporcent)
       ->with('tktporcento',$tktporcento);
   }
 
@@ -279,7 +283,7 @@ class Estado_ticketsController extends Controller
   {
     $nticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 7)->count();
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
-    $nom_tkt_estatus = "Tickets Recien creados   ";
+    $nom_tkt_estatus = "Tickets Nuevos";
     $tktporcento = round(($nticket*100)/$ticket,2);
     return view('Tickets/tickets_nuevos')
       ->with('nticket', $nticket)

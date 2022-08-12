@@ -205,10 +205,8 @@ class UserController extends Controller {
         return response()->json(['status'=>'error','message'=>'Error  al  actualizar datos de Perfil'],200);        
     }
 
-    public function destroyAvatar($route_avatar){  
-        if($route_avatar!='avatares/avatar_neutro.jpeg'){
-            Storage::delete($route_avatar);
-        }
-    }
     
+    public function destroyAvatar($route_avatar){
+        Storage::delete($route_avatar);
+}
 }

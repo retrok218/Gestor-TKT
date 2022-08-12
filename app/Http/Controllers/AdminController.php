@@ -50,6 +50,7 @@ class AdminController extends Controller
        
        $tickte = DB::connection('pgsql2')->table('ticket')->count();
        $ticket_all = DB::connection('pgsql2')->table('ticket')->get();
+       
        $nuevo = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',1)->count();
        $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
        $cerradocinEX = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',3)->count();
@@ -68,6 +69,7 @@ class AdminController extends Controller
        $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
        $FaltaDocumentar = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',19)->count();
        $FalteActaRES = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',21)->count();
+
        $SolicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
        $impresorasintt = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',78)->count();
        $tickets_por_dia=DB::connection('pgsql2')->table('ticket')->whereDate('create_time',('='),$fecha_actual)->count();
@@ -144,65 +146,7 @@ class AdminController extends Controller
  
        $mes_diciembre2=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 12)->whereYear('create_time','=', $fecha_añop)->count();
 
-                                                                 
-    //    // ticket por Area
-    //    $tk_por_area_1=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',1)->count();
-    //    $tk_por_area_2=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',2)->count();
-    //    $tk_por_area_3=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',3)->count();
-    //    $tk_por_area_4=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',4)->count();
-    //    $tk_por_area_5=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',5)->count();
-    //    $tk_por_area_6=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',6)->count();
-    //    $tk_por_area_7=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',7)->count();
-    //    $tk_por_area_8=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',8)->count();
-    //    $tk_por_area_9=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',9)->count();
-    //    $tk_por_area_10=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',10)->count();
-    //    $tk_por_area_11=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',11)->count();
-    //    $tk_por_area_12=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',12)->count();
-    //    $tk_por_area_13=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',13)->count();
-    //    $tk_por_area_14=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',14)->count();
-    //    $tk_por_area_15=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',15)->count();
-    //    $tk_por_area_16=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',16)->count();
-    //    $tk_por_area_17=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',17)->count();
-    //    $tk_por_area_18=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',18)->count();
-    //    $tk_por_area_19=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',19)->count();
-    //    $tk_por_area_20=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',20)->count();
-    //    $tk_por_area_21=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',21)->count();
-    //    $tk_por_area_22=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',22)->count();
-    //    $tk_por_area_23=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',23)->count();
-    //    $tk_por_area_24=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',24)->count();
-    //    $tk_por_area_25=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',25)->count();
-    //    $tk_por_area_26=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',26)->count();
-    //    $tk_por_area_27=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',27)->count();
-    //    $tk_por_area_28=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',28)->count();
-    //    $tk_por_area_29=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',29)->count();
-    //    $tk_por_area_30=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',30)->count();
-    //    $tk_por_area_31=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',31)->count();  
-    //    $tk_por_area_32=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',32)->count();
-    //    $tk_por_area_33=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',33)->count();
-    //    $tk_por_area_34=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',34)->count();
-    //    $tk_por_area_35=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',35)->count();
-    //    $tk_por_area_36=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',36)->count();
-    //    $tk_por_area_37=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',37)->count();
-    //    $tk_por_area_38=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',38)->count();
-    //    $tk_por_area_39=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',39)->count();
-    //    $tk_por_area_40=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',40)->count();
-    //    $tk_por_area_41=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',41)->count();
-    //    $tk_por_area_42=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',42)->count();
-    //    $tk_por_area_43=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',43)->count();
-    //    $tk_por_area_44=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',44)->count();
-    //    $tk_por_area_45=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',45)->count();
-    //    $tk_por_area_46=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',46)->count();
-    //    $tk_por_area_47=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',47)->count();
-    //    $tk_por_area_48=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',48)->count();
-    //    $tk_por_area_49=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',49)->count();
-    //    $tk_por_area_50=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',50)->count();
-    //    $tk_por_area_51=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',51)->count();
-    //    $tk_por_area_52=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',52)->count();
-    //    $tk_por_area_53=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',53)->count();
-    //    $tk_por_area_54=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',54)->count();
-
-
-
+     
 
         
         $tktporarea = DB::connection('pgsql2')->table('queue')->select('id','name')->orderBy('id','ASC')->get();

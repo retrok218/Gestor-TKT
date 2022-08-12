@@ -3,6 +3,7 @@ $(document).ready(function() {
         $(this).dataTable(window.dtDefaultOptions);
     });
     var dataTable = $('#users-table').dataTable({
+        //responsive:true,
         processing: true,
         serverSide: true,
         dom: 'Bfrtip',
@@ -31,7 +32,16 @@ $(document).ready(function() {
             // { data: 'perfil', name: 'perfil' },
             { data: 'email', name: 'email' },
             // vista para las areas 
-            {data: 'area',area: 'area' },
+            //{data: 'area',area: 'area' },
+
+
+            {"mRender" : function(data,type,row){
+                var ar = row.area;
+                return ar;
+            }},
+
+
+
             {
                 "mRender": function (data, type, row) {
                     var id_user = row.id;

@@ -80,7 +80,31 @@
                                        </div>
 
                                     </div>            
-                                </div>                                                       
+                                </div>     
+                                
+                                
+
+
+
+
+                            </div>
+                            <div class="row"  style="color: #595d6e;">
+                            <div class="col-sm-6" >  
+                                    <div class="kt-widget25"  style="border-right: groove;">
+                                        <div class="kt-widget24__info" style="
+                                        text-align: initial;">
+                                            <h4 class="kt-widget24__title">
+                                                Toners sol col 1
+                                            </h4>					       
+                                        </div> 
+                                        
+                                        <div style="font-size:36px">
+                                          <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                          font-size: 3rem !important;" ></div>
+                                           - <i class="fa" style="font-size:36px" id="soltoner"></i>                                           
+                                          </div>                                                                                                                                                                                                              
+                                      </div>            
+                                </div>
                             </div>
                     </div>                    
                   </div>  
@@ -138,7 +162,7 @@
             
             
             
-                <table id="Solicitudesdetoner" class="display" style="width:100%">
+                <table id="Solicitudesdetoner" >
                     <thead >     
                     <tr>
                             <th colspan="5" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Tickets</th>
@@ -306,8 +330,8 @@
                                   </div>
                                 </td> 
                                 <td>{{$tk_id->create_time}}</td>
-                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;"></p> {{$tk_id->title}}</td>                         
-                                <td>{{$dependencia}}</td>
+                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->title}}</p> </td>                         
+                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$dependencia}}</p></td>
                                 <td>{{$tk_id->fila}}</td>
                                     @if(!isset($tipodetoner1) or !empty($tipodetoner1) == false)
                                       @php 
@@ -396,8 +420,7 @@
                                      $comentario_entrega = "Sin datos";
                                     @endphp
                                 @endif
-                                 <td> {{$comentario_entrega}}</td> 
-                                                 
+                                 <td>{{$comentario_entrega}}</td>                                                  
                                 <td>{{$tk_id->name}}</td>                     
                             </tr>   
 
@@ -436,7 +459,8 @@
 
               </div>
             </div>
-            <!--end::Widget 11--> 						             
+            <!--end::Widget 11-->
+             						             
           </div>
         </div>
       </div>
@@ -571,23 +595,15 @@ $(document).ready(function(){
 
 
 var table = $('#Solicitudesdetoner').DataTable({ 
-  responsive: {
-        details: {
-            display: $.fn.dataTable.Responsive.display.modal( {
-                header: function ( row ) {
-                    var data = row.data();
-                    return 'Details for '+data.clientName;
-                }
-            } )
-        }
-    },
+  
         
-      "pageLength": 10,   
+      "pageLength": 6,   
       "lengthChange": true,
       "searching": true,
-      "ordering": true,
+      //"ordering": true,
       "info": true,
-     // responsive: true, Boton de + informacion de bajo del dato en la datatable 
+      //responsive: true, 
+      "autoWidth": false,
       
       "language": idioma,
       "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
@@ -596,7 +612,7 @@ var table = $('#Solicitudesdetoner').DataTable({
       dom:'Bfrtip',
       deferRender:true, 
       "columnDefs": [ {
-            "visible": false,
+            "visible": true,
             "targets": -1
         } ],
 
@@ -626,7 +642,7 @@ var table = $('#Solicitudesdetoner').DataTable({
                            titleAttr: 'Gestor Toners Entregados',
                            className: 'btn btn-app export excel',                           
                            exportOptions: {
-                           columns: ':visible',                           
+                           //columns: ':visible',                           
                            },
                            customize: function( xlsx ) {                      
                             var hoja = xlsx.xl.worksheets['sheet1.xml'];
@@ -694,6 +710,7 @@ var table = $('#Solicitudesdetoner').DataTable({
                            className: 'selectTable'
                        },
                        'colvis'
+                      
                    ]         
            },
            columnDefs:[{
@@ -701,6 +718,8 @@ var table = $('#Solicitudesdetoner').DataTable({
                         visible: false
                         }] ,
             
+
+                        
 // Filtro por seleccion multiple
                 initComplete: function() {            
                   this.api().columns([3,4,18]).every(function() {
@@ -750,9 +769,10 @@ var table = $('#Solicitudesdetoner').DataTable({
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-                $( api.column( 6 ).footer() ).html(
-              '1.-Toners Solicitados: <br>' +  pageTotal 
-            );
+                $( api.column(6).footer() ).html(
+                  '1.-Toners Solicitados: <br>' + pageTotal 
+                );
+               
                 sumsol2 = api
                 .column( 8, { search: "applied" } )
                 .data()
@@ -801,7 +821,11 @@ var table = $('#Solicitudesdetoner').DataTable({
                 }, 0 );
                 $( api.column(15).footer() ).html(
                   '3.-Toner Entregados: <br>' + tonerentregado3 
-                );                                      
+                );  
+
+                
+                
+                
         }            
           
 });
@@ -812,7 +836,7 @@ var table = $('#Solicitudesdetoner').DataTable({
 
 
 
-
+var soltoner = pageTotal;
 var tonersol = pageTotal+sumsol2+sumsol3;
 var tonerentregado=tonerentregado1+tonerentregado3+tonerentregado2;
 
@@ -822,6 +846,7 @@ function sumcol(col1,col2,col3){
 
 var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3;
 var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2;
+var tsol = document.getElementById("soltoner").innerHTML=pageTotal;
 
 
 $('#datepicker_from,#datepicker_to').change(function () {
@@ -834,6 +859,8 @@ $(".clear-date-filter").on("click", function() {
         $('#datepicker_to').val("").datepicker("update");
     });  
 });
+
+
 
 
 

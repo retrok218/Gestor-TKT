@@ -233,7 +233,7 @@
 	<div class="kt-demo-panel__body" >
         <div class="kt-demo-panel__item ">
                     <div class="kt-demo-panel__item-title">
-                       Tickets Toner Por Fila
+                       Todos Los Tickets
                     </div>                    
                     <div class="kt-demo-panel__item-preview">
                     <div id="sales-doughnut-chart-us" style="height: 400px; width: 100%;"></div>
@@ -510,7 +510,7 @@ e.chart.render();
            interactivityEnabled: true,
            exportEnabled: true,
              title: {
-                 text: "Tickets Año-{{$año}}/ Mes-{{$mes}}/ Dia-{{$dia}}"
+                 text: "Tickets  Año-{{$año}}/ Mes-{{$mes}}/ Dia-{{$dia}}"
              },
              data: [
              {
@@ -562,6 +562,7 @@ e.chart.render();
 
              dataPoints: [
                { y: {{$ticket}}, color: "#1F842F ", toolTipContent:null },
+               
                ]
            }
            ]

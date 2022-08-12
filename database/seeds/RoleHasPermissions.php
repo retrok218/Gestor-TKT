@@ -35,8 +35,7 @@ class RoleHasPermissions extends Seeder
             array (
                 'permission_id' => '3',
                 'role_id' =>'4'
-            ),
-            ,
+            ),            
             5 =>
             array (
                 'permission_id' => '6',

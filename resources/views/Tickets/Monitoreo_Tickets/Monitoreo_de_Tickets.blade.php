@@ -10,7 +10,6 @@
 
 
 
-
  
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
   <!-- <div class="card" style="border: 1px; background: white;">   
@@ -386,11 +385,14 @@
               </div>
             </a>
           </div>            
-      </div>			 
+      </div>
+      <div>
+        <a href="javascript:window.print()" >Imprimir</a>
+      </div>      
     </div>        
   </div>
   
-<a href="javascript:window.print()" >Imprimir</a> 
+
 </div>
 </div>
 @section('scripts') 
