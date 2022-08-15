@@ -19,24 +19,42 @@ use App\ticket;
 use Illuminate\Support\Collection;
 use stdClass;
 
+
 class Estado_ticketsController extends Controller
 
 {
+
+/*Cantidad de ticket que hay actualmente todos*/
+public function contticket(){
+  $ticketcount = ticket::count();
+  return $ticketcount;
+}
+
+
+
+
+
   public function __construct()
   {
       $this->middleware('auth');
   }
 
+
+
+
+
+
   
   // Tickets Abiertos 
   public function tickets_abiertos()
   {
-    $ticket = ticket::count();
+   
     $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */    
-    $tktporcento = round(($abierto*100)/$ticket,2);
+    $tktporcento = round(($abierto*100)/$this->contticket(),2);
     $nom_tkt_estatus = "Tickets Abiertos ";  
+    
     return view('Tickets/tickets_abiertos')
-      ->with('ticket', $ticket)
+      ->with('ticket', $this->contticket())
       ->with('abierto', $abierto)
       ->with('tktporcento',$tktporcento)
       ->with('nom_tkt_estatus',$nom_tkt_estatus)    
@@ -170,7 +188,7 @@ class Estado_ticketsController extends Controller
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
         WHERE queue_id IN ($usuario)                           
-        ORDER BY ticket.tn DESC");
+        ORDER BY ticket.create_time DESC");
     return Datatables::of($tickets_totales)->toJson();
   }
 
@@ -181,11 +199,14 @@ class Estado_ticketsController extends Controller
     $cerradoPT = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 10)->count();
     $nom_tkt_estatus = "Tickets Cerrados Por Tiempo";
     $tktporcento = round(($cerradoPT*100)/$tickte,2);
+    $tktporcenttot= 100-$tktporcento;
+    
     return view('Tickets/tickets_cerradosPT')
       ->with('ticket', $tickte)
       ->with('cerradoPT', $cerradoPT)
       ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot);
   }
 
   public function data_tickets_cerradosPT()

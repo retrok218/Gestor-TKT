@@ -7,9 +7,9 @@
 </script>
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
     <div class="kt-portlet">    
-        <div class="kt-portlet__body">                    
+        <!-- <div class="kt-portlet__body">                     -->
                     <div class="row row-no-padding row-col-separator-xl">			
-                        <div class="col-md-12 col-lg-12 col-xl-3">
+                        <div class="col-md-12 col-lg-12 col-sm-12 pull-left">
                             <!--begin::Total Profit-->                            
                             <div class="kt-widget24" style="text-align: center;">
                                 <div class="row" style="color: #595d6e;">
@@ -33,7 +33,7 @@
                             </div>                           
                         </div>   
                     </div>
-         </div>       
+         <!-- </div>        -->
     </div>   
     @include('Tickets/EstructuraDTT/dtt') <!--Estructura de DTT--> 
 </div>

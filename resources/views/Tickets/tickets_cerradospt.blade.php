@@ -39,11 +39,13 @@
                                     </div>                        
                                 </div>  
                                 <div class="progress progress--sm" style="height: 1rem">                                                                                            
-                                        <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$ticket}}" aria-valuenow={{$ticket}} aria-valuemin={{$ticket}} aria-valuemax={{$ticket}}></div>                                               
-                                        <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{$cerradoPT}}" aria-valuenow={{$cerradoPT}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>                                                                                           
+                                        <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$tktporcenttot}}%" aria-valuenow={{$ticket}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>                                               
+                                        <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{$tktporcento}}%" aria-valuenow={{$cerradoPT}} aria-valuemin="0" aria-valuemax={{$cerradoPT}}></div>                                                                                           
                                 </div>              
                                 <div class="kt-widget24__action">  
-                                        <span class="kt-widget24__number"></span>
+                                        <span class="kt-widget24__number">
+                                            {{$tktporcenttot}}%
+                                        </span>
                                         <span class="kt-widget24__number">
                                             {{$tktporcento}}%
                                         </span>

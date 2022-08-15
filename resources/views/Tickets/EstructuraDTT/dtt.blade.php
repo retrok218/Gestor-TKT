@@ -1,4 +1,3 @@
-
 <!-- Creacion de tabla tickets asignados -->
 <div class="kt-portlet kt-portlet--mobile">
         <div class="kt-portlet__head kt-portlet__head--lg">
@@ -15,7 +14,7 @@
             <!--begin: Search Form -->
             <form class="kt-form kt-form--fit kt-margin-b-20">                
                 <div class="row kt-margin-b-4">
-                    <div class="col-lg-8 kt-margin-b-10-tablet-and-mobile">
+                    <div class="col-lg-12 kt-margin-b-10-tablet-and-mobile">
                         <label>Rango de Busqueda :</label>                       
                         <div class="input-group date">               
                             <div class="input-daterange input-group" id="kt_datepicker">
@@ -27,13 +26,22 @@
                               <div class="input-group-append">
                                 <span class="input-group-text"><i class="flaticon-calendar"></i></span>
                               </div>
+                              <button class="btn  btn-secondary clear-date-filter "> <i class="flaticon-delete"></i> Limpiar Filtros</button> 
                             </div>
-                        </div>        
-                            <button class="btn btn-default clear-date-filter "> <i class="flaticon-delete"></i> Limpiar Filtros</button>
-                    </div>                    
+                        </div>    
+                           
+                            
+                    </div>
+
+                     
+                                       
                 </div> 
+                
             </form>
+            
+           
             <!--begin: Datatable -->
+            <div class="col-md-12 col-lg-12 col-sm-12 pull-left">
             <table class="table table-striped- table-bordered table-hover table-checkable" id="tablatk">
             <thead>
                     <tr>  
@@ -56,6 +64,7 @@
                     <th></th>
                 </tfoot>
             </table>
+            </div>
             <!--end: Datatable -->
         </div>
     </div>

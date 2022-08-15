@@ -88,7 +88,7 @@
 
 
                             </div>
-                            <div class="row"  style="color: #595d6e;">
+                            <!-- <div class="row"  style="color: #595d6e;">
                             <div class="col-sm-6" >  
                                     <div class="kt-widget25"  style="border-right: groove;">
                                         <div class="kt-widget24__info" style="
@@ -105,7 +105,7 @@
                                           </div>                                                                                                                                                                                                              
                                       </div>            
                                 </div>
-                            </div>
+                            </div> -->
                     </div>                    
                   </div>  
                 </div>  

@@ -34,7 +34,7 @@ var table = $('#tablatk').DataTable({
          "pageLength": 10,
          "lengthChange": true,
          "searching": true,
-         "ordering": true,
+         "ordering": false,
          "info": true,
          "autoWidth": true,
         //responsive: true, 
