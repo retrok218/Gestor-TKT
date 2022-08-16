@@ -181,8 +181,11 @@
                             <th>1.-Solicitado Cantidad</th>
                             <th>2.-Solicitado Tipo de Toner2 </th>
                             <th>2.-Solicitado Cantidad</th>
-                            <th>3.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
-                            <th>3.-Solicitado Catidad</th>       <!-- Cantidad de toner  -->
+                            <th>3.-Solicitado Tipo de Toner</th>  
+                            <th>3.-Solicitado Catidad</th>       
+                            <th>4.-Solicitado Tipo de Toner</th>  
+                            <th>4.-Solicitado Catidad</th> 
+                            
             
                             <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Cantidad entregada </th>
                             <th>1.-Tipo de Toner Entregado</th>
@@ -190,20 +193,19 @@
                             <th>2.-Tipo de Toner Entregado</th>
                             <th>3.-Cantidad entregada </th>
                             <th>3.-Tipo de Toner Entregado</th>
+                            <th>4.-Cantidad entregada </th>
+                            <th>4.-Tipo de Toner Entregado</th>
                             <th>Cometario de Entrega</th>                                                    
                             <th>Estado</th>      
                         </tr>
                     </thead>
-                    <tbody>
-            
-                    @php
-                       /* class tktdefinitivo {
-                          public $numero_tiket = $tk_id ->tn; 
-                        Numero que identfica el TKT
-                        }
-            
-            */
-                    @endphp
+
+
+
+
+
+                    <tbody>            
+                    
             
             
             
@@ -266,6 +268,7 @@
                                                 elseif(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
                                                   $tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner); 
                                                 }
+                            
                       
                       
                       
@@ -439,6 +442,10 @@
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Dependencia</th>
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Fila</th>
                         <th ></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>

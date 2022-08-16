@@ -16,7 +16,7 @@
                             </div>
                             <div class="kt-widget__content">
                                 <div class="kt-widget__head">
-                                    <p class="kt-widget__title">Gestor De Tickets</p>
+                                    <p class="kt-widget__title">Tablero Mesa de Servicio</p>
                                 </div>
                                 <hr>
                                 <div class="">
@@ -80,9 +80,12 @@
                                     </div>             
                           </div>
                       </div> 
+
+
+
                 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                   <div class="row">
-                    <div class="col-lg-12">
+                  <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                       <div class="container-busqueda">
                         <div class="card-header-gestkt text-center"><h5> Buscar Ticke </h5></div>                        
                          <div class="formulario-tkt">
@@ -170,43 +173,30 @@
                         </div>
                     </div>                   
                 </div>                
-              </div>                 
-
+              </div>     
+              
+              
             </div>  
-        </div>
-        
-
-        
-  
-        
+        </div>        
           <div class="row">                      
             <div class="col-xl-12">
               <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">                                                                                  
                               <div id="gporarea" style="height: 400px; width: 100% ;" ></div>                                                                                                        
                             </div>
-                </div>
-            
+                </div>            
           </div>
           <div class="row">
-            <div class="col-xl-6">
-             
+            <div class="col-xl-6">             
                   <div class="kt-portlet kt-iconbox">
                             <div id="chartContainer1"style="height: 300px; width: 100% ;"></div> 
-                          </div>
-              
+                          </div>              
           </div>
-          <div class="col-xl-6">
-            
-            <div class="kt-portlet kt-iconbox">
-               
-                          <div id="chartContainer4" style="height: 300px; width: 100% ;" ></div> 
-                        
+          <div class="col-xl-6">            
+            <div class="kt-portlet kt-iconbox">               
+                          <div id="chartContainer4" style="height: 300px; width: 100% ;" ></div>                         
                         </div>
         </div>
       </div>
-
-
-
 
 </div><!-- fin para la plantilla de titulo-->
 </div>
@@ -225,7 +215,7 @@
 <div id="kt_demo_panel" class="kt-demo-panel" style="width: 442px">
 	<div class="kt-demo-panel__head">
 		<h3 class="kt-demo-panel__title">
-			Ticket Solicitud de Toner
+			Tickets
 			<!--<small>5</small>-->
 		</h3>
 		<a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
@@ -251,21 +241,7 @@
   </div>              	
 </div>
 
-
-
-
-
-
-
-
-
 </div>
-
-
-
-
-
-
 
 
 @section('scripts')
@@ -534,9 +510,7 @@ e.chart.render();
   var chart = new CanvasJS.Chart("sales-doughnut-chart-us",
        {
         
-         animationEnabled: true,
-          
-
+         animationEnabled: true,          
           title: {
             fontColor: "#000000",
             fontSize: 70,
@@ -561,14 +535,25 @@ e.chart.render();
 //Secciones del aro
 
              dataPoints: [
-               { y: {{$ticket}}, color: "#1F842F ", toolTipContent:null },
-               
+              //  { y: {{$open}}, color: "#1F842F " },
+              //  { y: {{$asignado}}, color: "#4661EE ", label: "Asignados" },
+              //  { y: {{$atendido}}, color: "#EC5657 ", label: "Atendidos" },
+              //  { y: {{$rticket}}, color: "#1BCDD1 ", label: "Cerrados Exitosamente" },
+              //  { y: {{$cerradoPT}}, color: "#8FAABB ", label: "Cerrados por Tiempo" },
+              //  { y: {{$espinformacion}}, color: "#B08BEB ", label: "Espera de Informacion" },
+              //  { y: {{$FalteActaRES}}, color: "#3EA0DD ", label: "Falta Acta Responsiva" },
+              //  { y: {{$notificadoalU}}, color: "#F5A52A", label: "Notificado al Usuario" },
+              //  { y: {{$nuevo}}, color: "#23BFAA", label: " Nuevo" },
+               {y:{{$ticket}},},
+
                ]
            }
            ]
        });
    chart.render();
-  
+   setInterval(chart.render(), 500);
+};
+
 
 
 
@@ -578,38 +563,17 @@ var nuevotk = [
   x = 0,
   y = 0,
  num = 100,
- news = document.getElementById("news2"),
-  
+ news = document.getElementById("news2"),  
   last = setInterval(function() {
     news.textContent += nuevotk[y][x++] ;
      
       if(x > nuevotk[y].length) { 
         x = 0;
-        news.textContent = "";    
-                  
+        news.textContent = "";                      
       }  
   },num );
-
-  function oneClick(e) {
-    
-    
+  function oneClick(e) {      
   }
-  
-
-
-
-};
-
-
-
-
-
-
 </script>
-
-
-
-
-
 @endsection
 @endsection

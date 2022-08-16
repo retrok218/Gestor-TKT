@@ -30,19 +30,10 @@ public function contticket(){
   return $ticketcount;
 }
 
-
-
-
-
   public function __construct()
   {
       $this->middleware('auth');
   }
-
-
-
-
-
 
   
   // Tickets Abiertos 
@@ -51,13 +42,15 @@ public function contticket(){
    
     $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */    
     $tktporcento = round(($abierto*100)/$this->contticket(),2);
-    $nom_tkt_estatus = "Tickets Abiertos ";  
+    $nom_tkt_estatus = "Tickets Abiertos ";      
+    $tktporcenttot= 100-$tktporcento;
     
     return view('Tickets/tickets_abiertos')
       ->with('ticket', $this->contticket())
       ->with('abierto', $abierto)
       ->with('tktporcento',$tktporcento)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)    
+      ->with('nom_tkt_estatus',$nom_tkt_estatus)  
+      ->with('tktporcenttot',$tktporcenttot)  
       ;}
 
   public function data_tickets_abiertos()
@@ -79,15 +72,15 @@ public function contticket(){
   {
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $asignado = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 12)->count();
-    $tktporcento = round(($asignado*100)/$ticket,2);
-    $navbarporcent = 100-$tktporcento;  // porcentaje que se usa la barra de estatus
+    $tktporcento = round(($asignado*100)/$ticket,2);       
+    $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Asignados";
-   
+    
     return view('Tickets/tickets_asignados')
       ->with('ticket', $ticket)
       ->with('asignado', $asignado)
       ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
-      ->with('navbarporcent',$navbarporcent)
+      ->with('tktporcenttot',$tktporcenttot)
       ->with('tktporcento',$tktporcento);
   }
 
@@ -109,14 +102,16 @@ public function contticket(){
   {
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 13)->count();
-    $tktporcento = round(($atendido*100)/$tickte,2);
+    $tktporcento = round(($atendido*100)/$tickte,2);           
+    $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Atendidos ";
     return view('Tickets/tickets_atendidos')
       ->with('ticket', $tickte)
       ->with('atendido', $atendido)
       ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
-  }
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot)
+  ;}
 
   public function data_tickets_atendidos()
   {
@@ -136,13 +131,15 @@ public function contticket(){
   {
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 2)->count();
-    $tktporcento = round(($rticket*100)/$ticket,2);
+    $tktporcento = round(($rticket*100)/$ticket,2);            
+    $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Cerrados Exitosamente";
     return view('Tickets/tickets_cerrados_exitosamente')
       ->with('ticket', $ticket)
       ->with('rticket', $rticket)
       ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot);
       
   }
   public function datatickets_cerrados_exitosamente()
@@ -228,12 +225,14 @@ public function contticket(){
     $ticket = ticket::count();
     $ticket_espera_info = ticket::where('ticket_state_id', '=', 15)->count();
     $nom_tkt_estatus = "Tickets Espera de Informacion";
-    $tktporcento = round(($ticket_espera_info*100)/$ticket,2);
+    $tktporcento = round(($ticket_espera_info*100)/$ticket,2);               
+    $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_espera_informacion')
       ->with('ticket', $ticket)
       ->with('ticket_espera_info', $ticket_espera_info)
       ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot);
   }
 
   public function data_tickets_espera_informacion()
@@ -255,11 +254,14 @@ public function contticket(){
     $FaltaActaRES = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 21)->count();
     $nom_tkt_estatus = "Tickets Falta Acta Responsiva";
     $tktporcento = round(($FaltaActaRES*100)/$ticket,2);
+    $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_falta_acta_resp')
       ->with('ticket', $ticket)
       ->with('FaltaActaRES', $FaltaActaRES)
       ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot)
+      ;
   }
   public function data_falta_acta_responsiva()
   {
@@ -280,11 +282,13 @@ public function contticket(){
     $NotificadoAlUsuario = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 11)->count();
     $nom_tkt_estatus = "Tickets Notificado al Usuario";
     $tktporcento = round(($NotificadoAlUsuario*100)/$ticket,2);
+    $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_notificado_al_usuario')
       ->with('ticket', $ticket)
       ->with('NotificadoAlUsuario', $NotificadoAlUsuario)
       ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot);
   }
 
   public function data_notificado_al_usuario()
@@ -306,11 +310,13 @@ public function contticket(){
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $nom_tkt_estatus = "Tickets Nuevos";
     $tktporcento = round(($nticket*100)/$ticket,2);
+    $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_nuevos')
       ->with('nticket', $nticket)
       ->with('ticket', $ticket)
       ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('tktporcenttot',$tktporcenttot);
   }
 
   public function data_nuevoticket()
@@ -321,7 +327,7 @@ public function contticket(){
         FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
-        WHERE ticket_state_id = 7 AND queue_id IN ($usuario)                           
+        WHERE ticket_state_id = 1 AND queue_id IN ($usuario)                           
         ORDER BY ticket.tn DESC");
     return Datatables::of($ticket_nuevo)->toJson();
   }

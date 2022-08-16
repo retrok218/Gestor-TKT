@@ -192,10 +192,7 @@ class AdminController extends Controller
  //$ticket_allJson = json_encode($ticket_all);
  // Fin consulta por mes 
  if ($perfil == true) {
-    # code...
-
  
-
 
        return view('admin.dashboard')
       ->with('ultimoTK',$ultimoTK)
@@ -272,12 +269,9 @@ class AdminController extends Controller
       ->with('mes_septiembre2',$mes_septiembre2)
       ->with('mes_octubre2',$mes_octubre2)
       ->with('mes_noviembre2',$mes_noviembre2)
-      ->with('mes_diciembre2',$mes_diciembre2)
-      
-  
-
-        ->with('tktporarea',$tktporarea)
-       ;}
+      ->with('mes_diciembre2',$mes_diciembre2)      
+      ->with('tktporarea',$tktporarea)
+;}
        else {
         return view('Tickets/Monitoreo_tickets/Monitoreo_de_Tickets');
        }
