@@ -226,7 +226,7 @@
                        Todos Los Tickets
                     </div>                    
                     <div class="kt-demo-panel__item-preview">
-                    <div id="sales-doughnut-chart-us" style="height: 400px; width: 100%;"></div>
+                    <div id="sales-doughnut-chart-us" style="height: 300px; width: 100%;"></div>
                     </div>
         </div>  
 
