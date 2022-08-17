@@ -88,7 +88,7 @@
 
 
                             </div>
-                            <!-- <div class="row"  style="color: #595d6e;">
+                            <div class="row"  style="color: #595d6e;">
                             <div class="col-sm-6" >  
                                     <div class="kt-widget25"  style="border-right: groove;">
                                         <div class="kt-widget24__info" style="
@@ -105,7 +105,7 @@
                                           </div>                                                                                                                                                                                                              
                                       </div>            
                                 </div>
-                            </div> -->
+                            </div>
                     </div>                    
                   </div>  
                 </div>  
@@ -161,8 +161,8 @@
             
             
             
-            
-                <table id="Solicitudesdetoner" >
+              <div class="col-md-12 col-lg-12 col-sm-12 pull-left">
+                <table class="table table-striped- table-bordered table-hover table-checkable" id="Solicitudesdetoner" >
                     <thead >     
                     <tr>
                             <th colspan="5" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Tickets</th>
@@ -181,11 +181,8 @@
                             <th>1.-Solicitado Cantidad</th>
                             <th>2.-Solicitado Tipo de Toner2 </th>
                             <th>2.-Solicitado Cantidad</th>
-                            <th>3.-Solicitado Tipo de Toner</th>  
-                            <th>3.-Solicitado Catidad</th>       
-                            <th>4.-Solicitado Tipo de Toner</th>  
-                            <th>4.-Solicitado Catidad</th> 
-                            
+                            <th>3.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
+                            <th>3.-Solicitado Catidad</th>       <!-- Cantidad de toner  -->
             
                             <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Cantidad entregada </th>
                             <th>1.-Tipo de Toner Entregado</th>
@@ -193,19 +190,20 @@
                             <th>2.-Tipo de Toner Entregado</th>
                             <th>3.-Cantidad entregada </th>
                             <th>3.-Tipo de Toner Entregado</th>
-                            <th>4.-Cantidad entregada </th>
-                            <th>4.-Tipo de Toner Entregado</th>
                             <th>Cometario de Entrega</th>                                                    
                             <th>Estado</th>      
                         </tr>
                     </thead>
-
-
-
-
-
-                    <tbody>            
-                    
+                    <tbody>
+            
+                    @php
+                       /* class tktdefinitivo {
+                          public $numero_tiket = $tk_id ->tn; 
+                        Numero que identfica el TKT
+                        }
+            
+            */
+                    @endphp
             
             
             
@@ -268,7 +266,6 @@
                                                 elseif(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
                                                   $tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner); 
                                                 }
-                            
                       
                       
                       
@@ -454,15 +451,11 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         <th>Filtro por estado de ticket</th> <!--11-->
                     </tfoot>                              
                 </table> 					
                 
-                
+              </div>
 
               </div>
             </div>
@@ -605,18 +598,17 @@ var table = $('#Solicitudesdetoner').DataTable({
   
         
       "pageLength": 6,   
-      "lengthChange": true,
-      "searching": true,
+     // "lengthChange": true,
+     // "searching": true,
       //"ordering": true,
-      "info": true,
+     // "info": true,
       //responsive: true, 
-      "autoWidth": false,
-      
+      //"autoWidth": false,      
       "language": idioma,
-      "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
-      "order":[1 ,'desc'],
-      dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
-      dom:'Bfrtip',
+     // "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
+      //"order":[1 ,'desc'],
+     // dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
+     // dom:'Bfrtip',
       deferRender:true, 
       "columnDefs": [ {
             "visible": true,

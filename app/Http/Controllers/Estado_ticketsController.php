@@ -332,8 +332,10 @@ public function contticket(){
     return Datatables::of($ticket_nuevo)->toJson();
   }
   // Ticket Monitoreo de Tickte 
+  
   public function monitoreo_tickets()
   {
+    
     
     $tickte = ticket::count(); //0
     $asignado = ticket::where('ticket_state_id', '=', 12)->count(); //1
@@ -356,6 +358,14 @@ public function contticket(){
     foreach ($porcentajes as $porcentaje) {
       $tktsporciento[] = round($porcentaje * 100 / $tickte,2);
     };
+
+
+   
+  
+
+
+
+
 
 
 
@@ -499,6 +509,10 @@ public function contticket(){
   //   $tkt_com=DB::connection('pgsql2')->select()
   // }
 
+  
+
 }
+
+
 
 

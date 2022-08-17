@@ -8,9 +8,10 @@
 
             <div class="kt-aside__brand-logo">
                 <a href="{{ url('/') }}">
-                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SAF_logo_header.svg')}}" width="350"
-                        style="padding-top: 8px">
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_gcdmx.png')}}" width="30%">
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_cdmx_saf.png')}}" width="30%">
                 </a>
+                
             </div>
             <!--
                <ul class="kt-menu__nav ">
