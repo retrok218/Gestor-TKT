@@ -49985,3 +49985,11 @@ tr.shown td.details-control {
     width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
   }
   }
+
+  .imglogin{
+    background-image: url(../../media/logos/mesa15.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+  }

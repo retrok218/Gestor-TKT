@@ -359,16 +359,6 @@ public function contticket(){
       $tktsporciento[] = round($porcentaje * 100 / $tickte,2);
     };
 
-
-   
-  
-
-
-
-
-
-
-
     return view('Tickets/Monitoreo_Tickets/Monitoreo_de_Tickets')
       ->with('ticket', $tickte)
       ->with('asignado', $asignado)
@@ -408,13 +398,7 @@ public function contticket(){
       //  ->orwhere('service_id','=',78)
        ->count();
         $n++;
-       }
-     
-
-       
-
-       
-       
+       } 
 
        // Fin Para La Grafica de Area 
 
@@ -424,7 +408,10 @@ public function contticket(){
        
         foreach($estado_graf as $estado){
           $estado_id[]=$estado->id;
+
         };
+
+        
         $num=0;
         foreach ($estado_id as $estadoid) {
           $estado_graf[$num]->conteo=DB::connection('pgsql2')->table('ticket')
@@ -433,18 +420,23 @@ public function contticket(){
           ->orwhere('service_id','=',78)
           ->count();
           $num++;
+
+        }
+        $num=0;
+        foreach ($estado_graf as $estadiesp ){
+          if ($estadiesp->name == "new") {
+            $estado_graf[$num]->name = "nuevo";
+            
+          }elseif ($estadiesp->name == "closed successful") {
+            $estado_graf[$num]->name = "Cerrado exitosamente";
+          }elseif($estadiesp->name == "open"){
+            $estado_graf[$num]->name ="Abierto";
+          }
+          $num++;
         }
 
        // Grafica por estado FIn 
-
-
-
-
-
-    
-
-
-
+     
     $ticketfusion = DB::connection('pgsql2')
       //->select("SELECT * FROM ticket");
       ->select("SELECT
@@ -485,14 +477,6 @@ public function contticket(){
   ORDER BY ticket.tn DESC");
 
 
-
-
-
-
-
-
-
-
     $solicitudToner = DB::connection('pgsql2')->table('ticket')->where('service_id', '=', 79)->count();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
@@ -505,14 +489,136 @@ public function contticket(){
  
    ;}
 
-  // public function tkt_completo(){
-  //   $tkt_com=DB::connection('pgsql2')->select()
-  // }
 
+
+   /* Codigo para tkt sol toner ajax*/
+
+  public function soltonerjax(){
+    $tktsoltoner_fucion = DB::connection('pgsql2')->select("SELECT
+  ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,    
+  ARRAY_AGG (
+    ticket_history.name
+  )ticket_compuesto,
+  ticket_state.name,
+  ticket.create_time
+FROM 
+  (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
+  INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+  INNER JOIN queue ON ticket.queue_id = queue.id
+
+  WHERE 
+   (ticket.service_id = 79 OR ticket.service_id = 78)
+and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
+  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
+  or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
+  or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%' 
+  or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%' or ticket_history.name LIKE '%%ITSMReviewRequired62%%'
+  or ticket_history.name LIKE '%%ITSMReviewRequired63%%' or ticket_history.name LIKE '%%ITSMReviewRequired71%%' or ticket_history.name LIKE '%%ITSMReviewRequired70%%'
+  )
   
+   and (ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
+   and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
+   and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
+   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%' )
+
+GROUP BY 
+  ticket_id,
+  ticket.create_time,
+  ticket.title,
+  ticket.tn,
+  ticket_history.ticket_id,
+  ticket_state.name,
+  queue.name
+  
+ORDER BY ticket.tn DESC");
+$n=0;
+
+foreach ($tktsoltoner_fucion as $tktcompusto) {
+  $eliminados1 = preg_replace('/FieldName/','',$tktcompusto->ticket_compuesto);
+  $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
+  $eliminados  = preg_replace('/ITSMReview/','',$eliminados2);
+  $eliminados3 = preg_replace('/@/','',$eliminados);
+  $eliminados4 = preg_replace('/#/','',$eliminados3);
+  $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
+  $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
+  $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
+  $modificacion8 = preg_replace('/%%OldValue%%/',' ',$eliminados7);
+  $tktsoltoner_fucion[$n]->limpio= array_pad(explode(',',$modificacion8),25," ");   
+  $n++;
 
 }
+$i=0;
+foreach ($tktsoltoner_fucion as $sacando_dato) {  
+  foreach ($sacando_dato->limpio as $otroarreglo) {    
+
+   
+    
 
 
+
+    if(strncasecmp($otroarreglo,'%%%%Required7',13)===0){
+       $tktsoltoner_fucion[$i]->dependencia= preg_replace('/%%%%Required7/',' ',$otroarreglo);                                                                                
+      }
+    if(strncasecmp($otroarreglo,'%%%%Required64',14)===0){
+      $tktsoltoner_fucion[$i]->cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$otroarreglo);
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required65',14)===0){
+      $tktsoltoner_fucion[$i]->Tipo_toner1= preg_replace('/%%%%Required65/',' ',$otroarreglo);                                        
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required66',14)===0){
+      $tktsoltoner_fucion[$i]->cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$otroarreglo);                                           
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required67',14)===0){
+      $tktsoltoner_fucion[$i]->tipotoner2 = preg_replace ('/%%%%Required67/',' ',$otroarreglo);                                                                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required68',14)===0){
+      $tktsoltoner_fucion[$i]->cantidad3 = preg_replace ('/%%%%Required68/',' ',$otroarreglo);
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required69' ,14)===0){                                      
+      $tktsoltoner_fucion[$i]->tipotoner3 = preg_replace('/%%%%Required69/',' ',$otroarreglo); 
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required34',14)===0){
+      $tktsoltoner_fucion[$i]->comentario_entrega = preg_replace ('/%%%%Required34/',' ',$otroarreglo);                                                             
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required35',14)===0){
+      $tktsoltoner_fucion[$i]->cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$otroarreglo);                                       
+    }      
+    if(strncasecmp($otroarreglo,'%%%%Required53',14)===0){
+      $tktsoltoner_fucion[$i]->tipotonerentregado1 = preg_replace('/%%%%Required53/','',$otroarreglo);                                          
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required56',14)===0){
+      $tktsoltoner_fucion[$i]->cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$otroarreglo);                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required57',14)===0){
+      $tktsoltoner_fucion[$i]->tipotonerentregado2 = preg_replace('/%%%%Required57/','',$otroarreglo);                                          
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required60',14)===0){
+      $tktsoltoner_fucion[$i]->cantidadtonerentregado3 = (int)preg_replace('/%%%%Required60/',' ',$otroarreglo);                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required61',14)===0){
+      $tktsoltoner_fucion[$i]->tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$otroarreglo);                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required62',14)===0){
+      $tktsoltoner_fucion[$i]->cantidadtonerentregado4 = preg_replace('/%%%%Required62/',' ',$otroarreglo);                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required63',14)===0){
+      $tktsoltoner_fucion[$i]->tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$otroarreglo);                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required70',14)===0){
+      $tktsoltoner_fucion[$i]->Solicitado4 = preg_replace('/%%%%Required70/',' ',$otroarreglo);                                       
+    }
+    if(strncasecmp($otroarreglo,'%%%%Required71',14)===0){
+      $tktsoltoner_fucion[$i]->SolicitadoTipo4=preg_replace('/%%%%Required71/',' ',$otroarreglo);                                       
+    }
+  }  
+  
+  $i++;
+}
+
+dd($tktsoltoner_fucion);
+
+     return Datatables::of($tktsoltoner_fucion)->toJson();
+  ;}
+}
 
 

@@ -147,11 +147,12 @@
                                 <div class="input-group-append">
                                   <span class="input-group-text"><i class="flaticon-calendar"></i></span>
                                 </div>
+                                <button class="btn btn-default clear-date-filter">Limpiar Filtross</button>
                               </div>
                           </div>        
 
 
-                              <button class="btn btn-default clear-date-filter">Limpiar Filtross</button>
+                              
                       </div>                    
                   </div> 
               </form>
@@ -512,7 +513,7 @@
                         Tickets por Estado del Ticket
                     </div>                    
                     <div class="kt-demo-panel__item-preview">
-                    <div id="graficatonerporestado" style="height: 500px; width:295px;"> </div>
+                    <div id="graficatonerporestado" style="height: 400px; width:100%;"> </div>
                     </div>
         </div>                   
   </div>              
@@ -598,17 +599,17 @@ var table = $('#Solicitudesdetoner').DataTable({
   
         
       "pageLength": 6,   
-     // "lengthChange": true,
-     // "searching": true,
-      //"ordering": true,
-     // "info": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
       //responsive: true, 
-      //"autoWidth": false,      
+      "autoWidth": false,      
       "language": idioma,
-     // "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
-      //"order":[1 ,'desc'],
-     // dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
-     // dom:'Bfrtip',
+      "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
+      "order":[1 ,'desc'],
+      dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
+      dom:'Bfrtip',
       deferRender:true, 
       "columnDefs": [ {
             "visible": true,
@@ -929,7 +930,8 @@ window.onload = function () {
       showInLegend: true,     
       legendText: "{label}",      	            
 			dataPoints: [
-        @foreach ($estado_graf as $estadotkt)         
+        @foreach ($estado_graf as $estadotkt)       
+        
         {  y:{{$estadotkt->conteo}},label: "{{$estadotkt->name}} - {{$estadotkt->conteo}}" },           
          @endforeach   
 			]

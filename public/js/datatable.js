@@ -66,8 +66,6 @@ var table = $('#tablatk').DataTable({
              buttons: [
                 
    
-                 
-   
                  {
                      extend: 'excelHtml5',
                      text: '<i class="fas fa-file-excel"></i> Exel',
@@ -229,7 +227,7 @@ function format ( d ) {
     // `d` is the original data object for the row
     console.log(d)
     let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" >'+
-        '<tr>'+
+        '<tr >'+
             '<td>Asunto Completo:</td>'+
             '<td>'+d.title+'</td>'+             
         '</tr>'+        

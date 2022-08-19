@@ -236,7 +236,7 @@
                     </div>                    
                     <div class="kt-demo-panel__item-preview">
                     <div id="chartContainer" style="height: 300px; width:100%;"> </div>
-                    </div>
+                  </div>
         </div>                   
   </div>              	
 </div>
@@ -354,6 +354,7 @@ window.onload = function (){
                                    { //dataSeries object
                                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
                                      type: "pie",
+                                     indexLabelFontSize: 10,
                                      showInLegend: true,
                                      legendText: "{label}",
                                      indexLabel: "{label} - #percent%",                                                                                                                  
@@ -418,6 +419,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
 
   data: [{
+      indexLabelFontSize: 10,
       name: "2021",
   		type: "area",
   		color: "#369EAD",

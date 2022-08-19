@@ -8,8 +8,8 @@
 
             <div class="kt-aside__brand-logo">
                 <a href="{{ url('/') }}">
-                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_gcdmx.png')}}" width="30%">
-                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_cdmx_saf.png')}}" width="30%">
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_gcdmx.png')}}" width="30%"> <!--logo secretraira Administracion y fiannazas-->
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_cdmx_saf.png')}}" width="30%"> <!--logo gobierno de la ciudad de mexico  -->
                 </a>
                 
             </div>
@@ -125,7 +125,7 @@
                         $mens_bi =array(
                              1=>"Hola" ,
                              2=>"Buen dia" ,
-                             3=>"Bienbenido " ,
+                             3=>"Bienvenido " ,
                              4=>"Comencemos" ,
 
                         );

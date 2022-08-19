@@ -3,7 +3,7 @@
    <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
       <div class="kt-aside__brand-logo">
          <a href="{{ url('/') }}">
-            <img alt="Logo" src="{{ URL::asset('assets/media/logos/'.env('APP_LOGO_ASIDE') ) }}" >
+            <img alt="Logo" src="{{ URL::asset('assets/media/logos/mesa15.jpg')  }}" style="width: 50%;margin: 10px 3px  -7px  10px;">
          </a>
       </div>
       <div class="kt-aside__brand-tools">

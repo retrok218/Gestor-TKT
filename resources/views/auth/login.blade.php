@@ -23,15 +23,18 @@
                 <div
                     class="kt-grid__item  kt-grid__item--order-tablet-and-mobile-2  kt-grid kt-grid--hor kt-login__aside">
                     <div class="kt-login__wrapper">
-                        <div class="kt-login__container">
+                        <div class="kt-login__container">                            
                             <div class="kt-login__body">
                                 <div class="kt-login__logo">
                                     <a href="#">
-                                        <img src="assets/media/company-logos/SAF_logo_header.svg" width="100%">
+                                        
+                                        <img alt="Logo1" src="{{ URL::asset('assets/media/company-logos/logo_gcdmx.png')}}" width="40%">
+                                        <img alt="Logo2" src="{{ URL::asset('assets/media/company-logos/logo_cdmx_saf.png')}}" width="40%">
                                     </a>
                                 </div>
                                 <div class="kt-login__signin">
                                     <div class="kt-login__head">
+                                    <img src="{{ URL::asset('assets/media/logos/mesa15.jpg')}}" width="30%" alt="login" style="opacity: 0.4; margin: 0 0 10px 0;"> 
                                         <h3 class="kt-login__title">Ingresar</h3>
                                     </div>
                                     <div class="kt-login__form">
@@ -152,7 +155,9 @@
                     </div>
                 </div>
                 <div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content"
-                    style="background-image: url(assets/media/bg/bg-5.jpg);  background-repeat: no-repeat; background-position: center; ">
+                style="background-image: url(assets/media/logos/fondocdmx.jpg);  background-repeat: no-repeat; background-position: center;">
+                    <!-- fondo verde normal style="background-image: url(assets/media/bg/bg-5.jpg);  background-repeat: no-repeat; background-position: center; -->
+                   
                     <div class="kt-login__section">
                         <div class="kt-login__block">
                             <h3 class="kt-login__title">Sistemas Institucionales</h3>
