@@ -437,7 +437,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Dependencia</th>
+                        <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo "></th>
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Fila</th>
                         <th ></th>
                         <th></th>
@@ -714,39 +714,40 @@ var table = $('#Solicitudesdetoner').DataTable({
                    ]         
            },
            columnDefs:[{
-                        targets: [7,8,9,10,13,14,15,16], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
+                        targets: [7,8,9,10,13,14,15,16], 
                         visible: false
                         }] ,
             
 
                         
 // Filtro por seleccion multiple
-                initComplete: function() {            
-                  this.api().columns([3,4,18]).every(function() {
-                    var column = this;
-                    
-                    var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
-                      .appendTo($(column.footer()))
-                      .on('change', function() {
-                        var vals = $('option:selected', this).map(function(index, element) {
-                          return $.fn.dataTable.util.escapeRegex($(element).val());
-                        }).toArray().join('|');
-
-                        column
-                          .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
-                          .draw();
-                      });
-
-                    column.data().unique().sort().each(function(d, j) {
-                      select.append('<option value="' + d + '">' + d + '</option>')
-                    });
-                    var title = $(this).text();
-                      
-                  });
-                  //select2 init for .mymsel class
-                  $(".mymsel").select2();
-                },
+initComplete: function () {
+    //col3 en mantenimiento 
+             this.api().columns([4]).every(function () {
+                 var column = this;
+                 //added class "mymsel"
+                 var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
+                     .appendTo($(column.footer()))
+                     .on('change', function () {
+                         var vals = $('option:selected', this).map(function (index, element) {
+                             return $.fn.dataTable.util.escapeRegex($(element).val());
+                         }).toArray().join('|');
+                         column
+                             .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+                             .draw();
+                     });
+                 column.data().unique().sort().each(function (d, j) {
+                     select.append('<option value="' + d + '" >' + d + '</option>')
+                 });
+                 var title = $(this).text();
+   
+             });
+             //select2 init for .mymsel class
+             $(".mymsel").select2();
+         },
 //fin de la seleccion multiple 
+
+
 
 
 
@@ -829,9 +830,6 @@ var table = $('#Solicitudesdetoner').DataTable({
         }            
           
 });
-//  Boton de +       table.on( 'responsive-display', function ( e, datatable, row, showHide, update ) {
-//     console.log( 'Details for row '+row.index()+' '+(showHide ? 'shown' : 'hidden') );
-// } );
 
 
 

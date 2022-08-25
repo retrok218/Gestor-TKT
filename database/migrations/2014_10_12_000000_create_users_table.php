@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('apellido_paterno');
             $table->string('apellido_materno')->nullable();
             $table->string('usuario');
-            $table->string('avatar')->default('assets/media/users/sinimg.jpg');
+            $table->string('avatar')->default('assets/media/users/avatar_neutro.jpg');
             $table->string('estatus');
             $table->string('id_ubicacion')->nullable();
             $table->string('id_rol')->nullable();

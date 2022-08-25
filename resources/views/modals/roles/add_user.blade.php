@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar correo electrónico" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+                                        <input type="email" class="" id="email" name="email" placeholder="Ingresar correo electrónico" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
                                         <span id="email-error" class="help-block"></span>
                                     </div>
                                     <div class="form-group">

@@ -69,7 +69,7 @@ var KTLoginGeneral = function () {
                                 }
                                 else {
                                    // console.log('es area normal');
-                                       window.location.href = "home";
+                                       window.location.href = "/";
                                 }
                             } else {
                                 e.removeClass("kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light").attr("disabled", !1),

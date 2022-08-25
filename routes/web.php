@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Auth;
+
 Auth::routes();
 Route::resource('roles', 'RoleController');
 
@@ -32,6 +35,8 @@ Route::resource('posts', 'PostController');*/
   });
 
 
+
+
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register/verify/{code}', 'Auth\LoginController@verify');
 Route::post('/register', 'Auth\RegisterController@create')->name('create');
@@ -51,26 +56,32 @@ Route::get('/', function () {
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
             return redirect('/admin');
+
+            } elseif( Auth::user()->hasRole('area')){
+              return redirect('/tickets_asignados');
+                            
+            } elseif( Auth::user()->hasRole('SinAsignar')){
+              return redirect('/monitoreo_tickets');
             }
-            else{
-                return redirect('/home');
-                }
+
+
+            
 
         }else{
-    return redirect('/login');
-    }
+              return redirect('/login');
+        }
     });
 
  //Usuarios
  //editar usuarios
     Route::group(['prefix' => 'users'], function() {
         Route::get('/profile', 'UserController@profile');
-    Route::get('/index', 'UserController@index');
-    Route::post('/updatePassword', 'UserController@updatePassword');
-    Route::post('/validPassword', 'UserController@validPassword');
-    Route::post('/validUser', 'Auth\RegisterController@validUser');
-    Route::post('/validEmail', 'Auth\RegisterController@validEmail');
-    Route::post('/editUser', 'UserController@editUser');
+        Route::get('/index', 'UserController@index');
+        Route::post('/updatePassword', 'UserController@updatePassword');
+        Route::post('/validPassword', 'UserController@validPassword');
+        Route::post('/validUser', 'Auth\RegisterController@validUser');
+        Route::post('/validEmail', 'Auth\RegisterController@validEmail');
+        Route::post('/editUser', 'UserController@editUser');
     });
  //Administrador
  Route::group(['middleware' => ['role:SuperAdmin']], function() {

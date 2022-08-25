@@ -136,11 +136,11 @@
 
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">{{$mens_bi[$numr]}},</span>
                     <span class="kt-header__topbar-username kt-hidden-mobile">{{ Auth::user()->usuario }} </span>
-                    @if (Auth::user()->avatar)
-                        <img class="" alt="Pic" id="img_avatar_header" src="{{ asset('/'.Auth::user()->avatar) }}">
-                    @else
-                        <img class="" alt="Pic" id="img_avatar_header" src="{{ asset('assets/media/users/avatar_neutro.jpg') }}">
-                    @endif
+                    @if (Auth::user()->avatar == 'assets/media/users/avatar_neutro.jpg')                           
+                            <img id="img_avatar_header_menu" src="{{ asset('assets/media/users/sinimg.jpg') }}">
+                        @else                           
+                            <img class="" id="img_avatar_header_menu" alt="Pic" src="{{asset('/'.Auth::user()->avatar)}}">
+                        @endif
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                     <span
                         class="kt-hidden kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
@@ -152,10 +152,10 @@
                 <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x"
                     style="background-image: url({{ URL::asset('assets/media/misc/bg-1.jpg')}})">
                     <div class="kt-user-card__avatar">
-                        @if (Auth::user()->avatar)
+                        @if (Auth::user()->avatar == 'assets/media/users/avatar_neutro.jpg')                           
+                            <img id="img_avatar_header_menu" src="{{ asset('assets/media/users/sinimg.jpg') }}">
+                        @else                           
                             <img class="" id="img_avatar_header_menu" alt="Pic" src="{{asset('/'.Auth::user()->avatar)}}">
-                        @else
-                            <img id="img_avatar_header_menu" src="{{ asset('assets/media/users/avatar_neutro.jpg') }}">
                         @endif
                         <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                         <span

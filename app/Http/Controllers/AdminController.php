@@ -273,7 +273,7 @@ class AdminController extends Controller
       ->with('tktporarea',$tktporarea)
 ;}
        else {
-        return view('Tickets/Monitoreo_tickets/Monitoreo_de_Tickets');
+        return redirect('/tickets_asignados');
        }
        
  }

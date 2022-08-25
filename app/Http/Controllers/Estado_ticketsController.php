@@ -70,11 +70,14 @@ public function contticket(){
 
   public function tickets_asignados()
   {
+    
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $asignado = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 12)->count();
     $tktporcento = round(($asignado*100)/$ticket,2);       
     $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Asignados";
+    
+    
     
     return view('Tickets/tickets_asignados')
       ->with('ticket', $ticket)
@@ -395,7 +398,7 @@ public function contticket(){
        $areas_filastkts[$n]->coun=DB::connection('pgsql2')->table('ticket')
        ->where('queue_id','=',$areas_ids)
        ->where('service_id','=',79)
-      //  ->orwhere('service_id','=',78)
+       ->orwhere('service_id','=',78)
        ->count();
         $n++;
        } 
@@ -437,48 +440,49 @@ public function contticket(){
 
        // Grafica por estado FIn 
      
-    $ticketfusion = DB::connection('pgsql2')
-      //->select("SELECT * FROM ticket");
-      ->select("SELECT
-    ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,    
-    ARRAY_AGG (
-      ticket_history.name
-    )ticket_compuesto,
-    ticket_state.name,
-    ticket.create_time
-  FROM 
-    (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
-    INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-	  INNER JOIN queue ON ticket.queue_id = queue.id
+       $ticketfusion =DB::connection('pgsql2')
+       
+       ->select("SELECT
+       ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,
+       
+       ARRAY_AGG (
+         ticket_history.name
+       )ticket_compuesto,
+       ticket_state.name,
+       ticket.create_time
+     FROM 
+       (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
+       INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+       INNER JOIN queue ON ticket.queue_id = queue.id
+       WHERE 
+        (ticket.service_id = 79 or ticket.service_id = 78)
+     and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
+       or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
+       or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
+       or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%'
+       or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%'
+       )
+       
+        and (ticket_history.name NOT LIKE '%ITSMReviewRequired71%'and ticket_history.name NOT LIKE '%ITSMReviewRequired70%'and ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
+        and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
+        and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
+        and ticket_history.name NOT LIKE '%ITSMReviewRequired79%' )
+     
+     GROUP BY 
+       ticket_id,
+       ticket.create_time,
+       ticket.title,
+       ticket.tn,
+       ticket_history.ticket_id,
+       ticket_state.name,
+       queue.name
+       
+     ORDER BY ticket.tn DESC");
+     $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
+     $tickte = DB::connection('pgsql2')->table('ticket')->count();
+   
+        
 
-    WHERE 
-     (ticket.service_id = 79 OR ticket.service_id = 78)
-  and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
-	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
-		or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
-    or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%'
-    or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%'
-    )
-    
-	   and (ticket_history.name NOT LIKE '%ITSMReviewRequired71%'and ticket_history.name NOT LIKE '%ITSMReviewRequired70%'and ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%' )
-  
-  GROUP BY 
-    ticket_id,
-    ticket.create_time,
-    ticket.title,
-    ticket.tn,
-    ticket_history.ticket_id,
-    ticket_state.name,
-    queue.name
-    
-  ORDER BY ticket.tn DESC");
-
-
-    $solicitudToner = DB::connection('pgsql2')->table('ticket')->where('service_id', '=', 79)->count();
-    $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
     return view('Tickets/tickets_sol_toner')
       ->with('tk_id', $ticketfusion)
@@ -491,7 +495,43 @@ public function contticket(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    /* Codigo para tkt sol toner ajax*/
+
+
 
   public function soltonerjax(){
     $tktsoltoner_fucion = DB::connection('pgsql2')->select("SELECT
@@ -619,6 +659,12 @@ dd($tktsoltoner_fucion);
 
      return Datatables::of($tktsoltoner_fucion)->toJson();
   ;}
+}
+class ticket_creado {
+  public $id;
+  public $nombre;
+  public $pais;
+
 }
 
 
