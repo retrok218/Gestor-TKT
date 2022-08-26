@@ -104,6 +104,9 @@
                <i class="kt-menu__section-icon flaticon-more-v2"></i>
             </li>
 
+
+
+
             <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                            <rect id="bound" x="0" y="0" width="24" height="24" />
@@ -116,8 +119,7 @@
                   <ul class="kt-menu__subnav">
                   <ul class="kt-menu__subnav">
                   <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_asignados') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Asignados</span></a></li>
-
-                  @can('SuperAdmin','admin')
+                  @can('SuperAdmin')
                      <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Utils</span></span></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_abiertos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Abierto</span></a></li>                     
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_atendidos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Atendidos</span></a></li>
@@ -127,8 +129,9 @@
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/falta_acta_responsiva') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Falta Acta Responsiva</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_notificado_al_usuario') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Notificado Al Usuario</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_nuevos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Nuevo</span></a></li>
-                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/todos_los_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Todos Los Tickets</span></a></li>
+                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/todos_los_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Todos Los Tickets</span></a></li>                    
                   @endcan
+           
                   
                   
                  
@@ -147,6 +150,9 @@
                   </ul>
                </div>  
             </li>
+
+
+
 
  @can('SuperAdmin')
    <!-- parte de reporte de consumibles -->

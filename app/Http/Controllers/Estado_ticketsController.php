@@ -77,7 +77,7 @@ public function contticket(){
     $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Asignados";
     
-    
+    // dd(auth()->user()->id_rol);
     
     return view('Tickets/tickets_asignados')
       ->with('ticket', $ticket)

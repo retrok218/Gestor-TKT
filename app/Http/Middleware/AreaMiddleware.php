@@ -3,9 +3,21 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 
 class AreaMiddleware
 {
+  protected $auth;
+
+  public function __construct(Guard $auth)
+  {
+    $this->auth = $auth;
+  }
+
+
+
+
+
     /**
      * Handle an incoming request.
      *
@@ -15,11 +27,10 @@ class AreaMiddleware
      */
     public function handle($request, Closure $next)
     {
-      dd("hola estas en e midelware de admin ");
-
-            return $next($request);
-          
-       
-        
+      if ($this->auth->user()->id_rol == 1) {
+        return $next($request);
+      }
+      abort(403);
+     
     }
 }
