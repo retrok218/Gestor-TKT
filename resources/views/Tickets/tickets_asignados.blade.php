@@ -13,7 +13,8 @@
                             <!--begin::Total Profit-->                            
                             <div class="kt-widget24" style="text-align: center;">
                                 <div class="row" style="color: #595d6e;">
-                                    <div class="col-sm-6" >  
+                                    <div class="col-sm-6" > 
+                                        @can('SuperAdmin') 
                                         <div class="kt-widget25"  style="border-right: groove;">
                                             <div class="kt-widget24__info" style="
                                             text-align: initial;">
@@ -23,18 +24,19 @@
                                             </div> 
                                             <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
                                                 <span class="kt-widget25__stats m-font-brand">- {{$ticket}}</span>                                                                                      
-                                          </div>            
+                                          </div>  
+                                          @endcan          
                                     </div>
                                     <div class="col-sm-6" >
                                         <div class="kt-widget25">
                                             <div class="kt-widget24__info" style="
                                             text-align: initial;">
                                                 <h4 class="kt-widget24__title">
-                                                    {{$nom_tkt_estatus}}
+                                                    {{$nom_tkt_estatus}} 
                                                 </h4>					       
                                             </div>
                                             <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
-                                                <span class="kt-widget25__stats m-font-brand">- {{$asignado}}</span>                                                  
+                                                <span class="kt-widget25__stats m-font-brand">- {{$totalMesJsonm}}</span>                                                  
                                         </div>            
                                     </div>                        
                                 </div>  

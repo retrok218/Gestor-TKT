@@ -19,10 +19,11 @@ use App\ticket;
 use Illuminate\Support\Collection;
 use stdClass;
 
-
 class Estado_ticketsController extends Controller
-
 {
+
+
+
 
 /*Cantidad de ticket que hay actualmente todos*/
 public function contticket(){
@@ -67,25 +68,40 @@ public function contticket(){
   }
 
   
+  use sumaareatrait;
 
   public function tickets_asignados()
   {
-    
+
+    $usuario = auth()->user()->area;
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $asignado = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 12)->count();
     $tktporcento = round(($asignado*100)/$ticket,2);       
     $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Asignados";
-    
-    // dd(auth()->user()->id_rol);
+
+    $canttickets = DB::connection('pgsql2') ->select ("SELECT  COUNT (*)
+    FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
+    INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+    INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+    WHERE ticket_state_id = 12 AND queue_id IN ($usuario)");  
+    $totalcantJsons = $canttickets[0];    
+    $tt =$totalcantJsons->count;
+ 
     
     return view('Tickets/tickets_asignados')
+      
+      ->with('canttickets',$canttickets)
       ->with('ticket', $ticket)
       ->with('asignado', $asignado)
       ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
       ->with('tktporcenttot',$tktporcenttot)
-      ->with('tktporcento',$tktporcento);
+      ->with('tktporcento',$tktporcento)
+      ->with('totalMesJsonm', $tt);
   }
+
+
+
 
   public function data_ticket_asignado()
   {
@@ -97,7 +113,7 @@ public function contticket(){
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
         WHERE ticket_state_id = 12 AND queue_id IN ($usuario)                           
         ORDER BY ticket.tn DESC");
-    return Datatables::of($tkasignado)->toJson();;
+    return Datatables::of($tkasignado)->toJson();
   }
 
   // Tickets Atendidos
@@ -501,34 +517,6 @@ public function contticket(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    /* Codigo para tkt sol toner ajax*/
 
 
@@ -660,6 +648,27 @@ dd($tktsoltoner_fucion);
      return Datatables::of($tktsoltoner_fucion)->toJson();
   ;}
 }
+
+
+
+
+
+trait sumaareatrait{
+  public function smtrait(){
+    $tkasignado1 =  DB::connection('pgsql2')
+    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
+        FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
+        INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+        INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+        WHERE ticket_state_id = 12 AND queue_id IN (19)                           
+        ORDER BY ticket.tn DESC");
+  }
+}
+$asignado = new Estado_ticketsController;
+$asignado->smtrait();
+
+
+
 class ticket_creado {
   public $id;
   public $nombre;
