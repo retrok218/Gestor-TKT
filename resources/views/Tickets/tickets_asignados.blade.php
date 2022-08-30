@@ -13,8 +13,9 @@
                             <!--begin::Total Profit-->                            
                             <div class="kt-widget24" style="text-align: center;">
                                 <div class="row" style="color: #595d6e;">
+                                @can('SuperAdmin') 
                                     <div class="col-sm-6" > 
-                                        @can('SuperAdmin') 
+                                        
                                         <div class="kt-widget25"  style="border-right: groove;">
                                             <div class="kt-widget24__info" style="
                                             text-align: initial;">
@@ -25,12 +26,12 @@
                                             <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
                                                 <span class="kt-widget25__stats m-font-brand">- {{$ticket}}</span>                                                                                      
                                           </div>  
-                                          @endcan          
+                                                  
                                     </div>
+                                    @endcan 
                                     <div class="col-sm-6" >
                                         <div class="kt-widget25">
-                                            <div class="kt-widget24__info" style="
-                                            text-align: initial;">
+                                            <div class="kt-widget24__info" style="text-align: initial;">
                                                 <h4 class="kt-widget24__title">
                                                     {{$nom_tkt_estatus}} 
                                                 </h4>					       
@@ -40,11 +41,13 @@
                                         </div>            
                                     </div>                        
                                 </div>  
+                                @can('SuperAdmin') 
                                 <div class="progress progress--sm" style="height: 1rem">                                                                                           
                                                                                                                                     
                                         <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$tktporcenttot}}%" aria-valuenow={{$ticket}} aria-valuemin="0" aria-valuemax={{$ticket}}></div>                                               
                                         <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style="width: {{$tktporcento}}%" aria-valuenow={{$asignado}} aria-valuemin="0" aria-valuemax={{$asignado}}></div>                                                                                              
-                                </div>              
+                                </div>
+                                              
                                 <div class="kt-widget24__action">  
                                         <span class="kt-widget24__number">
                                         {{$tktporcenttot}}%
@@ -53,6 +56,7 @@
                                             {{$tktporcento}}%
                                         </span>
                                 </div>	
+                                @endcan 
                             </div>                           
                         </div>   
                     </div>

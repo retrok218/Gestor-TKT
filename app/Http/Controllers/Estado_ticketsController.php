@@ -21,83 +21,85 @@ use stdClass;
 
 class Estado_ticketsController extends Controller
 {
+  public function contticket()
+  { /*Cantidad de ticket que hay actualmente todos*/
+    $ticketcount = ticket::count();  
+    return $ticketcount;
+  }
 
-
-
-
-/*Cantidad de ticket que hay actualmente todos*/
-public function contticket(){
-  $ticketcount = ticket::count();
-  return $ticketcount;
-}
 
   public function __construct()
   {
       $this->middleware('auth');
   }
 
+//Funcion para obtimizar el codigo con la consulta de los tickets por area 
+  public function tktsarea_dtt($estado_tkt, $ususario){
+    $tkt_area = DB::connection('pgsql2')
+        ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
+            FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
+            INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+            INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+            WHERE ticket_state_id = $estado_tkt AND queue_id IN ($ususario)                           
+            ORDER BY ticket.tn DESC");
+    return $tkt_area;
+  }
+
+
   
   // Tickets Abiertos 
   public function tickets_abiertos()
-  {
-   
+  {   
     $abierto = ticket::where('ticket_state_id', '=', 4)->count(); /* le primer where se refiere al estado del ticket */    
     $tktporcento = round(($abierto*100)/$this->contticket(),2);
     $nom_tkt_estatus = "Tickets Abiertos ";      
-    $tktporcenttot= 100-$tktporcento;
-    
+    $tktporcenttot= 100-$tktporcento;  
+  
     return view('Tickets/tickets_abiertos')
-      ->with('ticket', $this->contticket())
-      ->with('abierto', $abierto)
-      ->with('tktporcento',$tktporcento)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)  
-      ->with('tktporcenttot',$tktporcenttot)  
-      ;}
-
-  public function data_tickets_abiertos()
-  {
-    $usuario = auth()->user()->area;
-    $tickets_abiertos_area = DB::connection('pgsql2')
-      ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
-          FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
-          INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-          INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
-          WHERE ticket_state_id = 4 AND queue_id IN ($usuario)                           
-          ORDER BY ticket.tn DESC");
-    return Datatables::of($tickets_abiertos_area)->toJson();
+      ->with(['ticket'=>ticket::count(), // se asigna el count del modelo ticket 
+              'abierto'=>$abierto,
+              'tktporcento'=>$tktporcento,
+              'nom_tkt_estatus'=>$nom_tkt_estatus,
+              'tktporcenttot'=>$tktporcenttot
+            ]);
   }
 
-  
-  use sumaareatrait;
+
+// Para La datatable  Datos por medio de ajax se usa la funcion de arriba para generar $asignados 
+  public function data_tickets_abiertos()
+  {        
+    $asignado = $this->tktsarea_dtt(4,auth()->user()->area);    //se obtimisa la consulta a la base de datos pos medio del select 
+    return Datatables::of($asignado)->toJson();
+  }   
+
+
+
 
   public function tickets_asignados()
   {
 
-    $usuario = auth()->user()->area;
-    $ticket = DB::connection('pgsql2')->table('ticket')->count();
-    $asignado = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 12)->count();
-    $tktporcento = round(($asignado*100)/$ticket,2);       
+    $usuario = auth()->user()->area;    
+    $asignado = ticket::where('ticket_state_id', '=', 12)->count();
+    $tktporcento = round(($asignado*100)/ticket::count(),2);       
     $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Asignados";
+    $canttickets = DB::connection('pgsql2')->select ("SELECT  COUNT (*)
+      FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
+      INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+      INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+      WHERE ticket_state_id = 12 AND queue_id IN ($usuario)");  
 
-    $canttickets = DB::connection('pgsql2') ->select ("SELECT  COUNT (*)
-    FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
-    INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-    INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
-    WHERE ticket_state_id = 12 AND queue_id IN ($usuario)");  
     $totalcantJsons = $canttickets[0];    
     $tt =$totalcantJsons->count;
- 
-    
-    return view('Tickets/tickets_asignados')
-      
-      ->with('canttickets',$canttickets)
-      ->with('ticket', $ticket)
-      ->with('asignado', $asignado)
-      ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
-      ->with('tktporcenttot',$tktporcenttot)
-      ->with('tktporcento',$tktporcento)
-      ->with('totalMesJsonm', $tt);
+    return view('Tickets/tickets_asignados')      
+      ->with (['canttickets'=>$canttickets,
+      'ticket'=>$this->contticket(),
+      'asignado'=>$asignado,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcenttot'=>$tktporcenttot,
+      'tktporcento'=>$tktporcento,
+      'totalMesJsonm'=> $tt,
+      'totalMesJsonm'=>$tt ]);
   }
 
 
@@ -125,12 +127,11 @@ public function contticket(){
     $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Atendidos ";
     return view('Tickets/tickets_atendidos')
-      ->with('ticket', $tickte)
-      ->with('atendido', $atendido)
-      ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot)
-  ;}
+      ->with(['ticket'=>$tickte,'atendido'=>$atendido,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot]);
+  }
 
   public function data_tickets_atendidos()
   {
@@ -154,13 +155,13 @@ public function contticket(){
     $tktporcenttot= 100-$tktporcento;
     $nom_tkt_estatus = "Tickets Cerrados Exitosamente";
     return view('Tickets/tickets_cerrados_exitosamente')
-      ->with('ticket', $ticket)
-      ->with('rticket', $rticket)
-      ->with('nom_tkt_estatus' ,$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot);
-      
+      ->with(['ticket'=>$ticket,
+      'rticket'=>$rticket,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot]);      
   }
+
   public function datatickets_cerrados_exitosamente()
   {
     $usuario = auth()->user()->area;
@@ -176,13 +177,6 @@ public function contticket(){
 
 
 
-
-
-
-
-
-
-
   // Todos los Tickets
   public function todos_los_tkts()
   {
@@ -190,9 +184,8 @@ public function contticket(){
     $ticket = DB::connection('pgsql2')->table('ticket')->count();
     $nom_tkt_estatus = "Todos Los Tickets ";
     return view('Tickets/todos_los_tickets')
-    ->with('ticket', $ticket)
-    ->with('nom_tkt_estatus',$nom_tkt_estatus);
-
+    ->with(['ticket'=>$ticket,
+    'nom_tkt_estatus'=>$nom_tkt_estatus]);
   }
 
   public function data_todos_losticket()
@@ -218,11 +211,12 @@ public function contticket(){
     $tktporcenttot= 100-$tktporcento;
     
     return view('Tickets/tickets_cerradosPT')
-      ->with('ticket', $tickte)
-      ->with('cerradoPT', $cerradoPT)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot);
+      ->with(['ticket'=>$tickte,
+      'cerradoPT'=>$cerradoPT,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot
+      ]);
   }
 
   public function data_tickets_cerradosPT()
@@ -247,11 +241,12 @@ public function contticket(){
     $tktporcento = round(($ticket_espera_info*100)/$ticket,2);               
     $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_espera_informacion')
-      ->with('ticket', $ticket)
-      ->with('ticket_espera_info', $ticket_espera_info)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot);
+      ->with(['ticket'=>$ticket,
+      'ticket_espera_info'=>$ticket_espera_info,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot      
+      ]);
   }
 
   public function data_tickets_espera_informacion()
@@ -275,12 +270,11 @@ public function contticket(){
     $tktporcento = round(($FaltaActaRES*100)/$ticket,2);
     $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_falta_acta_resp')
-      ->with('ticket', $ticket)
-      ->with('FaltaActaRES', $FaltaActaRES)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot)
-      ;
+      ->with(['ticket'=>$ticket,
+      'FaltaActaRES'=>$FaltaActaRES,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot]);
   }
   public function data_falta_acta_responsiva()
   {
@@ -303,11 +297,11 @@ public function contticket(){
     $tktporcento = round(($NotificadoAlUsuario*100)/$ticket,2);
     $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_notificado_al_usuario')
-      ->with('ticket', $ticket)
-      ->with('NotificadoAlUsuario', $NotificadoAlUsuario)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot);
+      ->with(['ticket'=>$ticket,
+      'NotificadoAlUsuario'=> $NotificadoAlUsuario,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot]);
   }
 
   public function data_notificado_al_usuario()
@@ -331,11 +325,12 @@ public function contticket(){
     $tktporcento = round(($nticket*100)/$ticket,2);
     $tktporcenttot= 100-$tktporcento;
     return view('Tickets/tickets_nuevos')
-      ->with('nticket', $nticket)
-      ->with('ticket', $ticket)
-      ->with('nom_tkt_estatus',$nom_tkt_estatus)
-      ->with('tktporcento',$tktporcento)
-      ->with('tktporcenttot',$tktporcenttot);
+      ->with(['nticket'=>$nticket,
+      'ticket'=>$ticket,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot      
+      ]);
   }
 
   public function data_nuevoticket()
@@ -353,9 +348,7 @@ public function contticket(){
   // Ticket Monitoreo de Tickte 
   
   public function monitoreo_tickets()
-  {
-    
-    
+  {        
     $tickte = ticket::count(); //0
     $asignado = ticket::where('ticket_state_id', '=', 12)->count(); //1
     $atendido = ticket::where('ticket_state_id', '=', 13)->count(); //2
@@ -379,21 +372,22 @@ public function contticket(){
     };
 
     return view('Tickets/Monitoreo_Tickets/Monitoreo_de_Tickets')
-      ->with('ticket', $tickte)
-      ->with('asignado', $asignado)
-      ->with('atendido', $atendido)
-      ->with('espinformacion', $espinformacion)
-      ->with('pendienteatc', $pendienteatc)
-      ->with('solicitudToner', $solicitudToner)
-      ->with('abierto', $abierto)
-      ->with('FaltaActaRES', $FaltaActaRES)
-      ->with('cerradosinEX', $cerradosinEX)
-      ->with('NotificadoAlUsuario', $NotificadoAlUsuario)
-      ->with('Entramite', $Entramite)
-      ->with('cerradoPT', $cerradoPT)
-      ->with('cerradoexitosamente', $cerradoexitosamente)
-      ->with('porcentajes', $porcentajes)
-      ->with('tktsporciento', $tktsporciento);
+      ->with(['ticket'=>$tickte,
+      'asignado'=>$asignado,
+      'atendido'=>$atendido,
+      'espinformacion'=>$espinformacion,
+      'pendienteatc'=>$pendienteatc,
+      'solicitudToner'=>$solicitudToner,
+      'abierto'=>$abierto,
+      'FaltaActaRES'=> $FaltaActaRES,
+      'cerradosinEX'=> $cerradosinEX,
+      'NotificadoAlUsuario'=>$NotificadoAlUsuario,
+      'Entramite'=>$Entramite,
+      'cerradoPT'=>$cerradoPT,
+      'cerradoexitosamente'=>$cerradoexitosamente,
+      'porcentajes'=>$porcentajes,
+      'tktsporciento'=>$tktsporciento,
+      ]);
   }
 
 
@@ -501,13 +495,13 @@ public function contticket(){
 
 
     return view('Tickets/tickets_sol_toner')
-      ->with('tk_id', $ticketfusion)
-      ->with('solicitudToner', $solicitudToner)
-      ->with('ticket', $tickte)
-      ->with('areas_filastkts',$areas_filastkts)
-      ->with('estado_graf',$estado_graf)
- 
-   ;}
+      ->with(['tk_id'=>$ticketfusion,
+      'solicitudToner'=> $solicitudToner,
+      'ticket'=> $tickte,
+      'areas_filastkts'=>$areas_filastkts,
+      'estado_graf'=>$estado_graf      
+      ]);
+    }
 
 
 
@@ -580,10 +574,6 @@ foreach ($tktsoltoner_fucion as $sacando_dato) {
   foreach ($sacando_dato->limpio as $otroarreglo) {    
 
    
-    
-
-
-
     if(strncasecmp($otroarreglo,'%%%%Required7',13)===0){
        $tktsoltoner_fucion[$i]->dependencia= preg_replace('/%%%%Required7/',' ',$otroarreglo);                                                                                
       }
@@ -638,12 +628,13 @@ foreach ($tktsoltoner_fucion as $sacando_dato) {
     if(strncasecmp($otroarreglo,'%%%%Required71',14)===0){
       $tktsoltoner_fucion[$i]->SolicitadoTipo4=preg_replace('/%%%%Required71/',' ',$otroarreglo);                                       
     }
-  }  
-  
+    
+
+  }    
   $i++;
 }
 
-dd($tktsoltoner_fucion);
+
 
      return Datatables::of($tktsoltoner_fucion)->toJson();
   ;}
@@ -652,28 +643,5 @@ dd($tktsoltoner_fucion);
 
 
 
-
-trait sumaareatrait{
-  public function smtrait(){
-    $tkasignado1 =  DB::connection('pgsql2')
-    ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
-        FROM (ticket INNER JOIN queue ON ticket.queue_id = queue.id )
-        INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-        INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
-        WHERE ticket_state_id = 12 AND queue_id IN (19)                           
-        ORDER BY ticket.tn DESC");
-  }
-}
-$asignado = new Estado_ticketsController;
-$asignado->smtrait();
-
-
-
-class ticket_creado {
-  public $id;
-  public $nombre;
-  public $pais;
-
-}
 
 

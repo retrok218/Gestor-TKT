@@ -163,7 +163,7 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get ('/monitoreo_tickets','Estado_ticketsController@monitoreo_tickets');
 
     Route::get('/solicitud_toner','Estado_ticketsController@solicitud_toner');
-    Route::get('/data_soltoner','Estado_ticketsController@soltonerjax');
+    Route::get('/data_soltoner','Estado_ticketsController@soltonerjax'); //en construccion
 
     Route::get('/tkt_completo','Estado_ticketsController@tkt_completo');
 
