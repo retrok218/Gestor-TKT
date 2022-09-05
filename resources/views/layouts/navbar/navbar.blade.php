@@ -118,7 +118,10 @@
                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                   <ul class="kt-menu__subnav">
                   <ul class="kt-menu__subnav">
+                     
                   <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_asignados') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Asignados</span></a></li>
+                 
+                
                   @can('SuperAdmin')
                      <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Utils</span></span></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_abiertos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Abierto</span></a></li>                     
@@ -130,9 +133,9 @@
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_notificado_al_usuario') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Notificado Al Usuario</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_nuevos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Nuevo</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/todos_los_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Todos Los Tickets</span></a></li>                    
+                     
                   @endcan
-           
-                  
+                 
                   
                  
                  
@@ -195,7 +198,8 @@
 <ul class="kt-menu__subnav">
 <ul class="kt-menu__subnav">
    <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Utils</span></span></li>
-   <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/monitoreo_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Monitoreo de Tickets</span></a></li>           
+   <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/monitoreo_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Monitoreo de Tickets</span></a></li>   
+   <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/monitoreo_ticktes_area') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Monitoreo de Tickets Por Area</span>(Asignados) </a></li>        
 @foreach ($menus as $key => $item)
 @if ($item['padre'] != 0)
 @break

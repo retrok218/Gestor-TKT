@@ -220,7 +220,7 @@
 		</h3>
 		<a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
 	</div>
-	<div class="kt-demo-panel__body" >
+	<div class="kt-demo-panel__body " style="padding-right: 0rem;" >
         <div class="kt-demo-panel__item ">
                     <div class="kt-demo-panel__item-title">
                        Todos Los Tickets
@@ -275,13 +275,13 @@ window.onload = function (){
 
 
       									legend:{
-                          fontSize: 9,
+                          fontSize: 8,
                           horizontalAlign: "center", // left, center ,right 
-                          verticalAlign: "top",  // top, center, botto
+                          verticalAlign: "bottom",  // top, center, botto
                           itemWrap: false,
                           itemWidth: 100,
                           cursor: "default",
-                          markerMargin:8,
+                          markerMargin:1,
                           itemMaxWidth: 100,
                           
                           

@@ -89,6 +89,10 @@
                 
                     Editar
                 </button>
+                <button type="button" onclick="Eliminar_usuario();">
+                    ELiminar Usuario 
+
+                </button>
 
             </div>
         </div>

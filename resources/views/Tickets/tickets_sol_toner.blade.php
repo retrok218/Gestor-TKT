@@ -88,7 +88,7 @@
 
 
                             </div>
-                            <div class="row"  style="color: #595d6e;">
+                            <!-- <div class="row"  style="color: #595d6e;">
                             <div class="col-sm-6" >  
                                     <div class="kt-widget25"  style="border-right: groove;">
                                         <div class="kt-widget24__info" style="
@@ -105,7 +105,7 @@
                                           </div>                                                                                                                                                                                                              
                                       </div>            
                                 </div>
-                            </div>
+                            </div> -->
                     </div>                    
                   </div>  
                 </div>  
@@ -184,6 +184,8 @@
                             <th>2.-Solicitado Cantidad</th>
                             <th>3.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
                             <th>3.-Solicitado Catidad</th>       <!-- Cantidad de toner  -->
+                            <th>4.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
+                            <th>4.-Solicitado Catidad</th>
             
                             <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Cantidad entregada </th>
                             <th>1.-Tipo de Toner Entregado</th>
@@ -191,6 +193,8 @@
                             <th>2.-Tipo de Toner Entregado</th>
                             <th>3.-Cantidad entregada </th>
                             <th>3.-Tipo de Toner Entregado</th>
+                            <th>4.-Cantidad entregada </th>
+                            <th>4.-Tipo de Toner Entregado</th>
                             <th>Cometario de Entrega</th>                                                    
                             <th>Estado</th>      
                         </tr>
@@ -241,18 +245,16 @@
                                                     $dependencia=preg_replace('/%%%%Required7/',' ',$datotoner . "");                                                                                
                                                 }                          
                             // Solicitado cantidad 1
-                                                elseif(strncasecmp($datotoner,'%%%%Required64',14)===0){
+                                                if(strncasecmp($datotoner,'%%%%Required64',14)===0){
                                                         $cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$datotoner);
-                                                        
-                                                         
-                                                                                                
+                                                                                                                                                                                                                 
                                                 }                          
                             //tipo de toner1
                                                 if(strncasecmp($datotoner,'%%%%Required65',14)===0){
                                                     $tipodetoner1= preg_replace('/%%%%Required65/','',$datotoner);                                        
                                                 }
                             // solicitado cantidad 2                           
-                                                elseif(strncasecmp($datotoner,'%%%%Required66',14)===0){
+                                                if(strncasecmp($datotoner,'%%%%Required66',14)===0){
                                                         $cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$datotoner);                                           
                                                 }
                             // tipo de toner 2                           
@@ -264,9 +266,19 @@
                                                   $cantidad3 = preg_replace ('/%%%%Required68/','',$datotoner);
                                                 }
                             //tipo de toner 3  
-                                                elseif(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
-                                                  $tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner); 
-                                                }
+                                                if(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
+                                                  $tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner);
+                                                                                                     
+                                                }                                                        
+                            //Solicitado cantidad 4
+                                                if(strncasecmp($datotoner,'%%%%Required70' ,14)===0){                                      
+                                                  $cantidad4 = preg_replace('/%%%%Required70/','',$datotoner);                                                   
+                                                 }
+                            //Tipo de Toner 4
+                                                if(strncasecmp($datotoner,'%%%%Required71' ,14)===0){                                      
+                                                  $tipotoner4 = preg_replace('/%%%%Required71/','',$datotoner);                                                   
+                                                 }
+
                       
                       
                       
@@ -282,7 +294,7 @@
                                                         $cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$datotoner);                                       
                                                 }    
                             //Toner entregado 1
-                                                  elseif(strncasecmp($datotoner,'%%%%Required53',14)===0){
+                                                  if(strncasecmp($datotoner,'%%%%Required53',14)===0){
                                                       $tipotonerentregado1 = preg_replace('/%%%%Required53/','',$datotoner);                                          
                                                   }
             
@@ -291,7 +303,7 @@
                                                         $cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$datotoner);                                       
                                                 }
                             //Toner Entregado Tipo 2
-                                                elseif(strncasecmp($datotoner,'%%%%Required57',14)===0){
+                                                if(strncasecmp($datotoner,'%%%%Required57',14)===0){
                                                       $tipotonerentregado2 = preg_replace('/%%%%Required57/','',$datotoner);                                          
                                                   }
                             //Toner Entregado cantidad 3
@@ -302,7 +314,20 @@
                             //Toner Entregado tipo 3
                                                 if(strncasecmp($datotoner,'%%%%Required61',14)===0){
                                                         $tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$datotoner);                                       
-                                                }                                    
+                                                } 
+                                                
+                                                
+                            //Toner Entregado cantidad 4
+                                                if(strncasecmp($datotoner,'%%%%Required62',14)===0){
+                                                  $cantidadtonerentregado4 = (int)preg_replace('/%%%%Required62/',' ',$datotoner);                                       
+                                          }    
+                            //Toner Entregado tipo 4
+                                          if(strncasecmp($datotoner,'%%%%Required63',14)===0){
+                                                  $tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$datotoner);                                       
+                                          }
+                                          
+
+                                          
                                                                           
                     }    
                     
@@ -346,9 +371,7 @@
                                         $cantidad1 = 0;
                                       @endphp  
                                     @endif
-                                <td>{{$cantidad1}}</td> 
-            
-                             
+                                <td>{{$cantidad1}}</td>                                          
                                     @if(!isset($tipotoner2) or !empty($tipotoner2) == false)
                                       @php 
                                         $tipotoner2 = " ";
@@ -376,6 +399,26 @@
                                       @endphp  
                                     @endif
                                 <td>{{$cantidad3}}</td> 
+
+
+                                @if(!isset($tipotoner4) or !empty($tipotoner4) == false)
+                                      @php 
+                                        $tipotoner4 = "";
+                                      @endphp  
+                                    @endif
+                                <td>{{$tipotoner4}}</td>
+            
+                                    @if(!isset($cantidad4) or !empty($cantidad4) == false)
+                                      @php 
+                                        $cantidad4 = 0 ;
+                                      @endphp  
+                                    @endif
+                                <td>{{$cantidad4}}</td> 
+
+
+
+
+
                                     @if(!isset($cantidadtonerentregado1)  or  !empty($cantidadtonerentregado1)  == false)    
                                       @php
                                        $cantidadtonerentregado1 = 0;
@@ -414,7 +457,28 @@
                                               $tipotonerentregado3 = " ";
                                           @endphp                                 
                                     @endif      
-                                <td>{{$tipotonerentregado3}}</td>                                                        
+                                <td>{{$tipotonerentregado3}}</td> 
+
+
+                                @if(!isset($cantidadtonerentregado4)  or  !empty($cantidadtonerentregado4)  == false)    
+                                      @php
+                                       $cantidadtonerentregado4 = 0;
+                                      @endphp    
+                                    @endif
+                                <td>{{$cantidadtonerentregado4}}</td>
+                                    @if(!isset($tipotonerentregado4)  or  !empty($tipotonerentregado4)  == false )    
+                                          @php
+                                              $tipotonerentregado4 = " ";
+                                          @endphp                                 
+                                    @endif      
+                                <td>{{$tipotonerentregado4}}</td> 
+                                
+                                
+
+
+
+
+
             
                                 @if(!isset($comentario_entrega) or !empty($comentario_entrega) == false) <!--Comentario de entrega del toner -->
                                     @php
@@ -440,6 +504,10 @@
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo "></th>
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Fila</th>
                         <th ></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>

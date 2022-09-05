@@ -7,7 +7,7 @@
                 <a href="javascript:void(0)" class="kt-link">DGTC</a>
             </div>
             <div class="kt-aside__brand-logo kt-hidden-mobile center_img_foot" >
-               <a href="{{ url('/home') }}">
+               <a href="{{ url('/') }}">
                <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logotipo SAF-01.jpg')}}" class="kt-footer__brand-logo-default" width="320px">
                </a>
             </div>
