@@ -391,9 +391,32 @@ class Estado_ticketsController extends Controller
       'tktsporciento'=>$tktsporciento,
       ]);
   }
+  // Monitoreo por areas LISTO la BUSQUEDA DE DATOS 
 
   public function monitoreo_tickets_area(){
-    return view('Tickets/Monitoreo_Tickets/Monitoreo_tickets_area');
+    $datos_monitoreo_area = DB::connection('pgsql2')
+       
+    ->select(
+      ("SELECT DISTINCT  groups.id, groups.name,
+      COUNT(ticket.tn) OVER (PARTITION BY groups.id) as TIkets_Area_grupo
+      FROM ticket
+
+
+      INNER JOIN queue ON ticket.queue_id = queue.id
+      INNER JOIN group_user ON queue.group_id = group_user.group_id
+      INNER JOIN groups ON group_user.group_id = groups.id
+
+      GROUP BY 
+      groups.id,ticket.tn,
+      groups.name
+      ORDER BY groups.id ASC")
+
+    );
+
+    $datosajson =  json_encode($datos_monitoreo_area); 
+    var_dump($datosajson);
+    exit;
+    return view('Tickets/Monitoreo_Tickets/Monitoreo_tickets_area')->with('datos_monitoreo_area',$datos_monitoreo_area) ;
   }
 
 
