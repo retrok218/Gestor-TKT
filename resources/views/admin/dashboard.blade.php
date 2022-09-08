@@ -1,5 +1,5 @@
 @extends('home')
-<!-- <meta http-equiv="refresh" content="60">-->
+ <meta http-equiv="refresh" content="60"> <!--Se recarga cada segundo marcado content -> 10 -->
 @section('content')
 <script>
   let titulo_tab = 'Tickets Dashboard';

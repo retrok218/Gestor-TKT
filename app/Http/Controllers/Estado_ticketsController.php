@@ -394,8 +394,7 @@ class Estado_ticketsController extends Controller
   // Monitoreo por areas LISTO la BUSQUEDA DE DATOS 
 
   public function monitoreo_tickets_area(){
-    $datos_monitoreo_area = DB::connection('pgsql2')
-       
+    $datos_monitoreo_area = DB::connection('pgsql2')       
     ->select(
       ("SELECT DISTINCT  groups.id, groups.name,
       COUNT(ticket.tn) OVER (PARTITION BY groups.id) as TIkets_Area_grupo
@@ -413,10 +412,11 @@ class Estado_ticketsController extends Controller
 
     );
 
-    $datosajson =  json_encode($datos_monitoreo_area); 
-    var_dump($datosajson);
-    exit;
-    return view('Tickets/Monitoreo_Tickets/Monitoreo_tickets_area')->with('datos_monitoreo_area',$datos_monitoreo_area) ;
+    
+    // dd($datos_monitoreo_area);
+   
+    return view('Tickets/Monitoreo_Tickets/Monitoreo_tickets_area')
+    ->with('datos_monitoreo_area',$datos_monitoreo_area) ;
   }
 
 
