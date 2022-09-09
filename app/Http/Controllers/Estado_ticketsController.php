@@ -374,7 +374,8 @@ class Estado_ticketsController extends Controller
     };
 
     return view('Tickets/Monitoreo_Tickets/Monitoreo_de_Tickets')
-      ->with(['ticket'=>$tickte,
+      ->with([
+      'ticket'=>$tickte,
       'asignado'=>$asignado,
       'atendido'=>$atendido,
       'espinformacion'=>$espinformacion,
@@ -404,6 +405,7 @@ class Estado_ticketsController extends Controller
       INNER JOIN queue ON ticket.queue_id = queue.id
       INNER JOIN group_user ON queue.group_id = group_user.group_id
       INNER JOIN groups ON group_user.group_id = groups.id
+      WHERE ticket_state_id = 12
 
       GROUP BY 
       groups.id,ticket.tn,
@@ -411,12 +413,30 @@ class Estado_ticketsController extends Controller
       ORDER BY groups.id ASC")
 
     );
+    $sumareas = 0;
+    foreach ($datos_monitoreo_area as $datosarea) {
+      $sumareas+=$datosarea->tikets_area_grupo ;
+    }
+    // var_dump($datos_monitoreo_area);
+    // exit;
+    $subareas= [];
+    foreach ($datos_monitoreo_area as $grupoarea) {
+      $subareas = DB::connection('pgsql2')
+      ->select(("SELECT * FROM queue
+        WHERE queue.group_id = $grupoarea.id
+
+      "));
+    }
+
 
     
-    // dd($datos_monitoreo_area);
+    
    
     return view('Tickets/Monitoreo_Tickets/Monitoreo_tickets_area')
-    ->with('datos_monitoreo_area',$datos_monitoreo_area) ;
+    ->with([
+      'datos_monitoreo_area'=>$datos_monitoreo_area,
+       'sumareas'=>$sumareas
+       ]) ;
   }
 
 
