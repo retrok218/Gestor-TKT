@@ -394,6 +394,7 @@ class Estado_ticketsController extends Controller
   }
   // Monitoreo por areas LISTO la BUSQUEDA DE DATOS 
 
+  //Consulta ala base de datos OTRS para obtener los grupos por usuarios solo proporciona los que estan activos con subgrupos y se encuentra en algun usuario
   public function monitoreo_tickets_area(){
     $datos_monitoreo_area = DB::connection('pgsql2')       
     ->select(
@@ -417,17 +418,22 @@ class Estado_ticketsController extends Controller
     foreach ($datos_monitoreo_area as $datosarea) {
       $sumareas+=$datosarea->tikets_area_grupo ;
     }
-    // var_dump($datos_monitoreo_area);
-    // exit;
-    $subareas= [];
-    foreach ($datos_monitoreo_area as $grupoarea) {
-      $subareas = DB::connection('pgsql2')
-      ->select(("SELECT * FROM queue
-        WHERE queue.group_id = $grupoarea.id
+    //var_dump($datos_monitoreo_area);
+    //exit;
 
+    // consulta a la base de datos OTRS que proporciona las queue que contiene cada grupo de la anterior consulta 
+    
+    
+    foreach ($datos_monitoreo_area as $grupoarea) {
+      $subareas[] = DB::connection('pgsql2')
+      ->select(("SELECT queue.id,queue.name,queue.group_id FROM queue
+        WHERE queue.group_id = $grupoarea->id
+        
       "));
     }
 
+   //dd($subareas);
+   // exit;
 
     
     
