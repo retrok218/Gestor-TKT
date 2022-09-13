@@ -8,7 +8,7 @@
                 <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">
                     Tablero Mesa de Servicio                           
                 </span>
-                <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">(Area)</span>    
+                <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">(Area / Asignados)</span>    
             </div>          
         </div>
     </div>
@@ -59,7 +59,8 @@
 <!-- Creacion de cards en la vista  -->
 <div class="kt-container kt-container--fluid" style="margin-top: 10px;">
     <div class="row">
-        @foreach($datos_monitoreo_area as $datoarea)
+        @foreach($datos_monitoreo_area as $datoarea)           
+
                     <div class="col-sm-6 col-md-6 col-lg-4">
                         <div class="card bg-white p-3 mb-4 shadow">
                             <div class="d-flex justify-content-between mb-4">
@@ -87,9 +88,15 @@
                                             {{$datoarea->tikets_area_grupo}}
                                         </h6>	 
                                     </div>
-                                </div>          
+                                    @foreach($datoarea->subareas as $subarea)
+                                        <a href="#">{{$subarea->name}}<a> <br>
+                                    @endforeach 
+                            </div>  
+
+                                
+                                   
                             <div class="d-flex justify-content-between mt-4">
-                            <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#ConsultarGrupo" data-nombregrupo="{{$datoarea->name}}">Consultar</button>
+                            <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#ConsultarGrupo" data-nombregrupo="{{$datoarea->name}}" data-idgrupo="{{$datoarea->id}}">Consultar</button>
                                 
                             </div>
                         </div>
@@ -125,22 +132,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <!-- <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
+       <div class="modal-body">
+               
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div> -->
+        
+      </div> 
     </div>
   </div>
 </div>
@@ -157,19 +155,12 @@
 <script>
    $(document).ready(function(){ 
     let nn = 0;      
-     window.setInterval(function(){
-        
-        
+     window.setInterval(function(){            
         let cantarea =  $("#cantidad_ventana").text();                        
         $("p").text(cantarea);
         console.log('Cargando'+nn);
         nn++;
-
-
         // Por cada dato en $datos_monitoreo_area  generar un <div class="col-sm-4"> como en el html 
-
-
-
     },3000);
    });
 
@@ -181,15 +172,12 @@
 <script>
  $('#ConsultarGrupo').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
-    var name = button.data('nombregrupo') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var name = button.data('nombregrupo')
+    var idgrp= button.data('idgrupo')       
     var modal = $(this)
-    modal.find('.modal-title').text('Grupo ' + name)
+    modal.find('.modal-title').text('Nombre del Grupo ; ' + name +" "+ " ID " + idgrp )
 
-
-
-    
+    //modal.find('.modal-body').text('areas' + namsubare)       
     })
 </script>
 

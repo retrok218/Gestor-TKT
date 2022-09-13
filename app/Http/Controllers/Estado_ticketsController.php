@@ -393,16 +393,16 @@ class Estado_ticketsController extends Controller
       ]);
   }
   // Monitoreo por areas LISTO la BUSQUEDA DE DATOS 
-
   //Consulta ala base de datos OTRS para obtener los grupos por usuarios solo proporciona los que estan activos con subgrupos y se encuentra en algun usuario
   public function monitoreo_tickets_area(){
+
     $datos_monitoreo_area = DB::connection('pgsql2')       
     ->select(
       ("SELECT DISTINCT  groups.id, groups.name,
       COUNT(ticket.tn) OVER (PARTITION BY groups.id) as TIkets_Area_grupo
+      
+      
       FROM ticket
-
-
       INNER JOIN queue ON ticket.queue_id = queue.id
       INNER JOIN group_user ON queue.group_id = group_user.group_id
       INNER JOIN groups ON group_user.group_id = groups.id
@@ -411,37 +411,35 @@ class Estado_ticketsController extends Controller
       GROUP BY 
       groups.id,ticket.tn,
       groups.name
+      
       ORDER BY groups.id ASC")
 
     );
     $sumareas = 0;
-    foreach ($datos_monitoreo_area as $datosarea) {
-      $sumareas+=$datosarea->tikets_area_grupo ;
-    }
-    //var_dump($datos_monitoreo_area);
-    //exit;
-
-    // consulta a la base de datos OTRS que proporciona las queue que contiene cada grupo de la anterior consulta 
-    
-    
-    foreach ($datos_monitoreo_area as $grupoarea) {
-      $subareas[] = DB::connection('pgsql2')
-      ->select(("SELECT queue.id,queue.name,queue.group_id FROM queue
-        WHERE queue.group_id = $grupoarea->id
-        
-      "));
-    }
-
-   //dd($subareas);
-   // exit;
-
-    
-    
+      foreach ($datos_monitoreo_area as $datosarea){
+        $sumareas+=$datosarea->tikets_area_grupo ;
+      }
    
+    // consulta a la base de datos OTRS que proporciona las queue que contiene cada grupo de la anterior consulta 
+    $subareas = array();    
+    $numm=0;
+    foreach ($datos_monitoreo_area as $grupoarea) {
+      $datos_monitoreo_area[$numm]->subareas = DB::connection('pgsql2')
+      ->select(("SELECT queue.id,queue.name,queue.group_id FROM queue
+        WHERE queue.group_id = $grupoarea->id        
+      "));
+      $numm++;
+    }
+    
+//dd($datos_monitoreo_area);
+  //  var_dump($subareas[0][0]->name,$subareas[0][0]->id,$subareas[0][0]->group_id);
+     //exit;
+           
     return view('Tickets/Monitoreo_Tickets/Monitoreo_tickets_area')
     ->with([
       'datos_monitoreo_area'=>$datos_monitoreo_area,
-       'sumareas'=>$sumareas
+       'sumareas'=>$sumareas,
+       'subareas'=>$subareas
        ]) ;
   }
 
