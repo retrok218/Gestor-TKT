@@ -17,46 +17,6 @@
     <div id="GraficaMonitoreoArea" style="height: 30em; width: 100%;"></div>
     </div>
     
-
-    
-<!--      
-    <div class="kt-portlet">
-        <div class="kt-portlet__body">
-        <div class="kt-widget25">
-            <div class="row">
-                
-                                            
-                        <div class="col-sm-12">   
-                            <div class="card-group ">                          
-                                <div class="card">
-                                    <div class="card-header">dato nombre 1 </div>                                    
-                                    <div class="card-body">Dato cantidad 1 </div>
-                                </div>                              
-                         
-                                                    
-                                <div class="card">
-                                    <div class="card-header">dato nombre 1 </div>                                    
-                                    <div class="card-body">Dato cantidad 1 </div>
-                                </div>                              
-                         
-                                                    
-                                <div class="card">
-                                    <div class="card-header">dato nombre 1 </div>                                    
-                                    <div class="card-body">Dato cantidad 1 </div>
-                                </div>                              
-                        
-                                         
-                    </div>
-                    </div>
-                    </div> 
-            
-          
-           
-                      
-        </div>
-    </div>
-</div> -->
-<!-- Creacion de cards en la vista  -->
 <div class="kt-container kt-container--fluid" style="margin-top: 10px;">
     <div class="row">
         @foreach($datos_monitoreo_area as $datoarea)           
@@ -65,19 +25,12 @@
                         <div class="card bg-white p-3 mb-4 shadow">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="user-info">
-                                    <!-- <div class="user-info__img">
-                                        <img src="#" alt="User Img">
-                                    </div> -->
+                                    
                                     <div class="user-info__basic">
                                         <h5 class="mb-0">{{$datoarea->name}}</h5>									
                                     </div>
                                 </div>
-                                <!-- <div class="dropdown open">
-                                    <a href="#!" class="px-2" id="triggerId1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </a>
-                                    
-                                </div> -->
+                              
                             </div>
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">
                                     
@@ -88,15 +41,14 @@
                                             {{$datoarea->tikets_area_grupo}}
                                         </h6>	 
                                     </div>
-                                    @foreach($datoarea->subareas as $subarea)
-                                        <a href="#">{{$subarea->name}}<a> <br>
-                                    @endforeach 
+                                   
                             </div>  
 
                                 
                                    
                             <div class="d-flex justify-content-between mt-4">
-                            <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#ConsultarGrupo" data-nombregrupo="{{$datoarea->name}}" data-idgrupo="{{$datoarea->id}}">Consultar</button>
+                            <!-- <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#ConsultarGrupo" data-nombregrupo="{{$datoarea->name}}" data-idgrupo="{{$datoarea->id}}" onclick="" >Consultar</button> -->
+                            <button onclick="subclases({{$datoarea->id}});" type="button">consultar</button>
                                 
                             </div>
                         </div>
@@ -123,25 +75,7 @@
 
 <!-- Modal para sub grupos -->
 
-<div class="modal fade" id="ConsultarGrupo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-       <div class="modal-body">
-               
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div> 
-    </div>
-  </div>
-</div>
+
 
 <!-- Fin modal Subgrupos -->
 
@@ -164,6 +98,29 @@
     },3000);
    });
 
+
+   function subclases(id){  
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url : url+'/data/subclase/'+id,
+        dataType: 'html',
+        success: function(resp_success) {
+            var modal = resp_success;
+            $(modal).modal().on('shown.bs.modal', function() {
+                $("[class='make-switch']").bootstrapSwitch('animate', true);
+                $('.select2').select2({dropdownParent: $("#ConsultarGrupo")});
+            }).on('hidden.bs.modal', function() {
+                $(this).remove();
+            });
+        },
+        error: function(respuesta) {
+            Swal.fire('¡Alerta!','Error de conectividad de red USR-01','warning');
+        }
+    });  
+    //console.log(id);
+   };
    
 </script>
 
@@ -172,12 +129,12 @@
 <script>
  $('#ConsultarGrupo').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
-    var name = button.data('nombregrupo')
-    var idgrp= button.data('idgrupo')       
+    var name = button.data('nombregrupo') //nombre del grupo
+    var idgrp= button.data('idgrupo')  // id del grupo      
+   
     var modal = $(this)
     modal.find('.modal-title').text('Nombre del Grupo ; ' + name +" "+ " ID " + idgrp )
-
-    //modal.find('.modal-body').text('areas' + namsubare)       
+    modal.find('.modal-body').val($phpvar =1)       
     })
 </script>
 
@@ -218,7 +175,7 @@ window.onload = function () {
             {						
                 type: "bar",
                 axisYType: "secondary",           
-                click:onClick,                        
+                click:subclases,                        
                 dataPoints: [               
                     @foreach ($datos_monitoreo_area as $areasdatos )
                         {label:"{{$areasdatos->name}}", y:{{$areasdatos->tikets_area_grupo}}},                
@@ -233,9 +190,7 @@ window.onload = function () {
 
 
 function onClick(e) {    
-    $(function(){
-        $('#ConsultarGrupo').modal()
-    });    
+    subclases(id);   
 }
 
 
@@ -251,5 +206,6 @@ function onClick(e) {
  
 @endsection
 @endsection
+
 
 

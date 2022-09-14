@@ -415,6 +415,7 @@ class Estado_ticketsController extends Controller
       ORDER BY groups.id ASC")
 
     );
+
     $sumareas = 0;
       foreach ($datos_monitoreo_area as $datosarea){
         $sumareas+=$datosarea->tikets_area_grupo ;
@@ -426,12 +427,15 @@ class Estado_ticketsController extends Controller
     foreach ($datos_monitoreo_area as $grupoarea) {
       $datos_monitoreo_area[$numm]->subareas = DB::connection('pgsql2')
       ->select(("SELECT queue.id,queue.name,queue.group_id FROM queue
-        WHERE queue.group_id = $grupoarea->id        
+        WHERE queue.group_id = $grupoarea->id       
       "));
       $numm++;
     }
-    
-//dd($datos_monitoreo_area);
+
+   
+
+
+//dd($datos_monitoreo_area,$sumareas);
   //  var_dump($subareas[0][0]->name,$subareas[0][0]->id,$subareas[0][0]->group_id);
      //exit;
            
@@ -439,7 +443,8 @@ class Estado_ticketsController extends Controller
     ->with([
       'datos_monitoreo_area'=>$datos_monitoreo_area,
        'sumareas'=>$sumareas,
-       'subareas'=>$subareas
+       'subareas'=>$subareas,
+       
        ]) ;
   }
 
@@ -558,6 +563,36 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
       'estado_graf'=>$estado_graf      
       ]);
     }
+
+    public function subclases ($idsubclase){
+      $filass = DB::connection('pgsql2')->table('queue')
+      ->where('group_id' , $idsubclase)
+      ->get();
+      $g=0;
+      foreach ($filass as $fila) {
+        $filass[$g]->numfila = DB::connection('pgsql2')        
+        ->table('ticket')
+        ->where('queue_id','=',$fila->id) 
+        ->where('ticket_state_id' ,'=' ,12)
+        ->count();
+        $g++;
+      }
+
+      
+
+      //dd($filass);
+
+
+
+      return view('modals.modalsubclases')->with('filass',$filass);
+     
+    }
+
+
+
+
+
+
 
 
 

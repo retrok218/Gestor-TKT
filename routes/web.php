@@ -168,4 +168,6 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
 
     Route::get('/tkt_completo','Estado_ticketsController@tkt_completo');
 
+    Route::get('/data/subclase/{id}','Estado_ticketsController@subclases');
+
 });
