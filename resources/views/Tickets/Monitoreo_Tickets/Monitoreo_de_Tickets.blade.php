@@ -327,11 +327,7 @@
         
 
         <div class="kt-widget25__items"> 
-
-
-
-          <div class="kt-widget25__item">
-            
+          <div class="kt-widget25__item">            
               <div class="item-wrapper">
                 <div class="line line-top"><span></span></div>
                 <div class="line line-right"><span></span> </div>

@@ -38,7 +38,7 @@
   
 <script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
 
-@yield('js')
+
 
 <!-- scripts para datatable -->
 

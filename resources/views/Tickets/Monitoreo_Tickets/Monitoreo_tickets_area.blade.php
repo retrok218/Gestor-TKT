@@ -6,13 +6,14 @@
         <div class="header_titulo_monitoreo_tkts text-center" >
             <div class="card-header" >
                 <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">
-                    Tablero Mesa de Servicio                           
+                    Tablero Mesa de Servicio  
+                                            
                 </span>
                 <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">(Area / Asignados)</span>    
             </div>          
         </div>
     </div>
-
+<div class="kt-portlet">  
     <div class="kt-container kt-container--fluid" style="background-color:white ;">
     <div id="GraficaMonitoreoArea" style="height: 30em; width: 100%;"></div>
     </div>
@@ -42,13 +43,11 @@
                                         </h6>	 
                                     </div>
                                    
-                            </div>  
-
-                                
+                            </div>                                  
                                    
                             <div class="d-flex justify-content-between mt-4">
                             <!-- <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#ConsultarGrupo" data-nombregrupo="{{$datoarea->name}}" data-idgrupo="{{$datoarea->id}}" onclick="" >Consultar</button> -->
-                            <button onclick="subclases({{$datoarea->id}});" type="button">consultar</button>
+                            <button onclick="subclases({{$datoarea->id}});" type="button" class="btn btn-outline-success">Consultar</button>
                                 
                             </div>
                         </div>
@@ -59,17 +58,18 @@
 
 
 
-<div> 
-   <div id="here">
-        <span> {{$datos_monitoreo_area[1]->name}} </span>
-       <span id="cantidad_ventana"> {{ $datos_monitoreo_area[1]->tikets_area_grupo }}</span>
-   </div>
+    <div> 
+    <div id="here">
+            <span> {{$datos_monitoreo_area[1]->name}} </span>
+        <span id="cantidad_ventana"> {{ $datos_monitoreo_area[1]->tikets_area_grupo }}</span>
+    </div>
 
-   <div>
-    <p></p>
-   </div>
+    <div>
+        <p></p>
+    </div>
+        </div>
+        </div>       
 </div>
-
 
 
 
@@ -126,21 +126,6 @@
 
 
 
-<script>
- $('#ConsultarGrupo').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var name = button.data('nombregrupo') //nombre del grupo
-    var idgrp= button.data('idgrupo')  // id del grupo      
-   
-    var modal = $(this)
-    modal.find('.modal-title').text('Nombre del Grupo ; ' + name +" "+ " ID " + idgrp )
-    modal.find('.modal-body').val($phpvar =1)       
-    })
-</script>
-
-
-
-
 
 <script type="text/javascript">
 
@@ -192,13 +177,6 @@ window.onload = function () {
 function onClick(e) {    
     subclases(id);   
 }
-
-
-
-
-
-// etiquetamodal
-
 
 </script>
 

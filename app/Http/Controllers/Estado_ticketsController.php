@@ -576,16 +576,9 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
         ->where('ticket_state_id' ,'=' ,12)
         ->count();
         $g++;
-      }
-
-      
-
-      //dd($filass);
-
-
-
-      return view('modals.modalsubclases')->with('filass',$filass);
-     
+      }      
+    //dd($filass);
+      return view('modals.modalsubclases')->with('filass',$filass);     
     }
 
 
