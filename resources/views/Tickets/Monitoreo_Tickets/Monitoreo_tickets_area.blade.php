@@ -19,20 +19,12 @@
         </div>
     </div>
 
-
-<div class="kt-portlet">  
- {{--Grafica de barras  --}}
-    <!-- <div class="kt-container kt-container--fluid" style="background-color:white ;">
-    <div id="GraficaMonitoreoArea" style="height: 30em; width: 100%;"></div>
-    </div> -->
-    
-<div class="kt-container kt-container--fluid" style="margin-top: 10px;">
     <div class="row">
         @foreach($datos_monitoreo_area as $datoarea)           
 
                     <div class="col-sm-6 col-md-6 col-lg-4">
                         <div class="card bg-white p-3 mb-4 shadow" style="padding: 0.5rem !important; margin-bottom: 0.5rem !important">
-                            {{--<div class="d-flex justify-content-between mb-4"> con margen de 4  --}} 
+                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">
                                     
@@ -55,7 +47,7 @@
                                    
                             </div>                                  
                                    
-                            <div class="d-flex justify-content-between mt-4">
+                            <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">
                            
                             <button onclick="subclases({{$datoarea->id}});" type="button" class="btn btn-outline-success">Consultar</button>
                                 
@@ -64,36 +56,10 @@
                     </div>				
         @endforeach		                                        
     </div>
+
+
+          
 </div>
-
-
-
-    <div> 
-    <div id="here">
-            <span> {{$datos_monitoreo_area[1]->name}} </span>
-        <span id="cantidad_ventana"> {{ $datos_monitoreo_area[1]->tikets_area_grupo }}</span>
-    </div>
-
-    <div>
-        <p></p>
-    </div>
-        </div>
-        </div>       
-</div>
-
-
-
-<!-- Modal para sub grupos -->
-
-
-
-<!-- Fin modal Subgrupos -->
-
-
-
-
-
-
 
 @section('scripts')
 <script>
@@ -107,6 +73,7 @@
         // Por cada dato en $datos_monitoreo_area  generar un <div class="col-sm-4"> como en el html 
     },3000);
    });
+
 
 
    function subclases(id){  
@@ -137,6 +104,15 @@
 
 
 
+
+
+
+
+
+
+
+
+{{--  scrip para grafica de barras para las areas 
 <script type="text/javascript">
 
 window.onload = function () {
@@ -189,7 +165,7 @@ function onClick(e) {
 }
 
 </script>
-
+--}}
 
  
 @endsection

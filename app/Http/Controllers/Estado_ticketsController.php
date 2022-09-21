@@ -554,7 +554,7 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
         
 
 
-    return view('Tickets/tickets_sol_toner')
+    return view('Tickets.tickets_sol_toner')
       ->with([
       'tk_id'=>$ticketfusion,
       'solicitudToner'=> $solicitudToner,
@@ -577,17 +577,18 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
         ->count();
         $g++;
       }      
-    //dd($filass);
+   // dd($filass);
       return view('modals.modalsubclases')->with('filass',$filass);     
     }
 
 
 
-
-
-
-
-
+    public function area_asignados($idarea){
+      $arrrrr = $idarea;
+      $tktsarea=DB::connection('pgsql2')->table('ticket')->where('queue_id',$arrrrr)->where('ticket_state_id',12)->get();
+      //dd($tktsarea);
+      return view('Tickets.Monitoreo_Tickets.tickets_area_asignados')->with('tktsarea',$tktsarea);
+    }
 
 
 

@@ -50003,3 +50003,10 @@ tr.shown td.details-control {
   backdrop-filter: blur(2px);
   }
  
+  .fondolateral{
+	background-image: url(../../media/bg/bg-cdmx.png);
+	background-repeat: no-repeat;
+	background-position:center bottom ;
+    background-size: contain;
+  
+}

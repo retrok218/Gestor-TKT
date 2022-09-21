@@ -170,4 +170,6 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
 
     Route::get('/data/subclase/{id}','Estado_ticketsController@subclases');
 
+    Route::get('/tkts_area_asignados/{idarea}','Estado_ticketsController@area_asignados');
+
 });
