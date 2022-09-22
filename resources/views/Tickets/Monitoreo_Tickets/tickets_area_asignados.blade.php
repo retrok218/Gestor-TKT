@@ -1,22 +1,11 @@
 @extends('home')
 {{--<meta http-equiv="refresh" content="10"/>--}}
 @section('content')
+<script>
+    var titulo_tab = "Tickets Abiertos";
+    var name_tabla = "/data/tkts_area_asignados/{{$idareaasignado}}";
+</script>
 <h3>Esto es area asignados desglose </h3>
-@foreach($tktsarea as $tktareas)
-<table>
-<tr>
-    <th>Numero de Ticket</th>
-    <th>Nombre del Ticket</th>
-    <th>Fecha de creacion</th>
-</tr>
-<tr>
-    <td>{{$tktareas->tn}}</td>
-    <td>{{$tktareas->title}}</td>
-    <td>{{$tktareas->create_time}}</td>
-</tr>
-</table>
-@endforeach
-
- 
-
+@include('Tickets/EstructuraDTT/dtt') 
+@include('layouts/scripts/scripts_dttb')
 @endsection

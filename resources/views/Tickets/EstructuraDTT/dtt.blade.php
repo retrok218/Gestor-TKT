@@ -25,21 +25,13 @@
                                 <input class="date_range_filter date" type="text" id="datepicker_to" placeholder="A La Fecha"  autocomplete="off"/>
                               <div class="input-group-append">
                                 <span class="input-group-text"><i class="flaticon-calendar"></i></span>
-                              </div>
-                              <button class="btn  btn-secondary clear-date-filter "> <i class="flaticon-delete"></i> Limpiar Filtros</button> 
+                              </div>                             
+                              <button  class="btn  btn-secondary clear-date-filter " id="limpiar-fecha"> <i class="flaticon-delete"></i>Limpiar fecha </button>
                             </div>
-                        </div>    
-                           
-                            
-                    </div>
-
-                     
-                                       
-                </div> 
-                
-            </form>
-            
-           
+                        </div>                                                           
+                    </div>                                                            
+                </div>                 
+            </form>                       
             <!--begin: Datatable -->
             <div class="col-md-12 col-lg-12 col-sm-12 pull-left">
             <table class="table table-striped- table-bordered table-hover table-checkable" id="tablatk">
@@ -59,8 +51,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th>Seleccione El Area</th>
-                    <th></th>
+                    <th>Selecciona El Area</th>
+                    <th>Selecciona El estado</th>
                     <th></th>
                 </tfoot>
             </table>

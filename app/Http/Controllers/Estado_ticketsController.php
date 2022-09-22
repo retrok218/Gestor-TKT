@@ -564,7 +564,8 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
       ]);
     }
 
-    public function subclases ($idsubclase){
+    public function subclases ($idsubclase,$nombre){
+      $nn = $nombre;
       $filass = DB::connection('pgsql2')->table('queue')
       ->where('group_id' , $idsubclase)
       ->get();
@@ -577,26 +578,36 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
         ->count();
         $g++;
       }      
-   // dd($filass);
-      return view('modals.modalsubclases')->with('filass',$filass);     
+   //dd($idsubclase,$nn);
+      return view('modals.modalsubclases')->with(['filass' => $filass, 'nombre' => $nn]);     
     }
 
 
 
     public function area_asignados($idarea){
-      $arrrrr = $idarea;
-      $tktsarea=DB::connection('pgsql2')->table('ticket')->where('queue_id',$arrrrr)->where('ticket_state_id',12)->get();
+      $idareaasignado = $idarea;
+      $nom_tkt_estatus = "Tickets Area/Asignados";
+      //$tktsarea=DB::connection('pgsql2')->table('ticket')->where('queue_id',$arrrrr)->where('ticket_state_id',12)->get();
       //dd($tktsarea);
-      return view('Tickets.Monitoreo_Tickets.tickets_area_asignados')->with('tktsarea',$tktsarea);
+      return view('Tickets.Monitoreo_Tickets.tickets_area_asignados')->with(['nom_tkt_estatus'=>$nom_tkt_estatus,'idareaasignado'=>$idareaasignado]);
+    }
+
+    public function data_area_asignados($idarea){
+      $tktsarea = DB::connection('pgsql2')
+      ->SELECT("SELECT  ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
+       FROM (ticket 
+        INNER JOIN queue ON ticket.queue_id = queue.id )
+        INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+        INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+      WHERE ticket_state_id = 12 AND queue_id = $idarea
+      ORDER BY ticket.tn DESC");
+      //dd( $tktsarea);
+      return Datatables::of($tktsarea)->toJson();
     }
 
 
-
-
-
-
-
-   /* Codigo para tkt sol toner ajax*/
+    
+   
 
 
 

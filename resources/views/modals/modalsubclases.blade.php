@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Areas de </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Areas de {{ $nombre }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,8 +10,7 @@
      
        <div class="modal-body">
        <table class="table table-bordered">
-        @foreach($filass as $fila)            
-         
+        @foreach($filass as $fila)                     
             <thead>
               <tr>                                
                 <th scope="col">Area/Fila</th>
@@ -20,13 +19,10 @@
             </thead>
             <tbody>
               <tr>                
-                <td> <a href="/tkts_area_asignados/{{$fila->id}}">{{$fila->name}}</a> </td>
-                <td>{{$fila->numfila}}</td> 
-                   
-                         
+                <td> <a href="/tkts_area_asignados/{{$fila->id}}" target="_blank">{{$fila->name}} </a> </td>
+                <td>{{$fila->numfila}}</td>                                             
               </tr>                         
-            </tbody>
-                          
+            </tbody>                          
         @endforeach
         </table> 
       </div>

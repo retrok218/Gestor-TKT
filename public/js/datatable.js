@@ -5,7 +5,7 @@ $(document).ready(function(){
             var min = $('#datepicker_from').datepicker('getDate');
             var max = $('#datepicker_to').datepicker('getDate');
             
-            var startDate = new Date($.trim(data[1])); //here change column value if you have different table structure
+            var startDate = new Date($.trim(data[2])); //here change column value if you have different table structure
             console.log(startDate);
             if (min == null && max == null) return true;
             if (min == null && startDate <= max_formattedDate) return true;
@@ -17,6 +17,8 @@ $(document).ready(function(){
 
     $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
     $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+
+    $('#datepicker_from,#datepicker_to')
  
 
     
@@ -27,10 +29,7 @@ $(document).ready(function(){
     
  
 // inicio de datatable    
-var table = $('#tablatk').DataTable({ 
-    
-   
-          
+var table = $('#tablatk').DataTable({                  
          "pageLength": 10,
          "lengthChange": true,
          "searching": true,
@@ -131,7 +130,7 @@ var table = $('#tablatk').DataTable({
          },
          // Filtro por seleccion multiple
          initComplete: function () {
-             this.api().columns([4]).every(function () {
+             this.api().columns([4,5]).every(function () {
                  var column = this;
                  //added class "mymsel"
                  var select = $('<select class="mymsel" multiple="multiple" ><option value="" ></option></select>')
@@ -208,17 +207,18 @@ $('#tablatk tbody').on('click', 'td.details-control', function () {
 
 $('#datepicker_from,#datepicker_to').change(function () {
     table.draw();
-
 });
 
-$(".clear-date-filter").on("click", function() {
-        $('#datepicker_from').val("").datepicker("update");
-        $('#datepicker_to').val("").datepicker("update");
-    }); 
+// Boton para limpiar los campos seleccionados en el filtro por rangos 
+$("#limpiar-fecha").on("click", function() {
+    $('#datepicker_from').val("").datepicker("update");
+    $('#datepicker_to').val("").datepicker("update");
     
+}); 
+// Fin Boton para limpiar los campos seleccionados en el filtro por rangos 
     
 setInterval( function () {
-    table.ajax.reload( null, false ); // funicon para recargar los datos de la datatable cada sierto tiempo 
+    table.ajax.reload( null, false ); // funcion para recargar los datos de la datatable cada sierto tiempo 
 }, 600000 ); //segundos 10000 = 10s 
     
 

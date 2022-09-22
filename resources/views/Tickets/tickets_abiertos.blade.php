@@ -9,7 +9,7 @@
     <div class="kt-portlet">    
         <!-- <div class="kt-portlet__body">                     -->
                     <div class="row row-no-padding row-col-separator-xl">			
-                    <div class="col-md-12 col-lg-12 col-sm-12 pull-left">   <!--  responsive -->
+                        <div class="col-md-12 col-lg-12 col-sm-12 pull-left">   <!--  responsive -->
                             <!--begin::Total Profit-->                            
                             <div class="kt-widget24" style="text-align: center;">
                                 <div class="row" style="color: #595d6e;">
@@ -44,7 +44,7 @@
                                 </div>              
                                 <div class="kt-widget24__action">  
                                         <span class="kt-widget24__number">
-                                        {{$tktporcenttot}}%
+                                            {{$tktporcenttot}}%
                                         </span>
                                         <span class="kt-widget24__number">
                                             {{$tktporcento}}%
@@ -52,8 +52,7 @@
                                 </div>	
                             </div>                           
                         </div>   
-                    </div>
-                
+                    </div>                
     </div>       
     @include('Tickets/EstructuraDTT/dtt')
     
