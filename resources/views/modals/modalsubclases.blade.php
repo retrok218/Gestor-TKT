@@ -13,14 +13,15 @@
         @foreach($filass as $fila)                     
             <thead>
               <tr>                                
-                <th scope="col">Area/Fila</th>
-                <th scope="col">Tickets Asignados </th>
+                <th >Area/Fila</th>
+                <th >Tickets Asignados </th>
+                
               </tr>
             </thead>
             <tbody>
               <tr>                
-                <td> <a href="/tkts_area_asignados/{{$fila->id}}" target="_blank">{{$fila->name}} </a> </td>
-                <td>{{$fila->numfila}}</td>                                             
+                <td><a href="/tkts_area_asignados/{{$fila->id}}" target="_blank" title="Desglose del area"> {{$fila->name}} </a> </td>
+                <td>{{$fila->numfila}}</td>                                                           
               </tr>                         
             </tbody>                          
         @endforeach

@@ -8,7 +8,7 @@
     <div class="kt-portlet">    
         <div class="kt-portlet__body">                    
                   <div class="row row-no-padding row-col-separator-xl">			
-                        <div class="col-md-12 col-lg-12 col-xl-3">                          
+                        <div class="col-md-12 col-lg-12 col-xl-12">                          
                             <div class="kt-widget24" style="text-align: center;">
                               <div class="row" style="color: #595d6e;">
                                   <div class="col-sm-6" >  
@@ -110,7 +110,7 @@
                   </div>  
                 </div>  
          </div>  
-     </div>  
+     
 
 
 
@@ -131,7 +131,7 @@
           <div class="tab-pane active" id="kt_widget11_tab1_content">
             <!--begin::Widget 11--> 
             <div class="kt-widget11">
-              <div class="table-responsive">	
+              
                 
                 <form class="kt-form kt-form--fit kt-margin-b-20">                
                   <div class="row kt-margin-b-4">
@@ -147,7 +147,7 @@
                                 <div class="input-group-append">
                                   <span class="input-group-text"><i class="flaticon-calendar"></i></span>
                                 </div>
-                                <button class="btn btn-default clear-date-filter">Limpiar Filtross</button>
+                                <button class="btn btn-default clear-date-filter">Limpiar Filtros</button>
                               </div>
                           </div>        
 
@@ -163,22 +163,18 @@
             
             
               <div class="col-md-12 col-lg-12 col-sm-12 pull-left">
-                <table class="table table-striped- table-bordered table-hover table-checkable" id="Solicitudesdetoner" >
+                <table class="display" style="width:100%" id="Solicitudesdetoner" >
                     <thead >     
-                    <tr>
-                            <th colspan="5" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Tickets</th>
-                            <th colspan="6" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;">Solicitados </th>
-                            <th colspan="8" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Entregados</th>
-                        </tr>
+                   
             
                         <tr>
                             <th>Numero del TKT</th>
                             <th>Fecha </th>
                             <th>Descripcion de TKT</th>
                             <th>Dependencia</th>
-                            <th >Fila</th>
+                            <th>Fila</th>
                             
-                            <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Solicitado Tipo de Toner </th>
+                            <th>1.-Solicitado Tipo de Toner </th>
                             <th>1.-Solicitado Cantidad</th>
                             <th>2.-Solicitado Tipo de Toner2 </th>
                             <th>2.-Solicitado Cantidad</th>
@@ -187,7 +183,7 @@
                             <th>4.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
                             <th>4.-Solicitado Catidad</th>
             
-                            <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Cantidad entregada </th>
+                            <th>1.-Cantidad entregada </th>
                             <th>1.-Tipo de Toner Entregado</th>
                             <th>2.-Cantidad entregada </th>
                             <th>2.-Tipo de Toner Entregado</th>
@@ -272,7 +268,7 @@
                                                 }                                                        
                             //Solicitado cantidad 4
                                                 if(strncasecmp($datotoner,'%%%%Required70' ,14)===0){                                      
-                                                  $cantidad4 = preg_replace('/%%%%Required70/','',$datotoner);                                                   
+                                                  $cantidad4 = (int) preg_replace('/%%%%Required70/','',$datotoner);                                                   
                                                  }
                             //Tipo de Toner 4
                                                 if(strncasecmp($datotoner,'%%%%Required71' ,14)===0){                                      
@@ -526,7 +522,6 @@
                 
               </div>
 
-              </div>
             </div>
             <!--end::Widget 11-->
              						             
@@ -588,7 +583,7 @@
 		
 	</div>
 </div>
-
+</div> 
 @include('layouts/scripts/scripts')
 @section('scripts')
 
@@ -614,6 +609,7 @@ $(document).ready(function(){
     );
     $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
     $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+    $('#datepicker_from,#datepicker_to')
 
 
 
@@ -665,7 +661,7 @@ $(document).ready(function(){
 
 var table = $('#Solicitudesdetoner').DataTable({ 
   
-        
+ 
       "pageLength": 6,   
       "lengthChange": true,
       "searching": true,
@@ -696,12 +692,21 @@ var table = $('#Solicitudesdetoner').DataTable({
 
 
       buttons: {
-            
+
+       
+        
 
             
             buttons: [
+
+             
+            
               
                        {
+
+
+
+
                          
                            extend:'excelHtml5',
                            text:'<i class="fas fa-file-excel"></i> Exel ',
@@ -777,12 +782,15 @@ var table = $('#Solicitudesdetoner').DataTable({
                            titleAttr: 'Registros a mostrar',
                            className: 'selectTable'
                        },
-                       'colvis'
+
+                         'colvis',
+                      
+                       
                       
                    ]         
            },
            columnDefs:[{
-                        targets: [7,8,9,10,13,14,15,16], 
+                        targets: [7,8,9,10,11,12,14,15,16,17,18,19,20,21], 
                         visible: false
                         }] ,
             
@@ -791,7 +799,7 @@ var table = $('#Solicitudesdetoner').DataTable({
 // Filtro por seleccion multiple
 initComplete: function () {
     //col3 en mantenimiento 
-             this.api().columns([4]).every(function () {
+             this.api().columns([4,22]).every(function () {
                  var column = this;
                  //added class "mymsel"
                  var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
@@ -862,34 +870,60 @@ initComplete: function () {
                   '3.-Toners Solicitados: <br>' + sumsol3 
                 );
 
-                tonerentregado1 = api
-                .column( 11, { search: "applied" } )
+                sumsol4 = api
+                .column(12, { search: "applied" } )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-                $( api.column(11).footer() ).html(
-                  '1.-Toner Entregados: <br>' + tonerentregado1 
+                $( api.column(12).footer() ).html(
+                  '4.-Toners Solicitados: <br>' + sumsol4 
                 );
 
-                tonerentregado2 = api
+
+
+
+
+
+
+                tonerentregado1 = api
                 .column( 13, { search: "applied" } )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column(13).footer() ).html(
-                  '2.-Toner Entregados: <br>' + tonerentregado2 
+                  '1.-Toner Entregados: <br>' + tonerentregado1 
                 );
 
-                tonerentregado3 = api
+                tonerentregado2 = api
                 .column( 15, { search: "applied" } )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column(15).footer() ).html(
+                  '2.-Toner Entregados: <br>' + tonerentregado2 
+                );
+
+                tonerentregado3 = api
+                .column( 17, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(17).footer() ).html(
                   '3.-Toner Entregados: <br>' + tonerentregado3 
+                );  
+
+                tonerentregado4 = api
+                .column( 19, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(19).footer() ).html(
+                  '3.-Toner Entregados: <br>' + tonerentregado4 
                 );  
 
                 
@@ -912,7 +946,7 @@ function sumcol(col1,col2,col3){
 
 var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3;
 var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2;
-var tsol = document.getElementById("soltoner").innerHTML=pageTotal;
+
 
 
 $('#datepicker_from,#datepicker_to').change(function () {

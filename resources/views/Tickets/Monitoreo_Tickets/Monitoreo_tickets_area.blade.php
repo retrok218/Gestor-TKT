@@ -44,14 +44,18 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">                           
                             <button onclick="subclases('{{$datoarea->id}}','{{$datoarea->name}}');" type="button" class="btn btn-outline-success">Consultar</button>                                
                             </div>
+
+                            
                         </div>
                     </div>				
         @endforeach		                                        
-    </div>
-
-
-          
+    </div>          
 </div>
+
+
+
+
+
 
 @section('scripts')
 <script>
@@ -92,6 +96,7 @@
    };
    
 </script>
+
 
 
 
