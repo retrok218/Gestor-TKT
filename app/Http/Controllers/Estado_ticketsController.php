@@ -145,7 +145,7 @@ class Estado_ticketsController extends Controller
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
         WHERE ticket_state_id = 13 AND queue_id IN ($usuario)                           
         ORDER BY ticket.tn DESC");
-    return Datatables::of($tkatendidos)->toJson();;
+    return Datatables::of($tkatendidos)->toJson();
   }
   // Tickets Cerrados Exitosamente 
 
