@@ -20,7 +20,7 @@
             </thead>
             <tbody>
               <tr>                
-                <td><a href="/tkts_area_asignados/{{$fila->id}}" target="_blank" title="Desglose del area"> {{$fila->name}} </a> </td>
+                <td><a  href="{{url("/tkts_area_asignados/{$fila->id}") }}" target="_blank" title="Desglose del area"> {{$fila->name}} </a> </td>
                 <td>{{$fila->numfila}}</td>                                                           
               </tr>                         
             </tbody>                          

@@ -17,17 +17,8 @@ $(document).ready(function(){
 
     $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
     $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-
     $('#datepicker_from,#datepicker_to')
- 
-
-    
-
-
-    
-
-    
- 
+  
 // inicio de datatable    
 var table = $('#tablatk').DataTable({                  
          "pageLength": 10,
