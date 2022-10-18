@@ -18,7 +18,7 @@
                                             <div class="kt-widget24__info" style="
                                             text-align: initial;">
                                                 <h4 class="kt-widget24__title">
-                                                    Tickets Totales 
+                                                    Tickets Totaless
                                                 </h4>					       
                                             </div> 
                                             <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>

@@ -10,7 +10,7 @@
                 <div class="card-header"  style="background-image: url(../assets/media/logos/fondo3.jpg) !important;background-size: 100%;background-repeat: no-repeat;">
                     <div class="containerglass ">
                     <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">
-                        Tablero Mesa de Servicio                                                  
+                        Tablero Mesa de Servicio                                              
                     </span>
                     <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(0.8em + 1vw);">(SIRADI)</span>    
                 </div>
