@@ -198,20 +198,8 @@
                     <tbody>
             
                     @php
-                       /* class tktdefinitivo {
-                          public $numero_tiket = $tk_id ->tn; 
-                        Numero que identfica el TKT
-                        }
-            
-            */
-                    @endphp
-            
-            
-            
-            
-            
-                @php
-            // Funcion que limpia los datos traidos de la db dentro de la variable texto
+                  
+           
                     function eliminasimbolos($texto){                           
                                     $eliminados1 = preg_replace('/FieldName/','',$texto);
                                     $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
@@ -239,85 +227,85 @@
                     foreach($esptoner as $datotoner){
                       
                                             if(strncasecmp($datotoner,'%%%%Required7',13)===0){
-                                                    $dependencia = preg_replace('/%%%%Required7/',' ',$datotoner);                                                                                
+                                                    $tk_id->dependencia = preg_replace('/%%%%Required7/',' ',$datotoner);                                                                                
                                                 }                          
                             // Solicitado cantidad 1
                                                 if(strncasecmp($datotoner,'%%%%Required64',14)===0){
-                                                        $cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$datotoner);
+                                                  $tk_id->cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$datotoner);
                                                                                                                                                                                                                  
                                                 }                          
                             //tipo de toner1
                                                 if(strncasecmp($datotoner,'%%%%Required65',14)===0){
-                                                    $tipodetoner1= preg_replace('/%%%%Required65/','',$datotoner);                                        
+                                                  $tk_id->tipodetoner1= preg_replace('/%%%%Required65/','',$datotoner);                                        
                                                 }
                             // solicitado cantidad 2                           
                                                 if(strncasecmp($datotoner,'%%%%Required66',14)===0){
-                                                        $cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$datotoner);                                           
+                                                  $tk_id->cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$datotoner);                                           
                                                 }
                             // tipo de toner 2                           
                                                 if(strncasecmp($datotoner,'%%%%Required67',14)===0){
-                                                        $tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);                                                                                       
+                                                  $tk_id->tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);                                                                                       
                                                 }
                             //solicitado cantidad 3 
                                                 if(strncasecmp($datotoner,'%%%%Required68',14)===0){
-                                                  $cantidad3 = preg_replace ('/%%%%Required68/','',$datotoner);
+                                                  $tk_id->cantidad3 = preg_replace ('/%%%%Required68/','',$datotoner);
                                                 }
                             //tipo de toner 3  
                                                 if(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
-                                                  $tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner);
+                                                  $tk_id->tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner);
                                                                                                      
                                                 }                                                        
                             //Solicitado cantidad 4
                                                 if(strncasecmp($datotoner,'%%%%Required70' ,14)===0){                                      
-                                                  $cantidad4 = (int) preg_replace('/%%%%Required70/','',$datotoner);                                                   
+                                                  $tk_id->cantidad4 = (int) preg_replace('/%%%%Required70/','',$datotoner);                                                   
                                                  }
                             //Tipo de Toner 4
                                                 if(strncasecmp($datotoner,'%%%%Required71' ,14)===0){                                      
-                                                  $tipotoner4 = preg_replace('/%%%%Required71/','',$datotoner);                                                   
+                                                  $tk_id->tipotoner4 = preg_replace('/%%%%Required71/','',$datotoner);                                                   
                                                  }                                                                              
                             // Entregado tipotoner1                     
                                                 if(strncasecmp($datotoner,'%%%%Required34',14)===0){
-                                                        $comentario_entrega = preg_replace ('/%%%%Required34/','',$datotoner);                                                             
+                                                  $tk_id->comentario_entrega = preg_replace ('/%%%%Required34/','',$datotoner);                                                             
                                                 }
                                                
                             //Entregado cantidad toner 1                           
                                                 if(strncasecmp($datotoner,'%%%%Required35',14)===0){
-                                                        $cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$datotoner);                                       
+                                                  $tk_id->cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$datotoner);                                       
                                                 }    
                             //Toner entregado 1
                                                   if(strncasecmp($datotoner,'%%%%Required53',14)===0){
-                                                      $tipotonerentregado1 = preg_replace('/%%%%Required53/','',$datotoner);                                          
+                                                    $tk_id->tipotonerentregado1 = preg_replace('/%%%%Required53/','',$datotoner);                                          
                                                   }
             
                             //Entregado cantidad 2
                                                if(strncasecmp($datotoner,'%%%%Required56',14)===0){
-                                                        $cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$datotoner);                                       
+                                                $tk_id->cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$datotoner);                                       
                                                 }
                             //Toner Entregado Tipo 2
                                                 if(strncasecmp($datotoner,'%%%%Required57',14)===0){
-                                                      $tipotonerentregado2 = preg_replace('/%%%%Required57/','',$datotoner);                                          
+                                                  $tk_id->tipotonerentregado2 = preg_replace('/%%%%Required57/','',$datotoner);                                          
                                                   }
                             //Toner Entregado cantidad 3
                                                 if(strncasecmp($datotoner,'%%%%Required60',14)===0){
-                                                        $cantidadtonerentregado3 = (int)preg_replace('/%%%%Required60/',' ',$datotoner);                                       
+                                                  $tk_id->cantidadtonerentregado3 = (int)preg_replace('/%%%%Required60/',' ',$datotoner);                                       
                                                 }
             
                             //Toner Entregado tipo 3
                                                 if(strncasecmp($datotoner,'%%%%Required61',14)===0){
-                                                        $tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$datotoner);                                       
+                                                  $tk_id->tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$datotoner);                                       
                                                 } 
                                                 
                                                 
                             //Toner Entregado cantidad 4
                                                 if(strncasecmp($datotoner,'%%%%Required62',14)===0){
-                                                  $cantidadtonerentregado4 = (int)preg_replace('/%%%%Required62/',' ',$datotoner);                                       
+                                                  $tk_id->cantidadtonerentregado4 = (int)preg_replace('/%%%%Required62/',' ',$datotoner);                                       
                                           }    
                             //Toner Entregado tipo 4
                                           if(strncasecmp($datotoner,'%%%%Required63',14)===0){
-                                                  $tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$datotoner);                                       
+                                            $tk_id->tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$datotoner);                                       
                                           }                                                                                                                                                              
                     }    
-                    
+                   
                     
                     $color= null;        
                        
@@ -345,7 +333,7 @@
                                 </td> 
                                 <td>{{$tk_id->create_time}}</td>
                                 <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->title}}</p> </td>                         
-                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$dependencia}}</p></td>
+                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->dependencia}}</p></td>
                                 <td>{{$tk_id->fila}}</td>
                                     @if(!isset($tipodetoner1) or !empty($tipodetoner1) == false)
                                       @php 
