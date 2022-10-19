@@ -227,18 +227,19 @@
                                 $acumuladorsolicitado = 0;
                                 $acumuladorentregado = 0;                             
                     @endphp
-            @foreach($tk_id as $tk_id)
+      @foreach($tk_id as $tk_id)
                 @php 
                         $texto = $tk_id->ticket_compuesto ;
                         $modificado = eliminasimbolos($texto);                    
                         $esptoner= array_pad(explode(',',$modificado),12," ");
+                        
                     
                         
                   
                     foreach($esptoner as $datotoner){
                       
                                             if(strncasecmp($datotoner,'%%%%Required7',13)===0){
-                                                    $dependencia=preg_replace('/%%%%Required7/',' ',$datotoner . "");                                                                                
+                                                    $dependencia = preg_replace('/%%%%Required7/',' ',$datotoner);                                                                                
                                                 }                          
                             // Solicitado cantidad 1
                                                 if(strncasecmp($datotoner,'%%%%Required64',14)===0){
@@ -273,14 +274,8 @@
                             //Tipo de Toner 4
                                                 if(strncasecmp($datotoner,'%%%%Required71' ,14)===0){                                      
                                                   $tipotoner4 = preg_replace('/%%%%Required71/','',$datotoner);                                                   
-                                                 }
-
-                      
-                      
-                      
-            
-                            // Entregado tipotoner1         
-            
+                                                 }                                                                              
+                            // Entregado tipotoner1                     
                                                 if(strncasecmp($datotoner,'%%%%Required34',14)===0){
                                                         $comentario_entrega = preg_replace ('/%%%%Required34/','',$datotoner);                                                             
                                                 }
@@ -320,17 +315,14 @@
                             //Toner Entregado tipo 4
                                           if(strncasecmp($datotoner,'%%%%Required63',14)===0){
                                                   $tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$datotoner);                                       
-                                          }
-                                          
-
-                                          
-                                                                          
+                                          }                                                                                                                                                              
                     }    
                     
+                    
                     $color= null;        
-                @endphp       
+                       
             
-                                @php    
+                                  
                                     switch($tk_id->name)  {
                                         case 'Asignado' : $color = '#fff7085e'; break;
                                         case 'Notificado al Usuario': $color = '#16ff1352'; break;
@@ -339,7 +331,7 @@
                                        case 'Atendido': $color = '#01c4ff82'; break;
                                     }          
                                    
-                                @endphp
+                 @endphp
             
             
                              <tr style="background:<?php echo $color ?>;">
@@ -491,8 +483,10 @@
                               ,$comentario_entrega,$tk_id->name,$tipotonerentregado1,$cantidadtonerentregado2,$tipotonerentregado2
                             );
                           @endphp            
-                @endforeach
+       @endforeach
                     </tbody>
+
+
                     <tfoot>
                         <th></th>
                         <th></th>
