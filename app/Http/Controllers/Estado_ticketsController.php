@@ -212,7 +212,7 @@ class Estado_ticketsController extends Controller
     $tktporcento = round(($cerradoPT*100)/$tickte,2);
     $tktporcenttot= 100-$tktporcento;
     
-    return view('Tickets/tickets_cerradosPT')
+    return view('Tickets/tickets_cerradospt')
       ->with(['ticket'=>$tickte,
       'cerradoPT'=>$cerradoPT,
       'nom_tkt_estatus'=>$nom_tkt_estatus,
