@@ -345,7 +345,7 @@
                                 </td> 
                                 <td>{{$tk_id->create_time}}</td>
                                 <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->title}}</p> </td>                         
-                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$dependencia}}</p></td>
+                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->$dependencia}}</p></td>
                                 <td>{{$tk_id->fila}}</td>
                                     @if(!isset($tipodetoner1) or !empty($tipodetoner1) == false)
                                       @php 
