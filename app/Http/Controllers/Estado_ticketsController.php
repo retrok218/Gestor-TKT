@@ -17,7 +17,7 @@ use Carbon\Carbon;
 use App\ConexionBD2;
 use App\ticket;
 use Illuminate\Support\Collection;
-use stdClass;
+
 
 class Estado_ticketsController extends Controller
 {
@@ -212,7 +212,7 @@ class Estado_ticketsController extends Controller
     $tktporcento = round(($cerradoPT*100)/$tickte,2);
     $tktporcenttot= 100-$tktporcento;
     
-    return view('Tickets/tickets_cerradospt')
+    return view('Tickets/tickets_cerradosPT')
       ->with(['ticket'=>$tickte,
       'cerradoPT'=>$cerradoPT,
       'nom_tkt_estatus'=>$nom_tkt_estatus,
@@ -548,6 +548,8 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
        queue.name
        
      ORDER BY ticket.tn DESC");
+
+     //var_dump($ticketfusion); exit;
      $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
      $tickte = DB::connection('pgsql2')->table('ticket')->count();
    
@@ -563,6 +565,29 @@ and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIK
       'estado_graf'=>$estado_graf      
       ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function subclases ($idsubclase,$nombre){
       $nn = $nombre;
