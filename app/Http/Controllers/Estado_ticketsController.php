@@ -875,6 +875,90 @@ class Estado_ticketsController extends Controller
  }   
      return Datatables::of($ticketfusion)->toJson();
   ;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public function toneraj()
+  {
+    
+      // Para La Grafica de Area 
+      // Se obtienen las areas con las que se cuenta en la tabla queue solo el ID 
+    $areas_filastkts=DB::connection('pgsql2')->table('queue')->select('id','name')->orderBy('id','ASC')->get();
+     // Se transforma de un arreglo de objetos a un arreglo de con solo para obtener el id de las areas 
+     $area_f=[]; 
+       foreach($areas_filastkts as $fila){
+          $area_f[]=$fila->id;        
+       };       
+       $n=0;
+       foreach( $area_f as $areas_ids){       
+       $areas_filastkts[$n]->coun=DB::connection('pgsql2')->table('ticket')
+       ->where('queue_id','=',$areas_ids)
+       ->where('service_id','=',79)
+       ->orwhere('service_id','=',78)
+       ->count();
+        $n++;
+       } 
+
+       // Fin Para La Grafica de Area 
+
+       // Grafica por estado 
+        $estado_graf=DB::connection('pgsql2')->table('ticket_state')->select('id','name')->orderBy('id','ASC')->get();
+        $estado_id=[];
+       
+        foreach($estado_graf as $estado){
+          $estado_id[]=$estado->id;
+
+        };
+
+        
+        $num=0;
+        foreach ($estado_id as $estadoid) {
+          $estado_graf[$num]->conteo=DB::connection('pgsql2')->table('ticket')
+          ->where('ticket_state_id','=',$estadoid)
+          ->where('service_id','=',79)
+          ->orwhere('service_id','=',78)
+          ->count();
+          $num++;
+
+        }
+        $num=0;
+        foreach ($estado_graf as $estadiesp ){
+          if ($estadiesp->name == "new") {
+            $estado_graf[$num]->name = "nuevo";
+            
+          }elseif ($estadiesp->name == "closed successful") {
+            $estado_graf[$num]->name = "Cerrado exitosamente";
+          }elseif($estadiesp->name == "open"){
+            $estado_graf[$num]->name ="Abierto";
+          }
+          $num++;
+        }
+       
+   // dd($ticketfusion);
+
+   // var_dump($ticketfusion); exit;  
+     $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
+     $tickte = DB::connection('pgsql2')->table('ticket')->count();
+     //dd($ticketfusion);
+
+    return view('Tickets/EstructuraDTT/dtttoner')      
+      ->with('solicitudToner', $solicitudToner)
+      ->with('ticket', $tickte)
+      ->with('areas_filastkts',$areas_filastkts)
+      ->with('estado_graf',$estado_graf)   ;             
+    }
 }
 
 

@@ -3,8 +3,10 @@
 @section('content')
 <script>
   var titulo_tab = 'Control Toners ';
+  
 </script>
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">    
+    <h1>q raro</h1>
     <div class="kt-portlet">    
         <div class="kt-portlet__body">                    
                   <div class="row row-no-padding row-col-separator-xl">			
