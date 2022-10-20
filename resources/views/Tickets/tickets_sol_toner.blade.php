@@ -231,7 +231,12 @@
                       </div>
                     </td> 
                     <td>{{$tk_id->create_time}}</td>
-                    <td>{{$tk_id->title}}</td>                         
+                    <td>{{$tk_id->title}}</td>  
+                    @if(!isset($tk_id->dependencia) or !empty($tk_id->dependencia) == false)
+                          @php 
+                          $tk_id->dependencia =" ";
+                          @endphp  
+                    @endif        
                     <td>{{$tk_id->dependencia}}</td>
                     <td>{{$tk_id->fila}}</td>
                     @if(!isset($tk_id->Tipo_toner1) or !empty($tk_id->Tipo_toner1) == false)
