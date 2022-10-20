@@ -162,7 +162,7 @@
             
             
             
-              <div class="col-md-12 col-lg-12 col-sm-12 pull-left">
+              <div class="">
                 <table class="display" style="width:100%" id="Solicitudesdetoner" >
                     <thead >     
                    
@@ -195,284 +195,81 @@
                             <th>Estado</th>      
                         </tr>
                     </thead>
-                    <tbody>
-            
-                    @php
-                  
-           
-                    function eliminasimbolos($texto){                           
-                                    $eliminados1 = preg_replace('/FieldName/','',$texto);
-                                    $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
-                                    $eliminados  = preg_replace('/ITSMReview/','',$eliminados2);
-                                    $eliminados3 = preg_replace('/@/','',$eliminados);
-                                    $eliminados4 = preg_replace('/#/','',$eliminados3);
-                                    $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
-                                    $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
-                                    $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
-                                    $eliminados8 = preg_replace('/%%OldValue%%/',' ',$eliminados7);
-                                    return $eliminados8;
-                                }                          
-                                $acumuladorsolicitado = 0;
-                                $acumuladorentregado = 0;                             
-                    @endphp
-      @foreach($tk_id as $tk_id)
-                @php 
-                        $texto = $tk_id->ticket_compuesto ;
-                        $modificado = eliminasimbolos($texto);                    
-                        $esptoner= array_pad(explode(',',$modificado),12," ");
-                        
-                    
-                        
-                  
-                    foreach($esptoner as $datotoner){
+                <tbody>
+                  @php
+                    function vacio($a){
                       
-                                            if(strncasecmp($datotoner,'%%%%Required7',13)===0){
-                                                    $tk_id->dependencia = preg_replace('/%%%%Required7/',' ',$datotoner);                                                                                
-                                                }                          
-                            // Solicitado cantidad 1
-                                                if(strncasecmp($datotoner,'%%%%Required64',14)===0){
-                                                  $tk_id->cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$datotoner);
-                                                                                                                                                                                                                 
-                                                }                          
-                            //tipo de toner1
-                                                if(strncasecmp($datotoner,'%%%%Required65',14)===0){
-                                                  $tk_id->tipodetoner1= preg_replace('/%%%%Required65/','',$datotoner);                                        
-                                                }
-                            // solicitado cantidad 2                           
-                                                if(strncasecmp($datotoner,'%%%%Required66',14)===0){
-                                                  $tk_id->cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$datotoner);                                           
-                                                }
-                            // tipo de toner 2                           
-                                                if(strncasecmp($datotoner,'%%%%Required67',14)===0){
-                                                  $tk_id->tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);                                                                                       
-                                                }
-                            //solicitado cantidad 3 
-                                                if(strncasecmp($datotoner,'%%%%Required68',14)===0){
-                                                  $tk_id->cantidad3 = preg_replace ('/%%%%Required68/','',$datotoner);
-                                                }
-                            //tipo de toner 3  
-                                                if(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
-                                                  $tk_id->tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner);
-                                                                                                     
-                                                }                                                        
-                            //Solicitado cantidad 4
-                                                if(strncasecmp($datotoner,'%%%%Required70' ,14)===0){                                      
-                                                  $tk_id->cantidad4 = (int) preg_replace('/%%%%Required70/','',$datotoner);                                                   
-                                                 }
-                            //Tipo de Toner 4
-                                                if(strncasecmp($datotoner,'%%%%Required71' ,14)===0){                                      
-                                                  $tk_id->tipotoner4 = preg_replace('/%%%%Required71/','',$datotoner);                                                   
-                                                 }                                                                              
-                            // Entregado tipotoner1                     
-                                                if(strncasecmp($datotoner,'%%%%Required34',14)===0){
-                                                  $tk_id->comentario_entrega = preg_replace ('/%%%%Required34/','',$datotoner);                                                             
-                                                }
-                                               
-                            //Entregado cantidad toner 1                           
-                                                if(strncasecmp($datotoner,'%%%%Required35',14)===0){
-                                                  $tk_id->cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$datotoner);                                       
-                                                }    
-                            //Toner entregado 1
-                                                  if(strncasecmp($datotoner,'%%%%Required53',14)===0){
-                                                    $tk_id->tipotonerentregado1 = preg_replace('/%%%%Required53/','',$datotoner);                                          
-                                                  }
-            
-                            //Entregado cantidad 2
-                                               if(strncasecmp($datotoner,'%%%%Required56',14)===0){
-                                                $tk_id->cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$datotoner);                                       
-                                                }
-                            //Toner Entregado Tipo 2
-                                                if(strncasecmp($datotoner,'%%%%Required57',14)===0){
-                                                  $tk_id->tipotonerentregado2 = preg_replace('/%%%%Required57/','',$datotoner);                                          
-                                                  }
-                            //Toner Entregado cantidad 3
-                                                if(strncasecmp($datotoner,'%%%%Required60',14)===0){
-                                                  $tk_id->cantidadtonerentregado3 = (int)preg_replace('/%%%%Required60/',' ',$datotoner);                                       
-                                                }
-            
-                            //Toner Entregado tipo 3
-                                                if(strncasecmp($datotoner,'%%%%Required61',14)===0){
-                                                  $tk_id->tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$datotoner);                                       
-                                                } 
-                                                
-                                                
-                            //Toner Entregado cantidad 4
-                                                if(strncasecmp($datotoner,'%%%%Required62',14)===0){
-                                                  $tk_id->cantidadtonerentregado4 = (int)preg_replace('/%%%%Required62/',' ',$datotoner);                                       
-                                          }    
-                            //Toner Entregado tipo 4
-                                          if(strncasecmp($datotoner,'%%%%Required63',14)===0){
-                                            $tk_id->tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$datotoner);                                       
-                                          }                                                                                                                                                              
-                    }    
-                   
-                    
-                    $color= null;        
-                       
-            
-                                  
-                                    switch($tk_id->name)  {
-                                        case 'Asignado' : $color = '#fff7085e'; break;
-                                        case 'Notificado al Usuario': $color = '#16ff1352'; break;
-                                        case 'open' : $color = '#ff0d0d52'; $tk_id->name = preg_replace('/open/','Abierto',$tk_id->name); break;
-                                       case 'closed successful' : $color = '#11ff018f' ; $tk_id->name = preg_replace('/closed successful/','Cerrado Exitosamente',$tk_id->name); break;
-                                       case 'Atendido': $color = '#01c4ff82'; break;
-                                    }          
-                                   
-                 @endphp
-              
-            
-                             <tr style="background:<?php echo $color ?>;">
-                             <!--cuerpo principal de solicitu de toner -->
-                                <td > 
-                                  <div class="login-box">
-                                    <a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS">                           
-                                      {{$tk_id ->tn }}
-                                    </a>
-                                  </div>
-                                </td> 
-                                <td>{{$tk_id->create_time}}</td>
-                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->title}}</p> </td>                         
-                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->dependencia}}</p></td>
-                                <td>{{$tk_id->fila}}</td>
-                                    @if(!isset($tipodetoner1) or !empty($tipodetoner1) == false)
-                                      @php 
-                                      $tipodetoner1 =" ";
-                                      @endphp  
-                                    @endif
-                                <td style="border-left-color: #cab08f;border-left-width: 3px;">{{$tipodetoner1}}</td>
-            
-                                    @if(!isset($cantidad1) or !empty($cantidad1) == false)
-                                      @php 
-                                        $cantidad1 = 0;
-                                      @endphp  
-                                    @endif
-                                <td>{{$cantidad1}}</td>                                          
-                                    @if(!isset($tipotoner2) or !empty($tipotoner2) == false)
-                                      @php 
-                                        $tipotoner2 = " ";
-                                      @endphp  
-                                    @endif                   
-                                <td>{{$tipotoner2}}</td>
-            
-                                    @if(!isset($cantidad2) or !empty($cantidad2) == false)
-                                      @php 
-                                        $cantidad2 = 0;
-                                      @endphp  
-                                    @endif
-                                <td>{{$cantidad2}}</td> 
-            
-                                    @if(!isset($tipotoner3) or !empty($tipotoner3) == false)
-                                      @php 
-                                        $tipotoner3 = "";
-                                      @endphp  
-                                    @endif
-                                <td>{{$tipotoner3}}</td>
-            
-                                    @if(!isset($cantidad3) or !empty($cantidad3) == false)
-                                      @php 
-                                        $cantidad3 = 0 ;
-                                      @endphp  
-                                    @endif
-                                <td>{{$cantidad3}}</td> 
+                      if(!isset($a) or !empty($a) == false){$a ="sin datos ";  
+                      echo $a."dentro de la funcion2";
+                      } 
+                      else {
+                        echo "dentro de la funcion";
+                      }                                                                                    
+                    }
+                  @endphp
 
 
-                                @if(!isset($tipotoner4) or !empty($tipotoner4) == false)
-                                      @php 
-                                        $tipotoner4 = "";
-                                      @endphp  
-                                    @endif
-                                <td>{{$tipotoner4}}</td>
-            
-                                    @if(!isset($cantidad4) or !empty($cantidad4) == false)
-                                      @php 
-                                        $cantidad4 = 0 ;
-                                      @endphp  
-                                    @endif
-                                <td>{{$cantidad4}}</td> 
+                      @foreach($tk_id as $tk_id)
+                      @php    
+                        switch($tk_id->name)  {
+                            case 'Asignado' : $color = '#fff7085e'; break;
+                            case 'Notificado al Usuario': $color = '#16ff1352'; break;
+                            case 'open' : $color = '#ff0d0d52'; $tk_id->name = preg_replace('/open/','Abierto',$tk_id->name); break;
+                           case 'closed successful' : $color = '#11ff018f' ; $tk_id->name = preg_replace('/closed successful/','Cerrado Exitosamente',$tk_id->name); break;
+                           case 'Atendido': $color = '#01c4ff82'; break;
+                        }                                 
+                    @endphp
 
 
-
-
-
-                                    @if(!isset($cantidadtonerentregado1)  or  !empty($cantidadtonerentregado1)  == false)    
-                                      @php
-                                       $cantidadtonerentregado1 = 0;
-                                      @endphp    
-                                    @endif
-                                <td style="border-left-color: #cab08f;border-left-width: 3px;">{{$cantidadtonerentregado1}}</td>
-                                    @if(!isset($tipotonerentregado1)  or  !empty($tipotonerentregado1)  == false )    
-                                          @php
-                                              $tipotonerentregado1 = " ";
-                                          @endphp                                 
-                                    @endif      
-                                <td>{{$tipotonerentregado1}}</td> 
-                                
-                                @if(!isset($cantidadtonerentregado2)  or  !empty($cantidadtonerentregado2)  == false)    
-                                      @php
-                                       $cantidadtonerentregado2 = 0;
-                                      @endphp    
-                                    @endif
-                                <td>{{$cantidadtonerentregado2}}</td>
-                                    @if(!isset($tipotonerentregado2)  or  !empty($tipotonerentregado2)  == false )    
-                                          @php
-                                              $tipotonerentregado2 = " ";
-                                          @endphp                                 
-                                    @endif      
-                                <td>{{$tipotonerentregado2}}</td> 
-            
-            
-                                @if(!isset($cantidadtonerentregado3)  or  !empty($cantidadtonerentregado3)  == false)    
-                                      @php
-                                       $cantidadtonerentregado3 = 0;
-                                      @endphp    
-                                    @endif
-                                <td>{{$cantidadtonerentregado3}}</td>
-                                    @if(!isset($tipotonerentregado3)  or  !empty($tipotonerentregado3)  == false )    
-                                          @php
-                                              $tipotonerentregado3 = " ";
-                                          @endphp                                 
-                                    @endif      
-                                <td>{{$tipotonerentregado3}}</td> 
-
-
-                                @if(!isset($cantidadtonerentregado4)  or  !empty($cantidadtonerentregado4)  == false)    
-                                      @php
-                                       $cantidadtonerentregado4 = 0;
-                                      @endphp    
-                                    @endif
-                                <td>{{$cantidadtonerentregado4}}</td>
-                                    @if(!isset($tipotonerentregado4)  or  !empty($tipotonerentregado4)  == false )    
-                                          @php
-                                              $tipotonerentregado4 = " ";
-                                          @endphp                                 
-                                    @endif      
-                                <td>{{$tipotonerentregado4}}</td> 
-                                
-                                
-
-
-
-
-
-            
-                                @if(!isset($comentario_entrega) or !empty($comentario_entrega) == false) <!--Comentario de entrega del toner -->
-                                    @php
-                                     $comentario_entrega = "Sin datos";
-                                    @endphp
-                                @endif
-                                 <td>{{$comentario_entrega}}</td>                                                  
-                                <td>{{$tk_id->name}}</td>                     
-                            </tr>   
-
+                 <tr style="background:<?php echo $color ?>;">
+                 <!--cuerpo principal de solicitu de toner -->
+                    <td > 
+                      <div class="login-box">
+                        <a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS">                           
+                          {{$tk_id ->tn }}
+                        </a>
+                      </div>
+                    </td> 
+                    <td>{{$tk_id->create_time}}</td>
+                    <td>{{$tk_id->title}}</td>                         
+                    <td>{{$tk_id->dependencia}}</td>
+                    <td>{{$tk_id->fila}}</td>
+                    @if(!isset($tk_id->Tipo_toner1) or !empty($tk_id->Tipo_toner1) == false)
                           @php 
-                            unset($tk_id ->tn,$tk_id->create_time,$tk_id->title,$dependencia,$tk_id->fila,$tipodetoner1
-                              ,$cantidad1,$tipotoner2,$cantidad2,$tipotoner3,$cantidad3,$cantidadtonerentregado1
-                              ,$comentario_entrega,$tk_id->name,$tipotonerentregado1,$cantidadtonerentregado2,$tipotonerentregado2
-                            );
-                          @endphp            
-       @endforeach
-                    </tbody>
+                          $tk_id->Tipo_toner1 =" ";
+                          @endphp  
+                        @endif
+                    <td style="border-left-color: #cab08f;border-left-width: 3px;">{{$tk_id->Tipo_toner1}}</td>                                        
+                    <td></td>                    
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>                                   
+
+              @php 
+                unset($tk_id ->tn,$tk_id->create_time,$tk_id->title,$dependencia,$tk_id->fila,$tipodetoner1
+                  ,$cantidad1,$tipotoner2,$cantidad2,$tipotoner3,$cantidad3,$cantidadtonerentregado1
+                  ,$comentario_entrega,$tk_id->name,$tipotonerentregado1,$cantidadtonerentregado2,$tipotonerentregado2
+                );
+              @endphp
+          @endforeach  
+      </tbody>
+
+
+
 
 
                     <tfoot>
