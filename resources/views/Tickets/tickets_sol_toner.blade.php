@@ -358,7 +358,7 @@
                                       $tk_id->dependencia =" ";
                                       @endphp  
                                 @endif                      
-                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$dependencia}}</p></td>
+                                <td><p class="width: 200px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">{{$tk_id->dependencia}}</p></td>
                                 <td>{{$tk_id->fila}}</td>
                                     @if(!isset($tipodetoner1) or !empty($tipodetoner1) == false)
                                       @php 
@@ -373,12 +373,8 @@
                                       @endphp  
                                     @endif
                                 <td>{{$cantidad1}}</td>                                          
-                                    @if(!isset($tipotoner2) or !empty($tipotoner2) == false)
-                                      @php 
-                                        $tipotoner2 = " ";
-                                      @endphp  
-                                    @endif                   
-                                <td>{{$tipotoner2}}</td>
+                                                     
+                                <td>{{$tk_id->tipotoner2}}</td>
             
                                     @if(!isset($cantidad2) or !empty($cantidad2) == false)
                                       @php 
