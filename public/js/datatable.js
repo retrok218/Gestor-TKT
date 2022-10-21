@@ -1,5 +1,6 @@
-$(document).ready(function(){
 
+$(document).ready(function(){   
+  
     $.fn.dataTable.ext.search.push(
         function (settings, data, dataIndex) {
             var min = $('#datepicker_from').datepicker('getDate');
@@ -150,6 +151,8 @@ var table = $('#tablatk').DataTable({
         },
         ajax: {
             "url": url + name_tabla,
+            cache: false,
+            
         },
         columns: [                                              
             {

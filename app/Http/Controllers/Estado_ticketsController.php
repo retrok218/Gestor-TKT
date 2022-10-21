@@ -203,6 +203,17 @@ class Estado_ticketsController extends Controller
     return Datatables::of($tickets_totales)->toJson();
   }
 
+
+
+
+
+
+
+
+
+
+
+  
   //Tickets Cerrados Por Tiempo         
   public function tickets_cerradosPT()
   {
