@@ -39,11 +39,7 @@
 <script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
 
 
-
 <!-- scripts para datatable -->
-
-
-
 <!--Scrips para grafica mediante google charts -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.esm.js"></script>

@@ -195,7 +195,7 @@
                             <th>Estado</th>      
                         </tr>
                     </thead>
-                    <tbody>
+      <tbody>
             
                     @php
                        /* class tktdefinitivo {
