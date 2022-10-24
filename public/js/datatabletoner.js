@@ -233,7 +233,7 @@ $(document).ready(function(){
 },
 ajax: {
     "url": url + "/data_soltoner",
-    cache: null,
+    cache: false,
 },
 columns: [                                              
     {"mRender": function(data, type, row){

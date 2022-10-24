@@ -175,6 +175,7 @@ var table = $('#tablatk').DataTable({
             { data: 'name'},
             { data: 'nombre', name: 'nombre' },                         
         ],
+        
 });
 
 
@@ -229,6 +230,14 @@ function format ( d ) {
 
     return table;
 }
+
+//Eliminando el cache de la datatable para evitar error 500
+$( '#tablatk' ).on( 'change', 'input', function () {
+    //invalidate the DT cache
+    table.cell($(cell)).invalidate().draw();
+              
+  } );
+
     
 
 });

@@ -308,8 +308,7 @@ window.onload = function () {
       showInLegend: true,     
       legendText: "{label}",      	            
 			dataPoints: [
-        @foreach ($estado_graf as $estadotkt)       
-        
+        @foreach ($estado_graf as $estadotkt)               
         {  y:{{$estadotkt->conteo}},label: "{{$estadotkt->name}} - {{$estadotkt->conteo}}" },           
          @endforeach   
 			]
