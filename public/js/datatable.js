@@ -7,7 +7,7 @@ $(document).ready(function(){
             var max = $('#datepicker_to').datepicker('getDate');
             
             var startDate = new Date($.trim(data[2])); //here change column value if you have different table structure
-            console.log(startDate);
+           
             if (min == null && max == null) return true;
             if (min == null && startDate <= max_formattedDate) return true;
             if (max == null && startDate >= min_formattedDate) return true; 
@@ -220,7 +220,7 @@ setInterval( function () {
 // crea una tabla dentro de la tabla ya generada 
 function format ( d ) {
     // `d` is the original data object for the row
-    console.log(d)
+    
     let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" >'+
         '<tr >'+
             '<td>Asunto Completo:</td>'+

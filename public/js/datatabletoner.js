@@ -15,51 +15,7 @@ $(document).ready(function(){
       $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
       $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
       $('#datepicker_from,#datepicker_to')
-  
-  
-  
-  
-      var idioma=
-  
-  {
-      "sProcessing":     "Procesando...",
-      "sLengthMenu":     "Mostrar _MENU_ registros",
-      "sZeroRecords":    "No se encontraron resultados",
-      "sEmptyTable":     "Ningun dato disponible en esta tabla",
-      "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-      "sInfoPostFix":    "",
-      "sSearch":         "Buscar Ticket:",
-      "sUrl":            "",
-      "sInfoThousands":  ",",
-      "sLoadingRecords": "Cargando...",
-      "oPaginate": {
-          "sFirst":    "Primero",
-          "sLast":     "Ultimo",
-          "sNext":     "Siguiente",
-          "sPrevious": "Anterior"
-      },
-      "oAria": {
-          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-      },
-      "buttons": {
-          "copyTitle": 'Informacion copiada',
-          
-          "copySuccess": {
-              "_": '%d filas copiadas al portapapeles',
-              "1": '1 fila copiada al portapapeles'
-          },
-          "pageLength": {
-          "_": "Mostrar %d filas",
-          "-1": "Mostrar Todo"
-          },
-          "colvis":"Seleccion de columnas"
-  
-          
-      }
-  };
+              
   
                 
   
@@ -74,7 +30,7 @@ $(document).ready(function(){
         "info": true,
         //responsive: true, 
         "autoWidth": false,      
-        "language": idioma,
+        //"language": idioma,
         "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
         "order":[1 ,'desc'],
         dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
@@ -256,7 +212,7 @@ columns: [
 
     {data:'tipotoner3',name:'tipotoner3'},                     
     {data:'cantidad3',name:'cantidad3'},  
-                               
+
     {data:'SolicitadoTipo4',name:'SolicitadoTipo4'},                  
     {data:'cantidad4',name:'cantidad4'},                      
     
@@ -385,6 +341,24 @@ columns: [
           
           
   });
+
+  $('#datepicker_from,#datepicker_to').change(function () {
+    table.draw();
+});
+$("#limpiar-fecha").on("click", function() {
+    $('#datepicker_from').val("").datepicker("update");
+    $('#datepicker_to').val("").datepicker("update");
+    
+});
+setInterval( function () {
+    table.ajax.reload( null, false ); // funcion para recargar los datos de la datatable cada sierto tiempo 
+}, 600000 ); //segundos 10000 = 10s 
+
+$( '#tablatoners' ).on( 'change', 'input', function () {
+    //invalidate the DT cache
+    table.cell($(cell)).invalidate().draw();
+              
+  } );
   
 });
   
