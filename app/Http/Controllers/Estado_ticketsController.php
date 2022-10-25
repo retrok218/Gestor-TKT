@@ -675,27 +675,6 @@ class Estado_ticketsController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function subclases ($idsubclase,$nombre){
       $nn = $nombre;
       $filass = DB::connection('pgsql2')->table('queue')
@@ -757,6 +736,9 @@ class Estado_ticketsController extends Controller
                   INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
                   INNER JOIN queue ON ticket.queue_id = queue.id
                 WHERE 
+               
+             
+                
                   (ticket.service_id = 79 OR ticket.service_id = 78)
                   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
                   or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
@@ -786,39 +768,40 @@ class Estado_ticketsController extends Controller
                   $eliminados3 = preg_replace('/@/','',$eliminados);
                   $eliminados4 = preg_replace('/#/','',$eliminados3);
                   $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
-                  $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
+                  $eliminados6 = preg_replace('/%%Value%%/',' ',$eliminados5);
                   $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
                   $modificacion8 = preg_replace('/%%OldValue%%/',' ',$eliminados7);
                   $ticketfusion[$n]->compuesto= array_pad(explode(',',$modificacion8 ),25," ");
                   $ticketfusion[$n]->dependencia="";
-                  $ticketfusion[$n]->cantidad1="";
+                  $ticketfusion[$n]->cantidad1=0;
                   $ticketfusion[$n]->Tipo_toner1="";
-                  $ticketfusion[$n]->cantidad2="";
-                  $ticketfusion[$n]->tipotoner2="vacio";
-                  $ticketfusion[$n]->cantidad3="";
+                  $ticketfusion[$n]->cantidad2=0;
+                  $ticketfusion[$n]->tipotoner2="";
+                  $ticketfusion[$n]->cantidad3=0;
                   $ticketfusion[$n]->tipotoner3="";
+                  $ticketfusion[$n]->cantidad4=0;
+                  $ticketfusion[$n]->SolicitadoTipo4 ="";
                   $ticketfusion[$n]->comentario_entrega="";
-                  $ticketfusion[$n]->cantidadtonerentregado1="";
+                  $ticketfusion[$n]->cantidadtonerentregado1=0;
                   $ticketfusion[$n]->tipotonerentregado1="";
-                  $ticketfusion[$n]->cantidadtonerentregado2="";
+                  $ticketfusion[$n]->cantidadtonerentregado2=0;
                   $ticketfusion[$n]->tipotonerentregado2="";
-                  $ticketfusion[$n]->cantidadtonerentregado3="";
+                  $ticketfusion[$n]->cantidadtonerentregado3=0;
                   $ticketfusion[$n]->tipotonerentregado3="";
                   $ticketfusion[$n]->cantidadtonerentregado4=0;
                   $ticketfusion[$n]->tipotonerentregado4="";
-                  $ticketfusion[$n]->Solicitado4="";
-                  $ticketfusion[$n]->SolicitadoTipo4="";
+                  
                 //se crean las bariables desde dependencia asta SolicitadoTipo4 ya que el dato puede existir o no con esto se formara una funcion 
                   $n++;     
 
           }
                 $i=0;
-              
+             
                 
       foreach ($ticketfusion as $sacando_dato) {  
             foreach ($sacando_dato->compuesto as $otroarreglo) {                                    
-                  if(strncasecmp($otroarreglo,'%%%%Required7',13)===0){
-                      $ticketfusion[$i]->dependencia= preg_replace('/%%%%Required7/',' ',$otroarreglo);                                                                                
+                  if(strncasecmp($otroarreglo,'%%%%Required7 ',14)===0){
+                      $ticketfusion[$i]->dependencia= preg_replace('/%%%%Required7/','',$otroarreglo);                                                                                
                     }
                   if(strncasecmp($otroarreglo,'%%%%Required64',14)===0){
                     $ticketfusion[$i]->cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$otroarreglo);
@@ -865,16 +848,21 @@ class Estado_ticketsController extends Controller
                   if(strncasecmp($otroarreglo,'%%%%Required63',14)===0){
                     $ticketfusion[$i]->tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$otroarreglo);                                       
                   }
-                  if(strncasecmp($otroarreglo,'%%%%Required70',14)===0){
-                    $ticketfusion[$i]->Solicitado4 = preg_replace('/%%%%Required70/',' ',$otroarreglo);                                       
-                  }
                   if(strncasecmp($otroarreglo,'%%%%Required71',14)===0){
-                    $ticketfusion[$i]->SolicitadoTipo4=preg_replace('/%%%%Required71/',' ',$otroarreglo);                                       
-                  }            
+                    $ticketfusion[$i]->SolicitadoTipo4 = preg_replace('/%%%%Required71/','',$otroarreglo);                                       
+                  }
+                  if(strncasecmp($otroarreglo,'%%%%Required70',14)===0){
+                    $ticketfusion[$i]->cantidad4=preg_replace('/%%%%Required70/','',$otroarreglo);                                       
+                  }  
+                  
+                          
           }    
-                $i++;
-     }   
-            //dd($ticketfusion);
+                
+        
+        $i++;                     
+      }   
+     
+          // dd ($ticketfusion);
      return Datatables::of($ticketfusion)->toJson();
   ;}
 
@@ -962,9 +950,5 @@ class Estado_ticketsController extends Controller
       ->with('estado_graf',$estado_graf)   ;             
     }
 }
-
-
-
-
 
 

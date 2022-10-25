@@ -233,12 +233,12 @@ $(document).ready(function(){
 },
 ajax: {
     "url": url + "/data_soltoner",
-    
+    cache: false,
 },
 columns: [                                              
     {"mRender": function(data, type, row){
-        var ligaotrs=row.id;                
-        return '<button class="button2"> <span> <a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+ligaotrs+'" target="_blank" title="Ir en busca del TKT en OTRS" ;>'+row.tn+'</a> <span> </button>';
+                     
+        return '<button class="button2"> <span> <a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+row.ticket_id+'" target="_blank" title="Ir en busca del TKT en OTRS" ;>'+row.tn+'</a> <span> </button>';
         }
     },
     { data: 'create_time', name: 'create_time' },
@@ -253,9 +253,11 @@ columns: [
     {data:'tipotoner2',name:'tipotoner2'},                      
     {data:'cantidad2',name:'cantidad2'},                      
     {data:'cantidad3',name:'cantidad3'},                      
-    {data:'tipotoner3',name:'tipotoner3'},                      
-    {data:'Solicitado4',name:'Solicitado4'},                      
-    {data:'SolicitadoTipo4',name:'SolicitadoTipo4'}, 
+    {data:'tipotoner3',name:'tipotoner3'},   
+    {data:'SolicitadoTipo4',name:'SolicitadoTipo4'},                  
+    {data:'cantidad4',name:'cantidad4'},                      
+    
+
     {data:'cantidadtonerentregado1',name:'cantidadtonerentregado1'},                      
     {data:'tipotonerentregado1',name:'tipotonerentregado1'},                      
     {data:'cantidadtonerentregado2',name:'cantidadtonerentregado2'},                      
@@ -371,8 +373,10 @@ columns: [
                   $( api.column(19).footer() ).html(
                     '4.-Toner Entregados: <br>' + tonerentregado4 
                   );       
-                  var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3;
-                  var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2;                                 
+                  var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3+sumsol4;
+                  var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2+tonerentregado4;                                 
+                  
+
                   
           },
           
