@@ -249,11 +249,14 @@ columns: [
     {data:'dependencia',name:'dependencia'},                      
     {data:'fila',name:'fila'},                      
     {data:'Tipo_toner1',name:'Tipo_toner1'},                      
-    {data:'cantidad1',name:'cantidad1'},                      
+    {data:'cantidad1',name:'cantidad1'},    
+
     {data:'tipotoner2',name:'tipotoner2'},                      
-    {data:'cantidad2',name:'cantidad2'},                      
-    {data:'cantidad3',name:'cantidad3'},                      
-    {data:'tipotoner3',name:'tipotoner3'},   
+    {data:'cantidad2',name:'cantidad2'}, 
+
+    {data:'tipotoner3',name:'tipotoner3'},                     
+    {data:'cantidad3',name:'cantidad3'},  
+                               
     {data:'SolicitadoTipo4',name:'SolicitadoTipo4'},                  
     {data:'cantidad4',name:'cantidad4'},                      
     
