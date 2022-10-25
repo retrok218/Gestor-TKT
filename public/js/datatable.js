@@ -151,7 +151,7 @@ var table = $('#tablatk').DataTable({
         },
         ajax: {
             "url": url + name_tabla,
-            cache: false,
+            cache: true,
             
         },
         columns: [                                              
@@ -231,14 +231,6 @@ function format ( d ) {
     return table;
 }
 
-//Eliminando el cache de la datatable para evitar error 500
-$( '#tablatk' ).on( 'change', 'input', function () {
-    //invalidate the DT cache
-    table.cell($(cell)).invalidate().draw();
-              
-  } );
-
-    
 
 });
 
