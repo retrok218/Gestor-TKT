@@ -151,7 +151,7 @@ var table = $('#tablatk').DataTable({
         },
         ajax: {
             "url": url + name_tabla,
-            cache: true,
+            cache: false,
             
         },
         columns: [                                              
