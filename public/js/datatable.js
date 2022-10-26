@@ -28,8 +28,7 @@ var table = $('#tablatk').DataTable({
          "ordering": false,
          "info": true,
          "autoWidth": true,
-         processing: true,
-        serverSide: false,
+         
         //responsive: true, 
          /*"language": idioma,*/
          "lengthMenu": [
@@ -154,7 +153,7 @@ var table = $('#tablatk').DataTable({
         ajax: {
             "url": url + name_tabla,
             cache: false,
-            "timeout":240000,
+            
             
         },
         columns: [                                              

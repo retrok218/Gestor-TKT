@@ -56,7 +56,7 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 Route::get('/', function () {
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
-            return redirect (route('/admin'));
+            return redirect('/admin');
 
             } elseif( Auth::user()->hasRole('area')){
               return redirect('/tickets_asignados');
@@ -64,7 +64,8 @@ Route::get('/', function () {
             } elseif( Auth::user()->hasRole('SinAsignar')){
               return redirect('/monitoreo_tickets');
             }
-           }else{
+            
+        }else{
               return redirect('/login');
         }
     });
