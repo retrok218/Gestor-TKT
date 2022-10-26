@@ -199,7 +199,7 @@ class Estado_ticketsController extends Controller
         INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
         WHERE queue_id IN ($usuario)                           
-        ORDER BY ticket.create_time DESC LIMIT 100")
+        ORDER BY ticket.create_time DESC ")
        ;
 
         //dd($tickets_totales);
