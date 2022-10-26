@@ -28,6 +28,8 @@ var table = $('#tablatk').DataTable({
          "ordering": false,
          "info": true,
          "autoWidth": true,
+         processing: true,
+        serverSide: false,
         //responsive: true, 
          /*"language": idioma,*/
          "lengthMenu": [
@@ -212,9 +214,7 @@ $("#limpiar-fecha").on("click", function() {
 }); 
 // Fin Boton para limpiar los campos seleccionados en el filtro por rangos 
     
-setInterval( function () {
-    table.ajax.reload( null, false ); // funcion para recargar los datos de la datatable cada sierto tiempo 
-}, 600000 ); //segundos 10000 = 10s 
+
     
 
 // crea una tabla dentro de la tabla ya generada 
