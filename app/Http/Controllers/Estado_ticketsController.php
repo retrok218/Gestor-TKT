@@ -200,6 +200,8 @@ class Estado_ticketsController extends Controller
         INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
         WHERE queue_id IN ($usuario)                           
         ORDER BY ticket.create_time DESC");
+
+        //dd($tickets_totales);
     return Datatables::of($tickets_totales)->toJson();
   }
 

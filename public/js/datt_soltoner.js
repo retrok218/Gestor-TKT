@@ -163,11 +163,7 @@ var table = $('#tablasoltoner').DataTable({
             { data: 'ticket_id', name: 'ticket_id' },                
             { data: 'title', name: 'title' },                
             { data: 'fila', name: 'fila' },                
-            { data: 'name', name: 'name' },                          
-                           
-                           
-                           
-                                    
+            { data: 'name', name: 'name' },                                                                                                                                               
         ],
 });
 

@@ -5,7 +5,6 @@
   var titulo_tab = 'Tickets Totales';
   var name_tabla = '/datatodos_los_tickets';
 </script>
-
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
     <div class="kt-portlet">    
         <!-- <div class="kt-portlet__body"> -->
