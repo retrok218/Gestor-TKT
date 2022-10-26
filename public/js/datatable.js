@@ -23,6 +23,7 @@ $(document).ready(function(){
 // inicio de datatable    
 var table = $('#tablatk').DataTable({                  
          "pageLength": 10,
+         "paging": true,
          "lengthChange": true,
          "searching": true,
          "ordering": false,
