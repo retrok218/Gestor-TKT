@@ -75,9 +75,9 @@ class Estado_ticketsController extends Controller
 
 
 
-  public function tickets_asignados()
+  public function tickets_asignados(Request $request)
   {
-
+    $ff= $request->root();
     $usuario = auth()->user()->area;    
     $asignado = ticket::where('ticket_state_id', '=', 12)->count();
     $tktporcento = round(($asignado*100)/ticket::count(),2);       
@@ -91,7 +91,7 @@ class Estado_ticketsController extends Controller
 
     $totalcantJsons = $canttickets[0];    
     $tt =$totalcantJsons->count;
-
+//dd($ff);
    
     return view('Tickets/tickets_asignados')      
       ->with (['canttickets'=>$canttickets,
@@ -714,7 +714,7 @@ class Estado_ticketsController extends Controller
       $idareaasignado = $idarea;
       $nom_tkt_estatus = "Tickets Area/Asignados";
       //$tktsarea=DB::connection('pgsql2')->table('ticket')->where('queue_id',$arrrrr)->where('ticket_state_id',12)->get();
-      //dd($tktsarea);
+      
       return view('Tickets.Monitoreo_Tickets.tickets_area_asignados')->with(['nom_tkt_estatus'=>$nom_tkt_estatus,'idareaasignado'=>$idareaasignado]);
     }
 

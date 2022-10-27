@@ -3,6 +3,7 @@
 @section('content')
 <script>
   var titulo_tab = 'Tickets Totales';
+  
   var name_tabla = '/datatodos_los_tickets';
 </script>
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">

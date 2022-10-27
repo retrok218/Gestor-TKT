@@ -1,8 +1,10 @@
 
 $(document).ready(function(){   
+    
   
     $.fn.dataTable.ext.search.push(
         function (settings, data, dataIndex) {
+
             var min = $('#datepicker_from').datepicker('getDate');
             var max = $('#datepicker_to').datepicker('getDate');
             
@@ -16,7 +18,7 @@ $(document).ready(function(){
         }
     );
 
-    $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+    $('#datepicker_from').datepicker({ lenguage:'es-ES', onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
     $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
     $('#datepicker_from,#datepicker_to')
   

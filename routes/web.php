@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -54,12 +55,13 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 
 Route::get('/', function () {
+
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
             return redirect('/admin');
 
-            } elseif( Auth::user()->hasRole('area')){
-              return redirect('/tickets_asignados');
+            } elseif( Auth::user()->hasRole('area')){              
+              return redirect( '/tickets_asignados');
                             
             } elseif( Auth::user()->hasRole('SinAsignar')){
               return redirect('/monitoreo_tickets');
@@ -169,7 +171,6 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
 
     Route::get('/data/subclase/{id}/{nombre}','Estado_ticketsController@subclases');
 
-    Route::get('/tkts_area_asignados/{idarea}','Estado_ticketsController@area_asignados');
-    Route::get('/data/tkts_area_asignados/{idarea}','Estado_ticketsController@data_area_asignados');
+
 
 });
