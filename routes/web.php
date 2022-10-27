@@ -119,15 +119,13 @@ Route::post('/block_screen', function () {
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-
-
-
-
-
-//Route::group(['middleware'=>['auth','areas_permission']],function(){
-
-  Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
+Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
 Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
+
+
+
+
+Route::group(['middleware'=>['auth','areas_permission']],function(){
 
     Route::get ('/tickets_abiertos','Estado_ticketsController@tickets_abiertos');
     Route::get('/data_tickets_abiertos','Estado_ticketsController@data_tickets_abiertos');
@@ -175,4 +173,4 @@ Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignad
 
 
 
-//});
+});
