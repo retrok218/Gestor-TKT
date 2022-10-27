@@ -89,10 +89,10 @@
                 
                     Editar
                 </button>
-                <button type="button" onclick="Eliminar_usuario();">
+                <!-- <button type="button" onclick="Eliminar_usuario();">
                     ELiminar Usuario 
 
-                </button>
+                </button> -->
 
             </div>
         </div>
