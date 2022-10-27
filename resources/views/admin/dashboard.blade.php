@@ -1,5 +1,3 @@
-
-
 @extends('home')
  <meta http-equiv="refresh" content="60"> <!--Se recarga cada segundo marcado content -> 10 -->
 @section('content')
@@ -571,11 +569,9 @@ var nuevotk = [
   last = setInterval(function() {
     news.textContent += nuevotk[y][x++] ;
      
-      if(x > nuevotk[y].length) {
-       
-          x = 0;
-          news.textContent = ""; 
-                                   
+      if(x > nuevotk[y].length) { 
+        x = 0;
+        news.textContent = "";                      
       }  
   },num );
   function oneClick(e) {      

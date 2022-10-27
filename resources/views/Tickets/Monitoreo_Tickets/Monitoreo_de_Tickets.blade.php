@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="1220" />
+<meta http-equiv="refresh" content="10" />
 @section('content')
 <script>
     var titulo_tab = "Tickets Nuevos";
@@ -11,14 +11,15 @@
 
 
  
-<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid" style="
+    margin-top: -25px;">
   <!-- <div class="card" style="border: 1px; background: white;">   
     <img  class="header_titulo_monitoreo_tkts"  src="{{ URL::asset('assets/media/company-logos/SAF_AdminitraciónFinanciera_saf_2_reducido_gris copia.png'.env('APP_LOGO_ASIDE') ) }}" >                
   </div> -->
   <div class="kt-portlet__head">
     <div class="header_titulo_monitoreo_tkts text-center" >
       <div class="card-header" >
-        <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: 40px;">
+        <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: 25px;">
           Tablero Mesa de Servicio   
           
         </span>
@@ -26,11 +27,11 @@
     </div>
   </div>
 
-  <div class="kt-portlet">    
-    <div class="kt-portlet__body">
-      <div class="kt-widget25">
-        <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
-        <span class="kt-widget25__stats m-font-brand">{{$ticket}}</span>        
+  <div class="kt-portlet"  style="margin-top: -9px;" >    
+    <div class="kt-portlet__body" style="padding: 11px;">
+      <div class="kt-widget25" style="margin: 0rem 0;">
+        <div class="fas fa-ticket-alt fa-spin fa-3x"  style="font-size: 2.5em !important;"></div>
+        <span class="kt-widget25__stats m-font-brand" style="font-size: 3em;">{{$ticket}}</span>        
         <span class="kt-widget25__subtitle">Tickets Totales</span>
         
         
@@ -385,7 +386,7 @@
       <div>
         <a href="javascript:window.print()" >Imprimir</a>
       </div>      
-    </div>        
+          
   </div>
   
 

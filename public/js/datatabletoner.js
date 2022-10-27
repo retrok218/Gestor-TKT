@@ -352,7 +352,7 @@ $("#limpiar-fecha").on("click", function() {
 });
 setInterval( function () {
     table.ajax.reload( null, false ); // funcion para recargar los datos de la datatable cada sierto tiempo 
-}, 600000 ); //segundos 10000 = 10s 
+}, 10000 ); //segundos 10000 = 10s 
 
 $( '#tablatoners' ).on( 'change', 'input', function () {
     //invalidate the DT cache

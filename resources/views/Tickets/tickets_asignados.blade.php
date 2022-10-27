@@ -1,5 +1,5 @@
 @extends('home')
-<!-- <meta http-equiv="refresh" content="" /> -->
+ <!-- <meta http-equiv="refresh" content="20"/> -->
 @section('content')
 <script>
     var titulo_tab = "Tickets Asignados";
@@ -9,14 +9,14 @@
     <div class="kt-portlet">    
         <!-- <div class="kt-portlet__body">                     -->
                     <div class="row row-no-padding row-col-separator-xl">			
-                    <div class="col-md-12 col-lg-12 col-sm-12 pull-left">   <!--  responsive -->
+                    <div class="col-md-12 col-lg-12 col-sm-12 pull-left" >   <!--  responsive -->
                             <!--begin::Total Profit-->                            
                             <div class="kt-widget24" style="text-align: center;">
                                 <div class="row" style="color: #595d6e;">
                                 @can('SuperAdmin') 
                                     <div class="col-sm-6" > 
                                         
-                                        <div class="kt-widget25"  style="border-right: groove;">
+                                        <div class="kt-widget25"  style="border-right: groove;" id="cartasnumericas">
                                             <div class="kt-widget24__info" style="
                                             text-align: initial;">
                                                 <h4 class="kt-widget24__title">
@@ -24,7 +24,7 @@
                                                 </h4>					       
                                             </div> 
                                             <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
-                                                <span class="kt-widget25__stats m-font-brand">- {{$ticket}}</span>                                                                                      
+                                                <span class="kt-widget25__stats m-font-brand" >- {{$ticket}}</span>                                                                                      
                                           </div>  
                                                   
                                     </div>
@@ -67,4 +67,8 @@
 </div>
 <!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts_dttb')
+
+
+
+
 @endsection

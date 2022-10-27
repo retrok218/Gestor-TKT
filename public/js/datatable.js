@@ -31,6 +31,7 @@ var table = $('#tablatk').DataTable({
          "ordering": false,
          "info": true,
          "autoWidth": true,
+         "serverSide": true,
          
         //responsive: true, 
          /*"language": idioma,*/
@@ -233,7 +234,9 @@ function format ( d ) {
 
     return table;
 }
-
+setInterval( function () {
+    table.ajax.reload( null, false ); // funcion para recargar los datos de la datatable cada sierto tiempo 
+}, 10000 );
 
 });
 
