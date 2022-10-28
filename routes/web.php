@@ -11,7 +11,6 @@
 |
 */
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -55,17 +54,11 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 
 Route::get('/', function () {
-
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
             return redirect('/admin');
 
-            } elseif( Auth::user()->hasRole('area')){              
-              return redirect( '/tickets_asignados');
-                            
-            } elseif( Auth::user()->hasRole('SinAsignar')){
-              return redirect('/monitoreo_tickets');
-            }
+            } 
             
         }else{
               return redirect('/login');
@@ -98,8 +91,13 @@ Route::get('/', function () {
       Route::post('/store', 'AdminController@store');
       Route::post('/update', 'AdminController@update');
    });
-     Route::group(['prefix' => 'rol'], function() {
+     Route::group(['prefix' => 'area'], function() {
+      Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados');
+      Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
     });
+
+
+
 
    
 
