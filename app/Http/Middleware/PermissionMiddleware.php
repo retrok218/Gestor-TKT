@@ -21,8 +21,8 @@ class PermissionMiddleware
 
         if (! $request->user()->can($permission)) {
             if ($request->ajax()) {
-               //$mesage='No tiene permisos para acceder, contacte con su administrador';
-                ajaxError();
+               $mesage='No tiene permisos para acceder, contacte con su administrador';
+                ajaxError($mesage);
             }else{
             $error=403;
             return redirect('/error/'.$error);

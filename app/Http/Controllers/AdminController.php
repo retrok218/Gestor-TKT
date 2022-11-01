@@ -191,8 +191,9 @@ class AdminController extends Controller
  $totalMesJson = json_encode($totalmes); 
  //$ticket_allJson = json_encode($ticket_all);
  // Fin consulta por mes 
- if ($perfil == true) {
- 
+
+
+ if (auth()->user()->id_rol == 1) {
 
        return view('admin.dashboard')
       ->with('ultimoTK',$ultimoTK)
@@ -272,11 +273,21 @@ class AdminController extends Controller
       ->with('mes_diciembre2',$mes_diciembre2)      
       ->with('tktporarea',$tktporarea)
 ;}
-       else {
+       elseif(auth()->user()->id_rol == 4) {      
         return redirect('/tickets_asignados');
        }
        
  }
+
+
+
+
+
+
+
+
+
+
 
     public function create() {
         $roles = DB::table('roles')->get();

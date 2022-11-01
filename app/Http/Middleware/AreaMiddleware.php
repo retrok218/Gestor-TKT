@@ -1,23 +1,14 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Auth;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Redirect;
+
 
 class AreaMiddleware
-{
-  protected $auth;
-
-  public function __construct(Guard $auth)
-  {
-    $this->auth = $auth;
-  }
-
-
-
-
-
+{ 
     /**
      * Handle an incoming request.
      *
@@ -26,11 +17,13 @@ class AreaMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-      if ($this->auth->user()->id_rol == 1) {
-        return $next($request);
-      }
-      abort(403);
+  { 
+   //dd(Auth::user());
+    if(Auth::user()->permission_id == false){    
      
-    }
+      return $next($request);
+    }else{
+      return Redirect::route('asignados');
+    }               
+  }
 }
