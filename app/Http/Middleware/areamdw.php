@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
-
-
 
 class areamdw
 {
@@ -17,6 +15,11 @@ class areamdw
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+      if($this->auth->user()->id_rol == 1):       
+         $next($request);
+      endif;
+        return redirect('/login');
+        
+     
     }
 }

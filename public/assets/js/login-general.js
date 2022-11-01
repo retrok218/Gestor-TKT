@@ -66,10 +66,10 @@ var KTLoginGeneral = function () {
                                 if (data.admin == true) {
                                     //console.log('es adminisitrador');
                                     window.location.href = "admin";
-                                }
+                                }                               
                                 else {
                                    // console.log('es area normal');
-                                       window.location.href = "/";
+                                       window.location.href = "tickets_asignados"; // se cambia de / tickets asignado ya que con / al ingresar como usuario area manda a apache
                                 }
                             } else {
                                 e.removeClass("kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light").attr("disabled", !1),

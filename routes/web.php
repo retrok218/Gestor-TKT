@@ -33,6 +33,14 @@ Route::resource('posts', 'PostController');*/
           Route::get('/roles/{id}/editar_roles_permisos', 'RoleController@editar_roles_permisos');
       });
   });
+  Route::group(['prefix' => 'rol'], function() {
+    return redirect('/tickets_asignados');
+    
+    Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
+    Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
+  });
+
+
 
 
 Route::post('/login', 'Auth\LoginController@login');
@@ -55,13 +63,19 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 Route::get('/', function () {
     if (Auth::check()){
-            if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
+            if( Auth::user()->id_rol == 1 ){
+             // error_log(__METHOD__." ". __LINE__." ".print_r("ola"."\n",true), 3, 'C:\laragon\www\error.txt');
+
             return redirect('/admin');
 
+
+            } elseif( Auth::user()->id_rol == 4){
+             // error_log(__METHOD__." ". __LINE__." ".print_r( Auth::user()->id_rol ,true), 3, 'C:\laragon\www\error.txt');
+             return redirect('/tickets_asignados');                   
             } 
             
         }else{
-              return redirect('/login');
+          return redirect('/tickets_asignados');
         }
     });
 
@@ -91,13 +105,12 @@ Route::get('/', function () {
       Route::post('/store', 'AdminController@store');
       Route::post('/update', 'AdminController@update');
    });
-     Route::group(['prefix' => 'area'], function() {
-      Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados');
+     Route::group(['prefix' => 'rol'], function() {
+      return redirect('/tickets_asignados');
+      
+      Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
       Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
     });
-
-
-
 
    
 
@@ -119,7 +132,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
 Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
-
+Route::get('/', 'AdminController@dashboard');
 
 
 
@@ -172,3 +185,11 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
 
 
 });
+
+Route::group(['prefix'=>'area'],function ()
+  {
+      
+        Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
+        Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
+      
+  });
