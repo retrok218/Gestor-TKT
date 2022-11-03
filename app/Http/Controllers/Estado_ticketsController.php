@@ -191,11 +191,6 @@ class Estado_ticketsController extends Controller
   }
 
 
-
-
-
-
-
   public function data_todos_losticket()
   {
     $usuario = auth()->user()->area;
@@ -209,24 +204,6 @@ class Estado_ticketsController extends Controller
         //dd($tickets_totales);
     return Datatables::of($tickets_totales)->toJson();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   
   //Tickets Cerrados Por Tiempo         
