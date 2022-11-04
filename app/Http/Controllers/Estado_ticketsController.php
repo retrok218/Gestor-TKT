@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use App\ConexionBD2;
 use App\ticket;
 use Illuminate\Support\Collection;
+use App\area_n;
 
 
 class Estado_ticketsController extends Controller
@@ -435,7 +436,7 @@ class Estado_ticketsController extends Controller
       $numm++;
     }
 
-   
+   dd($datos_monitoreo_area);
 
 
 //dd($datos_monitoreo_area,$sumareas);
@@ -941,6 +942,73 @@ class Estado_ticketsController extends Controller
       ->with('areas_filastkts',$areas_filastkts)
       ->with('estado_graf',$estado_graf)   ;             
     }
+
+    public function monitoreo_tickets_area_n(){
+                
+       $areas= DB::connection('pgsql2')        
+       ->SELECT("SELECT  DISTINCT queue.id as identificador, queue.name as nombrea , COUNT(queue_id) OVER(PARTITION BY queue_id)as tickets 
+       FROM queue
+       INNER JOIN ticket ON  queue.id = ticket.queue_id 
+       ORDER BY queue.id ASC");
+//dd($areas[2]->nombrea);
+
+
+
+
+$t=1;
+$st_sum = 0;
+$sissum = 0;
+$e=0;
+$arreglodsl = array( );
+$ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=>0,'Normatividad'=>0,'Seguridad'=>0,'Sistemas'=>0 );
+        foreach ($areas as $r) {
+         $dosletras = array(substr($r->nombrea, 0,3)); // Obtiene las 3 primeras letras del nombre del area      
+         $arreglodsl[$r->nombrea]=$dosletras;
+         
+
+
+
+          if (strncasecmp($r->nombrea,'ST',2)===0 ) {
+            $st_sum +=  $r->tickets;                                               
+            $ssumm["ST"]+= $r->tickets;
+          }elseif (strncasecmp($r->nombrea,'Sis',3)===0) {            
+            $ssumm["Sistemas"]+= $r->tickets;               
+          }
+          elseif (strncasecmp($r->nombrea,'Cancela',7)===0) {            
+            $ssumm["cancelacion"]+= $r->tickets;                 
+          }
+          elseif (strncasecmp($r->nombrea,'Cap',3)===0) {            
+            $ssumm["capital"]+= $r->tickets;                
+          }
+          elseif (strncasecmp($r->nombrea,'DAS',3)===0) {            
+            $ssumm["DASI"]+= $r->tickets;              
+          }
+          elseif (strncasecmp($r->nombrea,'DEC',3)===0) {            
+            $ssumm["DECSI"]+= $r->tickets;    
+            
+          }
+          elseif (strncasecmp($r->nombrea,'Mesa',4)===0) {            
+            $ssumm["Mesa"]+= $r->tickets;    
+            
+          }
+          elseif (strncasecmp($r->nombrea,'Normatividad',6)===0) {            
+            $ssumm["Normatividad"]+= $r->tickets;    
+            
+          }
+          elseif (strncasecmp($r->nombrea,'Seguridad',6)===0) {            
+            $ssumm["Seguridad"]+= $r->tickets;    
+            
+          } 
+        } 
+
+//dd($ssumm);
+      return view('Tickets.Monitoreo_Tickets.monitoreoqueue')
+      ->with([
+        'areas'=>$areas,
+        'ssumm'=>$ssumm    
+      ]);
+    }
+
 }
 
 
