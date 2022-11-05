@@ -132,7 +132,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
 Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
-Route::get('/', 'AdminController@dashboard');
+
 
 
 
@@ -184,7 +184,12 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     
     Route::get('/tkts_area_asignados/{idarea}','Estado_ticketsController@area_asignados');
     Route::get('/data/tkts_area_asignados/{idarea}','Estado_ticketsController@data_area_asignados');
+<<<<<<< HEAD
     
+=======
+
+    Route::get('/monitoreo_areas_n','Estado_ticketsController@monitoreo_tickets_area_n');
+>>>>>>> mod1
 
 
 
