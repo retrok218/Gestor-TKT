@@ -50013,3 +50013,10 @@ tr.shown td.details-control {
     background-size: contain;
   
 }
+
+.fondoberde{    
+    background-image: url(../assets/media/logos/fondo3.jpg)!important ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    
+}

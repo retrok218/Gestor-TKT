@@ -950,7 +950,7 @@ class Estado_ticketsController extends Controller
        FROM queue
        INNER JOIN ticket ON  queue.id = ticket.queue_id 
        ORDER BY queue.id ASC");
-//dd($areas[2]->nombrea);
+//dd($areas);
 
 
 
@@ -961,6 +961,9 @@ $sissum = 0;
 $e=0;
 $arreglodsl = array( );
 $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=>0,'Normatividad'=>0,'Seguridad'=>0,'Sistemas'=>0 );
+
+
+
         foreach ($areas as $r) {
          $dosletras = array(substr($r->nombrea, 0,3)); // Obtiene las 3 primeras letras del nombre del area      
          $arreglodsl[$r->nombrea]=$dosletras;
@@ -1001,7 +1004,7 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
           } 
         } 
 
-//dd($ssumm);
+//dd($areas);
       return view('Tickets.Monitoreo_Tickets.monitoreoqueue')
       ->with([
         'areas'=>$areas,

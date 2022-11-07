@@ -117,3 +117,10 @@
     color: #fff;
 }
 /*table.dataTable thead {background-color:#00B056;font-weight: bold;}*/
+
+.fondoberde{    
+    background-image: url(../assets/media/logos/fondo3.jpg)!important ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    
+}

@@ -12,13 +12,16 @@
     <img  class="header_titulo_monitoreo_tkts"  src="{{ URL::asset('assets/media/company-logos/SAF_AdminitraciónFinanciera_saf_2_reducido_gris copia.png'.env('APP_LOGO_ASIDE') ) }}" >                
   </div> -->
   <div class="kt-portlet__head">
-    <div class="header_titulo_monitoreo_tkts text-center">
-      <div class="card-header">
-        <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: 25px;">
-          Tablero Mesa de Servicio
-        </span>
-      </div>
+    <div class="header_titulo_monitoreo_tkts text-center">      
+      <div class="card-header fondoberde"  >
+                <div class="containerglass ">
+                    <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
+                    Tablero Mesa de Servicio                                             
+                    </span>    
+                </div>
+        </div> 
     </div>
+    
   </div>
 
 
