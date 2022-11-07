@@ -15,14 +15,10 @@ $(document).ready(function(){
       $('#datepicker_from').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
       $('#datepicker_to').datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
       $('#datepicker_from,#datepicker_to')
-              
-  
-                
-  
-  
+
+
   var table = $('#tablatoners').DataTable({ 
     
-   
         "pageLength": 6,   
         "lengthChange": true,
         "searching": true,
@@ -41,9 +37,7 @@ $(document).ready(function(){
               "targets": -1
           } ],
   
-  
-  
-  
+
         "search": {
           "regex": true,
           "caseInsensitive": false,
@@ -53,22 +47,8 @@ $(document).ready(function(){
   
   
         buttons: {
-  
-         
-          
-  
-              
               buttons: [
-  
-               
-              
-                
-                         {
-  
-  
-  
-  
-                           
+                         {  
                              extend:'excelHtml5',
                              text:'<i class="fas fa-file-excel"></i> Exel ',
                              title:'Tickets Solicitud de Toner ',

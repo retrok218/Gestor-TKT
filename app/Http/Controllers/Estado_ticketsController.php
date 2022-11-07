@@ -436,7 +436,7 @@ class Estado_ticketsController extends Controller
       $numm++;
     }
 
-   dd($datos_monitoreo_area);
+   //dd($datos_monitoreo_area);
 
 
 //dd($datos_monitoreo_area,$sumareas);

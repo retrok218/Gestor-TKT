@@ -26,8 +26,7 @@
     <div class="kt-portlet__body" style="padding: 11px;">
 
     <div class="row">
-      <div class="col-sm">
-        
+      <div class="col-sm">        
       <div class="kt-widget25__item">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
@@ -37,14 +36,14 @@
             <div class="item">
               <a id="link" href="{{ url('/tickets_asignados/') }}" target="_blank">
                 <span class="kt-widget25__number">
-                  {{$asignado}}
+                  <h3>{{$asignado}}</h3>
                 </span>
                 <div class="progress m-progress--sm" style="height: 1rem">
                   <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style="width: {{$tktsporciento[0]}}%;" aria-valuenow={{$asignado}} aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="kt-widget25__desc">
                   <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                  Tickets Asignados <h3>{{round($tktsporciento[0],2)}}%</h3>
+                  Tickets Asignados <br>{{round($tktsporciento[0],2)}}%
                   <!--round($blablalba[0],2) round = se redondea , con 2 cifras o la cantidad despues de [],  -->
                 </span>
                 <hr>
@@ -63,14 +62,14 @@
             <div class="item">
               <a id="link" href="{{ url('/tickets_atendidos/') }}" target="_blank">
                 <span class="kt-widget25__number">
-                  {{$atendido}}
+                  <h3>{{$atendido}}</h3>
                 </span>
                 <div class="progress m-progress--sm" style="height: 1rem">
                   <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style="width: {{$tktsporciento[1]}}%;" aria-valuenow={{$atendido}} aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="kt-widget25__desc">
                   <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                  Tickets Atendidos <h3>{{round($tktsporciento[1],2)}}%</h3>
+                  Tickets Atendidos <br>{{round($tktsporciento[1],2)}}%
                 </span>
                 <hr>
               </a>
@@ -89,14 +88,14 @@
 
               <a id="link" href="{{ url('/falta_acta_responsiva/') }}" target="_blank">
                 <span class="kt-widget25__number">
-                  {{$FaltaActaRES}}
+                  <h3>{{$FaltaActaRES}}</h3>
                 </span>
                 <div class="progress m-progress--sm" style="height: 1rem">
                   <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style="width: {{$tktsporciento[7]}}%;" aria-valuenow={{$tktsporciento[7]}} aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="kt-widget25__desc">
                   <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                  Tickets Falta Acta Responsiva <h3>{{round($tktsporciento[7],2)}}%</h3>
+                  Tickets Falta Acta Responsiva <br>{{round($tktsporciento[7],2)}}%
                 </span>
                 <hr>
               </a>
@@ -116,14 +115,14 @@
             <div class="item">
               <a id="link" href="{{ url('/tickets_nuevos/') }}" target="_blank">
                 <span class="kt-widget25__number">
-                  {{$pendienteatc}}
+                  <h3>{{$pendienteatc}}</h3>
                 </span>
                 <div class="progress m-progress--sm" style="height: 1rem">
                   <div class="progress-bar kt-bg-warning barra_progreso" role="progressbar" style="width: {{$tktsporciento[2]}}%;" aria-valuenow={{$tktsporciento[2]}} aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="kt-widget25__desc">
                   <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                  Tickets Nuevos <h3>{{round($tktsporciento[2],2)}}%</h3>
+                  Tickets Nuevos <br>{{round($tktsporciento[2],2)}}%
                 </span>
                 <hr>
 
@@ -142,14 +141,14 @@
             <div class="item">
               <a id="link" href="{{ url('/tickets_espera_informacion/') }}" target="_blank">
                 <span class="kt-widget25__number">
-                  {{$espinformacion}}
+                  <h3>{{$espinformacion}}</h3>
                 </span>
                 <div class="progress m-progress--sm" style="height: 1rem">
                   <div class="progress-bar kt-bg-warning barra_progreso" role="progressbar" style="width: {{$tktsporciento[4]}}%;" aria-valuenow={{$tktsporciento[4]}} aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="kt-widget25__desc">
                   <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                  Tickets En Espera de Información<h3>{{round($tktsporciento[4],2)}}%</h3>
+                  Tickets En Espera de Información <br> {{round($tktsporciento[4],2)}}%
                 </span>
                 <hr>
 
@@ -168,14 +167,14 @@
             <div class="item">
               <a id="link" href="{{ url('/tickets_abiertos/') }}" target="_blank">
                 <span class="kt-widget25__number">
-                  {{$abierto}}
+                  <h3>{{$abierto}}</h3>
                 </span>
                 <div class="progress m-progress--sm" style="height: 1rem">
                   <div class="progress-bar kt-bg-warning barra_progreso" role="progressbar" style="width: {{$tktsporciento[5]}}%;" aria-valuenow={{$tktsporciento[5]}} aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="kt-widget25__desc">
                   <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
-                  Tickets Abierto <h3>{{round($tktsporciento[5],2)}}%</h3>
+                  Tickets Abierto <br>{{round($tktsporciento[5],2)}}%
                 </span>
                 <hr>
 
