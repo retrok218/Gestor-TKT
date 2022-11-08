@@ -18,12 +18,9 @@ class AreaMiddleware
      */
     public function handle($request, Closure $next)
   { 
-   //dd(Auth::user());
-    if(Auth::user()->permission_id == true){    
+   
      
       return $next($request);
-    }else{
-      return Redirect::route('asignados');
-    }               
+                 
   }
 }
