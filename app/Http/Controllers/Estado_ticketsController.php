@@ -949,7 +949,7 @@ class Estado_ticketsController extends Controller
        ->SELECT("SELECT  DISTINCT queue.id as identificador, queue.name as nombrea , COUNT(queue_id) OVER(PARTITION BY queue_id)as tickets 
        FROM queue
        INNER JOIN ticket ON  queue.id = ticket.queue_id 
-       
+       WHERE ticket.ticket_state_id = 12
        ORDER BY queue.id ASC");
 //dd($areas);
 
@@ -1005,7 +1005,7 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
           } 
         } 
 
-dd($areas);
+//dd($areas);
       return view('Tickets.Monitoreo_Tickets.monitoreoqueue')
       ->with([
         'areas'=>$areas,
