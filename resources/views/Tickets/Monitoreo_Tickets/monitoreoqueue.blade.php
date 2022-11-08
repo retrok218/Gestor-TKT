@@ -37,7 +37,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">ST</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">ST</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -71,7 +71,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">Cancelaciones</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">Cancelaciones</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -105,7 +105,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">Capital Humano</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">Capital Humano</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -143,7 +143,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">DASI</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">DASI</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -177,7 +177,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">DECSI</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">DECSI</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -211,7 +211,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">Mesa de Servicio</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">Mesa de Servicio</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -249,7 +249,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">Normatividad</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">Normatividad</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -283,7 +283,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">Seguridad Informatica</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">Seguridad Informatica</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -317,7 +317,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="mb-0" style="color: #bc955b;">Sistemas</h6>									
+                                        <h6 class="mb-0" style="color: #005546;font-size: 20px;">Sistemas</h6>									
                                     </div>     
                                 </div>
                             </div>                            
@@ -340,92 +340,178 @@
     </div>
 </div>
 <hr>
-
-    @include('Tickets/Monitoreo_Tickets/estados/spestado')
-    @include('Tickets/Monitoreo_Tickets/estados/dasi')
-    @include('Tickets/Monitoreo_Tickets/estados/decsi')
-    @include('Tickets/Monitoreo_Tickets/estados/mesaserv')
-    @include('Tickets/Monitoreo_Tickets/estados/sistemasestr')
-    
-
-
-
+<div class="row">
+@foreach($areas as $v)
+ <div class="col-sm-6 col-md-6 col-lg-4" name="nn" >
+                        <div class="card bg-white p-3 mb-4 shadow" style="padding: 0.5rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">
+                                    
+                                    <div class="user-info__basic">
+                                        <a href="#" onclick="desglocetktsar('{{$v->identificador}}')"><h6 class="mb-0" style="color: #bc955b;" >{{$v->nombrea}}</h6> </a> 	
+                                        							
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            <hr>
+                            <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
+                                    <div class="kt-timeline-v3__item-desc">                                        
+                                        <h6 class="mb-0" style="position: absolute;top: 42px;left: 50%;font-size: 2em;color: rgb(160 32 66 / 65%);pointer-events: none;"> 
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
+                                            {{$v->tickets}}
+                                        </h6>	 
+                                    </div>                                   
+                            </div>                                                                     
+                            <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">                           
+                                                           
+                            </div>                            
+                        </div>
+        </div>
+ @endforeach
+</div> 
 @endsection
 
 @section('scripts')
 <script>
     $(function(){
-        $('#name-sp').hide();
-        $('#dasimod').hide();
-        $('#decsimod').hide();
-        $('#messaest').hide();
-        $('#sistemaess').hide();
-
-        $('#st').click(function(){            
-            $('#name-sp').toggle(1000);
-            $('#canselacionstado').toggle(1000);
-            $('#caphumanoarea').toggle(1000);
-            $('#dasiarea').toggle(1000);
-            $('#decsiarea').toggle(1000);
-            $('#mesasarea').toggle(1000);
-            $('#normaarea').toggle(1000);
-            $('#seguridadarea').toggle(1000);
-            $('#sistemasarea').toggle(1000);            
-        });
         
-        $('#dasiarea').click(function(){ 
-            $('#dasimod').toggle(1000);       
-            $('#st').toggle(1000);               
-            $('#canselacionstado').toggle(1000);
-            $('#caphumanoarea').toggle(1000);            
-            $('#decsiarea').toggle(1000);
-            $('#mesasarea').toggle(1000);
-            $('#normaarea').toggle(1000);
-            $('#seguridadarea').toggle(1000);
-            $('#sistemasarea').toggle(1000);            
+        $("div[name='nn']").hide(1);   
+
+        $('#st').click(function(){
+            $("div[name='nn']:contains(ST::)").toggle(900);
+
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
         });
 
+        $('#canselacionstado').click(function(){
+            $("div[name='nn']:contains(Cancelac)").toggle(500);
 
-        $('#decsiarea').click(function(){ 
-            $('#decsimod').toggle(1000);       
-            $('#st').toggle(1000);               
-            $('#canselacionstado').toggle(1000);
-            $('#caphumanoarea').toggle(1000);
-            $('#dasiarea').toggle(1000);             
-            $('#mesasarea').toggle(1000);
-            $('#normaarea').toggle(1000);
-            $('#seguridadarea').toggle(1000);
-            $('#sistemasarea').toggle(1000);            
+            $('#st').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
         });
+        $('#caphumanoarea').click(function(){
+            $("div[name='nn']:contains(Capita)").toggle(500);
 
-        $('#mesasarea').click(function(){ 
-            $('#messaest').toggle(1000);       
-            $('#st').toggle(1000);               
-            $('#canselacionstado').toggle(1000);
-            $('#caphumanoarea').toggle(1000);
-            $('#dasiarea').toggle(1000);             
-            $('#decsiarea').toggle(1000);
-            $('#normaarea').toggle(1000);
-            $('#seguridadarea').toggle(1000);
-            $('#sistemasarea').toggle(1000);            
+            $('#canselacionstado').toggle(900);
+            $('#st').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
         });
+        $('#dasiarea').click(function(){
+            $("div[name='nn']:contains(DASI)").toggle(500);
 
-        $('#sistemasarea').click(function(){ 
-            $('#sistemaess').toggle(1000);       
-            $('#st').toggle(1000);               
-            $('#canselacionstado').toggle(1000);
-            $('#caphumanoarea').toggle(1000);
-            $('#dasiarea').toggle(1000);             
-            $('#decsiarea').toggle(1000);
-            $('#normaarea').toggle(1000);
-            $('#seguridadarea').toggle(1000);
-            $('#mesasarea').toggle(1000);
-                        
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#st').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
         });
+        $('#decsiarea').click(function(){
+            $("div[name='nn']:contains(DECSI)").toggle(500);
 
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#st').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
+        });
+        $('#mesasarea').click(function(){
+            $("div[name='nn']:contains(Mesa de)").toggle(500);
 
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#st').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
+        });
+        $('#normaarea').click(function(){
+            $("div[name='nn']:contains(Normatividad)").toggle(500);
 
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#st').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#sistemasarea').toggle(900);
+        });
+        $('#seguridadarea').click(function(){
+            $("div[name='nn']:contains(Seguridad Inf)").toggle(500);
+
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#st').toggle(900);
+            $('#sistemasarea').toggle(900);
+        });
+        $('#sistemasarea').click(function(){
+            $("div[name='nn']:contains(Sistemas)").toggle(500);
+
+            $('#canselacionstado').toggle(900);
+            $('#caphumanoarea').toggle(900);
+            $('#dasiarea').toggle(900);
+            $('#decsiarea').toggle(900);
+            $('#mesasarea').toggle(900);
+            $('#normaarea').toggle(900);
+            $('#seguridadarea').toggle(900);
+            $('#st').toggle(900);
+        });
     })
+
+    function desglocetktsar(id){   
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url : url+'/data/subclase/'+id,
+        dataType: 'html',
+        success: function(resp_success) {
+            var modal = resp_success;
+            $(modal).modal().on('shown.bs.modal', function() {
+                $("[class='make-switch']").bootstrapSwitch('animate', true);
+                $('.select2').select2({dropdownParent: $("#ConsultarGrupo")});
+            }).on('hidden.bs.modal', function() {
+                $(this).remove();
+            });
+        },
+        error: function(respuesta) {
+            Swal.fire('¡Alerta!','Error de conectividad de red USR-01','warning');
+        }
+    });  
+    //console.log(id);
+   };
+
 
 </script>
 @endsection
