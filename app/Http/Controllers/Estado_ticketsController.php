@@ -949,6 +949,7 @@ class Estado_ticketsController extends Controller
        ->SELECT("SELECT  DISTINCT queue.id as identificador, queue.name as nombrea , COUNT(queue_id) OVER(PARTITION BY queue_id)as tickets 
        FROM queue
        INNER JOIN ticket ON  queue.id = ticket.queue_id 
+       
        ORDER BY queue.id ASC");
 //dd($areas);
 
