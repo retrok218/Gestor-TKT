@@ -1005,7 +1005,7 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
           } 
         } 
 
-//dd($areas);
+dd($areas);
       return view('Tickets.Monitoreo_Tickets.monitoreoqueue')
       ->with([
         'areas'=>$areas,
