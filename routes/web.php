@@ -176,7 +176,7 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get('/solicitud_toner','Estado_ticketsController@solicitud_toner');
 
     Route::get('/toner_report','Estado_ticketsController@toneraj');
-    Route::get('/data_soltoner','Estado_ticketsController@soltonerjax'); //en construccion
+    Route::get('/data_soltoner','Estado_ticketsController@soltonerjax');
 
     Route::get('/tkt_completo','Estado_ticketsController@tkt_completo');
 
@@ -186,7 +186,8 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get('/data/tkts_area_asignados/{idarea}','Estado_ticketsController@data_area_asignados');
     Route::get('/monitoreo_areas_n','Estado_ticketsController@monitoreo_tickets_area_n');
     
-    Route::get('');
+    Route::get('/tktareaasignadosdesg/{ida}','Estado_ticketsController@areaasignadosdesglose');
+    Route::get('/data/tktareaasignadosdesg/{id}','Estado_ticketsController@areaasignadosdesglose');
 
 
 });

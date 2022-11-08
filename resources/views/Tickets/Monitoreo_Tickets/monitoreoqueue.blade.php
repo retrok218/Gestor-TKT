@@ -2,9 +2,10 @@
 {{--<meta http-equiv="refresh" content="10"/>--}}
 @section('content')
 <script>
-    var titulo_tab = "Tickets Monitoreo Area/Nombres";
-        
+    var nom_tkt_estatus = "Tickets areaaa";
+    var name_tabla = "/data/ddatatktareaasignadosdesg/{id}";
 </script>
+
 
 <div class="kt-portlet__head">
         <div class="header_titulo_monitoreo_tkts text-center" >
@@ -15,7 +16,7 @@
                         Tablero Mesa de Servicio   
                                                                
                     </span>    
-                    <p style="margin-top: -14px;color: #bc6c82;font-size: 1em;">(Estado : Asignados)   </p>
+                    <p style="margin-top: -14px;color: #0e0e0e;font-size: 1em;">(Estado : Asignados)   </p>
                     
                 </div>
             </div>  
@@ -348,7 +349,7 @@
                                 <div class="user-info">
                                     
                                     <div class="user-info__basic">
-                                        <a href="#" onclick="desglocetktsar('{{$v->identificador}}')"><h6 class="mb-0" style="color: #bc955b;" >{{$v->nombrea}}</h6> </a> 	
+                                        <a  onclick="desglocetktsar('{{$v->identificador}}')"><h6 class="mb-0" style="color: #bc955b;" >{{$v->nombrea}}</h6> </a> 	
                                         							
                                     </div>
                                 </div>
@@ -494,7 +495,7 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url : url+'/data/subclase/'+id,
+        url : url+'/data/tktareaasignadosdesg/'+id,
         dataType: 'html',
         success: function(resp_success) {
             var modal = resp_success;
