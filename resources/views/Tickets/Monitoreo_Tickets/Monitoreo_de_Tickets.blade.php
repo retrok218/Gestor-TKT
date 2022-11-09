@@ -253,7 +253,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets En Espera de Información</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets En Espera de Información</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets Abierto</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets Abierto</h4>									
                                     </div>     
                                 </div>
                             </div>
