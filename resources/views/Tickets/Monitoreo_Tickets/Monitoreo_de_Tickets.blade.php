@@ -1,19 +1,20 @@
 @extends('home')
-<meta http-equiv="refresh" content="50" />
+<!-- <meta http-equiv="refresh" content="50" /> -->
 @section('content')
 <script>
   var titulo_tab = "Tickets Nuevos";
   var name_tabla = "/data_tickets_nuevos";
 </script>
 
-<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid" style="
-    margin-top: -25px;">
+
   <!-- <div class="card" style="border: 1px; background: white;">   
     <img  class="header_titulo_monitoreo_tkts"  src="{{ URL::asset('assets/media/company-logos/SAF_AdminitraciónFinanciera_saf_2_reducido_gris copia.png'.env('APP_LOGO_ASIDE') ) }}" >                
   </div> -->
-  <div class="kt-portlet__head">
+  <div style=" height: 100%; background-color: #fcfdffa6;" >
+  
     <div class="header_titulo_monitoreo_tkts text-center">      
-      <div class="card-header fondoberde"  >
+      <!-- <div class="card-header fondoberde"  > --> 
+      <div class="card-header "  >
                 <div class="containerglass ">
                     <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
                     Tablero Mesa de Servicio                                             
@@ -21,27 +22,27 @@
                 </div>
         </div> 
     </div>    
-  </div>
+  
 
 
-  <div class="kt-portlet" >
-    <div class="kt-portlet__body" >
+ 
+    
 
-    <div class="row">
-      <div class="col-lg-4">        
-      <div class="kt-widget25__item">
-          <div class="item-wrapper">
+    <div class="row" style="width: auto;height: 50%;">
+    <div class="col-lg-4" style="height: 100%;">       
+      <div class="kt-widget25__item" style="height: 100%;" >
+          <div class="item-wrapper" style="height: 100%;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="item">
+            <div class="item" style="height: 100%;">
               <a id="link" href="{{ url('/tickets_asignados/') }}" target="_blank">
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
-                            <div class="d-flex justify-content-between ">
+              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; height: 100%;">                            
+                            <div class="d-flex justify-content-between " >
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets Asignados</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets Asignados</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -49,11 +50,11 @@
                             <br>   
                                              
                                                                                                                          
-                            <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
+                            <div class="d-flex justify-content-between " style="margin-top: auto">   
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                        <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2em;color:rgb(160 32 66 );pointer-events: none;"> 
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"> </div>
+                                        <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2.6em;color:rgb(160 32 66 );pointer-events: none;"> 
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"> </div>
                                             {{$asignado}}   
                                             <h6 style="position: absolute; left: 80%;"> {{round($tktsporciento[0],2)}} %</h6> 
                                         </h5>	 
@@ -73,23 +74,23 @@
       </div>
 
 
-      <div class="col-lg-4">
-      <div class="kt-widget25__item">
-          <div class="item-wrapper">
+      <div class="col-lg-4" style="height: 100%;">
+      <div class="kt-widget25__item" style="height: 100%;">
+          <div class="item-wrapper" style="height: 100%;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="item">
+            <div class="item" style="height: 100%;">
 
              
               
               <a id="link" href="{{ url('/tickets_atendidos/') }}" target="_blank">
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
+              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; height: 100%;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets Atendidos</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets Atendidos</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -100,8 +101,8 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2em;color:rgb(160 32 66 );pointer-events: none;"> 
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"> </div>
+                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2.6em;color:rgb(160 32 66 );pointer-events: none;"> 
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"> </div>
                                             {{$atendido}}   
                                             <h6 style="position: absolute; left: 80%;"> {{round($tktsporciento[1],2)}} %</h6> 
                                         </h5>	 
@@ -118,23 +119,23 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
-      <div class="kt-widget25__item">
-          <div class="item-wrapper">
+      <div class="col-lg-4" style="height: 100%;">
+      <div class="kt-widget25__item" style="height: 100%;">
+          <div class="item-wrapper" style="height: 100%;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="item">
+            <div class="item" style="height: 100%;">
 
            
 
               <a id="link" href="{{ url('/falta_acta_responsiva/') }}" target="_blank">
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
+              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; height: 100%;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets Falta Acta Responsiva</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets Falta Acta Responsiva</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -145,8 +146,8 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2em;color:rgb(160 32 66 );pointer-events: none;">
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"> </div>
+                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2.6em;color:rgb(160 32 66 );pointer-events: none;">
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"> </div>
                                             {{$FaltaActaRES}}   
                                             <h6 style="position: absolute; left: 80%;"> {{round($tktsporciento[7],2)}} %</h6> 
                                         </h5>	 
@@ -168,15 +169,15 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-4">
-      <div class="kt-widget25__item">
-          <div class="item-wrapper">
+    <div class="row" style="width: auto; height: auto;">
+      <div class="col-lg-4" style="height: 100%;">
+      <div class="kt-widget25__item" style="height: 100%;">
+          <div class="item-wrapper" style="height: 100%;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="item">
+            <div class="item" style="height: 100%;">
               
 
 
@@ -184,11 +185,11 @@
                 
 
               <a id="link" href="{{ url('/tickets_nuevos/') }}" target="_blank">
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
+              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; height: 100%;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets Nuevos</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets Nuevos</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -199,8 +200,8 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2em;color:rgb(160 32 66 );pointer-events: none;">
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"> </div>
+                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2.6em;color:rgb(160 32 66 );pointer-events: none;">
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"> </div>
                                             {{$pendienteatc}}   
                                             <h6 style="position: absolute; left: 80%;"> {{round($tktsporciento[2],2)}} %</h6> 
                                         </h5>	 
@@ -225,14 +226,14 @@
           
         </div>
       </div>
-      <div class="col-lg-4">
-      <div class="kt-widget25__item">
-          <div class="item-wrapper">
+      <div class="col-lg-4" style="width: auto; height: 100%;">
+      <div class="kt-widget25__item" style="height: 100%;">
+          <div class="item-wrapper" style="height: 100%;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="item">
+            <div class="item" style="height: 100%;">
               
 
 
@@ -240,11 +241,11 @@
 
 
                 <a id="link" href="{{ url('/tickets_espera_informacion/') }}" target="_blank">
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
+              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; height: 100%;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets En Espera de Información</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets En Espera de Información</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -255,8 +256,8 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2em;color:rgb(160 32 66 );pointer-events: none;">
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"> </div>
+                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2.6em;color:rgb(160 32 66 );pointer-events: none;">
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"> </div>
                                             {{$espinformacion}}   
                                             <h6 style="position: absolute; left: 80%;"> {{round($tktsporciento[4],2)}} %</h6> 
                                         </h5>	 
@@ -280,23 +281,23 @@
           
         </div>
       </div>
-      <div class="col-lg-4">
-      <div class="kt-widget25__item">
-          <div class="item-wrapper">
+      <div class="col-lg-4" style="width: auto; height: 100%;">
+      <div class="kt-widget25__item"  style="height: 100%;">
+          <div class="item-wrapper" style="height: 100%;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="item">
+            <div class="item" style="height: 100%;">
 
 
 
                 <a id="link" href="{{ url('/tickets_abiertos/') }}" target="_blank">
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
+              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; height: 100%;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h4 class="mb-0" style="color: #005546;">Tickets Abierto</h4>									
+                                        <h4 class="mb-0" style="color: #2e2e2ed9;">Tickets Abierto</h4>									
                                     </div>     
                                 </div>
                             </div>
@@ -307,8 +308,8 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2em;color:rgb(160 32 66 );pointer-events: none;">
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"> </div>
+                                    <h5 class="mb-0" style="position: relative;top:-23px; ;font-size:2.6em;color:rgb(160 32 66 );pointer-events: none;">
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;">   </div>
                                             {{$abierto}}   
                                             <h6 style="position: absolute; left: 80%;"> {{round($tktsporciento[5],2)}} %</h6> 
                                         </h5>	 
@@ -522,12 +523,12 @@
             </a>
           </div>            
           </div> -->
-      <div>
+      
+          </div>
+  
+  <div>
         <a href="javascript:window.print()">Imprimir</a>
       </div>
-    </div>
-  </div>
-</div>
 @section('scripts')
 @endsection
 @endsection
