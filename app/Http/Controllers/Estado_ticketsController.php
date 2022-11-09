@@ -1017,8 +1017,11 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
 
 
 
-    public function areaasignadosdesglose($id){      
-      return view('Tickets.Monitoreo_Tickets.desgloseareaasignados')->with(['id'=>$id]);
+    public function areaasignadosdesglose($id){     
+      $ttkks = DB::connection('pgsql2')       
+      ->select("SELECT * FROM ticket
+      WHERE queue_id = $id and ticket_state_id = 12"); 
+      return view('Tickets.Monitoreo_Tickets.desgloseareaasignados')->with(['id'=>$id,'tarea'=> $ttkks]);
     }
     public function dataareaasignadosdesglose($id){
       $ttkks = DB::connection('pgsql2')       

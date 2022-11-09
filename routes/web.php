@@ -187,7 +187,7 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get('/monitoreo_areas_n','Estado_ticketsController@monitoreo_tickets_area_n');
     
     Route::get('/tktareaasignadosdesg/{ida}','Estado_ticketsController@areaasignadosdesglose');
-    Route::get('/data/tktareaasignadosdesg/{id}','Estado_ticketsController@areaasignadosdesglose');
+    Route::get('/data/tktareaasignadosdesg/{id}','Estado_ticketsController@dataareaasignadosdesglose');
 
 
 });

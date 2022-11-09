@@ -19,8 +19,12 @@ class AreaMiddleware
     public function handle($request, Closure $next)
   { 
    
+    // if(Auth::user()->permission_id == false){    
      
-      return $next($request);
-                 
+    //   return $next($request);
+    // }else{
+    //   return Redirect::route('asignados');
+    // }              
+    return $next($request);  //en espera de confirmacion para activar el midellware
   }
 }

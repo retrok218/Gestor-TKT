@@ -49658,6 +49658,7 @@ body {
 #ticketm {
     animation: bounce .5s infinite alternate-reverse ease-in;
     position: relative;
+    color: #a0204299;
     
   }
   
