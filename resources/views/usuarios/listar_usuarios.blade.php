@@ -13,7 +13,7 @@
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
-                    <div class="dropdown dropdown-inline">
+                    <!-- <div class="dropdown dropdown-inline">
                         <button type="button" class="btn btn-default btn-icon-sm dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="la la-download"></i> Exportar
@@ -55,7 +55,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     &nbsp;
                     <a href="javascript:void(0);" onclick="add_user_modal();" class="btn btn-brand btn-elevate btn-cdmx">
                         <i class="la la-plus"></i>
