@@ -9,10 +9,10 @@
         
             <div class="card-header fondoberde"  >
                 <div class="containerglass ">
-                    <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
-                        Tablero Mesa de Servicio                                              
-                    </span>    
-                </div>
+                        <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
+                            Tablero Mesa de Servicio                                              
+                        </span>    
+                    </div>
             </div>  
 
         </div>
@@ -35,7 +35,7 @@
                             <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
                                         <h6 class="mb-0" style="position: absolute;top: 70px;left: 65%;font-size: 2em;color: rgb(160 32 66 / 65%);pointer-events: none;"> 
-                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm"></div>
+                                            <div class="fas fa-ticket-alt fa-lg" id="ticketm" ></div>
                                             {{$datoarea->tikets_area_grupo}}
                                         </h6>	 
                                     </div>                                   
