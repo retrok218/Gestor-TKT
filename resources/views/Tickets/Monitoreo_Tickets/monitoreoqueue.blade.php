@@ -10,7 +10,7 @@
 <div class="kt-portlet__head">
         <div class="header_titulo_monitoreo_tkts text-center" >
         
-            <div class="card-header fondoberde"  >
+            <div class="card-header "  >
                 <div class="containerglass ">
                     <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
                         Tablero Mesa de Servicio   
