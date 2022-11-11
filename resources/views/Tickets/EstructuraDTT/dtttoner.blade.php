@@ -5,7 +5,7 @@
   var titulo_tab = 'Control Toners ';
   
 </script>
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">    
+
 <div class="kt-portlet__head">
     <div class="header_titulo_monitoreo_tkts text-center">      
       <!-- <div class="card-header fondoberde"  > --> 
@@ -18,12 +18,12 @@
         </div> 
     </div>    
   </div>   
-    
-        <div class="kt-portlet__body">                    
+  <div style="  background-color: #feffffe3;">
+                            
                   <div class="row row-no-padding row-col-separator-xl">			
                         <div class="col-md-12 col-lg-12 col-xl-12">                          
                             <div class="kt-widget24" style="text-align: center;">
-                              <div class="row" style="color: #595d6e;">
+                              <!-- <div class="row" style="color: #595d6e;">
                                   <div class="col-sm-6" >  
                                       <div class="kt-widget25"  style="border-right: groove;">
                                           <div class="kt-widget24__info" style="
@@ -36,49 +36,61 @@
                                               <span class="kt-widget25__stats m-font-brand" style="font-size:36px">- {{$ticket}}</span>                                                                                      
                                         </div>            
                                   </div>
-                                  <div class="col-sm-6" >
-                                      <div class="kt-widget25">
-                                          <div class="kt-widget24__info" style="
-                                          text-align: initial;">
-                                              <h4 class="kt-widget24__title">
-                                                  Tickets Solicitud de Toner
-                                              </h4>					       
-                                          </div>
-                                          <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
-                                              <span class="kt-widget25__stats m-font-brand" style="font-size:36px">- {{$solicitudToner}}</span>                                                  
-                                      </div>            
-                                  </div>                                                         
-                              </div>                                
-                              <div class="progress progress--sm" style="height: 1rem">                                                                                            
+                                                                                           
+                              </div>                                 -->
+                              <!-- <div class="progress progress--sm" style="height: 1rem">                                                                                            
                                 <div class="progress-bar barra_progreso" role="progressbar" style="width: {{$ticket-$solicitudToner}}" aria-valuenow={{$ticket-$solicitudToner}} aria-valuemin={{$ticket-$solicitudToner}} aria-valuemax={{$ticket}}></div>                                               
                                 <div class="progress-bar kt-bg-success barra_progreso" role="progressbar" style= "width: {{round(($solicitudToner*100)/$ticket."2")}}%" aria-valuenow={{$solicitudToner}} aria-valuemin={{$ticket}} aria-valuemax={{$solicitudToner}}></div>                                                                                           
-                              </div>              
-                              <div class="kt-widget24__action">  
+                              </div>               -->
+                              <!-- <div class="kt-widget24__action">  
                                     <span class="kt-widget24__number"></span>
                                     <span class="kt-widget24__number">
                                         {{round(($solicitudToner*100)/$ticket."2")}}%
                                     </span>
-                              </div>	
+                              </div>	 -->
                               <hr>
 
                               <div class="row" style="color: #595d6e;">
-                                <div class="col-sm-6" >  
-                                    <div class="kt-widget25"  style="border-right: groove;">
-                                        <div class="kt-widget24__info" style="
-                                        text-align: initial;">
-                                            <h4 class="kt-widget24__title">
-                                                Toners Solicitados
-                                            </h4>					       
-                                        </div> 
-                                        
-                                        <div style="font-size:36px">
-                                          <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                          font-size: 3rem !important;" ></div>
-                                           - <i class="fa" style="font-size:36px" id="tonsolicitado"></i>                                           
-                                          </div>                                                                                                                                                                                                              
-                                      </div>            
-                                </div>
-                                <div class="col-sm-6" >
+
+                                <div class="col-sm-6" name="solicitadosaction" >  
+                                  <div class="kt-widget25__item">
+                                  <div class="item-wrapper">
+                                    <div class="line line-top"><span></span></div>
+                                    <div class="line line-right"><span></span> </div>
+                                    <div class="line line-bottom"><span></span> </div>
+                                    <div class="line line-left"><span></span> </div>
+                                    <div class="item">
+                                      <div class="kt-widget25"  style="border-right: groove;">
+                                                                <div class="kt-widget24__info" style="
+                                                                text-align: initial;">
+                                                                    <h4 class="kt-widget24__title">
+                                                                        Toners Solicitados
+                                                                    </h4>					       
+                                                                </div> 
+                                                                
+                                                                <div style="font-size:36px">
+                                                                  <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                                                  font-size: 3rem !important;" ></div>
+                                                                  - <i class="fa" style="font-size:36px" id="tonsolicitado"></i>                                           
+                                                                  </div>                                                                                                                                                                                                              
+                                      </div> 
+                                    </div>
+                                  </div>
+                                  </a>
+                                </div>                                              
+                          </div>
+
+
+          
+                                <div class="col-sm-6" name="entregadosaction" >
+                                <div class="kt-widget25__item">
+                                  <div class="item-wrapper">
+                                    <div class="line line-top"><span></span></div>
+                                    <div class="line line-right"><span></span> </div>
+                                    <div class="line line-bottom"><span></span> </div>
+                                    <div class="line line-left"><span></span> </div>
+                                    <div class="item">
+                                      
                                     <div class="kt-widget25">
                                         <div class="kt-widget24__info" style="
                                         text-align: initial;">
@@ -91,17 +103,164 @@
                                           font-size: 3rem !important;"></div> 
                                          - <i class="fa"  id="tonentregado"></i>  
                                        </div>
-
-                                    </div>            
+                                    </div>  
+                                     
+                                    </div>
+                                  </div>
+                                  </a>
+                                </div> 
                                 </div>     
                             </div>
+                            <hr>
+                            
+
+
+
+
+
+
+                          
+                            <div class="row" name="tdossoleicitados">                              
+                              <div class="col-sm-4" >
+                                <div class="kt-widget25">
+                                  <div class="kt-widget24__info" style="
+                                          text-align: initial;">
+                                              <h4 class="kt-widget24__title" >
+                                                  Toners Solicitado 
+                                              </h4>	<p>(col.- 1)</p>	       
+                                          </div>
+                                    <div style="font-size:36px">
+                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                            font-size: 3rem !important;"></div> 
+                                          - <i class="fa"  id="ressol1"></i>  
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4" >
+                                <div class="kt-widget25">
+                                  <div class="kt-widget24__info" style="
+                                          text-align: initial;">
+                                              <h4 class="kt-widget24__title" >
+                                                  Toners Solicitado 2
+                                              </h4><p>(col.- 2)</p>				       
+                                          </div>
+                                    <div style="font-size:36px">
+                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                            font-size: 3rem !important;"></div> 
+                                          - <i class="fa"  id="ressol2"></i>  
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4" >
+                                <div class="kt-widget25">
+                                  <div class="kt-widget24__info" style="
+                                          text-align: initial;">
+                                              <h4 class="kt-widget24__title" >
+                                                  Toners Solicitado 3
+                                              </h4><p>(col.- 3)</p>						       
+                                          </div>
+                                    <div style="font-size:36px">
+                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                            font-size: 3rem !important;"></div> 
+                                          - <i class="fa"  id="ressol3"></i>  
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4" >
+                                <div class="kt-widget25">
+                                  <div class="kt-widget24__info" style="
+                                          text-align: initial;">
+                                              <h4 class="kt-widget24__title" >
+                                                  Toners Solicitado 4 
+                                                </h4>			<p>(col.- 4)</p>				       
+                                          </div>
+                                    <div style="font-size:36px">
+                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                            font-size: 3rem !important;"></div> 
+                                          - <i class="fa"  id="ressol4"></i>  
+                                  </div>
+                                </div>
+                              </div>   
+                            </div>
+
+                            <div class="row" name="todosentregados">
+                              <div class="col-sm-4" >
+                                  <div class="kt-widget25">
+                                    <div class="kt-widget24__info" style="
+                                            text-align: initial;">
+                                                <h4 class="kt-widget24__title" >
+                                                    Toners Entregado 1</h4>	<p>(col.- 1)</p>					       
+                                            </div>
+                                      <div style="font-size:36px">
+                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                              font-size: 3rem !important;"></div> 
+                                            - <i class="fa"  id="entregado1"></i>  
+                                    </div>
+                                  </div>
+                                </div>                              
+                            
+                            
+                              <div class="col-sm-4" >
+                                  <div class="kt-widget25">
+                                    <div class="kt-widget24__info" style="
+                                            text-align: initial;">
+                                                <h4 class="kt-widget24__title" >
+                                                    Toners Entregado 2                                              </h4><p>(col.- 2)</p>					       
+                                            </div>
+                                      <div style="font-size:36px">
+                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                              font-size: 3rem !important;"></div> 
+                                            - <i class="fa"  id="entregado2"></i>  
+                                    </div>
+                                  </div>
+                                </div>                              
+                           
+                            
+                              <div class="col-sm-4" >
+                                  <div class="kt-widget25">
+                                    <div class="kt-widget24__info" style="
+                                            text-align: initial;">
+                                                <h4 class="kt-widget24__title" >
+                                                    Toners Entregado 3                                             </h4><p>(col.- 3)</p>					       
+                                            </div>
+                                      <div style="font-size:36px">
+                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                              font-size: 3rem !important;"></div> 
+                                            - <i class="fa"  id="entregado3"></i>  
+                                    </div>
+                                  </div>
+                                </div>                              
+                            
+                           
+                              <div class="col-sm-4" >
+                                  <div class="kt-widget25">
+                                    <div class="kt-widget24__info" style="
+                                            text-align: initial;">
+                                                <h4 class="kt-widget24__title" >
+                                                    Toners Entregado 4                                              </h4><p>(col.- 4)</p>				       
+                                            </div>
+                                      <div style="font-size:36px">
+                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                              font-size: 3rem !important;"></div> 
+                                            - <i class="fa"  id="entregado4"></i>  
+                                    </div>
+                                  </div>
+                                </div>                              
+                            
+                                </div>
                             
                             
                     </div>                    
                   </div>  
                 </div>  
-          
-     <div class="kt-portlet kt-portlet--height-fluid">
+                </div>
+   
+
+
+
+
+
+ <div style="  background-color: #feffffe3;">
       <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
           <span class="kt-portlet__head-icon">
@@ -112,10 +271,19 @@
           </h3>
         </div>		
       </div>
-      <div class="kt-portlet__body">
-        <div class="tab-content">
-          <div class="tab-pane active" id="kt_widget11_tab1_content">          
-            <div class="kt-widget11">                              
+
+
+
+
+
+
+
+
+
+
+       
+                   
+                                        
                 <form class="kt-form kt-form--fit kt-margin-b-20">                
                   <div class="row kt-margin-b-4">
                       <div class="col-lg-8 kt-margin-b-10-tablet-and-mobile">
@@ -132,17 +300,13 @@
                                 </div>
                                 <button class="btn btn-default clear-date-filter">Limpiar Filtros</button>
                               </div>
-                          </div>        
-
-
-                              
+                          </div>          
                       </div>                    
                   </div> 
               </form>
               
                 <table class="display" style="width:100%" id="tablatoners" >
                     <thead > 
-                                                       -->
                         <tr>
                             <th>Numero del TKT</th>                                                      
                             <th>1.-Solicitado Tipo de Toner </th>
@@ -196,14 +360,12 @@
                     </tfoot>                              
                 </table> 					                
               
-            </div>
-                        						             
-          </div>
-        </div>
-      </div>
+        
+                
+        
+                </div> 
 
-      
-    </div>
+
 
 
     
@@ -243,33 +405,58 @@
                     <div id="graficaTonerArea" style="height: 400px; width: 100%;"></div>
                     </div>
         </div>  
-         <div class="kt-demo-panel__item ">
-                    <div class="kt-demo-panel__item-title">
-                        Tickets por Estado del Ticket
-                    </div>                    
-                    <div class="kt-demo-panel__item-preview">
-                    <div id="graficatonerporestado" style="height: 400px; width:100%;"> </div>
-                    </div>
-        </div> 
+         
                          
     </div>              		
 	</div>
-  </div>
-  </div>
+  
+ 
+
+
+
+
+
+
 @include('layouts/scripts/scripts')
 <script src="{{URL::asset('js/datatabletoner.js')}}"></script>
 @section('scripts')
 
-
-
 <script>
+$(function(){
+  $("div[name='tdossoleicitados']").hide();
+  $("div[name='todosentregados']").hide();
+
+  $("div[name='solicitadosaction']").click(function(){
+    $("div[name='tdossoleicitados']").toggle(900);
+    $("div[name='entregadosaction']").toggle(900);
+  });
+
+  $("div[name='entregadosaction']").click(function(){
+    $("div[name='todosentregados']").toggle(900);
+    $("div[name='solicitadosaction']").toggle(900);
+  });
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  // Grafica de Tikect solicitud de Toner 
 window.onload = function () {
 	var chart = new CanvasJS.Chart("graficaTonerArea",
-	{
-    
+	{    
 		legend: {
       fontSize: 9,
                               horizontalAlign: "center", // left, center ,right 
@@ -278,9 +465,7 @@ window.onload = function () {
                               itemWidth: 100,
                               cursor: "default",
                               markerMargin:5,
-                              itemMaxWidth: 100, // ancho maximo del elemento 
-                              
-                             
+                              itemMaxWidth: 100, // ancho maximo del elemento                                                            
 		},
 		data: [
 		{
@@ -298,46 +483,18 @@ window.onload = function () {
 
 	});
 	chart.render();
-
-  var chart = new CanvasJS.Chart("graficatonerporestado",
-  
-	{
-    
-		legend: {
-      fontSize: 9,
-                              horizontalAlign: "left", // left, center ,right 
-                              verticalAlign: "top",  // top, center, botto
-                              itemWrap: false,
-                              itemWidth: 250,
-                              cursor: "default",
-                              markerMargin:10,
-                              itemMaxWidth: 700,
-                              
-                             
-		},
-		data: [
-		{
-			type: "pie",      
-      indexLabelPlacement: "outside",
-      showInLegend: true,     
-      legendText: "{label}",      	            
-			dataPoints: [
-        @foreach ($estado_graf as $estadotkt)               
-        {  y:{{$estadotkt->conteo}},label: "{{$estadotkt->name}} - {{$estadotkt->conteo}}" },           
-         @endforeach   
-			]
-		}]
-
-	});
-	chart.render();
 }
 
 
+
+
+
+
+
+
+
+
 </script>
-
-
-
-
 <!-- fin de la datatable-->
 @endsection
 @endsection

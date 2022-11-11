@@ -18,13 +18,13 @@ $(document).ready(function(){
 
 
   var table = $('#tablatoners').DataTable({ 
-        
+       
         "pageLength": 6,   
         "lengthChange": true,
         "searching": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
-        //responsive: true, 
+         responsive: true,
         "autoWidth": false,      
         //"language": idioma,
         "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
@@ -46,93 +46,88 @@ $(document).ready(function(){
   
   
   
+       
         buttons: {
-              buttons: [
-                         {  
-                             extend:'excelHtml5',
-                             text:'<i class="fas fa-file-excel"></i> Exel ',
-                             title:'Tickets Solicitud de Toner ',
-                             messageTop:'Toners entregados :',
-                             titleAttr: 'Gestor Toners Entregados',
-                             className: 'btn btn-app export excel',                           
-                             exportOptions: {
-                             //columns: ':visible',                           
-                             },
-                             customize: function( xlsx ) {                      
-                              var hoja = xlsx.xl.worksheets['sheet1.xml'];
-                                $('c[r=A2] t', hoja).text(' Toners Solicitados :' + '  ' + sumcol(pageTotal,sumsol2,sumsol3) +'  '+ 'Toners Entregados :' + '  ' + sumcol(tonerentregado1,tonerentregado2,tonerentregado3) );
-                                $('messageTop c', hoja).attr( 's', '30' );                                                            
-                              },                            
-                         },
+            dom: {
+                container: {
+                    tag: 'div',
   
-                          {
-                            extend:    'pdfHtml5',
-                          text:'<i class="fas fa-file-pdf"></i>PDF',                           
-                          title:'Tickets Toners Solicitud Toner' ,
-                          messageTop: function (){
-                                    return  'Toners Solicitado :'+' '+ sumcol(pageTotal,sumsol2,sumsol3) +' ' +'Toners Entregado'+ sumcol(tonerentregado1,tonerentregado2,tonerentregado3);        
-                                  },
-                          titleAttr: 'PDF',
-                          className: 'btn btn-app export pdf',
-                          orientation: 'landscape',
-                          pageSize: 'TABLOID',
-                          exportOptions: {
-                          columns: ':visible'
-                          },
-                          customize:function(doc) {
+                },
+                buttonLiner: {
+                    tag: null
+                }
+            },
   
-                            
   
-                              doc.styles.title = {
-                                  color: 'peru',
-                                  fontSize: '30',
-                                  alignment: 'center'
-                              },
-                              doc.styles.messageTop = {
-                                  color: 'peru',
-                                  fontSize: '20',
-                                  alignment: 'center'
-                              },
-                              doc.styles['td:nth-child(2)'] = {
-                                  width: '100px',
-                                  'max-width': '100px',
-                                  margin: [ 0, 0, 0, 12 ],
-                              },
-                              doc.styles.tableHeader = {
-                                  fillColor:'maroon',
-                                  color:'antiquewhite',
-                                  alignment:'center',                
-                              }
-                              doc.content[0].margin = [ 0, 0, 0, 12 ]
+            buttons: [
+               
+  
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i> Exel',
+                    title: titulo_tab,
+                    titleAttr: 'Excel',
+                    className: 'btn btn-app export excel',
+                    exportOptions: {
+                       //  columns: ':visible'
+                    },
+                },
+  
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i>Imprimir',
+                    title: titulo_tab,
+                    titleAttr: 'Imprimir',
+                    className: 'btn btn-app export imprimir',
+                    exportOptions: {
+                        
+                    }
+                },
+                {
+  
+                    extend: 'pdfHtml5',
+                    text: '<i class="fas fa-file-pdf"></i>PDF',
+                    title: titulo_tab ,
+                    titleAttr: 'PDF',
+                   //  className: 'btn btn-app export pdf',
+                    orientation: 'landscape',
+                    pageSize: 'TABLOID',
+                    exportOptions: {
+                       // columns: ':visible'
+                    },
+                    customize: function (doc) {
+                        doc.styles.title = {
+                            color: '#114627',
+                            fontSize: '30',
+                            alignment: 'center'
+                        }
+                        doc.styles['td:nth-child(2)'] = {
+                                width: '100px',
+                                'max-width': '100px',
+                                margin: [0, 0, 0, 12],
                             },
+                            doc.styles.tableHeader = {
+                                fillColor: '#114627',
+                                color: 'white',
+                                alignment: 'center',   
+                            } 
+                    },
   
-                          },
   
-                         {
-                             extend:    'print',
-                             text:      '<i class="fa fa-print"></i>Imprimir',
-                             title:'Gestor Toners Entregados',
-                             titleAttr: 'Imprimir',
-                             className: 'btn btn-app export imprimir',
-                             exportOptions: {
-                              columns: ':visible'
-                             }
-                         },
-                         {
-                             extend:    'pageLength',
-                             titleAttr: 'Registros a mostrar',
-                             className: 'selectTable'
-                         },
-  
-                           'colvis',
-                        
-                         
-                        
-                     ]         
-             },
+                },
+                
+                {
+                    extend: 'pageLength',
+                    text: '<i class="flaticon2-indent-dots"></i>Registros a Mostrar',
+                    titleAttr: 'Registros a mostrar',
+                    className: 'selectTable'
+                },
+                
+            ]
+        },  
              columnDefs:[{
                           targets: [7,8,9,10,11,12,14,15,16,17,18,19,20,21], 
-                          visible: false
+                          visible: true
                           }] ,
               
   
@@ -140,7 +135,7 @@ $(document).ready(function(){
   // Filtro por seleccion multiple
   initComplete: function () {
       //col3 en mantenimiento 
-               this.api().columns([3,5,7,20,22]).every(function () {
+               this.api().columns([1,3,5,7,20,22]).every(function () {
                    var column = this;
                    //added class "mymsel"
                    var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
@@ -162,27 +157,7 @@ $(document).ready(function(){
                //select2 init for .mymsel class
                $(".mymsel").select2();
 
-               this.api().columns([1]).every(function () {
-                var column = this;
-                //added class "mymsel"
-                var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
-                    .appendTo($(column.header()))
-                    .on('change', function () {
-                        var vals = $('option:selected', this).map(function (index, element) {
-                            return $.fn.dataTable.util.escapeRegex($(element).val());
-                        }).toArray().join('|');
-                        column
-                            .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
-                            .draw();
-                    });
-                column.data().unique().sort().each(function (d, j) {
-                    select.append('<option value="' + d + '" >' + d + '</option>')
-                });
-                var title = $(this).text();
-  
-            });
-            //select2 init for .mymsel class
-            $(".mymsel").select2();
+             
 
 
 
@@ -263,9 +238,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(2).footer() ).html(
-                    '1.-Toners Solicitados: <br>' + pageTotal 
-                  );
+                    // $( api.column(2).footer() ).html(
+                    //     '1.-Toners Solicitados: <br>' + pageTotal 
+                    // );
                  
                   sumsol2 = api
                   .column( 4, { search: "applied" } )
@@ -273,9 +248,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(4).footer() ).html(
-                    '2.-Toners Solicitados: <br>' + sumsol2 
-                  );
+                //   $( api.column(4).footer() ).html(
+                //     '2.-Toners Solicitados: <br>' + sumsol2 
+                //   );
   
                   sumsol3 = api
                   .column(6, { search: "applied" } )
@@ -283,9 +258,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(6).footer() ).html(
-                    '3.-Toners Solicitados: <br>' + sumsol3 
-                  );
+                //   $( api.column(6).footer() ).html(
+                //     '3.-Toners Solicitados: <br>' + sumsol3 
+                //   );
   
                   sumsol4 = api
                   .column(8, { search: "applied" } )
@@ -293,9 +268,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(8).footer() ).html(
-                    '4.-Toners Solicitados: <br>' + sumsol4 
-                  );
+                //   $( api.column(8).footer() ).html(
+                //     '4.-Toners Solicitados: <br>' + sumsol4 
+                //   );
   
   
   
@@ -309,9 +284,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(9).footer() ).html(
-                    '1.-Toner Entregados: <br>' + tonerentregado1 
-                  );
+                //   $( api.column(9).footer() ).html(
+                //     '1.-Toner Entregados: <br>' + tonerentregado1 
+                //   );
   
                   tonerentregado2 = api
                   .column( 11, { search: "applied" } )
@@ -319,9 +294,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(11).footer() ).html(
-                    '2.-Toner Entregados: <br>' + tonerentregado2 
-                  );
+                //   $( api.column(11).footer() ).html(
+                //     '2.-Toner Entregados: <br>' + tonerentregado2 
+                //   );
   
                   tonerentregado3 = api
                   .column( 13, { search: "applied" } )
@@ -329,9 +304,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(13).footer() ).html(
-                    '3.-Toner Entregados: <br>' + tonerentregado3 
-                  );  
+                //   $( api.column(13).footer() ).html(
+                //     '3.-Toner Entregados: <br>' + tonerentregado3 
+                //   );  
   
                   tonerentregado4 = api
                   .column( 15, { search: "applied" } )
@@ -339,12 +314,21 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                  $( api.column(15).footer() ).html(
-                    '4.-Toner Entregados: <br>' + tonerentregado4 
-                  );       
+                //   $( api.column(15).footer() ).html(
+                //     '4.-Toner Entregados: <br>' + tonerentregado4 
+                //   );       
                   var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3+sumsol4;
                   var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2+tonerentregado4;                                 
-                  
+                  var ressol1= document.getElementById("ressol1").innerHTML=pageTotal;
+                  var ressol2= document.getElementById("ressol2").innerHTML=sumsol2;
+                  var ressol3= document.getElementById("ressol3").innerHTML=sumsol3;
+                  var ressol4= document.getElementById("ressol4").innerHTML=sumsol4;
+
+                  var entregado1= document.getElementById("entregado1").innerHTML=tonerentregado1;
+                  var entregado2= document.getElementById("entregado2").innerHTML=tonerentregado2;
+                  var entregado3= document.getElementById("entregado3").innerHTML=tonerentregado3;
+                  var entregado4= document.getElementById("entregado4").innerHTML=tonerentregado4;
+
 
                   
           },

@@ -333,7 +333,7 @@ window.onload = function (){
         exportEnabled: true,
         backgroundColor: "#ffffff00",       
                  title:{                                                 
-                                                  text: "Tickets Por Area ",
+                                                  text: "Tickets por Fila (Todos los Tickets)",
                                                   fontSize: 20,                                                
                                               },
     
