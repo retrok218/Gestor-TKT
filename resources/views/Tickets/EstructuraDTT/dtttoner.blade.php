@@ -18,7 +18,7 @@
         </div> 
     </div>    
   </div>   
-    <div class="kt-portlet">    
+    
         <div class="kt-portlet__body">                    
                   <div class="row row-no-padding row-col-separator-xl">			
                         <div class="col-md-12 col-lg-12 col-xl-12">                          
@@ -100,7 +100,7 @@
                     </div>                    
                   </div>  
                 </div>  
-        </div>  
+          
      <div class="kt-portlet kt-portlet--height-fluid">
       <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
@@ -142,151 +142,9 @@
               
                 <table class="display" style="width:100%" id="tablatoners" >
                     <thead > 
-                        <!-- <div class="row">
-                                  <div class="col-sm-3">
-                                    <div class="kt-widget25"  style="border-right: groove;">
-                                            <div class="kt-widget24__info" style="
-                                            text-align: initial;">
-                                                <h4 class="kt-widget24__title">
-                                                    Toners Solicitado 1
-                                                </h4>					       
-                                            </div> 
-                                            
-                                            <div style="font-size:36px">
-                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                              font-size: 3rem !important;" ></div>
-                                              - <i class="fa" style="font-size:36px" id="pageTotal"></i>                                           
-                                              </div>                                                                                                                                                                                                              
-                                          </div> 
-
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="kt-widget25"  style="border-right: groove;">
-                                            <div class="kt-widget24__info" style="
-                                            text-align: initial;">
-                                                <h4 class="kt-widget24__title">
-                                                    Toners Solicitado 2
-                                                </h4>					       
-                                            </div> 
-                                            
-                                            <div style="font-size:36px">
-                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                              font-size: 3rem !important;" ></div>
-                                              - <i class="fa" style="font-size:36px" id="sumsol2"></i>                                           
-                                              </div>                                                                                                                                                                                                              
-                                          </div> 
-
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="kt-widget25"  style="border-right: groove;">
-                                            <div class="kt-widget24__info" style="
-                                            text-align: initial;">
-                                                <h4 class="kt-widget24__title">
-                                                    Toners Solicitado 3
-                                                </h4>					       
-                                            </div> 
-                                            
-                                            <div style="font-size:36px">
-                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                              font-size: 3rem !important;" ></div>
-                                              - <i class="fa" style="font-size:36px" id="sumsol3"></i>                                           
-                                              </div>                                                                                                                                                                                                              
-                                          </div> 
-
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="kt-widget25"  style="border-right: groove;">
-                                            <div class="kt-widget24__info" style="
-                                            text-align: initial;">
-                                                <h4 class="kt-widget24__title">
-                                                    Toners Solicitado 4
-                                                </h4>					       
-                                            </div> 
-                                            
-                                            <div style="font-size:36px">
-                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                              font-size: 3rem !important;" ></div>
-                                              - <i class="fa" style="font-size:36px" id="sumsol4"></i>                                           
-                                              </div>                                                                                                                                                                                                              
-                                          </div> 
-                                  </div>
-                                </div>  
-                                <div class="row">
-                                <div class="col-sm-3">
-                                  <div class="kt-widget25"  style="border-right: groove;">
-                                          <div class="kt-widget24__info" style="
-                                          text-align: initial;">
-                                              <h4 class="kt-widget24__title">
-                                                  Toners Entregado 1
-                                              </h4>					       
-                                          </div> 
-                                          
-                                          <div style="font-size:36px">
-                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                            font-size: 3rem !important;" ></div>
-                                            - <i class="fa" style="font-size:36px" id="entregado1"></i>                                           
-                                            </div>                                                                                                                                                                                                              
-                                        </div> 
-
-                                </div>
-                                <div class="col-sm-3">
-                                  <div class="kt-widget25"  style="border-right: groove;">
-                                          <div class="kt-widget24__info" style="
-                                          text-align: initial;">
-                                              <h4 class="kt-widget24__title">
-                                                  Toners Entregado 2
-                                              </h4>					       
-                                          </div> 
-                                          
-                                          <div style="font-size:36px">
-                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                            font-size: 3rem !important;" ></div>
-                                            - <i class="fa" style="font-size:36px" id="entregado2"></i>                                           
-                                            </div>                                                                                                                                                                                                              
-                                        </div> 
-
-                                </div>
-                                <div class="col-sm-3">
-                                  <div class="kt-widget25"  style="border-right: groove;">
-                                          <div class="kt-widget24__info" style="
-                                          text-align: initial;">
-                                              <h4 class="kt-widget24__title">
-                                                  Toners Entregado 3
-                                              </h4>					       
-                                          </div> 
-                                          
-                                          <div style="font-size:36px">
-                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                            font-size: 3rem !important;" ></div>
-                                            - <i class="fa" style="font-size:36px" id="entregado3"></i>                                           
-                                            </div>                                                                                                                                                                                                              
-                                        </div> 
-
-                                </div>
-                                <div class="col-sm-3">
-                                  <div class="kt-widget25"  style="border-right: groove;">
-                                          <div class="kt-widget24__info" style="
-                                          text-align: initial;">
-                                              <h4 class="kt-widget24__title">
-                                                  Toners Entregado 4
-                                              </h4>					       
-                                          </div> 
-                                          
-                                          <div style="font-size:36px">
-                                            <div class="fas fa-ticket-alt fa-spin fa-3x" style="
-                                            font-size: 3rem !important;" ></div>
-                                            - <i class="fa" style="font-size:36px" id="entregado4"></i>                                           
-                                            </div>                                                                                                                                                                                                              
-                                        </div> 
-
-                                </div>
-                              </div>                                  -->
+                                                       -->
                         <tr>
-                            <th>Numero del TKT</th>
-                            <th>Fecha </th>
-                            <th>Descripcion de TKT</th>
-                            <th>Dependencia</th>
-                            <th>Fila</th>                            
+                            <th>Numero del TKT</th>                                                      
                             <th>1.-Solicitado Tipo de Toner </th>
                             <th>1.-Solicitado Cantidad</th>
                             <th>2.-Solicitado Tipo de Toner </th>
@@ -303,6 +161,10 @@
                             <th>3.-Tipo de Toner Entregado</th>
                             <th>4.-Cantidad entregada </th>
                             <th>4.-Tipo de Toner Entregado</th>
+                            <th>Fecha </th>
+                            <th>Descripcion de TKT</th>
+                            <th>Dependencia</th>
+                            <th>Fila</th>  
                             <th>Cometario de Entrega</th>                                                    
                             <th>Estado</th>                                  
                         </tr>
@@ -312,7 +174,7 @@
                         <th></th>
                         <th></th>
                         <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo "></th>
-                        <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Fila</th>
+                        <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo "></th>
                         <th ></th>
                         <th></th>
                         <th></th>
@@ -330,7 +192,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th>Filtro por estado de ticket</th>            
+                        <th></th>            
                     </tfoot>                              
                 </table> 					                
               
@@ -392,8 +254,8 @@
                          
     </div>              		
 	</div>
-
-   
+  </div>
+  </div>
 @include('layouts/scripts/scripts')
 <script src="{{URL::asset('js/datatabletoner.js')}}"></script>
 @section('scripts')

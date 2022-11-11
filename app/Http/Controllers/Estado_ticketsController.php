@@ -453,218 +453,8 @@ class Estado_ticketsController extends Controller
   }
 
 
-  // Ticket Solicitu de Toner             
-  public function solicitud_toner()
-  {
-    
-      // Para La Grafica de Area 
-      // Se obtienen las areas con las que se cuenta en la tabla queue solo el ID 
-    $areas_filastkts=DB::connection('pgsql2')->table('queue')->select('id','name')->orderBy('id','ASC')->get();
-     // Se transforma de un arreglo de objetos a un arreglo de con solo para obtener el id de las areas 
-     $area_f=[]; 
-       foreach($areas_filastkts as $fila){
-          $area_f[]=$fila->id;        
-       };       
-       $n=0;
-       foreach( $area_f as $areas_ids){       
-       $areas_filastkts[$n]->coun=DB::connection('pgsql2')->table('ticket')
-       ->where('queue_id','=',$areas_ids)
-       ->where('service_id','=',79)
-       ->orwhere('service_id','=',78)
-       ->count();
-        $n++;
-       } 
-
-       // Fin Para La Grafica de Area 
-
-       // Grafica por estado 
-        $estado_graf=DB::connection('pgsql2')->table('ticket_state')->select('id','name')->orderBy('id','ASC')->get();
-        $estado_id=[];
-       
-        foreach($estado_graf as $estado){
-          $estado_id[]=$estado->id;
-
-        };
-
-        
-        $num=0;
-        foreach ($estado_id as $estadoid) {
-          $estado_graf[$num]->conteo=DB::connection('pgsql2')->table('ticket')
-          ->where('ticket_state_id','=',$estadoid)
-          ->where('service_id','=',79)
-          ->orwhere('service_id','=',78)
-          ->count();
-          $num++;
-
-        }
-        $num=0;
-        foreach ($estado_graf as $estadiesp ){
-          if ($estadiesp->name == "new") {
-            $estado_graf[$num]->name = "nuevo";
-            
-          }elseif ($estadiesp->name == "closed successful") {
-            $estado_graf[$num]->name = "Cerrado exitosamente";
-          }elseif($estadiesp->name == "open"){
-            $estado_graf[$num]->name ="Abierto";
-          }
-          $num++;
-        }
-       // Grafica por estado FIn      
-       $ticketfusion =DB::connection('pgsql2')       
-       ->select("SELECT
-       ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,       
-       ARRAY_AGG (
-         ticket_history.name
-       )ticket_compuesto,
-       ticket_state.name,
-       ticket.create_time
-     FROM 
-       (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
-       INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-       INNER JOIN queue ON ticket.queue_id = queue.id
-
-       WHERE 
-   (ticket.service_id = 79 OR ticket.service_id = 78)
-    and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
-    or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
-    or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
-    or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%' 
-    or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%' or ticket_history.name LIKE '%%ITSMReviewRequired62%%'
-    or ticket_history.name LIKE '%%ITSMReviewRequired63%%' or ticket_history.name LIKE '%%ITSMReviewRequired71%%' or ticket_history.name LIKE '%%ITSMReviewRequired70%%'
-  )       
-    and (ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
-    and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
-    and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
-    and ticket_history.name NOT LIKE '%ITSMReviewRequired79%' )     
-     GROUP BY 
-       ticket_id,
-       ticket.create_time,
-       ticket.title,
-       ticket.tn,
-       ticket_history.ticket_id,
-       ticket_state.name,
-       queue.name       
-     ORDER BY ticket.tn DESC");
-     
-
-
-
-
-
-     $n=0;
-     foreach ($ticketfusion as $tktcompusto) {
-       $eliminados1 = preg_replace('/FieldName/','',$tktcompusto->ticket_compuesto);
-       $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
-       $eliminados  = preg_replace('/ITSMReview/','',$eliminados2);
-       $eliminados3 = preg_replace('/@/','',$eliminados);
-       $eliminados4 = preg_replace('/#/','',$eliminados3);
-       $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
-       $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
-       $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
-       $modificacion8 = preg_replace('/%%OldValue%%/',' ',$eliminados7);
-       $ticketfusion[$n]->compuesto= array_pad(explode(',',$modificacion8 ),25," ");
-       $ticketfusion[$n]->dependencia="";
-       $ticketfusion[$n]->cantidad1="";
-       $ticketfusion[$n]->Tipo_toner1="";
-       $ticketfusion[$n]->cantidad2="";
-       $ticketfusion[$n]->tipotoner2="vacio";
-       $ticketfusion[$n]->cantidad3="";
-       $ticketfusion[$n]->tipotoner3="";
-       $ticketfusion[$n]->comentario_entrega="";
-       $ticketfusion[$n]->cantidadtonerentregado1="";
-       $ticketfusion[$n]->tipotonerentregado1="";
-       $ticketfusion[$n]->cantidadtonerentregado2="";
-       $ticketfusion[$n]->tipotonerentregado2="";
-       $ticketfusion[$n]->cantidadtonerentregado3="";
-       $ticketfusion[$n]->tipotonerentregado3="";
-       $ticketfusion[$n]->cantidadtonerentregado4="sin nada";
-       $ticketfusion[$n]->tipotonerentregado4="";
-       $ticketfusion[$n]->Solicitado4="";
-       $ticketfusion[$n]->SolicitadoTipo4="";
-      //se crean las bariables desde dependencia asta SolicitadoTipo4 ya que el dato puede existir o no con esto se formara una funcion 
-       $n++;     
-
-     }
-     $i=0;
-    //dd($ticketfusion);
-     
-     foreach ($ticketfusion as $sacando_dato) {  
-
-      foreach ($sacando_dato->compuesto as $otroarreglo) {    
-    
-       
-        if(strncasecmp($otroarreglo,'%%%%Required7',13)===0){
-           $ticketfusion[$i]->dependencia= preg_replace('/%%%%Required7/',' ',$otroarreglo);                                                                                
-          }
-        if(strncasecmp($otroarreglo,'%%%%Required64',14)===0){
-          $ticketfusion[$i]->cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$otroarreglo);
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required65',14)===0){
-          $ticketfusion[$i]->Tipo_toner1= preg_replace('/%%%%Required65/',' ',$otroarreglo);                                        
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required66',14)===0){
-          $ticketfusion[$i]->cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$otroarreglo);                                           
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required67',14)===0){
-          $ticketfusion[$i]->tipotoner2 = preg_replace ('/%%%%Required67/',' ',$otroarreglo);                                                                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required68',14)===0){
-          $ticketfusion[$i]->cantidad3 = preg_replace ('/%%%%Required68/',' ',$otroarreglo);
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required69' ,14)===0){                                      
-          $ticketfusion[$i]->tipotoner3 = preg_replace('/%%%%Required69/',' ',$otroarreglo); 
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required34',14)===0){
-          $ticketfusion[$i]->comentario_entrega = preg_replace ('/%%%%Required34/',' ',$otroarreglo);                                                             
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required35',14)===0){
-          $ticketfusion[$i]->cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$otroarreglo);                                       
-        }      
-        if(strncasecmp($otroarreglo,'%%%%Required53',14)===0){
-          $ticketfusion[$i]->tipotonerentregado1 = preg_replace('/%%%%Required53/','',$otroarreglo);                                          
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required56',14)===0){
-          $ticketfusion[$i]->cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$otroarreglo);                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required57',14)===0){
-          $ticketfusion[$i]->tipotonerentregado2 = preg_replace('/%%%%Required57/','',$otroarreglo);                                          
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required60',14)===0){
-          $ticketfusion[$i]->cantidadtonerentregado3 = (int)preg_replace('/%%%%Required60/',' ',$otroarreglo);                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required61',14)===0){
-          $ticketfusion[$i]->tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$otroarreglo);                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required62',14)===0){
-          $ticketfusion[$i]->cantidadtonerentregado4 = preg_replace('/%%%%Required62/',' ',$otroarreglo);                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required63',14)===0){
-          $ticketfusion[$i]->tipotonerentregado4 = preg_replace('/%%%%Required63/',' ',$otroarreglo);                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required70',14)===0){
-          $ticketfusion[$i]->Solicitado4 = preg_replace('/%%%%Required70/',' ',$otroarreglo);                                       
-        }
-        if(strncasecmp($otroarreglo,'%%%%Required71',14)===0){
-          $ticketfusion[$i]->SolicitadoTipo4=preg_replace('/%%%%Required71/',' ',$otroarreglo);                                       
-        }            
-      }    
-      $i++;
-    }      
-      
-   // dd($ticketfusion);
-
-   // var_dump($ticketfusion); exit;  
-     $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
-     $tickte = DB::connection('pgsql2')->table('ticket')->count();
-     //dd($ticketfusion);
-
-    return view('Tickets.tickets_sol_toner')
-      ->with('tk_id',$ticketfusion )
-      ->with('solicitudToner', $solicitudToner)
-      ->with('ticket', $tickte)
-      ->with('areas_filastkts',$areas_filastkts)
-      ->with('estado_graf',$estado_graf)   ;             
-    }
+              
+  
 
 
 
@@ -860,21 +650,10 @@ class Estado_ticketsController extends Controller
   ;}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   public function toneraj()
   {
+    $anoac = date('Y');
+    $mesac =date('m');
     
       // Para La Grafica de Area 
       // Se obtienen las areas con las que se cuenta en la tabla queue solo el ID 
@@ -936,12 +715,87 @@ class Estado_ticketsController extends Controller
      $tickte = DB::connection('pgsql2')->table('ticket')->count();
      //dd($ticketfusion);
 
+
+     $fecha_actual = Carbon::now()->toDateString();; //fecha ->toDateString da el formato que maneja la bd
+       $fecha_mes = Carbon::now()->format('m');
+       $fecha_dia = Carbon::now()->format('d');
+       $fecha_año = Carbon::now()->format('Y');
+      
+
+     $kyoceratot = DB::connection('pgsql2')       
+     ->select("SELECT COUNT(*) FROM
+     ( SELECT
+                       ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,       
+                       ARRAY_AGG (
+                         ticket_history.name
+                       )ticket_compuesto,
+                       ticket_state.name,
+                       ticket.create_time
+                     FROM 
+                       (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
+                       INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+                       INNER JOIN queue ON ticket.queue_id = queue.id
+                     WHERE 
+          
+                       (ticket.service_id = 79 OR ticket.service_id = 78)
+                       and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
+                       or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
+                       or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
+                       or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%' 
+                       or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%' or ticket_history.name LIKE '%%ITSMReviewRequired62%%'
+                       or ticket_history.name LIKE '%%ITSMReviewRequired63%%' or ticket_history.name LIKE '%%ITSMReviewRequired71%%' or ticket_history.name LIKE '%%ITSMReviewRequired70%%'
+                       ) 
+                and(ticket_history.name LIKE '%Toner-Kyocera FS-4200DN%')
+               
+                       and (ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
+                       and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
+                       and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
+                       and ticket_history.name NOT LIKE '%ITSMReviewRequired79%') 
+                and (extract(year from ticket.create_time) = 2019)
+                and (extract(month from ticket.create_time) = 12)
+                     GROUP BY 
+                       ticket_id,
+                       ticket.create_time,
+                       ticket.title,
+                       ticket.tn,
+                       ticket_history.ticket_id,
+                       ticket_state.name,
+                       queue.name       
+                     ORDER BY ticket.tn DESC                                
+      )AS subquery");
+
+
+
+$inicioaño=2019;      
+$iniciomes = 0;
+$n=0;
+$totalmes= array ();    
+for ($iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
+  $totalmes[$n] =DB::connection('pgsql2')->table('ticket')
+   ->whereMonth('create_time','=', $iniciomes)
+   ->whereYear('create_time','=', $inicioaño)
+   ->count();         
+   $n++;
+   if ($iniciomes === 12) {   
+     if ($inicioaño <= $fecha_año ) {
+       $inicioaño++;
+       $iniciomes=1;
+     }                          
+   };      
+};
+
+
+//dd($kyoceratot);
+
+
+
     return view('Tickets/EstructuraDTT/dtttoner')      
       ->with('solicitudToner', $solicitudToner)
       ->with('ticket', $tickte)
       ->with('areas_filastkts',$areas_filastkts)
-      ->with('estado_graf',$estado_graf)   ;             
-    }
+      ->with('estado_graf',$estado_graf)
+      ->with('kyosera',$kyoceratot)
+       ;}
 
     public function monitoreo_tickets_area_n(){
                 

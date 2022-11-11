@@ -392,7 +392,7 @@
                                 <td>{{$tipotoner3}}</td>
             
                                     @if(!isset($cantidad3) or !empty($cantidad3) == false)
-                                      @php 
+                                      @php  
                                         $cantidad3 = 0 ;
                                       @endphp  
                                     @endif

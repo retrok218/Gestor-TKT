@@ -3,7 +3,7 @@ $(document).ready(function(){
           function (settings, data, dataIndex) {
               var min = $('#datepicker_from').datepicker('getDate');
               var max = $('#datepicker_to').datepicker('getDate');            
-              var startDate = new Date($.trim(data[1])); //here change column value if you have different table structure
+              var startDate = new Date($.trim(data[17])); //here change column value if you have different table structure
               console.log(startDate);
               if (min == null && max == null) return true;
               if (min == null && startDate <= max_formattedDate) return true;
@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 
   var table = $('#tablatoners').DataTable({ 
-    
+        
         "pageLength": 6,   
         "lengthChange": true,
         "searching": true,
@@ -140,7 +140,7 @@ $(document).ready(function(){
   // Filtro por seleccion multiple
   initComplete: function () {
       //col3 en mantenimiento 
-               this.api().columns([4,22]).every(function () {
+               this.api().columns([3,5,7,20,22]).every(function () {
                    var column = this;
                    //added class "mymsel"
                    var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
@@ -161,8 +161,37 @@ $(document).ready(function(){
                });
                //select2 init for .mymsel class
                $(".mymsel").select2();
+
+               this.api().columns([1]).every(function () {
+                var column = this;
+                //added class "mymsel"
+                var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
+                    .appendTo($(column.header()))
+                    .on('change', function () {
+                        var vals = $('option:selected', this).map(function (index, element) {
+                            return $.fn.dataTable.util.escapeRegex($(element).val());
+                        }).toArray().join('|');
+                        column
+                            .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+                            .draw();
+                    });
+                column.data().unique().sort().each(function (d, j) {
+                    select.append('<option value="' + d + '" >' + d + '</option>')
+                });
+                var title = $(this).text();
+  
+            });
+            //select2 init for .mymsel class
+            $(".mymsel").select2();
+
+
+
+
            },
   //fin de la seleccion multiple 
+
+
+ 
 
   language: {
     "url": url + "assets/vendors/general/datatables/Spanish.json",  
@@ -172,39 +201,40 @@ ajax: {
     cache: false,
 },
 columns: [                                              
-    {"mRender": function(data, type, row){
-                     
+    {"mRender": function(data, type, row){                     
         return '<button class="button2"> <span> <a href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID='+row.ticket_id+'" target="_blank" title="Ir en busca del TKT en OTRS" ;>'+row.tn+'</a> <span> </button>';
         }
-    },
-    { data: 'create_time', name: 'create_time' },
+    }, // numero de ticket
+                         
+    {data:'Tipo_toner1',name:'Tipo_toner1'},                      
+    {data:'cantidad1',name:'cantidad1'},    //2
+
+    {data:'tipotoner2',name:'tipotoner2'},                      
+    {data:'cantidad2',name:'cantidad2'}, //4
+
+    {data:'tipotoner3',name:'tipotoner3'},                     
+    {data:'cantidad3',name:'cantidad3'},  //6
+
+    {data:'SolicitadoTipo4',name:'SolicitadoTipo4'},                  
+    {data:'cantidad4',name:'cantidad4'},               //8       
+    
+
+    {data:'cantidadtonerentregado1',name:'cantidadtonerentregado1'},             //9         
+    {data:'tipotonerentregado1',name:'tipotonerentregado1'},                      
+    {data:'cantidadtonerentregado2',name:'cantidadtonerentregado2'},         //11             
+    {data:'tipotonerentregado2',name:'tipotonerentregado2'},                      
+    {data:'cantidadtonerentregado3',name:'cantidadtonerentregado3'},     //13                 
+    {data:'tipotonerentregado3',name:'tipotonerentregado3'},                      
+    {data:'cantidadtonerentregado4',name:'cantidadtonerentregado4'}, //15                     
+    {data:'tipotonerentregado4',name:'tipotonerentregado4'}, 
+
+    { data: 'create_time', name: 'create_time' }, //fecha de creacion columna 17
     {"mRender":function(data, type , row){  //regresa el dato de la columna title con caracteres reducidos por 30 px 
           return row.title.substring(0,30 );
         }
-    },      
+    },   //descripcion del ticket   
     {data:'dependencia',name:'dependencia'},                      
-    {data:'fila',name:'fila'},                      
-    {data:'Tipo_toner1',name:'Tipo_toner1'},                      
-    {data:'cantidad1',name:'cantidad1'},    
-
-    {data:'tipotoner2',name:'tipotoner2'},                      
-    {data:'cantidad2',name:'cantidad2'}, 
-
-    {data:'tipotoner3',name:'tipotoner3'},                     
-    {data:'cantidad3',name:'cantidad3'},  
-
-    {data:'SolicitadoTipo4',name:'SolicitadoTipo4'},                  
-    {data:'cantidad4',name:'cantidad4'},                      
-    
-
-    {data:'cantidadtonerentregado1',name:'cantidadtonerentregado1'},                      
-    {data:'tipotonerentregado1',name:'tipotonerentregado1'},                      
-    {data:'cantidadtonerentregado2',name:'cantidadtonerentregado2'},                      
-    {data:'tipotonerentregado2',name:'tipotonerentregado2'},                      
-    {data:'cantidadtonerentregado3',name:'cantidadtonerentregado3'},                      
-    {data:'tipotonerentregado3',name:'tipotonerentregado3'},                      
-    {data:'cantidadtonerentregado4',name:'cantidadtonerentregado4'},                      
-    {data:'tipotonerentregado4',name:'tipotonerentregado4'},                      
+    {data:'fila',name:'fila'},                     
     {data:'comentario_entrega',name:'comentario_entrega'},                      
     {data:'name',name:'name'},                      
 
@@ -228,42 +258,42 @@ columns: [
               };
    
               pageTotal = api
-                  .column( 6, { search: "applied" } )
+                  .column( 2, { search: "applied" } )
+                  .data()
+                  .reduce( function (a, b) {
+                      return intVal(a) + intVal(b);
+                  }, 0 );
+                  $( api.column(2).footer() ).html(
+                    '1.-Toners Solicitados: <br>' + pageTotal 
+                  );
+                 
+                  sumsol2 = api
+                  .column( 4, { search: "applied" } )
+                  .data()
+                  .reduce( function (a, b) {
+                      return intVal(a) + intVal(b);
+                  }, 0 );
+                  $( api.column(4).footer() ).html(
+                    '2.-Toners Solicitados: <br>' + sumsol2 
+                  );
+  
+                  sumsol3 = api
+                  .column(6, { search: "applied" } )
                   .data()
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
                   $( api.column(6).footer() ).html(
-                    '1.-Toners Solicitados: <br>' + pageTotal 
+                    '3.-Toners Solicitados: <br>' + sumsol3 
                   );
-                 
-                  sumsol2 = api
-                  .column( 8, { search: "applied" } )
+  
+                  sumsol4 = api
+                  .column(8, { search: "applied" } )
                   .data()
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
                   $( api.column(8).footer() ).html(
-                    '2.-Toners Solicitados: <br>' + sumsol2 
-                  );
-  
-                  sumsol3 = api
-                  .column(10, { search: "applied" } )
-                  .data()
-                  .reduce( function (a, b) {
-                      return intVal(a) + intVal(b);
-                  }, 0 );
-                  $( api.column(10).footer() ).html(
-                    '3.-Toners Solicitados: <br>' + sumsol3 
-                  );
-  
-                  sumsol4 = api
-                  .column(12, { search: "applied" } )
-                  .data()
-                  .reduce( function (a, b) {
-                      return intVal(a) + intVal(b);
-                  }, 0 );
-                  $( api.column(12).footer() ).html(
                     '4.-Toners Solicitados: <br>' + sumsol4 
                   );
   
@@ -274,42 +304,42 @@ columns: [
   
   
                   tonerentregado1 = api
+                  .column( 9, { search: "applied" } )
+                  .data()
+                  .reduce( function (a, b) {
+                      return intVal(a) + intVal(b);
+                  }, 0 );
+                  $( api.column(9).footer() ).html(
+                    '1.-Toner Entregados: <br>' + tonerentregado1 
+                  );
+  
+                  tonerentregado2 = api
+                  .column( 11, { search: "applied" } )
+                  .data()
+                  .reduce( function (a, b) {
+                      return intVal(a) + intVal(b);
+                  }, 0 );
+                  $( api.column(11).footer() ).html(
+                    '2.-Toner Entregados: <br>' + tonerentregado2 
+                  );
+  
+                  tonerentregado3 = api
                   .column( 13, { search: "applied" } )
                   .data()
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
                   $( api.column(13).footer() ).html(
-                    '1.-Toner Entregados: <br>' + tonerentregado1 
-                  );
+                    '3.-Toner Entregados: <br>' + tonerentregado3 
+                  );  
   
-                  tonerentregado2 = api
+                  tonerentregado4 = api
                   .column( 15, { search: "applied" } )
                   .data()
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
                   $( api.column(15).footer() ).html(
-                    '2.-Toner Entregados: <br>' + tonerentregado2 
-                  );
-  
-                  tonerentregado3 = api
-                  .column( 17, { search: "applied" } )
-                  .data()
-                  .reduce( function (a, b) {
-                      return intVal(a) + intVal(b);
-                  }, 0 );
-                  $( api.column(17).footer() ).html(
-                    '3.-Toner Entregados: <br>' + tonerentregado3 
-                  );  
-  
-                  tonerentregado4 = api
-                  .column( 19, { search: "applied" } )
-                  .data()
-                  .reduce( function (a, b) {
-                      return intVal(a) + intVal(b);
-                  }, 0 );
-                  $( api.column(19).footer() ).html(
                     '4.-Toner Entregados: <br>' + tonerentregado4 
                   );       
                   var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3+sumsol4;
