@@ -715,14 +715,14 @@ class Estado_ticketsController extends Controller
      $tickte = DB::connection('pgsql2')->table('ticket')->count();
      //dd($ticketfusion);
 
-
+        $an1= 2019;
      $fecha_actual = Carbon::now()->toDateString();; //fecha ->toDateString da el formato que maneja la bd
        $fecha_mes = Carbon::now()->format('m');
        $fecha_dia = Carbon::now()->format('d');
        $fecha_año = Carbon::now()->format('Y');
       
 
-     $kyoceratot = DB::connection('pgsql2')       
+     $kyoceratotamactual = DB::connection('pgsql2')       
      ->select("SELECT COUNT(*) FROM
      ( SELECT
                        ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,       
@@ -745,14 +745,13 @@ class Estado_ticketsController extends Controller
                        or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%' or ticket_history.name LIKE '%%ITSMReviewRequired62%%'
                        or ticket_history.name LIKE '%%ITSMReviewRequired63%%' or ticket_history.name LIKE '%%ITSMReviewRequired71%%' or ticket_history.name LIKE '%%ITSMReviewRequired70%%'
                        ) 
-                and(ticket_history.name LIKE '%Toner-Kyocera FS-4200DN%')
-               
+                and(ticket_history.name LIKE '%Toner-Kyocera FS-4200DN%')               
                        and (ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
                        and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
                        and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
                        and ticket_history.name NOT LIKE '%ITSMReviewRequired79%') 
-                and (extract(year from ticket.create_time) = 2019)
-                and (extract(month from ticket.create_time) = 12)
+                and (extract(year from ticket.create_time) = $fecha_año)
+                and (extract(month from ticket.create_time) =  $fecha_mes)
                      GROUP BY 
                        ticket_id,
                        ticket.create_time,
@@ -766,16 +765,56 @@ class Estado_ticketsController extends Controller
 
 
 
+
+
+
 $inicioaño=2019;      
 $iniciomes = 0;
 $n=0;
-$totalmes= array ();    
-for ($iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
-  $totalmes[$n] =DB::connection('pgsql2')->table('ticket')
-   ->whereMonth('create_time','=', $iniciomes)
-   ->whereYear('create_time','=', $inicioaño)
-   ->count();         
-   $n++;
+$totalañokyo= array ();    
+for ($inicioaño ; $inicioaño <= $fecha_año  ; $inicioaño++) {
+  
+  $totalañokyo[$inicioaño]= DB::connection('pgsql2')       
+  ->select("SELECT COUNT(*) FROM
+  ( SELECT
+                    ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,       
+                    ARRAY_AGG (
+                      ticket_history.name
+                    )ticket_compuesto,
+                    ticket_state.name,
+                    ticket.create_time
+                  FROM 
+                    (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
+                    INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+                    INNER JOIN queue ON ticket.queue_id = queue.id
+                  WHERE 
+       
+                    (ticket.service_id = 79 OR ticket.service_id = 78)
+                    and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
+                    or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
+                    or ticket_history.name LIKE '%ITSMReviewRequired34%' or  ticket_history.name LIKE '%ITSMReviewRequired56%' or ticket_history.name LIKE '%ITSMReviewRequired%57'
+                    or ticket_history.name LIKE '%%ITSMReviewRequired53%%' or ticket_history.name LIKE '%ITSMReviewRequired53%' or ticket_history.name LIKE '%%ITSMReviewRequired57%%' 
+                    or ticket_history.name LIKE '%%ITSMReviewRequired60%%' or ticket_history.name LIKE '%%ITSMReviewRequired61%%' or ticket_history.name LIKE '%%ITSMReviewRequired62%%'
+                    or ticket_history.name LIKE '%%ITSMReviewRequired63%%' or ticket_history.name LIKE '%%ITSMReviewRequired71%%' or ticket_history.name LIKE '%%ITSMReviewRequired70%%'
+                    ) 
+             and(ticket_history.name LIKE '%Toner-Kyocera FS-4200DN%')               
+                    and (ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
+                    and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
+                    and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
+                    and ticket_history.name NOT LIKE '%ITSMReviewRequired79%') 
+                    and (extract(year from ticket.create_time) = $inicioaño)
+             
+                  GROUP BY 
+                    ticket_id,
+                    ticket.create_time,
+                    ticket.title,
+                    ticket.tn,
+                    ticket_history.ticket_id,
+                    ticket_state.name,
+                    queue.name       
+                  ORDER BY ticket.tn DESC                                
+   )AS subquery")  ;        
+   
    if ($iniciomes === 12) {   
      if ($inicioaño <= $fecha_año ) {
        $inicioaño++;
@@ -784,9 +823,9 @@ for ($iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
    };      
 };
 
-
-//dd($kyoceratot);
-
+//dd($kyoceratotamactual[0]->count);
+//dd($totalañokyo[2019]->count[0]);exit;
+//var_dump($ooot->count);exit;
 
 
     return view('Tickets/EstructuraDTT/dtttoner')      
@@ -794,8 +833,21 @@ for ($iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
       ->with('ticket', $tickte)
       ->with('areas_filastkts',$areas_filastkts)
       ->with('estado_graf',$estado_graf)
-      ->with('kyosera',$kyoceratot)
+      ->with('kyoceratotamactual',$kyoceratotamactual)
+      //->with('kyosera',$totalañokyo)
        ;}
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function monitoreo_tickets_area_n(){
                 
