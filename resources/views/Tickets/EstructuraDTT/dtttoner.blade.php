@@ -29,11 +29,11 @@
                                           <div class="kt-widget24__info" style="
                                           text-align: initial;">
                                               <h4 class="kt-widget24__title">
-                                                  Tickets Kyocera Año 2020  
+                                                  Tickets Totales 
                                               </h4>					       
                                           </div> 
                                           <div class="fas fa-ticket-alt fa-spin fa-3x" ></div>
-                                              <span class="kt-widget25__stats m-font-brand" style="font-size:36px">- {{$kyoceratotamactual[0]->count}}</span>                                                                                      
+                                              <span class="kt-widget25__stats m-font-brand" style="font-size:36px">- {{$ticket}}</span>                                                                                      
                                         </div>            
                                   </div>
                                   <div class="col-sm-6" >
@@ -204,6 +204,14 @@
 
       
     </div>
+
+
+    
+
+
+
+
+
 
 
 <ul class="kt-sticky-toolbar" style="margin-top: 30px;">
