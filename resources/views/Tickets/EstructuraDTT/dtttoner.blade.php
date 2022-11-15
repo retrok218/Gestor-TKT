@@ -60,11 +60,13 @@
                                     <div class="line line-bottom"><span></span> </div>
                                     <div class="line line-left"><span></span> </div>
                                     <div class="item">
-                                      <div class="kt-widget25"  style="border-right: groove;">
+
+                                    <div class="kt-widget25"  style="border-right: groove;">
                                                                 <div class="kt-widget24__info" style="
                                                                 text-align: initial;">
                                                                     <h4 class="kt-widget24__title">
                                                                         Toners Solicitados
+                                                                        
                                                                     </h4>					       
                                                                 </div> 
                                                                 
@@ -74,6 +76,8 @@
                                                                   - <i class="fa" style="font-size:36px" id="tonsolicitado"></i>                                           
                                                                   </div>                                                                                                                                                                                                              
                                       </div> 
+
+
                                     </div>
                                   </div>
                                   </a>
@@ -104,6 +108,7 @@
                                          - <i class="fa"  id="tonentregado"></i>  
                                        </div>
                                     </div>  
+                                    
                                      
                                     </div>
                                   </div>
@@ -111,8 +116,43 @@
                                 </div> 
                                 </div>     
                             </div>
+
+                            <div class="row" style="color: #595d6e;">
+                            <div class="col-sm-6" name="entregadoskyo" >
+                                <div class="kt-widget25__item">
+                                  <div class="item-wrapper">
+                                    <div class="line line-top"><span></span></div>
+                                    <div class="line line-right"><span></span> </div>
+                                    <div class="line line-bottom"><span></span> </div>
+                                    <div class="line line-left"><span></span> </div>
+                                    <div class="item">
+                                      
+                                    <div class="kt-widget25">
+                                        <div class="kt-widget24__info" style="
+                                        text-align: initial;">
+                                            <h4 class="kt-widget24__title" >
+                                                Toners Entregados Toner-Kyocera FS-4200DN
+                                            </h4>					       
+                                        </div>
+                                        <div style="font-size:36px">
+                                          <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                          font-size: 3rem !important;"></div> 
+                                         - <i class="fa " >{{$sumakyosera}}</i>  
+                                         <!-- esperando integrar movimimento den numero solokyo -->
+                                       </div>
+                                    </div>  
+                                    
+                                     
+                                    </div>
+                                  </div>
+                                  </a>
+                                </div> 
+                                </div>  
+                            </div>
                             <hr>
                             
+
+
 
 
 
@@ -245,14 +285,33 @@
                                             - <i class="fa"  id="entregado4"></i>  
                                     </div>
                                   </div>
-                                </div>                              
-                            
+                                </div>      
                                 </div>
-                            
-                            
+
+
+                                <div class="row">
+
+                                <div class="col-sm-4" >
+                                  <div class="kt-widget25">
+                                    <div class="kt-widget24__info" style="
+                                            text-align: initial;">
+                                                <h4 class="kt-widget24__title" >
+                                                    Toners Kyosera Entregado Año 2019 
+                                                  </h4>				       
+                                            </div>
+                                      <div style="font-size:36px">
+                                              <div class="fas fa-ticket-alt fa-spin fa-3x" style="
+                                              font-size: 3rem !important;"></div> 
+                                            - <i class="fa">{{$sumakyoseraano2019}}</i>  
+                                    </div>
+                                  </div>
+                                </div>  
+
+                               
+                                </div>                                                                                        
                     </div>                    
                   </div>  
-                </div>  
+                </div>                                 
                 </div>
    
 
@@ -271,19 +330,7 @@
           </h3>
         </div>		
       </div>
-
-
-
-
-
-
-
-
-
-
-       
-                   
-                                        
+                                  
                 <form class="kt-form kt-form--fit kt-margin-b-20">                
                   <div class="row kt-margin-b-4">
                       <div class="col-lg-8 kt-margin-b-10-tablet-and-mobile">

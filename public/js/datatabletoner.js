@@ -24,7 +24,7 @@ $(document).ready(function(){
         "searching": true,
         "ordering": false,
         "info": true,
-         responsive: true,
+        // responsive: true,
         "autoWidth": false,      
         //"language": idioma,
         "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
@@ -135,7 +135,7 @@ $(document).ready(function(){
   // Filtro por seleccion multiple
   initComplete: function () {
       //col3 en mantenimiento 
-               this.api().columns([1,3,5,7,20,22]).every(function () {
+               this.api().columns([1,3,5,7,20,22,10]).every(function () {
                    var column = this;
                    //added class "mymsel"
                    var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
