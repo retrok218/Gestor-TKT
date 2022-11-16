@@ -37,7 +37,7 @@
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
             <div class="item">
-              <a id="link" href="{{ url('/tickets_asignados/') }}" target="_blank">
+              <a id="link" href="{{ url('/tickets_asignados/') }}" >
               <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important; font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
@@ -87,7 +87,7 @@
 
              
               
-              <a id="link" href="{{ url('/tickets_atendidos/') }}" target="_blank">
+              <a id="link" href="{{ url('/tickets_atendidos/') }}" >
               <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;   font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
@@ -134,7 +134,7 @@
 
            
 
-              <a id="link" href="{{ url('/falta_acta_responsiva/') }}" target="_blank">
+              <a id="link" href="{{ url('/falta_acta_responsiva/') }}" >
               <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;   font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
@@ -190,7 +190,7 @@
 
                 
 
-              <a id="link" href="{{ url('/tickets_nuevos/') }}" target="_blank">
+              <a id="link" href="{{ url('/tickets_nuevos/') }}" >
               <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;   font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
@@ -248,7 +248,7 @@
 
 
 
-                <a id="link" href="{{ url('/tickets_espera_informacion/') }}" target="_blank">
+                <a id="link" href="{{ url('/tickets_espera_informacion/') }}" >
               <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;   font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
@@ -302,7 +302,7 @@
 
 
 
-                <a id="link" href="{{ url('/tickets_abiertos/') }}" target="_blank">
+                <a id="link" href="{{ url('/tickets_abiertos/') }}" >
               <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;   font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    

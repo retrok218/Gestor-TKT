@@ -803,7 +803,7 @@ public function kyocesrapaño($anno){
                   (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
                   INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
                   INNER JOIN queue ON ticket.queue_id = queue.id
-                WHERE                                             
+                WHERE     tn ='10004197'                                         and
                   (ticket.service_id = 79 OR ticket.service_id = 78)
                   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
                   or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
@@ -826,7 +826,7 @@ public function kyocesrapaño($anno){
                   ticket_history.ticket_id,
                   ticket_state.name,
                   queue.name       
-                ORDER BY ticket.tn DESC");                
+                ORDER BY ticket_id ASC,create_time DESC");                
                 $n=0;
           foreach ($ticketfusion as $tktcompusto) {
                   $eliminados1 = preg_replace('/FieldName/','',$tktcompusto->ticket_compuesto);
@@ -996,7 +996,7 @@ $solokyocol1 =array(); //arreglo que guarda todos los toners col  entregados1
 $Ttfusion =$this->constot(); // obtiene los datos de la consulta con constot
       // fila de solo las cantidades col1 despues la suma  
       foreach ($Ttfusion as $yamecanse) {
-        if(strncasecmp($yamecanse->tipotonerentregado1,'  Toner-Kyocera FS-4200DN ',26)==0){          
+        if(strncasecmp($yamecanse->tipotonerentregado1,'  Toner-Kyocera FS-4200DN ',26)===0){          
           array_push($solokyocol1,$yamecanse->cantidadtonerentregado1);                                        
         }               
       }    
@@ -1008,10 +1008,12 @@ $Ttfusion =$this->constot(); // obtiene los datos de la consulta con constot
 $solokyoano2019 = array();
 $kyoserasolano = $this->kyocesrapaño(2019);
 foreach ($kyoserasolano as $yamecanse) {
-  if(strncasecmp($yamecanse->tipotonerentregado1,'  Toner-Kyocera FS-4200DN ',26)==0){          
+  if(strncasecmp($yamecanse->tipotonerentregado1,'  Toner-Kyocera FS-4200DN ',26)===0){          
     array_push($solokyoano2019,$yamecanse->cantidadtonerentregado1);                                        
   }               
-}    
+}
+dd($kyoserasolano);  
+
  $sumakyoseraano2019=0;//suma toner col 2 
  foreach ($solokyoano2019 as $sumakyo) {
    $sumakyoseraano2019+=$sumakyo;           
@@ -1020,7 +1022,7 @@ foreach ($kyoserasolano as $yamecanse) {
  $solokyoano2020 = array();
 $kyoserasolano2020 = $this->kyocesrapaño(2020);
 foreach ($kyoserasolano2020 as $yamecanse) {
-  if(strncasecmp($yamecanse->tipotonerentregado1,'  Toner-Kyocera FS-4200DN ',26)==0){          
+  if(strncasecmp($yamecanse->tipotonerentregado1,'  Toner-Kyocera FS-4200DN ',26)===0){          
     array_push($solokyoano2020,$yamecanse->cantidadtonerentregado1);                                        
   }               
 }    
@@ -1133,15 +1135,36 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
       WHERE queue_id = $id and ticket_state_id = 12"); 
       return view('Tickets.Monitoreo_Tickets.desgloseareaasignados')->with(['id'=>$id,'tarea'=> $ttkks]);
     }
+
+
+
     public function dataareaasignadosdesglose($id){
-      $ttkks = DB::connection('pgsql2')       
-      ->select("SELECT * FROM ticket
-      WHERE queue_id = $id and ticket_state_id = 12");
-      //dd($ttkks);
-      return Datatables::of($ttkks)->toJson();
-    }
+      $num = $id;      
+            
+      // return Datatables::of($ttkks)->toJson();    
+      $nom_tkt_estatus = "Estado : Asignados creados XD";
+      return view('Tickets.datatablesis')
+      ->with([
+        'num'=>$num,
+        'nom_tkt_estatus'=>$nom_tkt_estatus,      
+      ]);      
+      ;}
+
+      public function areajson($id){
+        $ttkks = DB::connection('pgsql2')       
+        ->select("SELECT  ticket.id,ticket.tn,ticket.title,ticket.create_time,ticket.queue_id,queue.id,queue.name, queue.name as qname,customer_user.first_name as nombre,ticket.id
+          FROM ticket
+          INNER JOIN queue ON ticket.queue_id = queue.id
+          INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+          INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+          WHERE queue_id = $id and ticket_state_id = 12
+          ORDER BY create_time DESC"); 
+          
+          return Datatables::of($ttkks)->toJson();
+      }
 
 
 }
+
 
 

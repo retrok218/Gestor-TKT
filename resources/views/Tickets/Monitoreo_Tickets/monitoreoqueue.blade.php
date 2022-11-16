@@ -342,6 +342,7 @@
 </div>
 <hr>
 <div class="row">
+
 @foreach($areas as $v)
  <div class="col-sm-6 col-md-6 col-lg-4" name="nn" >
                         <div class="card bg-white p-3 mb-4 shadow" style="padding: 0.5rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
@@ -349,7 +350,8 @@
                                 <div class="user-info">
                                     
                                     <div class="user-info__basic">
-                                        <a  onclick="desglocetktsar('{{$v->identificador}}')"><h6 class="mb-0" style="color: #2e2e2e;" >{{$v->nombrea}}</h6> </a> 	
+                                        <!-- <a  onclick="desglocetktsar('{{$v->identificador}}')"><h6 class="mb-0" style="color: #2e2e2e;" >{{$v->nombrea}}</h6> </a> 	 -->
+                                        <a   href="{{url('/data/tktareaasignadosdesg/'.$v->identificador) }}"> <h6 class="mb-0" style="color: #2e2e2e;" >{{$v->nombrea}}</h6> </a> 	
                                         							
                                     </div>
                                 </div>

@@ -238,9 +238,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                    // $( api.column(2).footer() ).html(
-                    //     '1.-Toners Solicitados: <br>' + pageTotal 
-                    // );
+                     $( api.column(2).footer() ).html(
+                         '1.-Toners Solicitados: <br>' + pageTotal 
+                     );
                  
                   sumsol2 = api
                   .column( 4, { search: "applied" } )
@@ -248,9 +248,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(4).footer() ).html(
-                //     '2.-Toners Solicitados: <br>' + sumsol2 
-                //   );
+                   $( api.column(4).footer() ).html(
+                     '2.-Toners Solicitados: <br>' + sumsol2 
+                   );
   
                   sumsol3 = api
                   .column(6, { search: "applied" } )
@@ -258,9 +258,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(6).footer() ).html(
-                //     '3.-Toners Solicitados: <br>' + sumsol3 
-                //   );
+                   $( api.column(6).footer() ).html(
+                     '3.-Toners Solicitados: <br>' + sumsol3 
+                  );
   
                   sumsol4 = api
                   .column(8, { search: "applied" } )
@@ -268,9 +268,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(8).footer() ).html(
-                //     '4.-Toners Solicitados: <br>' + sumsol4 
-                //   );
+                   $( api.column(8).footer() ).html(
+                     '4.-Toners Solicitados: <br>' + sumsol4 
+                   );
   
   
   
@@ -284,9 +284,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(9).footer() ).html(
-                //     '1.-Toner Entregados: <br>' + tonerentregado1 
-                //   );
+                  $( api.column(9).footer() ).html(
+                     '1.-Toner Entregados: <br>' + tonerentregado1 
+                   );
   
                   tonerentregado2 = api
                   .column( 11, { search: "applied" } )
@@ -294,9 +294,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(11).footer() ).html(
-                //     '2.-Toner Entregados: <br>' + tonerentregado2 
-                //   );
+                   $( api.column(11).footer() ).html(
+                     '2.-Toner Entregados: <br>' + tonerentregado2 
+                   );
   
                   tonerentregado3 = api
                   .column( 13, { search: "applied" } )
@@ -304,9 +304,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(13).footer() ).html(
-                //     '3.-Toner Entregados: <br>' + tonerentregado3 
-                //   );  
+                   $( api.column(13).footer() ).html(
+                    '3.-Toner Entregados: <br>' + tonerentregado3 
+                  );  
   
                   tonerentregado4 = api
                   .column( 15, { search: "applied" } )
@@ -314,9 +314,9 @@ columns: [
                   .reduce( function (a, b) {
                       return intVal(a) + intVal(b);
                   }, 0 );
-                //   $( api.column(15).footer() ).html(
-                //     '4.-Toner Entregados: <br>' + tonerentregado4 
-                //   );       
+                   $( api.column(15).footer() ).html(
+                     '4.-Toner Entregados: <br>' + tonerentregado4 
+                   );       
                   var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3+sumsol4;
                   var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2+tonerentregado4;                                 
                   var ressol1= document.getElementById("ressol1").innerHTML=pageTotal;
