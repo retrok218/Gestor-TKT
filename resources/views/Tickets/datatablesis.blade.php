@@ -18,7 +18,7 @@
                                         <div class="kt-widget25"  >
                                             <div class="kt-widget24__info" style="text-align: initial;">
                                                 <h4 class="kt-widget24__title">
-                                                    Tickets {{$num}} 
+                                                    Tickets {{$nomqueue->name}} 
                                                 </h4>					       
                                             </div> 
                                                                                                                                 

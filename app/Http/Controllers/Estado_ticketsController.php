@@ -1012,7 +1012,7 @@ foreach ($kyoserasolano as $yamecanse) {
     array_push($solokyoano2019,$yamecanse->cantidadtonerentregado1);                                        
   }               
 }
-dd($kyoserasolano);  
+//dd($kyoserasolano);  
 
  $sumakyoseraano2019=0;//suma toner col 2 
  foreach ($solokyoano2019 as $sumakyo) {
@@ -1140,19 +1140,24 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
 
     public function dataareaasignadosdesglose($id){
       $num = $id;      
-            
+      $nombre=DB::connection('pgsql2')->table('queue')->where('id','=',$num)->get('name');
+
+$nomqueue = $nombre[0];
+//dd($nomqueue);
       // return Datatables::of($ttkks)->toJson();    
-      $nom_tkt_estatus = "Estado : Asignados creados XD";
+      $nom_tkt_estatus = "Estado : Asignados ";
       return view('Tickets.datatablesis')
       ->with([
         'num'=>$num,
-        'nom_tkt_estatus'=>$nom_tkt_estatus,      
+        'nom_tkt_estatus'=>$nom_tkt_estatus, 
+        'nomqueue'=>$nomqueue,
+             
       ]);      
       ;}
 
       public function areajson($id){
         $ttkks = DB::connection('pgsql2')       
-        ->select("SELECT  ticket.id,ticket.tn,ticket.title,ticket.create_time,ticket.queue_id,queue.id,queue.name, queue.name as qname,customer_user.first_name as nombre,ticket.id
+        ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
           FROM ticket
           INNER JOIN queue ON ticket.queue_id = queue.id
           INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
