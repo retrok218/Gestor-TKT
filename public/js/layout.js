@@ -280,7 +280,7 @@ var KTLayout = function() {
 	// Scrolltop
 	var initScrolltop = function() {
 		var scrolltop = new KTScrolltop('kt_scrolltop', {
-			offset: 300,
+			offset: 5,
 			speed: 600
 		});
 	}

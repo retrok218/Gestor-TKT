@@ -18,6 +18,7 @@
                     </span>    
                     <p style="margin-top: -14px;color: #0e0e0e;font-size: 1em;">(Estado : Asignados)   </p>
                     
+                    
                 </div>
             </div>  
 
