@@ -122,9 +122,10 @@
                   <ul class="kt-menu__subnav">
                      
                   
-                  <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_asignados') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Asignados</span></a></li>
+                  
                  
                      @can('SuperAdmin')
+                     
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_asignados') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Asignados</span></a></li>
                      <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Utils</span></span></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_abiertos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Abierto</span></a></li>                     
