@@ -103,63 +103,6 @@
 
 
 
-
-
-{{--  scrip para grafica de barras para las areas 
-<script type="text/javascript">
-
-window.onload = function () {
-	var chart = new CanvasJS.Chart("GraficaMonitoreoArea", {
-        theme: "light1", // "light1", "light2", "dark1"
-        animationEnabled: true,
-        exportEnabled: true,
-
-                 
-          title: {
-           
-            fontSize: 14,           
-            text: "Total Areas " + {{$sumareas}}           
-        },
-
-        axisX: {
-			labelMaxWidth: 500,
-			 
-			interval: 1,
-            labelFontSize: 12,            
-            margin: 10,
-            labelPlacement: "inside",
-            tickPlacement: "inside",
-            labelFontWeight: "bold",
-            
-		},
-
-       
-
-		data: [              
-            {						
-                type: "bar",
-                axisYType: "secondary",           
-                click:subclases,                        
-                dataPoints: [               
-                    @foreach ($datos_monitoreo_area as $areasdatos )
-                        {label:"{{$areasdatos->name}}", y:{{$areasdatos->tikets_area_grupo}}},                
-                    @endforeach
-                ]
-            }
-		]
-	});
-	chart.render();
-    setInterval(chart.render(), 500);
-};
-
-
-function onClick(e) {    
-    subclases(id);   
-}
-
-</script>
---}}
-
  
 @endsection
 @endsection

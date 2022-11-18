@@ -6,6 +6,20 @@
     var name_tabla = "/data_tickets_nuevos";    
 </script>
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+<div class="kt-portlet__head">
+            <div class="header_titulo_monitoreo_tkts text-center" >
+            
+                <div class="card-header "  >
+                    <div class="containerglass ">
+                        <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
+                            Tablero Mesa de Servicio   
+                                                                
+                        </span>                                                               
+                    </div>
+                </div>  
+
+            </div>
+    </div>
     <div class="kt-portlet">    
         <!-- <div class="kt-portlet__body">                     -->
                     <div class="row row-no-padding row-col-separator-xl">			

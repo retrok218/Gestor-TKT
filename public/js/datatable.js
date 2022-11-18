@@ -128,7 +128,7 @@ $(document).ready(function(){
         },
         // Filtro por seleccion multiple
         initComplete: function () {
-            this.api().columns([4,5]).every(function () {
+            this.api().columns([4,5,6]).every(function () {
                 var column = this;
                 //added class "mymsel"
                 var select = $('<select class="mymsel" multiple="multiple" ><option value="" ></option></select>')

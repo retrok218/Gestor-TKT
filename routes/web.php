@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\areaController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -190,9 +191,12 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get('/data/tktareaasignadosdesg/{id}','Estado_ticketsController@dataareaasignadosdesglose');
     Route::get('/data/data/area_asignados/{id}','Estado_ticketsController@areajson');
 
+    Route::get('/area_inicio','areaController@areainicio');
+
    
 
 });
+
 
 Route::group(['prefix'=>'area'],function ()
   {

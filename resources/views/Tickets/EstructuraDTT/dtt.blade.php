@@ -52,8 +52,8 @@
                     <th></th>
                     <th></th>
                     <th>Selecciona El Area</th>
-                    <th>Selecciona El estado</th>
                     <th></th>
+                    <th>Seleccione El Usuario</th>
                 </tfoot>
             </table>
             </div>

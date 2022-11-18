@@ -273,8 +273,9 @@ class AdminController extends Controller
       ->with('mes_diciembre2',$mes_diciembre2)      
       ->with('tktporarea',$tktporarea)
 ;}
-       elseif(auth()->user()->id_rol == 4) {      
-        return redirect('/tickets_asignados');
+       elseif(auth()->user()->id_rol === 4) { 
+            
+        return redirect('/');
        }
        
  }

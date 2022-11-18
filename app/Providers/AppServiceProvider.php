@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.navbar.navbar', function($view) {
             $view->with('menus', Menu::menus());
         });
+
+        
     }
 }
