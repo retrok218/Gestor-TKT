@@ -14,8 +14,9 @@
                 <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
-                                    <div class="user-info__basic">                                   
-                                        <h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">Tickets Asignados </h6>									
+                                    <div class="user-info__basic">   
+                                        <a href="{{url('/tickets_asignados') }}"><h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">Tickets Asignados </h6></a>                                
+                                        									
                                     </div>     
                                 </div>
                             </div>                            
@@ -41,15 +42,27 @@
 
 <div class="row">
     @foreach($tktsxareaarea as $xarea )
+    
     <div class="col-sm-6 col-md-6 col-lg-4">
+    <a href="{{url('/data/tktareaasignadosdesg/'.$xarea->id) }}">
+    <div class="kt-widget25__item">
+          <div class="item-wrapper">
+            <div class="line line-top"><span></span></div>
+            <div class="line line-right"><span></span> </div>
+            <div class="line line-bottom"><span></span> </div>
+            <div class="line line-left"><span></span> </div>
       
             <div class="item">
                 <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
-                                    <div class="user-info__basic">                                   
-                                        <h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">{{$xarea->name}} </h6>									
-                                    </div>     
+                                    <div class="user-info__basic">  
+                                        <!-- se agrega url para el despliegue  de la datatavle referente al id  -->
+                                         <h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">{{$xarea->name}} </h6>                                   
+                                       	                                                                                
+                                    </div> 
+                                    
+
                                 </div>
                             </div>                            
                             <hr>                                                                                              
@@ -65,8 +78,11 @@
                             </div>   
                            
                 </div>                        
-        </div>                                                                                                                       
+        </div>  
+        </div>                        
+        </div>                                                                                                                      
     </div>
+    </a>
     @endforeach
  </div>
  </div>

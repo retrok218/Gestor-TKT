@@ -184,10 +184,12 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get('/data/subclase/{id}/{nombre}','Estado_ticketsController@subclases');
     
     Route::get('/tkts_area_asignados/{idarea}','Estado_ticketsController@area_asignados');
+
     Route::get('/data/tkts_area_asignados/{idarea}','Estado_ticketsController@data_area_asignados');
     Route::get('/monitoreo_areas_n','Estado_ticketsController@monitoreo_tickets_area_n');
-    
     Route::get('/tktareaasignadosdesg/{ida}','Estado_ticketsController@areaasignadosdesglose');
+
+    
     Route::get('/data/tktareaasignadosdesg/{id}','Estado_ticketsController@dataareaasignadosdesglose');
     Route::get('/data/data/area_asignados/{id}','Estado_ticketsController@areajson');
 

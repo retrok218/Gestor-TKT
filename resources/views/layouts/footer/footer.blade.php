@@ -1,14 +1,13 @@
 <!-- begin:: Footer -->
+
+
+<link href="{{ URL::asset('assets/css/demo1/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+
  <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop kt-footer--fixed" id="kt_footer">
      <div class="kt-container  kt-container--fluid ">
-            <div class="kt-footer__copyright">
+            <div class="kt-footer__copyright">                           
             
-               
-<a class="fa fa-arrow-circle-left" onClick="history.go(-1);" style="
-    cursor: pointer;
-" >Regresar</a>
-                
-
+            <a onClick="history.go(-1);" class=" fa fa-arrow-circle-left button button-wiggle" style="cursor: pointer;width: 156px;height: 0px;color: #a02042c2; font-size: 2rem;"> Regresar </a>               
 
             </div>
 
