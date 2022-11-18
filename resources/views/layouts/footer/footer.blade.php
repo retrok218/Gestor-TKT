@@ -7,7 +7,7 @@
      <div class="kt-container  kt-container--fluid ">
             <div class="kt-footer__copyright">                           
             
-            <a onClick="history.go(-1);" class=" fa fa-arrow-circle-left button button-wiggle" style="cursor: pointer;width: 156px;height: 0px;color: #a02042c2; font-size: 2rem;"> Regresar </a>               
+           
 
             </div>
 

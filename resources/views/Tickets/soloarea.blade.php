@@ -1,9 +1,32 @@
 @extends('home')
 <!-- <meta http-equiv="refresh" content="1220" /> -->
 @section('content')
+
+ 
+
+<div class="kt-portlet__head">
+        <div class="header_titulo_monitoreo_tkts text-center" >
+        
+            <div class="card-header "  >
+                <div class="containerglass ">
+                    <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
+                        Tablero Mesa de Servicio   
+                                                               
+                    </span>    
+                    <p style="margin-top: -14px;color: #0e0e0e;font-size: 1em;">(Estado : Asignados)   </p>
+                    
+                    
+                </div>
+            </div>  
+
+        </div>
+    </div>
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+
+
 <div class="row">
-<div class="col-sm" >        
+<div class="col-sm" >  
+<a href="{{url('/tickets_asignados') }}">
       <div class="kt-widget25__item">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
@@ -15,7 +38,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">   
-                                        <a href="{{url('/tickets_asignados') }}"><h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">Tickets Asignados </h6></a>                                
+                                        <h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">Tickets Asignados </h6>                               
                                         									
                                     </div>     
                                 </div>
@@ -35,8 +58,9 @@
                 </div>  
             </div>
           </div>
-          </a>
-        </div>                                                                                                                       
+          
+        </div>  
+        </a>                                                                                                                      
     </div>
     </div>
 

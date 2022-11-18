@@ -218,9 +218,11 @@
 </div>  
 </li>
 
+
 @endcan
 
          </ul>
+         <a onClick="history.go(-1);" class=" fa fa-arrow-circle-left button button-wiggle" > Regresar </a>               
       </div>
    </div>
    <!-- end:: Aside Menu -->

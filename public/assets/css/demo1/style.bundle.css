@@ -50025,6 +50025,14 @@ tr.shown td.details-control {
 
 .button-wiggle {
     animation: wiggle 4s 2s infinite;
+    cursor: pointer;
+    width: 156px;
+    height: 0px;
+    color: #a02042c2 !important;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
   }
   
   @keyframes wiggle {

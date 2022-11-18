@@ -1141,13 +1141,23 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
     public function dataareaasignadosdesglose($id){
       $num = $id;      
       $nombre=DB::connection('pgsql2')->table('queue')->where('id','=',$num)->get('name');
-
-$nomqueue = $nombre[0];
-//dd($nomqueue);
+      $nomqueue = $nombre[0];
+     
+      $tktsxareaarea = DB::connection('pgsql2')
+        ->select ("SELECT  queue.id,queue.name,COUNT(*)
+        FROM ticket  
+        INNER JOIN queue ON ticket.queue_id = queue.id
+        WHERE ticket.ticket_state_id = 12 AND queue.id IN ($num)
+        GROUP BY queue.id,queue.name       
+        ORDER BY queue.id ASC"); 
+      //dd($tktsxareaarea);
       // return Datatables::of($ttkks)->toJson();    
       $nom_tkt_estatus = "Estado : Asignados ";
+
+     
       return view('Tickets.datatablesis')
       ->with([
+        'datoconsulta'=>$tktsxareaarea,
         'num'=>$num,
         'nom_tkt_estatus'=>$nom_tkt_estatus, 
         'nomqueue'=>$nomqueue,
