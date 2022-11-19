@@ -13,7 +13,10 @@
                         Tablero Mesa de Servicio   
                                                                
                     </span>    
-                    <p style="margin-top: -14px;color: #0e0e0e;font-size: 1em;">(Estado : Asignados)   </p>
+                    <p style="margin-top: -14px;color: #0e0e0e;font-size: 1em;">(Estado : Asignados)     
+                   
+
+                </p>
                     
                     
                 </div>
@@ -38,7 +41,7 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">   
-                                        <h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;">Tickets Asignados </h6>                               
+                                        <h6 class="mb-0" style="color: #2e2e2e;font-size: 20px;"> Total Tickets Asignados </h6>                               
                                         									
                                     </div>     
                                 </div>

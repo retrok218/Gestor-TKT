@@ -44,6 +44,8 @@ class areaController extends Controller
         GROUP BY queue.id,queue.name       
         ORDER BY queue.id ASC"); 
 
+       
+
         //la consulta con in genera el where buscando en la lista dentro del in que es una lista de areas eje (1,2,3,4)    
         //var_dump($totaltktsarea); exit;
 
