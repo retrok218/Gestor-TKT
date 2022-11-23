@@ -60,20 +60,47 @@
                                         @foreach ($roles as $rol)
                                             <option value="{{ $rol->id }}" {{ ($rol->id==$user->id_rol)? "selected" : ""}} >{{ $rol->name }}</option>
                                         @endforeach
+
+
+
+
                                         </select>
                                         <span id="id_rol-error" class="help-block"></span>
                                     </div>
-                                   
+                                                                        
+                                    
                                     <br>
                                     <div class="form-group">
                                         <label class="control-label">Habilitado</label>
                                         <input type="checkbox" checked class="make-switch" id="estatus_user" data-size="mini" data-on-text="SI" data-off-text="NO" name="estatus_user">
                                     </div>
+                                    
+                                    
+
+
 
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-12">                                                                                                                           
+                                         <h5>Area/s Asignada  </h5>
+                                         <input type="checkbox" onClick="toggle(this)" /> Seleccionar Todas/Eliminar Seleccion 
+                                        <table class="table table-hover" >
+                                            <tr>
+                                                <th>Numero del Area</th> 
+                                                <th>Nombre del Area </th> 
+                                            </tr>  
+
+                                                @foreach($areas as $area )                                                                                                                                                                                                                                   
+                                                <tr> 
+                                                    <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}}</td>
+                                                    <td>{{$area->name}}</td>
+                                                </tr>   
+                                                @endforeach                                                                                                                                 
+                                        </table>
+                                    </div> 
 
 
                     <div id="error_alerta"> </div>

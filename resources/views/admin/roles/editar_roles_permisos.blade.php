@@ -28,7 +28,7 @@
                     <!--begin: Datatable -->
                     {{ Form::model($role, array('route' => array('roles.update', $role->id), 'method' => 'PUT')) }}
                     {{ Form::label('name', 'Nombre del Rol Asignado') }}
-                    {{ Form::text('name', null, array('class' => 'form-control','readonly' => true)) }}
+                    {{ Form::text('name', null, array('class' => 'form-control','readonly' => false)) }}
                     <br>
                     <h5><b>Permisos Asignados</b></h5>
                     @foreach ($permissions as $permission)

@@ -307,10 +307,12 @@ class AdminController extends Controller
         $id = $request->id;
         $datosRoles = User::getRol($id);
         $roles = DB::table('roles')->get();
+        $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
         $user = User::find($id);
         return view('modals/users/edit_user')
             ->with(compact('user'))
             ->with(compact('datosRoles'))
+            ->with(compact('areas'))
             ->with(compact('roles'));
     }
     /**
@@ -322,11 +324,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, User $users)
     {
+       
         \Log::info(__METHOD__);
         try {
             $id = $request->id_usuario;
             $id_rol = $request->id_rol;
             $estatus = ($request->estatus_user == "on" )? 1 : 0;
+            $aareas =   implode(' , ',$request->checkbox);
 
             $users = User::find($id);
             $users->name = $request->nombres;
@@ -335,6 +339,9 @@ class AdminController extends Controller
             $users->email = $request->correo;
             $users->estatus = $estatus;
             $users->id_rol = $id_rol;
+            $users->area = $aareas;
+            //dd($users);
+            
             // Actualización de password
             if ($request->filled('password') && $request->filled('password2') ) {
                 $password = $request->password;

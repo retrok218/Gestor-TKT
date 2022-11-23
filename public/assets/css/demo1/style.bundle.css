@@ -49841,6 +49841,8 @@ body {
   }
 
 
+  
+
   .item-wrapper {
    /* background-color: #fff;*/
     /*width: 400px;*/
@@ -49856,10 +49858,13 @@ body {
 }
 
 .item-wrapper .line span {
-    background-color: #9e1e4929;
+    background-color: #a02042;
     position: inherit;
     display: block;
     transition: all .4s ease-out;
+ 
+   
+  
 }
 
 .item-wrapper .line-top {
@@ -49926,6 +49931,16 @@ body {
 .item-wrapper:hover .line-left span,
 .item-wrapper:hover .line-right span {
     height: 100%;
+}
+
+
+
+
+.item-wrapper:hover{
+    box-shadow: -1px 3px 20px 2px #c06d83;
+  
+   
+
 }
 
 

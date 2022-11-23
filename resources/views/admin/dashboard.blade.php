@@ -28,16 +28,19 @@
                         </div>
                       <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                         <div class="row">                      
-                                    <div class="col-lg-4">
-                                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
-                                            <div class="kt-portlet__body">
+                                    <div class="col-lg-4" >
+                                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow" style="
+    border-radius: 10px;" >
+                                            <div >
                                                 <div class="kt-iconbox__body">
                                                     
                                                     <div class="kt-iconbox__desc">
                                                         <h3 class="kt-iconbox__title">
                                                                 <p class="kt-link" >Tickets del Año - {{$año}}</p>
                                                             </h3>
-                                                        <div class="kt-iconbox__content">
+                                                        <div class="kt-iconbox__content" style="
+    font-size: 2em;margin-bottom: -19px;
+">
                                                             {{ $ticket_por_año }}
                                                         </div>
                                                     </div>
@@ -46,14 +49,17 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
-                                            <div class="kt-portlet__body">
+                                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow" style="
+    border-radius: 10px;">
+                                            <div >
                                                 <div class="kt-iconbox__body">                                                    
                                                     <div class="kt-iconbox__desc">
                                                         <h3 class="kt-iconbox__title">
                                                                 <p class="kt-link" >Tickets del Mes - {{$mes}}</p>
                                                             </h3>
-                                                        <div class="kt-iconbox__content">
+                                                        <div class="kt-iconbox__content" style="
+    font-size: 2em;margin-bottom: -19px;
+">
                                                             {{ $tickets_por_mes }}
                                                         </div>
                                                     </div>
@@ -62,15 +68,18 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
-                                            <div class="kt-portlet__body">
+                                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow" style="
+    border-radius: 10px;">
+                                            <div >
                                                 <div class="kt-iconbox__body">
                                                     
                                                     <div class="kt-iconbox__desc">
                                                         <h3 class="kt-iconbox__title">
                                                                 <p class="kt-link">Tickets del Dia - {{$dia}}</p>
                                                             </h3>
-                                                        <div class="kt-iconbox__content">
+                                                        <div class="kt-iconbox__content" style="
+    font-size: 2em;margin-bottom: -19px;
+">
                                                             {{ $tickets_por_dia }}
                                                         </div>
                                                     </div>
@@ -554,7 +563,75 @@ e.chart.render();
        });
    chart.render();
    setInterval(chart.render(), 500);
+
+
+
+   var chart = new CanvasJS.Chart("porañograf",{
+      									animationEnabled: true,
+      									animationDuration: 1000,
+      									interactivityEnabled: true,
+                        exportEnabled: true,
+                        
+
+
+      									legend:{
+                          fontSize: 8,
+                          horizontalAlign: "center", // left, center ,right 
+                          verticalAlign: "bottom",  // top, center, botto
+                          itemWrap: false,
+                          itemWidth: 100,
+                          cursor: "default",
+                          markerMargin:1,
+                          itemMaxWidth: 100,
+                          
+                          
+      	                 },
+      									data: [//array of dataSeries
+      										{ //dataSeries object
+      										 /*** Change type "column" to "bar", "area", "line" or "pie"***/                           
+      										 type: "pie",
+      										 showInLegend: true,
+      										 legendText: "{label}",
+                           indexLabel: "{label} - #percent%",
+
+      										 dataPoints: [
+      										 { label: "Tikets Nuevos - {{$nuevo}} ", y: {{$nuevo }}  },
+                           { label: "Tickets Cerrados Exitosamente-{{$rticket }} ", y: {{$rticket }}  },
+                          
+                           { label: "Tikets Abierto-{{ $open}} ", y: {{ $open}}  },
+                           
+                           { label: "Tikets Cerrado por Tiempo-{{$cerradoPT }} ", y: {{$cerradoPT }}  },
+                           { label: "Tikets Notificado-{{$notificadoalU }} ", y: {{$notificadoalU }}  },
+                           { label: "Tikets Asignado- {{$asignado }}", y: {{$asignado }}  },
+                           { label: "Tikets Atendido-{{$atendido }} ", y: {{$atendido }}  },
+                           { label: "Tikets espera de informacion-{{$espinformacion }} ", y: {{$espinformacion }}  },
+                           
+                           { label: "Tikets En Tramite - {{$Entramite}} ", y: {{$Entramite }}  },
+                           
+                           { label: "Tikets Falta Acta Responsiva - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
+
+      										 ]
+      									 }
+      									 ]
+      								 });
+                       chart.render();
+
+
+
+
+
+
+
 };
+
+
+
+
+
+
+
+
+
 
 
 
