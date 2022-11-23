@@ -340,7 +340,7 @@ class AdminController extends Controller
             $users->estatus = $estatus;
             $users->id_rol = $id_rol;
             $users->area = $aareas;
-            //dd($users);
+          
             
             // Actualización de password
             if ($request->filled('password') && $request->filled('password2') ) {
@@ -368,6 +368,8 @@ class AdminController extends Controller
 
         return $response;
     }
+
+    
     public function store(Request $request) {
         $emails_endb=array(DB::table('users')->select('email')->get());
            if (in_array($request->email, $emails_endb) == false) {

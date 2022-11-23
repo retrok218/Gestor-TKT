@@ -201,8 +201,7 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
 
 
 Route::group(['prefix'=>'area'],function ()
-  {
-      
+  {      
         Route::get ('/tickets_asignados','Estado_ticketsController@tickets_asignados' );
         Route::get('/data_ticket_asignado','Estado_ticketsController@data_ticket_asignado');
       

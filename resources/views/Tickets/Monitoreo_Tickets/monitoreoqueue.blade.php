@@ -346,8 +346,7 @@
 
 @foreach($areas as $v)
  <div class="col-sm-6 col-md-6 col-lg-4" name="nn" >
-        <a href="{{url('/data/tktareaasignadosdesg/'.$v->identificador) }}">
-                       
+        <a href="{{url('/data/tktareaasignadosdesg/'.$v->identificador) }}">                       
          <div class="kt-widget25__item" style="">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
@@ -378,16 +377,8 @@
             </div>
           </div>          
         </div>
-
-    
-
-
-
         </a>
     </div>
-
-    
-
  @endforeach
 </div> 
 @endsection

@@ -1059,7 +1059,7 @@ foreach ($kyoserasolano2020 as $yamecanse) {
 
 
 
-    public function monitoreo_tickets_area_n(){                
+public function monitoreo_tickets_area_n(){                
        $areas= DB::connection('pgsql2')        
        ->SELECT("SELECT  DISTINCT queue.id as identificador, queue.name as nombrea , COUNT(queue_id) OVER(PARTITION BY queue_id)as tickets 
        FROM queue
@@ -1075,15 +1075,12 @@ $e=0;
 $arreglodsl = array( );
 $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=>0,'Normatividad'=>0,'Seguridad'=>0,'Sistemas'=>0 );
 
-
+//dd($areas);
 
         foreach ($areas as $r) {
          $dosletras = array(substr($r->nombrea, 0,3)); // Obtiene las 3 primeras letras del nombre del area      
          $arreglodsl[$r->nombrea]=$dosletras;
          
-
-
-
           if (strncasecmp($r->nombrea,'ST',2)===0 ) {
             $st_sum +=  $r->tickets;                                               
             $ssumm["ST"]+= $r->tickets;
@@ -1093,7 +1090,7 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
           elseif (strncasecmp($r->nombrea,'Cancela',7)===0) {            
             $ssumm["cancelacion"]+= $r->tickets;                 
           }
-          elseif (strncasecmp($r->nombrea,'Cap',3)===0) {            
+          elseif (strncasecmp($r->nombrea,'Capital Humano',14)==0) {            
             $ssumm["capital"]+= $r->tickets;                
           }
           elseif (strncasecmp($r->nombrea,'DAS',3)===0) {            

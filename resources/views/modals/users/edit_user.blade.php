@@ -87,7 +87,7 @@
                     <div class="col-md-12">                                                                                                                           
                                          <h5>Area/s Asignada  </h5>
                                          <input type="checkbox" onClick="toggle(this)" /> Seleccionar Todas/Eliminar Seleccion 
-                                        <table class="table table-hover" >
+                                        <table class="table table-striped- table-bordered table-hover table-checkable"  >
                                             <tr>
                                                 <th>Numero del Area</th> 
                                                 <th>Nombre del Area </th> 
