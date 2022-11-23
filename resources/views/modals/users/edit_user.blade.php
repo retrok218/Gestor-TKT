@@ -91,14 +91,28 @@
                                             <tr>
                                                 <th>Numero del Area</th> 
                                                 <th>Nombre del Area </th> 
-                                            </tr>  
+                                            </tr>                                                                                                                                                 
+                                                
 
-                                                @foreach($areas as $area )                                                                                                                                                                                                                                   
-                                                <tr> 
-                                                    <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}}</td>
-                                                    <td>{{$area->name}}</td>
-                                                </tr>   
-                                                @endforeach                                                                                                                                 
+
+                                                @foreach($areselecc as $seleccionada)
+                                                    @foreach($areas as $todareas)
+                                                        @if($seleccionada ==  $todareas->id)                                                           
+                                                                <tr> 
+                                                                        <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$todareas->id}}'  >{{$todareas->id}} </td>
+                                                                        <td>{{$todareas->name}}</td>
+                                                                </tr>
+                                                             
+                                                       
+
+                                                        @endif
+                                                                                                                
+                                                    @endforeach
+                                                @endforeach
+
+
+
+
                                         </table>
                                     </div> 
 

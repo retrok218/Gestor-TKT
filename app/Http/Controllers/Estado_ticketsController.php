@@ -1063,7 +1063,7 @@ public function monitoreo_tickets_area_n(){
        $areas= DB::connection('pgsql2')        
        ->SELECT("SELECT  DISTINCT queue.id as identificador, queue.name as nombrea , COUNT(queue_id) OVER(PARTITION BY queue_id)as tickets 
        FROM queue
-       INNER JOIN ticket ON  queue.id = ticket.queue_id 
+       FULL JOIN ticket ON  queue.id = ticket.queue_id 
        WHERE ticket.ticket_state_id = 12
        ORDER BY queue.id ASC");
 //dd($areas);

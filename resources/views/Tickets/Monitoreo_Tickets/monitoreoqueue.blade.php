@@ -415,7 +415,7 @@
             $('#sistemasarea').toggle(400);
         });
         $('#caphumanoarea').click(function(){
-            $("div[name='nn']:contains(Capita)").toggle(500);
+            $("div[name='nn']:contains(Capital)").toggle(500);
 
             $('#canselacionstado').toggle(400);
             $('#st').toggle(400);

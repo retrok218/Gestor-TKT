@@ -292,7 +292,11 @@ class AdminController extends Controller
 
     public function create() {
         $roles = DB::table('roles')->get();
-        $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
+        // $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
+        $areas =DB::connection('pgsql2')->SELECT("SELECT * FROM queue 
+        WHERE queue.id NOT IN ('1','2','3','4','5','6','7','10','16','18','34','36','40','41','43','44','45','46','47','52')
+        ORDER BY id ASC");
+        //dd($areas);
         return view('modals/users/add_user')->with('roles', $roles)
         ->with(compact('areas'));
         }
@@ -307,13 +311,21 @@ class AdminController extends Controller
         $id = $request->id;
         $datosRoles = User::getRol($id);
         $roles = DB::table('roles')->get();
-        $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
+        $areas=DB::connection('pgsql2')->SELECT("SELECT * FROM queue 
+        WHERE queue.id NOT IN ('1','2','3','4','5','6','7','10','16','18','34','36','40','41','43','44','45','46','47','52')
+        ORDER BY id ASC");
         $user = User::find($id);
+        $areas_seleccionadas = $user->area;      
+        $areselecc = explode(",", $areas_seleccionadas);
+        //dd($areas);
         return view('modals/users/edit_user')
             ->with(compact('user'))
             ->with(compact('datosRoles'))
             ->with(compact('areas'))
-            ->with(compact('roles'));
+            ->with(compact('roles'))
+            ->with(compact('areselecc'))
+            
+            ;
     }
     /**
      * Actualizar usuario.
