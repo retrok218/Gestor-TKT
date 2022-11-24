@@ -61,14 +61,17 @@ var KTLoginGeneral = function () {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
-                            console.log(data.success);
+                            //console.log(data.success);
                             if (data.success == true) {
                                 if (data.admin == true) {
-                                    //console.log('es adminisitrador');
+                                    console.log(data);
+                                 
                                     window.location.href = "admin";
-                                }                               
+                                }   
+
                                 else {
-                                   // console.log('es area normal');
+                                console.log('es area normal');
+                                    console.log(data);
                                        window.location.href = "area_inicio"; // se cambia de / tickets asignado ya que con / al ingresar como usuario area manda a apache
                                 }
                             } else {

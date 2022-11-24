@@ -185,7 +185,7 @@
                     <input type="hidden" id='nombre'name="nombre" value="{{Auth::user()->name}}">
                     <input type="hidden" id='avatar'name="avatar" value="{{Auth::user()->avatar}}">
                      
-                    <a href="javascript:void(0);" onclick="bloquea_pantalla();" class="kt-notification__item">
+                    <!-- <a href="javascript:void(0);" onclick="bloquea_pantalla();" class="kt-notification__item">
                         <div class="kt-notification__item-icon">
                             <i class="flaticon2-lock kt-font-brand"></i>
                         </div>
@@ -198,7 +198,7 @@
                             </div>
                             
                         </div>
-                    </a>
+                    </a> -->
 
              
                     <!-- Para continuar con el listado del Perfil -->

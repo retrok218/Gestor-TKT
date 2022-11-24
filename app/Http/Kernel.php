@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'areas_permission'=> \App\Http\Middleware\AreaMiddleware::class,
         'areaarea'=> \App\Http\Middleware\areamdw::class,
+        'solojefe_permission'=> \App\Http\Middleware\SoloJefe::class,
         
 
     ];
