@@ -139,7 +139,7 @@
                 </button>
                 <button type="button" class="btn btn-primary" id="usr_js_fn_05" onclick="edit_user();">
                 
-                    Editar
+                    Aplicar
                 </button>
                 <!-- <button type="button" onclick="Eliminar_usuario();">
                     ELiminar Usuario 

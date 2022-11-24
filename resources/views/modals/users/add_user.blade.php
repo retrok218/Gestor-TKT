@@ -109,7 +109,7 @@
                     Cancelar
                 </button>
                 <button type="button" class="btn btn-primary" id="usr_js_fn_04" onclick="save_user_create();" >
-                    Agregar
+                    Aplicar
                 </button>
 
             </div>
