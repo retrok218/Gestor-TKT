@@ -366,7 +366,7 @@
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
                                 <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
-                                        <h6 class="mb-0"style="position: absolute;top:50px; left:49%;font-size:2.5em;color:rgb(160 32 66 / 65%);pointer-events: none;"> 
+                                        <h6 class="mb-0"style="position: initial;top:50px; left:49%;font-size:2.5em;color:rgb(160 32 66 / 65%);pointer-events: none;"> 
                                             <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"></div>
                                             {{$v->tickets}}
                                         </h6>	 

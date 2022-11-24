@@ -94,12 +94,31 @@
                                             </tr>                                                                                                                                                 
                                                 
 
+                                            @foreach($areas as $todareas)
+                                                @php 
+                                                    $cont = 0;
+                                                @endphp
+                                                @foreach($areselecc as $seleccionada)
+                                                
+                                                        @if($seleccionada == $todareas->id)                                                           
+                                                                <tr> 
+                                                                        <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$todareas->id}}' checked >{{$todareas->id}} </td>
+                                                                        <td>{{$todareas->name}}</td>
+                                                                </tr>
+                                                                @php 
+                                                                    $cont = 1;
+                                                                @endphp                                                                                                                                                                                                                                                                                                                                                                                 
+                                                        @endif                                                                 
+                                                                                                                                                             
+                                                    @endforeach
 
-                                            @foreach($areas as $area )                                                                                                                                                                                                                                   
-                                                <tr> 
-                                                    <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->id}}'>{{$area->id}}</td>
-                                                    <td>{{$area->name}}</td>
-                                                </tr>   
+                                                    @if($cont == 0)
+                                                    <tr> 
+                                                                    <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$todareas->id}}' >{{$todareas->id}} </td>
+                                                                    <td>{{$todareas->name}}</td>
+                                                                </tr>
+                                                        @endif
+
                                                 @endforeach
 
 
