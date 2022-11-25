@@ -294,7 +294,7 @@ class AdminController extends Controller
         $roles = DB::table('roles')->get();
         // $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
         $areas =DB::connection('pgsql2')->SELECT("SELECT * FROM queue 
-        WHERE queue.id NOT IN ('1','2','3','4','5','6','7','10','16','18','34','36','40','41','43','44','45','46','47','52')
+        WHERE queue.id NOT IN ('1','2','3','4','5','6','7','10','16','18','34','36','40','41','43','44','45','46','47','52','53')
         ORDER BY id ASC");
         //dd($areas);
         return view('modals/users/add_user')->with('roles', $roles)
@@ -312,7 +312,7 @@ class AdminController extends Controller
         $datosRoles = User::getRol($id);
         $roles = DB::table('roles')->get();
         $areas=DB::connection('pgsql2')->SELECT("SELECT * FROM queue 
-        WHERE queue.id NOT IN ('1','2','3','4','5','6','7','10','16','18','34','36','40','41','43','44','45','46','47','52')
+        WHERE queue.id NOT IN ('1','2','3','4','5','6','7','10','16','18','34','36','40','41','43','44','45','46','47','52','53')
         ORDER BY id ASC");
         $user = User::find($id);
         $areas_seleccionadas = $user->area;      

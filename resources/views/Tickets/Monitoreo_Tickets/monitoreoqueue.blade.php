@@ -26,10 +26,18 @@
     </div>
 
 <div class="row">
+
     
     <div class="col-sm" id="st">        
       <div class="kt-widget25__item">
           <div class="item-wrapper">
+          <div class="three col">
+                    <div class="hamburger" id="hamburger-2">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                    </div>
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
@@ -54,16 +62,18 @@
                                     </div>                                   
                                 </div>                                                                                     
                             </div>
+
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
                                         
-                                        <h6 class="plegar  " >
-                                            <div class="fa fa-chevron-circle-down" style="font-size: 1.5em !important;"></div>
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
                                         </h6>									
                                     </div>     
                                 </div>
-                            </div>    
+                            </div> 
+
                 </div>  
             </div>
           </div>
@@ -97,7 +107,17 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>    
+                            </div>   
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
+                            </div> 
                 </div>  
             </div>
           </div>
@@ -131,7 +151,17 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>    
+                            </div> 
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
+                            </div>   
                 </div>  
             </div>
           </div>
@@ -169,6 +199,16 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
                             </div>    
                 </div>  
             </div>
@@ -203,7 +243,17 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>    
+                            </div> 
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
+                            </div>   
                 </div>  
             </div>
           </div>
@@ -237,6 +287,16 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
                             </div>    
                 </div>  
             </div>
@@ -275,7 +335,17 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>    
+                            </div> 
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
+                            </div>   
                 </div>  
             </div>
           </div>
@@ -309,6 +379,16 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
                             </div>    
                 </div>  
             </div>
@@ -343,7 +423,17 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>    
+                            </div> 
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
+                            </div>   
                 </div>  
             </div>
           </div>
@@ -401,27 +491,12 @@
         $(".plegar").hide();   
 
 
-
-
-
-
+        
 
         $('#st').click(function(){
+            $("div[name='nn']:contains(ST::)").toggle(400);
+            
             $(".plegar").toggle(400);
-            $('.plegar').animate(
-    { deg: 180 },
-    {
-      duration: 1200,
-      step: function(now) {
-        $(this).css({ transform: 'rotate(' + now + 'deg)' });
-      }
-    }
-  );
-
-
-
-            $("div[name='nn']:contains(ST::)").toggle(400);            
-           
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -434,7 +509,7 @@
 
         $('#canselacionstado').click(function(){
             $("div[name='nn']:contains(Cancelac)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#st').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -446,7 +521,7 @@
         });
         $('#caphumanoarea').click(function(){
             $("div[name='nn']:contains(Capital)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#st').toggle(400);
             $('#dasiarea').toggle(400);
@@ -458,7 +533,7 @@
         });
         $('#dasiarea').click(function(){
             $("div[name='nn']:contains(DASI)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#st').toggle(400);
@@ -470,7 +545,7 @@
         });
         $('#decsiarea').click(function(){
             $("div[name='nn']:contains(DECSI)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -482,7 +557,7 @@
         });
         $('#mesasarea').click(function(){
             $("div[name='nn']:contains(Mesa de)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -494,7 +569,7 @@
         });
         $('#normaarea').click(function(){
             $("div[name='nn']:contains(Normatividad)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -506,7 +581,7 @@
         });
         $('#seguridadarea').click(function(){
             $("div[name='nn']:contains(Seguridad Inf)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -518,7 +593,7 @@
         });
         $('#sistemasarea').click(function(){
             $("div[name='nn']:contains(Sistemas)").toggle(500);
-
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
@@ -528,6 +603,21 @@
             $('#seguridadarea').toggle(400);
             $('#st').toggle(400);
         });
+
+
+        
+  $(".hamburger").click(function(){
+    $(this).toggleClass("is-active");
+  });
+
+
+
+
+
+
+
+
+
     })
 
     function desglocetktsar(id){   
@@ -553,6 +643,9 @@
     //console.log(id);
    };
 
+
+
+   
 
 </script>
 @endsection
