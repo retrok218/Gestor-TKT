@@ -50086,4 +50086,10 @@ tr.shown td.details-control {
   }
   
 
-  
+  .des{
+    color: #1a9ff1;
+  }
+  .des:hover{
+    
+    text-decoration-color: #850d11;
+  }

@@ -45,14 +45,22 @@
                             </div>                            
                             <hr>                                                                                              
                             <div class="d-flex justify-content-between mt-4" style="margin-top: 0.5rem;">   
-                            <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
+                                <div class="kt-timeline-v3__item kt-timeline-v3__item--warning">                                    
                                     <div class="kt-timeline-v3__item-desc">                                        
                                         <h6 class="mb-0" style="position: absolute;top:50px; left:49%;font-size:2.5em;color:rgb(160 32 66 / 65%);pointer-events: none;"> 
                                             <div class="fas fa-ticket-alt fa-lg" id="ticketm" style="font-size: 25px !important;"></div>
                                             {{$ssumm["ST"]}}
                                         </h6>	 
                                     </div>                                   
-                                    </div>                                                                                     
+                                </div>                                                                                     
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        <h6 class="des" >Desplegar</h6>	
+                                        <h6 class="plegar" >Plegar</h6>									
+                                    </div>     
+                                </div>
                             </div>    
                 </div>  
             </div>
@@ -387,11 +395,13 @@
 <script>
     $(function(){
         
-        $("div[name='nn']").hide(1);   
+        $("div[name='nn']").hide(1);
+        $(".plegar").hide();   
 
         $('#st').click(function(){
             $("div[name='nn']:contains(ST::)").toggle(400);
-
+            $(".des").toggle(400);
+            $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
