@@ -49867,6 +49867,11 @@ body {
   
 }
 
+
+
+
+
+
 .item-wrapper .line-top {
     top: 0;
     left: 0;
@@ -49937,10 +49942,9 @@ body {
 
 
 .item-wrapper:hover{
-    box-shadow: -1px 3px 20px 2px #c06d83;
-  
-   
-
+    box-shadow: -1px 3px 20px 2px #c06d83;  
+    transition: 1.5s;
+    
 }
 
 
@@ -50076,3 +50080,10 @@ tr.shown td.details-control {
           transform: scale(1.15) rotate(0);
       }
   }
+
+  .tabmesa{
+    color: #900f13 !important;
+  }
+  
+
+  

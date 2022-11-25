@@ -16,7 +16,7 @@
       <!-- <div class="card-header fondoberde"  > --> 
       <div class="card-header "  >
                 <div class="containerglass ">
-                    <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);">
+                    <span style="display: block; font-style: normal;  color: #2e2e2e; font-weight: 600; font-size: calc(2em + 1vw);" class="tabmesa">
                     Tablero Mesa de Servicio                                              
                     </span>     
                 </div>
@@ -88,7 +88,7 @@
              
               
               <a id="link" href="{{ url('/tickets_atendidos/') }}" >
-              <div class="card bg-white p-3 mb-4 shadow" style="padding: 1rem !important; margin-bottom: 0.5rem !important; background-color: #ffffffc7 !important;   font-size: clamp(20px, 4.5vw, 1em);">                            
+              <div class="card bg-white p-3 mb-4 shadow " style="padding: 1rem !important; margin-bottom: 0.5rem !important; font-size: clamp(20px, 4.5vw, 1em);">                            
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">

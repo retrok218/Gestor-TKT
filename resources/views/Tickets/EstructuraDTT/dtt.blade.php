@@ -51,7 +51,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th>Selecciona El Area</th>
+                    <th></th>
                     <th></th>
                     <th>Seleccione El Usuario</th>
                 </tfoot>
