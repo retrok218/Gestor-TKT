@@ -57,8 +57,10 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="user-info">                                    
                                     <div class="user-info__basic">
-                                        <h6 class="des" >Desplegar</h6>	
-                                        <h6 class="plegar" >Plegar</h6>									
+                                        
+                                        <h6 class="plegar  " >
+                                            <div class="fa fa-chevron-circle-down" style="font-size: 1.5em !important;"></div>
+                                        </h6>									
                                     </div>     
                                 </div>
                             </div>    
@@ -398,10 +400,28 @@
         $("div[name='nn']").hide(1);
         $(".plegar").hide();   
 
+
+
+
+
+
+
         $('#st').click(function(){
-            $("div[name='nn']:contains(ST::)").toggle(400);
-            $(".des").toggle(400);
             $(".plegar").toggle(400);
+            $('.plegar').animate(
+    { deg: 180 },
+    {
+      duration: 1200,
+      step: function(now) {
+        $(this).css({ transform: 'rotate(' + now + 'deg)' });
+      }
+    }
+  );
+
+
+
+            $("div[name='nn']:contains(ST::)").toggle(400);            
+           
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
             $('#dasiarea').toggle(400);
