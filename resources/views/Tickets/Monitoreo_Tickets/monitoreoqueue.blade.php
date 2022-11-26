@@ -26,18 +26,10 @@
     </div>
 
 <div class="row">
-
     
-    <div class="col-sm" id="st">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="st">
           <div class="item-wrapper">
-          <div class="three col">
-                    <div class="hamburger" id="hamburger-2">
-                        <span class="line"></span>
-                        <span class="line"></span>
-                        <span class="line"></span>
-                    </div>
-                    </div>
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
@@ -79,7 +71,11 @@
           </div>
          
         </div>
+        <div name="stbutondes">
+            <input type="button"  value="Despegar ST" > 
     </div>
+    </div>
+    
 
     <div class="col-sm" id="canselacionstado">        
       <div class="kt-widget25__item">
@@ -336,16 +332,7 @@
                                     </div>                                   
                                     </div>                                                                                     
                             </div> 
-                            <div class="d-flex justify-content-between ">
-                                <div class="user-info">                                    
-                                    <div class="user-info__basic">
-                                        
-                                        <h6 class="plegar" >
-                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
-                                        </h6>									
-                                    </div>     
-                                </div>
-                            </div>   
+                               
                 </div>  
             </div>
           </div>
@@ -379,16 +366,6 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>
-                            <div class="d-flex justify-content-between ">
-                                <div class="user-info">                                    
-                                    <div class="user-info__basic">
-                                        
-                                        <h6 class="plegar" >
-                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
-                                        </h6>									
-                                    </div>     
-                                </div>
                             </div>    
                 </div>  
             </div>
@@ -423,17 +400,7 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div> 
-                            <div class="d-flex justify-content-between ">
-                                <div class="user-info">                                    
-                                    <div class="user-info__basic">
-                                        
-                                        <h6 class="plegar" >
-                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
-                                        </h6>									
-                                    </div>     
-                                </div>
-                            </div>   
+                            </div>    
                 </div>  
             </div>
           </div>
@@ -488,14 +455,17 @@
     $(function(){
         
         $("div[name='nn']").hide(1);
+        $("div[name='stbutondes']").hide();
         $(".plegar").hide();   
+        
+        
 
 
         
 
         $('#st').click(function(){
             $("div[name='nn']:contains(ST::)").toggle(400);
-            
+            $("div[name='stbutondes']").toggle (400);
             $(".plegar").toggle(400);
             $('#canselacionstado').toggle(400);
             $('#caphumanoarea').toggle(400);
@@ -603,21 +573,6 @@
             $('#seguridadarea').toggle(400);
             $('#st').toggle(400);
         });
-
-
-        
-  $(".hamburger").click(function(){
-    $(this).toggleClass("is-active");
-  });
-
-
-
-
-
-
-
-
-
     })
 
     function desglocetktsar(id){   
@@ -643,9 +598,6 @@
     //console.log(id);
    };
 
-
-
-   
 
 </script>
 @endsection
