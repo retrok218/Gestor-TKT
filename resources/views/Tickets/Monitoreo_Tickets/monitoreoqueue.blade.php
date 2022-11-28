@@ -72,13 +72,13 @@
          
         </div>
         <div name="stbutondes">
-            <input type="button"  value="Despegar ST" > 
-    </div>
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idst.'/'.$st)}}"> Desplegar</a>                      
+         </div>
     </div>
     
 
-    <div class="col-sm" id="canselacionstado">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="canselacionstado">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -117,12 +117,15 @@
                 </div>  
             </div>
           </div>
-          </a>
+         
         </div>
+        <div name="cancbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idCan.'/'.$can)}}"> Desplegar</a>                      
+         </div>
     </div>
     
-    <div class="col-sm" id="caphumanoarea">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="caphumanoarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -161,16 +164,19 @@
                 </div>  
             </div>
           </div>
-          </a>
+          
         </div>
+        <div name="caphbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idCapH.'/'.$caph)}}"> Desplegar</a>                      
+         </div>
     </div>
     
 </div>
 
 <div class="row">
     
-    <div class="col-sm" id="dasiarea">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="dasiarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -209,12 +215,15 @@
                 </div>  
             </div>
           </div>
-          </a>
+          
         </div>
+        <div name="dasbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idDas.'/'.$Da)}}"> Desplegar</a>                      
+         </div>
     </div>
     
-    <div class="col-sm" id="decsiarea">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="decsiarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -253,12 +262,15 @@
                 </div>  
             </div>
           </div>
-          </a>
+          
         </div>
+        <div name="decbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idDec.'/'.$DE)}}"> Desplegar</a>                      
+         </div>
     </div>
 
-    <div class="col-sm" id="mesasarea">        
-      <div class="kt-widget25__item">
+    <div class="col-sm">        
+      <div class="kt-widget25__item"  id="mesasarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -297,16 +309,19 @@
                 </div>  
             </div>
           </div>
-          </a>
+          
         </div>
+        <div name="mesasbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idMesa.'/'.$mesads)}}"> Desplegar</a>                      
+         </div>
     </div>
 
 </div>
 
 <div class="row">
     
-    <div class="col-sm" id="normaarea">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="normaarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -331,17 +346,30 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
                             </div> 
                                
                 </div>  
             </div>
           </div>
-          </a>
+          
         </div>
+        <div name="normabutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idNormat.'/'.$nor)}}"> Desplegar</a>                      
+         </div>
     </div>
 
-    <div class="col-sm" id="seguridadarea">        
-      <div class="kt-widget25__item">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="seguridadarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -366,16 +394,29 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
-                            </div>    
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
+                            </div>     
                 </div>  
             </div>
           </div>
-          </a>
+          
         </div>
+        <div name="segubutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idSegur.'/'.$seginf)}}"> Desplegar</a>                      
+         </div>
     </div>
 
-    <div class="col-sm" id="sistemasarea">        
-      <div class="kt-widget25__item" style="">
+    <div class="col-sm" >        
+      <div class="kt-widget25__item" id="sistemasarea">
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -400,21 +441,35 @@
                                         </h6>	 
                                     </div>                                   
                                     </div>                                                                                     
+                            </div> 
+                            <div class="d-flex justify-content-between ">
+                                <div class="user-info">                                    
+                                    <div class="user-info__basic">
+                                        
+                                        <h6 class="plegar" >
+                                            <div class="fa fa-chevron-circle-up" style="font-size: 1.5em !important; color: #a02042;"></div>
+                                        </h6>									
+                                    </div>     
+                                </div>
                             </div>    
                 </div>  
             </div>
-          </div>
-          
+          </div>          
         </div>
+        <div name="sisbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idSis.'/'.$sistem)}}"> Desplegar</a>                      
+         </div>
     </div>
-</div>
-<hr>
-<div class="row">
 
+</div>
+
+<hr>
+
+<div class="row">
 @foreach($areas as $v)
  <div class="col-sm-6 col-md-6 col-lg-4" name="nn" >
         <a href="{{url('/data/tktareaasignadosdesg/'.$v->identificador) }}">                       
-         <div class="kt-widget25__item" style="">
+         <div class="kt-widget25__item" >
           <div class="item-wrapper">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
@@ -456,6 +511,14 @@
         
         $("div[name='nn']").hide(1);
         $("div[name='stbutondes']").hide();
+        $("div[name='caphbutondes']").hide();
+        $("div[name='dasbutondes']").hide();
+        $("div[name='decbutondes']").hide();
+        $("div[name='mesasbutondes']").hide();
+        $("div[name='normabutondes']").hide();
+        $("div[name='segubutondes']").hide();
+        $("div[name='sisbutondes']").hide();
+        $("div[name='cancbutondes']").hide();
         $(".plegar").hide();   
         
         
@@ -488,6 +551,7 @@
             $('#normaarea').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='cancbutondes']").toggle();
         });
         $('#caphumanoarea').click(function(){
             $("div[name='nn']:contains(Capital)").toggle(500);
@@ -500,6 +564,7 @@
             $('#normaarea').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='caphbutondes']").toggle();
         });
         $('#dasiarea').click(function(){
             $("div[name='nn']:contains(DASI)").toggle(500);
@@ -512,6 +577,8 @@
             $('#normaarea').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='dasbutondes']").toggle();
+            
         });
         $('#decsiarea').click(function(){
             $("div[name='nn']:contains(DECSI)").toggle(500);
@@ -524,6 +591,7 @@
             $('#normaarea').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='decbutondes']").toggle();
         });
         $('#mesasarea').click(function(){
             $("div[name='nn']:contains(Mesa de)").toggle(500);
@@ -536,6 +604,7 @@
             $('#normaarea').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='mesasbutondes']").toggle();
         });
         $('#normaarea').click(function(){
             $("div[name='nn']:contains(Normatividad)").toggle(500);
@@ -548,6 +617,7 @@
             $('#st').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='normabutondes']").toggle();
         });
         $('#seguridadarea').click(function(){
             $("div[name='nn']:contains(Seguridad Inf)").toggle(500);
@@ -560,6 +630,7 @@
             $('#normaarea').toggle(400);
             $('#st').toggle(400);
             $('#sistemasarea').toggle(400);
+            $("div[name='segubutondes']").toggle();
         });
         $('#sistemasarea').click(function(){
             $("div[name='nn']:contains(Sistemas)").toggle(500);
@@ -572,6 +643,7 @@
             $('#normaarea').toggle(400);
             $('#seguridadarea').toggle(400);
             $('#st').toggle(400);
+            $("div[name='sisbutondes']").toggle();
         });
     })
 

@@ -925,20 +925,6 @@ public function kyocesrapaño($anno){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   public function toneraj()
   {   
     $fecha_año = Carbon::now()->format('Y');
@@ -1032,13 +1018,6 @@ foreach ($kyoserasolano2020 as $yamecanse) {
  }
  
 
-
-
-
-
- 
-
-
 //**************************************************************************************************************************** */
     return view('Tickets/EstructuraDTT/dtttoner')      
       ->with('solicitudToner', $solicitudToner)
@@ -1049,14 +1028,6 @@ foreach ($kyoserasolano2020 as $yamecanse) {
       ->with('sumakyoseraano2019',$sumakyoseraano2019)   
       
        ;}
-
-
-
-
-
-
-
-
 
 
 public function monitoreo_tickets_area_n(){                
@@ -1074,8 +1045,17 @@ $sissum = 0;
 $e=0;
 $arreglodsl = array( );
 $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=>0,'Normatividad'=>0,'Seguridad'=>0,'Sistemas'=>0 );
+$id_ST=array();
+$id_Sis=array();
+$id_Can=array();
+$id_CapH=array();
+$id_Das=array();
+$id_Dec=array();
+$id_Mesa=array();
+$id_Normat=array();
+$id_Segur=array();
 
-//dd($areas);
+
 
         foreach ($areas as $r) {
          $dosletras = array(substr($r->nombrea, 0,3)); // Obtiene las 3 primeras letras del nombre del area      
@@ -1084,41 +1064,101 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
           if (strncasecmp($r->nombrea,'ST',2)===0 ) {
             $st_sum +=  $r->tickets;                                               
             $ssumm["ST"]+= $r->tickets;
+            array_push($id_ST,$r->identificador);
+
           }elseif (strncasecmp($r->nombrea,'Sis',3)===0) {            
-            $ssumm["Sistemas"]+= $r->tickets;               
+            $ssumm["Sistemas"]+= $r->tickets;
+            array_push($id_Sis,$r->identificador);               
           }
+
           elseif (strncasecmp($r->nombrea,'Cancela',7)===0) {            
-            $ssumm["cancelacion"]+= $r->tickets;                 
+            $ssumm["cancelacion"]+= $r->tickets;
+            array_push($id_Can,$r->identificador);   
+
           }
+
           elseif (strncasecmp($r->nombrea,'Capital Humano',14)==0) {            
-            $ssumm["capital"]+= $r->tickets;                
+            $ssumm["capital"]+= $r->tickets; 
+            array_push($id_CapH,$r->identificador);               
           }
           elseif (strncasecmp($r->nombrea,'DAS',3)===0) {            
-            $ssumm["DASI"]+= $r->tickets;              
+            $ssumm["DASI"]+= $r->tickets; 
+            array_push($id_Das,$r->identificador);               
           }
           elseif (strncasecmp($r->nombrea,'DEC',3)===0) {            
-            $ssumm["DECSI"]+= $r->tickets;    
+            $ssumm["DECSI"]+= $r->tickets;  
+            array_push($id_Dec,$r->identificador);    
             
           }
           elseif (strncasecmp($r->nombrea,'Mesa',4)===0) {            
-            $ssumm["Mesa"]+= $r->tickets;    
+            $ssumm["Mesa"]+= $r->tickets; 
+            array_push($id_Mesa,$r->identificador);    
             
           }
           elseif (strncasecmp($r->nombrea,'Normatividad',6)===0) {            
-            $ssumm["Normatividad"]+= $r->tickets;    
+            $ssumm["Normatividad"]+= $r->tickets; 
+            array_push($id_Normat,$r->identificador);   
             
           }
           elseif (strncasecmp($r->nombrea,'Seguridad',6)===0) {            
-            $ssumm["Seguridad"]+= $r->tickets;    
+            $ssumm["Seguridad"]+= $r->tickets; 
+            array_push($id_Segur,$r->identificador);   
             
           } 
-        } 
-//dd($areas);
+        }        
+       $idst = $this->atext($id_ST);
+       $idSis = $this->atext($id_Sis);
+       $idCan= $this->atext($id_Can);
+       $idCapH = $this->atext($id_CapH);
+       $idDas=$this->atext($id_Das);
+       $idDec=$this->atext($id_Dec);
+       $idMesa=$this->atext($id_Mesa);
+       $idNormat=$this->atext($id_Normat);
+       $idSegur=$this->atext($id_Segur);
+
+       $st="ST";
+       $can="Cancelaciones";
+       $caph="Capital Humano";
+       $Da="DASI";
+       $DE="DECSI";
+       $mesads="Mesa De Sercivio";
+       $nor="Normatividad";
+       $seginf="Seguridad Informatica";
+       $sistem="Sistemas";
+
+
+
+       //dd($id_ST,$idst);
       return view('Tickets.Monitoreo_Tickets.monitoreoqueue')
       ->with([
         'areas'=>$areas,
-        'ssumm'=>$ssumm    
+        'ssumm'=>$ssumm,
+
+        'idst'=>$idst,
+        'idSis'=>$idSis,
+        'idCan'=>$idCan,
+        'idCapH'=>$idCapH,
+        'idDas'=>$idDas,
+        'idDec'=>$idDec,
+        'idMesa'=>$idMesa,
+        'idNormat'=>$idNormat,
+        'idSegur'=>$idSegur ,
+        'st'=>$st,
+
+        'can'=>$can,
+        'caph'=>$caph,
+        'Da'=>$Da,
+        'DE'=>$DE,
+        'mesads'=>$mesads,
+        'nor'=>$nor,
+        'seginf'=>$seginf,
+        'sistem'=>$sistem,
       ]);
+    }
+
+    public function atext($lista){
+      $trnas=implode(",",$lista);
+    return $trnas;
     }
 
 
@@ -1147,7 +1187,7 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
         WHERE ticket.ticket_state_id = 12 AND queue.id IN ($num)
         GROUP BY queue.id,queue.name       
         ORDER BY queue.id ASC"); 
-      //dd($tktsxareaarea);
+      //dd($num);
       // return Datatables::of($ttkks)->toJson();    
       $nom_tkt_estatus = "Estado : Asignados ";
 
@@ -1175,6 +1215,36 @@ $ssumm =array('ST'=>0,'cancelacion'=>0,'capital'=>0,'DASI'=>0,'DECSI'=>0,'Mesa'=
           return Datatables::of($ttkks)->toJson();
       }
 
+
+      //Principales areas *********************************
+      public function tkstareasPrin($listaids,$name){
+        $Nombrearea=$name;      
+        $lista_ar=$listaids;      
+            return view('Tickets.Monitoreo_Tickets.areas_principales')
+            ->with(['nom_tkt_estatus'=>$Nombrearea,
+            'lista_ar'=>$lista_ar
+          
+          ]);
+      }
+
+      public function data_tks_principales($listaids){
+        $tktlistadps = DB::connection('pgsql2')             
+
+->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre,ticket.id
+FROM ticket
+INNER JOIN queue ON ticket.queue_id = queue.id
+INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+WHERE ticket_state_id = 12 AND queue_id IN ($listaids) 
+ORDER BY create_time DESC");
+            
+            
+
+
+
+           // dd($tktlistadps);
+        return Datatables::of($tktlistadps)->toJson();
+      }
 
 }
 
