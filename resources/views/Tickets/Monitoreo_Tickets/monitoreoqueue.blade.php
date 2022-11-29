@@ -72,7 +72,8 @@
          
         </div>
         <div name="stbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idst.'/'.$st)}}"> Desplegar</a>                      
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idst.'/'.$st)}}" class=" fa fa-arrow-circle-left button button-wiggle" 
+            style="color: #bc955b !important;width: 9em;font-size: 1rem;left: 11%;top: 93%;"> Desplegar</a>                      
          </div>
     </div>
     

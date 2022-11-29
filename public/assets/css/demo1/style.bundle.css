@@ -49850,6 +49850,7 @@ body {
     overflow: hidden;
     margin: auto;
     padding: 10px;
+    border-radius: 8px;
 }
 
 .item-wrapper .line {    
