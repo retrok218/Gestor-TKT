@@ -50053,13 +50053,22 @@ tr.shown td.details-control {
     position: absolute;
     left: 50%;
   }
+
+  .button-wiggle:hover{
+    color:#5a152b !important;
+    
+    transition: 0.5s;
+
+  }
   
   @keyframes wiggle {
       5%,
       50% {
-          transform: scale(1);
+            /* agranda el tamaño del elemento */
+          transform: scale(1); 
       }
       10% {
+        /* agranda el tamaño del elemento */
           transform: scale(0.9);
       }
       15% {
@@ -50096,4 +50105,38 @@ tr.shown td.details-control {
   }
 
 
+
+
+
+.boton_flecha {
+    position: relative;
+    color: #a02042e3;
+    text-decoration: none;
+    display: inline-block;
+    
+    letter-spacing: 1px;
+    border: 2px solid #a02042fa;
+    border-radius: 1000px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 5px 0 rgb(3 6 26 / 15%);
+    transition: 0.5s all ease-in-out;
+    
+  }
+
+  .boton_flecha:hover{
+    color: #bc955b;
+    transition: 0.5s;
+    border-color: #bc955b;
+  }
   
+  
+
+.boton-pulsame {
+    animation: pulse 3s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+    box-shadow: 0 0 0 0 #bc955b;
+  }
+  @keyframes pulse {
+    to {
+      box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); 
+    }
+  }

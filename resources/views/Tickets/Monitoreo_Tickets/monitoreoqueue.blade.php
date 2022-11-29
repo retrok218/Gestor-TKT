@@ -65,16 +65,16 @@
                                     </div>     
                                 </div>
                             </div> 
-
                 </div>  
             </div>
-          </div>
-         
+          </div>                   
         </div>
         <div name="stbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idst.'/'.$st)}}" class=" fa fa-arrow-circle-left button button-wiggle" 
-            style="color: #bc955b !important;width: 9em;font-size: 1rem;left: 11%;top: 93%;"> Desplegar</a>                      
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idst.'/'.$st)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
+        
     </div>
     
 
@@ -120,8 +120,11 @@
           </div>
          
         </div>
-        <div name="cancbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idCan.'/'.$can)}}"> Desplegar</a>                      
+        
+         <div name="cancbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idCan.'/'.$can)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
     
@@ -167,9 +170,14 @@
           </div>
           
         </div>
-        <div name="caphbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idCapH.'/'.$caph)}}"> Desplegar</a>                      
+        
+         <div name="caphbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idCapH.'/'.$caph)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
+
+
     </div>
     
 </div>
@@ -218,8 +226,11 @@
           </div>
           
         </div>
-        <div name="dasbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idDas.'/'.$Da)}}"> Desplegar</a>                      
+        
+         <div name="dasbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idDas.'/'.$Da)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
     
@@ -265,8 +276,12 @@
           </div>
           
         </div>
-        <div name="decbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idDec.'/'.$DE)}}"> Desplegar</a>                      
+        
+
+         <div name="decbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idDec.'/'.$DE)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
 
@@ -312,8 +327,12 @@
           </div>
           
         </div>
-        <div name="mesasbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idMesa.'/'.$mesads)}}"> Desplegar</a>                      
+        
+
+         <div name="mesasbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idMesa.'/'.$mesads)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
 
@@ -364,8 +383,12 @@
           </div>
           
         </div>
-        <div name="normabutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idNormat.'/'.$nor)}}"> Desplegar</a>                      
+       
+
+         <div name="normabutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idNormat.'/'.$nor)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
 
@@ -411,8 +434,12 @@
           </div>
           
         </div>
-        <div name="segubutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idSegur.'/'.$seginf)}}"> Desplegar</a>                      
+        
+
+         <div name="segubutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idSegur.'/'.$seginf)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
 
@@ -457,8 +484,12 @@
             </div>
           </div>          
         </div>
-        <div name="sisbutondes">
-            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idSis.'/'.$sistem)}}"> Desplegar</a>                      
+       
+
+         <div name="sisbutondes">
+            <a href="{{url('monitoreo_areas_n/tkts_totales_areas_princ/'.$idSis.'/'.$sistem)}}"  
+           ><span class=" fa fa-arrow-circle-down boton_flecha boton-pulsame"> Desplegar</span>
+           </a>                     
          </div>
     </div>
 
