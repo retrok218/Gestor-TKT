@@ -235,7 +235,8 @@
 @endif
 
          </ul>
-         <a onClick="history.go(-1);" class=" fa fa-arrow-circle-left button button-wiggle" > Regresar </a>               
+         <div class="boton_flecha"> <a onClick="history.go(-1);" class=" fa fa-arrow-circle-left button button-wiggle " > Regresar </a>  </div>
+                       
       </div>
    </div>
    <!-- end:: Aside Menu -->

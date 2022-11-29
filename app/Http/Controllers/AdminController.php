@@ -328,7 +328,7 @@ class AdminController extends Controller
             ;
     }
     /**
-     * Actualizar usuario.
+     * Actualizar usuario dentro del modal de actualizar 
      *
      * @param  Request  $request
      * @param  Users  $users
@@ -343,7 +343,6 @@ class AdminController extends Controller
             $id_rol = $request->id_rol;
             $estatus = ($request->estatus_user == "on" )? 1 : 0;
             $aareas =   implode(' , ',$request->checkbox);
-
             $users = User::find($id);
             $users->name = $request->nombres;
             $users->apellido_paterno = $request->apellido_paterno;
@@ -352,6 +351,7 @@ class AdminController extends Controller
             $users->estatus = $estatus;
             $users->id_rol = $id_rol;
             $users->area = $aareas;
+            $users->usuario = $request->usuario;
           
             
             // Actualización de password

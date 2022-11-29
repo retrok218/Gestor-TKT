@@ -50046,18 +50046,19 @@ tr.shown td.details-control {
 .button-wiggle {
     animation: wiggle 4s 2s infinite;
     cursor: pointer;
-    width: 156px;
-    height: 0px;
+    /* width: 156px; */
+    /* height: 0px; */
     color: #24a927bd !important;
-    font-size: 1.5rem;
-    position: absolute;
+    /* font-size: 1.5rem; */
+    /* position: absolute; */
     left: 50%;
   }
 
   .button-wiggle:hover{
-    color:#5a152b !important;
-    
+    color:#5a152b !important;    
     transition: 0.5s;
+
+    
 
   }
   
@@ -50120,13 +50121,17 @@ tr.shown td.details-control {
     padding: 8px 16px;
     box-shadow: 0 2px 5px 0 rgb(3 6 26 / 15%);
     transition: 0.5s all ease-in-out;
+
+    padding: 2px 7px;
+    left: 5%;
     
   }
 
   .boton_flecha:hover{
-    color: #bc955b;
+    color: #a02042e3;
     transition: 0.5s;
-    border-color: #bc955b;
+    border-color: #a02042fa;
+    background-color:#d7bf9c ;
   }
   
   

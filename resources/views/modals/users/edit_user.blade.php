@@ -19,7 +19,7 @@
                                 <div class="col-md-6">                                
                                     <div class="form-group">
                                         <label class="control-label">Usuario</label>
-                                        <input type="text" class="form-control" id="usuario" name="usuario" value="{{$user->usuario}}" required readonly>
+                                        <input type="text" class="form-control" id="usuario" name="usuario" value="{{$user->usuario}}" required>
                                         <span id="usuario-error" class="help-block"></span>
                                     </div>
                                     <div class="form-group">
