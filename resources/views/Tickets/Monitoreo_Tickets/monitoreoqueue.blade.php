@@ -1,5 +1,5 @@
 @extends('home')
-{{--<meta http-equiv="refresh" content="10"/>--}}
+<meta http-equiv="refresh" content="40"/>
 @section('content')
 <script>
     var nom_tkt_estatus = "Tickets areaaa";

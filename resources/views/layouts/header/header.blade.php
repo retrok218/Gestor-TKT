@@ -121,20 +121,10 @@
         <div class="kt-header__topbar-item kt-header__topbar-item--user" >
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                 <div class="kt-header__topbar-user" id="btnClick">
-                        @php    
-                        $mens_bi =array(
-                             1=>"Hola" ,
-                             2=>"Buen dia" ,
-                             3=>"Bienvenido " ,
-                             4=>"Comencemos" ,
+                       
+                        
 
-                        );
-
-                            $numr = rand(1,4);
-
-                        @endphp
-
-                    <span class="kt-header__topbar-welcome kt-hidden-mobile">{{$mens_bi[$numr]}},</span>
+                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Bienvenido,</span>
                     <span class="kt-header__topbar-username kt-hidden-mobile">{{ Auth::user()->usuario }} </span>
                     @if (Auth::user()->avatar == 'assets/media/users/avatar_neutro.jpg')                           
                             <img id="img_avatar_header_menu" src="{{ asset('assets/media/users/sinimg.jpg') }}">

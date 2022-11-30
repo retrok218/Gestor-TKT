@@ -50048,7 +50048,7 @@ tr.shown td.details-control {
     cursor: pointer;
     /* width: 156px; */
     /* height: 0px; */
-    color: #24a927bd !important;
+    /* color: #24a927bd !important; */
     /* font-size: 1.5rem; */
     /* position: absolute; */
     left: 50%;
@@ -50145,3 +50145,5 @@ tr.shown td.details-control {
       box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); 
     }
   }
+
+  
