@@ -139,7 +139,8 @@
                      
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_asignados') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Asignados</span></a></li>
                      <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Utils</span></span></li>
-                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_abiertos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Abierto</span></a></li>                     
+                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_abiertos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Abierto</span></a></li>
+                     <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_en_tramite') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets En Tramite</span></a></li>                        
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_atendidos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Atendidos</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_cerrados_exitosamente') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Cerrados Exitosamente</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_cerradospt') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Cerrados Por Tiempo</span></a></li>
@@ -148,6 +149,7 @@
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_notificado_al_usuario') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Notificado Al Usuario</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/tickets_nuevos') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tickets Nuevo</span></a></li>
                      <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/todos_los_tickets') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Todos Los Tickets</span></a></li>                                         
+                                                            
                      @endif
 
                      @cannot('SuperAdmin')

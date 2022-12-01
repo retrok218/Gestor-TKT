@@ -1226,7 +1226,6 @@ $id_Segur=array();
           
           ]);
       }
-
       public function data_tks_principales($listaids){
         $tktlistadps = DB::connection('pgsql2')             
 
@@ -1236,15 +1235,45 @@ INNER JOIN queue ON ticket.queue_id = queue.id
 INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
 INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
 WHERE ticket_state_id = 12 AND queue_id IN ($listaids) 
-ORDER BY create_time DESC");
-            
-            
-
-
-
+ORDER BY create_time DESC");                      
            // dd($tktlistadps);
         return Datatables::of($tktlistadps)->toJson();
       }
+
+
+
+  public function tickets_en_tramite(){  
+        $tickte = DB::connection('pgsql2')->table('ticket')->count();
+        $tkts_en_tramite_cant = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id', '=', 18)->count();
+        $nom_tkt_estatus = "Tickets En Tramite";               
+        $tktporcento = round(($tkts_en_tramite_cant*100)/$tickte,2);
+        $tktporcenttot= 100-$tktporcento;
+        //dd($tkts_en_tramite);
+      return view('Tickets/tickets_en_tramites')
+      ->with([
+      'ticket'=>$tickte,
+      'tkts_en_tramite_cant'=>$tkts_en_tramite_cant,
+      'nom_tkt_estatus'=>$nom_tkt_estatus,
+      'tktporcento'=>$tktporcento,
+      'tktporcenttot'=>$tktporcenttot
+      ]);
+  }
+      public function data_tickets_en_tramite(){        
+        $usuario = auth()->user()->area;
+        $tkentramite = DB::connection('pgsql2')
+        ->select("SELECT ticket.tn,ticket.title,queue.name as qname, ticket.create_time,ticket_state.name, customer_user.first_name as nombre ,ticket.id
+        FROM ticket 
+        INNER JOIN queue ON ticket.queue_id = queue.id 
+        INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+        INNER JOIN customer_user ON ticket.customer_id = customer_user.customer_id
+        WHERE ticket_state_id = 18 AND queue_id IN ($usuario)                           
+        ORDER BY ticket.tn DESC");
+        //dd($tkentramite);
+    return Datatables::of($tkentramite)->toJson();
+      
+      }
+
+    
 
 }
 

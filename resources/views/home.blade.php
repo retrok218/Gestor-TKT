@@ -94,6 +94,31 @@
                 <!-- end:: Header -->
                 <!-- begin: Content -->
 
+                <!-- <div class="kt-subheader  kt-grid__item" id="kt_subheader">
+    <div class="kt-container  kt-container--fluid ">
+        <div class="kt-subheader__main">
+            
+            <h3 class="kt-subheader__title">Tablero Mesa De Servicio</h3>
+
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>            
+
+            <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
+                <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                        <span><i class="flaticon2-search-1"></i></span>
+                </span>
+            </div>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+                <span  > Dia :</span>
+                <span  > Mes :</span>
+                <span  > Año :</span>                                                         
+            </div>
+        </div>
+    </div>
+</div> -->
+
                 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
                     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                         @yield('content')

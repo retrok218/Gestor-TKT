@@ -116,7 +116,7 @@
                                                     <tr> 
                                                                     <td><input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$todareas->id}}' >{{$todareas->id}} </td>
                                                                     <td>{{$todareas->name}}</td>
-                                                                </tr>
+                                                    </tr>
                                                         @endif
 
                                                 @endforeach

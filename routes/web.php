@@ -155,6 +155,11 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
 
     Route::get ('/tickets_espera_informacion','Estado_ticketsController@tickets_espera_informacion' );
     Route::get('/data_tickets_espera_informacion','Estado_ticketsController@data_tickets_espera_informacion');
+    
+
+
+    Route::get('/tickets_en_tramite','Estado_ticketsController@tickets_en_tramite');
+    Route::get('/data_tickets_en_tramite','Estado_ticketsController@data_tickets_en_tramite');
 
 
 
@@ -189,6 +194,7 @@ Route::group(['middleware'=>['auth','areas_permission']],function(){
     Route::get('/monitoreo_areas_n','Estado_ticketsController@monitoreo_tickets_area_n');
 
     Route::get('/tktareaasignadosdesg/{ida}','Estado_ticketsController@areaasignadosdesglose');
+
 
 
 
